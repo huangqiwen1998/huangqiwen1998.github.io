@@ -3,7 +3,8 @@
   <entry>
     <title>vue从基础到熟悉</title>
     <url>/2020/04/03/vue%E4%BB%8E%E5%9F%BA%E7%A1%80%E5%88%B0%E7%86%9F%E6%82%89/</url>
-    <content><![CDATA[<h1 id="一、基本指令"><a href="#一、基本指令" class="headerlink" title="一、基本指令"></a>一、基本指令</h1><ul>
+    <content><![CDATA[<a id="more"></a>
+<h1 id="一、基本指令"><a href="#一、基本指令" class="headerlink" title="一、基本指令"></a>一、基本指令</h1><ul>
 <li><p>v-if</p>
 <p>  如果v-if中的值为true，会渲染对应绑定的元素，若为false不会渲染对应绑定元素。（v-if有惰性）</p>
 </li>
@@ -105,6 +106,9 @@
 <li>监听数据选项  （watch）</li>
 </ul>
 ]]></content>
+      <tags>
+        <tag>vue</tag>
+      </tags>
   </entry>
   <entry>
     <title>轮播插件之无缝轮播失效解决方案</title>
@@ -126,7 +130,8 @@
   <entry>
     <title>路由守卫</title>
     <url>/2020/03/28/%E8%B7%AF%E7%94%B1%E5%AE%88%E5%8D%AB/</url>
-    <content><![CDATA[<h1 id="路由守卫"><a href="#路由守卫" class="headerlink" title="路由守卫"></a>路由守卫</h1><p>老规矩先去刷一遍<a href="https://router.vuejs.org/zh/guide/advanced/navigation-guards.html#%E5%85%A8%E5%B1%80%E5%89%8D%E7%BD%AE%E5%AE%88%E5%8D%AB" target="_blank" rel="noopener">官网</a></p>
+    <content><![CDATA[<h1 id="路由守卫"><a href="#路由守卫" class="headerlink" title="路由守卫"></a>路由守卫</h1><a id="more"></a>
+<p>老规矩先去刷一遍<a href="https://router.vuejs.org/zh/guide/advanced/navigation-guards.html#%E5%85%A8%E5%B1%80%E5%89%8D%E7%BD%AE%E5%AE%88%E5%8D%AB" target="_blank" rel="noopener">官网</a></p>
 <ul>
 <li>1、全局前置守卫beforEach<blockquote>
 <p>router.beforeEach((to, from, next) =&gt; {})</p>
@@ -174,7 +179,8 @@
   <entry>
     <title>axios基本操作</title>
     <url>/2020/03/27/axios%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/</url>
-    <content><![CDATA[<p>开始学习前一定要先去<a href="http://www.axios-js.com/zh-cn/docs/" target="_blank" rel="noopener">官网</a>看一看，太详细了。</p>
+    <content><![CDATA[<a id="more"></a>
+<p>开始学习前一定要先去<a href="http://www.axios-js.com/zh-cn/docs/" target="_blank" rel="noopener">官网</a>看一看，太详细了。</p>
 <h1 id="什么是axios"><a href="#什么是axios" class="headerlink" title="什么是axios"></a>什么是axios</h1><pre><code>Axios是一个基于promise的HTTP库，可以用在浏览器和node.js中。vue-resource在2.5版本后官方就不在维护，并推荐大家使用Axios</code></pre><h2 id="特性"><a href="#特性" class="headerlink" title="特性"></a>特性</h2><ul>
 <li>从浏览器中创建 XMLHttpRequests</li>
 <li>从 node.js 创建 http 请求</li>
@@ -203,6 +209,9 @@
 <li>4、创建实例<pre><code>- 建议创建实例来进行代码编写（原因：通过axios直接绑定都会直接绑定到全局上面，这样就会有一个累计拦截的问题，每次请求服务器的时候都会触发一次axios拦截，但是如果使用实例那么对应实例的多次拦截次数并不会增加。也就是说直接使用axios拦截几次就是几次，使用实例每个实例都只算一次拦截）</code></pre></li>
 </ul>
 ]]></content>
+      <tags>
+        <tag>vue</tag>
+      </tags>
   </entry>
   <entry>
     <title>vuex解析</title>
@@ -274,6 +283,9 @@
 </li>
 </ul>
 ]]></content>
+      <tags>
+        <tag>vue</tag>
+      </tags>
   </entry>
   <entry>
     <title>webpack基础操作</title>
@@ -428,6 +440,9 @@
 <p>flex布局结构简单，代码精简。因为flex存在着兼容性，所以在使用这种方式布局时需要注意。</p>
 </blockquote>
 ]]></content>
+      <tags>
+        <tag>CSS</tag>
+      </tags>
   </entry>
   <entry>
     <title>路由模块化</title>

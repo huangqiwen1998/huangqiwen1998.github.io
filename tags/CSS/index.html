@@ -6,21 +6,17 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>解析node.js中的非阻塞Io | Hexo</title>
+  <title>Tag: CSS | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="解析node.js中的非阻塞Io">
-<meta property="og:type" content="article">
-<meta property="og:title" content="解析node.js中的非阻塞Io">
-<meta property="og:url" content="http://yoursite.com/2020/03/16/0%E5%9F%BA%E7%A1%80%E8%A7%A3%E6%9E%90node-js/index.html">
+  <meta name="description" content="小猫爱吃鱼">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="http://yoursite.com/tags/CSS/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="解析node.js中的非阻塞Io">
+<meta property="og:description" content="小猫爱吃鱼">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://image.euphie.net/2017-09-24-23-19-53.png">
-<meta property="article:published_time" content="2020-03-16T10:38:47.000Z">
-<meta property="article:modified_time" content="2020-03-16T11:42:42.614Z">
 <meta property="article:author" content="Baket">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://image.euphie.net/2017-09-24-23-19-53.png">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -171,202 +167,59 @@
           </div>
           <div id="js-content" class="content-ll">
             
-<article id="post-0基础解析node-js" class="article article-type-post " itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
   
-    <h1 class="article-title" itemprop="name">
-      解析node.js中的非阻塞Io
+  
+    
+    
+      
+      
+      <section class="archives-wrap">
+        <div class="archive-year-wrap">
+          <a href="/archives/2020" class="archive-year">2020</a>
+        </div>
+        <div class="archives">
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      	<div class="article-meta">
+	      	<a href="/2020/03/22/%E2%80%9Ccss-sticky-footer/" class="archive-article-date">
+  	<time datetime="2020-03-22T13:21:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-22</time>
+</a>
+        </div>
+    	 
+  
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/2020/03/22/%E2%80%9Ccss-sticky-footer/">“css sticky footer</a>
     </h1>
   
 
-        
-        <a href="/2020/03/16/0%E5%9F%BA%E7%A1%80%E8%A7%A3%E6%9E%90node-js/" class="archive-article-date">
-  	<time datetime="2020-03-16T10:38:47.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-16</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="解析node-js中的非阻塞Io"><a href="#解析node-js中的非阻塞Io" class="headerlink" title="解析node.js中的非阻塞Io"></a>解析node.js中的非阻塞Io</h1><a id="more"></a>
-<h2 id="io"><a href="#io" class="headerlink" title="io"></a>io</h2><p>1、首先什么是io？</p>
-<ul>
-<li>IO （计算机用语），io是计算机的一种硬件，主要用来处理数据的输入输出，I/O输入/输出(Input/Output)  ，I/O操作可以有多种方式，比如DIO(Direct I/O)，AIO(Asynchronous I/O，异步I/O)，Memory-Mapped I/O(内存映射I/O)等，不同的I/O方式有不同的实现方式和性能，在不同的应用中可以按情况选择不同的I/O方式。（这里的异步io不等于我们今天学习的非阻塞io）。</li>
-</ul>
-<p><a href="https://baike.baidu.com/item/IO/5918?fr=aladdin" target="_blank" rel="noopener">参考文档</a></p>
-<p>2、io操作又是什么？</p>
-<ul>
-<li>说了一大堆到底什么是io操作呢？  通俗的来讲就是数据在计算机内部的输入与输出。例如：我们把io比作一个污水处理厂，污水的输入和清水的输出。并且io操作十分耗时，在阻塞io机制中，他需要等对应的数据内容读完后才会执行代码渲染，这个过程可能会消耗10s的事件。对于码农来说这已经是天文数字了。</li>
-</ul>
-<h2 id="Node中阻塞Io"><a href="#Node中阻塞Io" class="headerlink" title="Node中阻塞Io"></a>Node中阻塞Io</h2><p>1、什么是非阻塞io<br>非阻塞io是io数据处理方式的一种，这种处理方式不会导致进程的堵塞，类似与js中的异步。当碰到没有调用的程序他不会等这函数调用后在继续执行代码，而是跳过他执行下面的操作。那么万一在后面这个函数被调用了呢？那就是我要说的第二点。</p>
-<p>2、非阻塞Io的运行原理</p>
-<p>在跳过没有执行的函数后，自动的调用Node中的事件循环机制，不断的向刚才的那个没有调用的函数发起循环，你有没有被调用？如果没有过一会有再次询问，你有没有被调用，以此往复直到进程结束。如果在进程结束前他被调用了那么就会输出对应的数据。</p>
-<p><img src="http://image.euphie.net/2017-09-24-23-19-53.png" alt=""><br><a href="https://www.cnblogs.com/euphie/p/6376508.html" target="_blank" rel="noopener">参考文档</a></p>
+        <div class="article-info info-on-right">
+          
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">CSS</a>
+        		</li>
+      		
+		</ul>
+	</div>
 
-      
+          
 
-      
-        <div class="page-reward">
-          <a href="javascript:;" class="page-reward-btn tooltip-top">
-            <div class="tooltip tooltip-east">
-            <span class="tooltip-item">
-              赏
-            </span>
-            <span class="tooltip-content">
-              <span class="tooltip-text">
-                <span class="tooltip-inner">
-                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
-                  <div class="reward-box">
-                    
-                    <div class="reward-box-item">
-                      <img class="reward-img" src="/assets/zhifu.jpg">
-                      <span class="reward-type">支付宝</span>
-                    </div>
-                    
-                    
-                    <div class="reward-box-item">
-                      <img class="reward-img" src="/assets/pay.png">
-                      <span class="reward-type">微信</span>
-                    </div>
-                    
-                  </div>
-                </span>
-              </span>
-            </span>
-          </div>
-          </a>
         </div>
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-
-      
-        
-<div class="share-btn share-icons tooltip-left">
-  <div class="tooltip tooltip-east">
-    <span class="tooltip-item">
-      <a href="javascript:;" class="share-sns share-outer">
-        <i class="icon icon-share"></i>
-      </a>
-    </span>
-    <span class="tooltip-content">
-      <div class="share-wrap">
-        <div class="share-icons">
-          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
-            <i class="icon icon-weibo"></i>
-          </a>
-          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
-            <i class="icon icon-weixin"></i>
-          </a>
-          <a class="qq share-sns" href="javascript:;" data-type="qq">
-            <i class="icon icon-qq"></i>
-          </a>
-          <a class="douban share-sns" href="javascript:;" data-type="douban">
-            <i class="icon icon-douban"></i>
-          </a>
-          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
-            <i class="icon icon-qzone"></i>
-          </a>
-          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
-            <i class="icon icon-facebook"></i>
-          </a>
-          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
-            <i class="icon icon-twitter"></i>
-          </a>
-          <a class="google share-sns" href="javascript:;" data-type="google">
-            <i class="icon icon-google"></i>
-          </a>
-        </div>
-      </div>
-    </span>
-  </div>
-</div>
-
-<div class="page-modal wx-share js-wx-box">
-    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
-    <p>扫一扫，分享到微信</p>
-    <div class="wx-qrcode">
-      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://huangqiwen1998.github.io/2020/03/16/0%E5%9F%BA%E7%A1%80%E8%A7%A3%E6%9E%90node-js/" alt="微信分享二维码">
-    </div>
-</div>
-
-<div class="mask js-mask"></div>
-      
-      <div class="clearfix"></div>
-    </div>
+        <div class="clearfix"></div>
+    </header>
   </div>
 </article>
-
-  
-<nav id="article-nav">
-  
-    <a href="/2020/03/16/express%E6%A1%86%E6%9E%B6%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          express框架使用指南
-        
-      </div>
-    </a>
   
   
-    <a href="/2020/03/15/hello-world/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Hello World</div>
-      <i class="icon-circle-right"></i>
-    </a>
-  
-</nav>
-
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-        <div class="toc-container tooltip-left">
-            <i class="icon-font icon-category"></i>
-            <div class="tooltip tooltip-east">
-                <span class="tooltip-item">
-                </span>
-                <span class="tooltip-content">
-                    <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#解析node-js中的非阻塞Io"><span class="toc-number">1.</span> <span class="toc-text">解析node.js中的非阻塞Io</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#io"><span class="toc-number">1.1.</span> <span class="toc-text">io</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Node中阻塞Io"><span class="toc-number">1.2.</span> <span class="toc-text">Node中阻塞Io</span></a></li></ol></li></ol>
-                    </div>
-                </span>
-            </div>
-        </div>
-        
-    </div>
-</aside>
-
-
-
-  
-  
+    </div></section>
   
 
-  
-
-  
-
-  
-
+    
 
 
           </div>
@@ -392,9 +245,9 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: true,
+		isPost: false,
 		isArchive: false,
-		isTag: false,
+		isTag: true,
 		isCategory: false,
 		open_in_new: false,
 		toc_hide_index: true,
