@@ -1,0 +1,743 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  <entry>
+    <title>vue从基础到熟悉</title>
+    <url>/2020/04/03/vue%E4%BB%8E%E5%9F%BA%E7%A1%80%E5%88%B0%E7%86%9F%E6%82%89/</url>
+    <content><![CDATA[<h1 id="一、基本指令"><a href="#一、基本指令" class="headerlink" title="一、基本指令"></a>一、基本指令</h1><ul>
+<li><p>v-if</p>
+<p>  如果v-if中的值为true，会渲染对应绑定的元素，若为false不会渲染对应绑定元素。（v-if有惰性）</p>
+</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div id=<span class="string">"app"</span>&gt;</span><br><span class="line">    &lt;div v-<span class="keyword">if</span>=<span class="string">'istrue'</span>&gt;&lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">  &lt;/</span>div&gt;</span><br><span class="line">&lt;<span class="regexp">/template&gt;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">&lt;script&gt;</span></span><br><span class="line"><span class="regexp">export default &#123;</span></span><br><span class="line"><span class="regexp">  name: 'App',</span></span><br><span class="line"><span class="regexp">  data() &#123;</span></span><br><span class="line"><span class="regexp">    return &#123;</span></span><br><span class="line"><span class="regexp">      istrue: true</span></span><br><span class="line"><span class="regexp">    &#125;</span></span><br><span class="line"><span class="regexp">  &#125;,</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br><span class="line"><span class="regexp">&lt;/</span>script&gt;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>v-show</p>
+<p>  如果v-show中的值为true，会渲染并显示对应绑定的元素，若为false会渲染对应绑定元素但会被隐藏起来（display：none）。</p>
+</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div id=<span class="string">"app"</span>&gt;</span><br><span class="line">    &lt;div v-show=<span class="string">'istrue'</span>&gt;&lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">  &lt;/</span>div&gt;</span><br><span class="line">&lt;<span class="regexp">/template&gt;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">&lt;script&gt;</span></span><br><span class="line"><span class="regexp">export default &#123;</span></span><br><span class="line"><span class="regexp">  name: 'App',</span></span><br><span class="line"><span class="regexp">  data() &#123;</span></span><br><span class="line"><span class="regexp">    return &#123;</span></span><br><span class="line"><span class="regexp">      istrue: true</span></span><br><span class="line"><span class="regexp">    &#125;</span></span><br><span class="line"><span class="regexp">  &#125;,</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br><span class="line"><span class="regexp">&lt;/</span>script&gt;</span><br></pre></td></tr></table></figure>
+
+
+<ul>
+<li><p>v-for</p>
+<p>  会循环遍历对应数据中的内容，并把每一次遍历出来的值渲染到dom中</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div id=<span class="string">"app"</span>&gt;</span><br><span class="line">    &lt;div v-<span class="keyword">for</span>=<span class="string">"(item, index) in items"</span> :key=<span class="string">"index"</span>&gt;</span><br><span class="line">        &lt;p&gt;&#123;&#123;item&#125;&#125;&lt;<span class="regexp">/p&gt;</span></span><br><span class="line"><span class="regexp">        &lt;p&gt;&#123;&#123;index&#125;&#125;&lt;/</span>p&gt;</span><br><span class="line">    &lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">  &lt;/</span>div&gt;</span><br><span class="line">&lt;<span class="regexp">/template&gt;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">&lt;script&gt;</span></span><br><span class="line"><span class="regexp">export default &#123;</span></span><br><span class="line"><span class="regexp">  name: 'App',</span></span><br><span class="line"><span class="regexp">  data() &#123;</span></span><br><span class="line"><span class="regexp">    return &#123;</span></span><br><span class="line"><span class="regexp">      list: [a,b,c]</span></span><br><span class="line"><span class="regexp">    &#125;</span></span><br><span class="line"><span class="regexp">  &#125;,</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br><span class="line"><span class="regexp">&lt;/</span>script&gt;</span><br></pre></td></tr></table></figure></li>
+<li><p>v-text</p>
+</li>
+</ul>
+<p>可以把数据渲染到dom中，不能识别标签</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div id=<span class="string">"app"</span>&gt;</span><br><span class="line">    &lt;div v-text=<span class="string">"text"</span>&gt;&lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">  &lt;/</span>div&gt;</span><br><span class="line">&lt;<span class="regexp">/template&gt;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">&lt;script&gt;</span></span><br><span class="line"><span class="regexp">export default &#123;</span></span><br><span class="line"><span class="regexp">  name: 'App',</span></span><br><span class="line"><span class="regexp">  data() &#123;</span></span><br><span class="line"><span class="regexp">    return &#123;</span></span><br><span class="line"><span class="regexp">      text: 'holle word'</span></span><br><span class="line"><span class="regexp">    &#125;</span></span><br><span class="line"><span class="regexp">  &#125;,</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br><span class="line"><span class="regexp">&lt;/</span>script&gt;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>v-html<br>把数据渲染到dom中，可以识别标签。不会渲染内部的scrpit，为了防止xss攻击。</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div id=<span class="string">"app"</span>&gt;</span><br><span class="line">    &lt;div v-html=<span class="string">"text"</span>&gt;&lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">  &lt;/</span>div&gt;</span><br><span class="line">&lt;<span class="regexp">/template&gt;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">&lt;script&gt;</span></span><br><span class="line"><span class="regexp">export default &#123;</span></span><br><span class="line"><span class="regexp">  name: 'App',</span></span><br><span class="line"><span class="regexp">  data() &#123;</span></span><br><span class="line"><span class="regexp">    return &#123;</span></span><br><span class="line"><span class="regexp">      text: '&lt;h1&gt;holle word&lt;/</span>h1&gt;<span class="string">'</span></span><br><span class="line"><span class="string">    &#125;</span></span><br><span class="line"><span class="string">  &#125;,</span></span><br><span class="line"><span class="string">&#125;</span></span><br><span class="line"><span class="string">&lt;/script&gt;</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>v-bind</li>
+</ul>
+<p>属性绑定，通过获取data中的值来控制（style，class，href，src等等的标签属性）</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div id=<span class="string">"app"</span>&gt;</span><br><span class="line">    &lt;div v-bind:<span class="class"><span class="keyword">class</span> </span>=<span class="string">"text"</span> :style = <span class="string">'&#123;color:red,fontSize:font&#125;'</span>&gt;&lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">  &lt;/</span>div&gt;</span><br><span class="line">&lt;<span class="regexp">/template&gt;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">&lt;script&gt;</span></span><br><span class="line"><span class="regexp">export default &#123;</span></span><br><span class="line"><span class="regexp">  name: 'App',</span></span><br><span class="line"><span class="regexp">  data() &#123;</span></span><br><span class="line"><span class="regexp">    return &#123;</span></span><br><span class="line"><span class="regexp">      text: 'holle',</span></span><br><span class="line"><span class="regexp">      red: 'red',</span></span><br><span class="line"><span class="regexp">      font: '15px'</span></span><br><span class="line"><span class="regexp">    &#125;</span></span><br><span class="line"><span class="regexp">  &#125;,</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br><span class="line"><span class="regexp">&lt;/</span>script&gt;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>v-model</li>
+</ul>
+<p>绑定数据源（数据双向绑定），他一些修饰符 </p>
+<pre><code>- 1、lazy懒加载（输入时不会变，光标离开时更改数据）
+- 2、number限制数据类型（加上这个属性只能显示数字部分，字符串会默认清空）
+- 3、trim去空格（去除输入内容中的空格）</code></pre><p>可以使用数据双向绑定完成很多有用的东西，比如在一个地方需改数据，同时修改其他地方的数据</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div id=<span class="string">"app"</span>&gt;</span><br><span class="line">    &lt;div <span class="class"><span class="keyword">class</span> </span>=<span class="string">"text"</span>&gt;</span><br><span class="line">      &lt;input type:<span class="string">'text'</span> v-model=<span class="string">'text'</span>&gt;&lt;<span class="regexp">/input&gt;</span></span><br><span class="line"><span class="regexp">      &lt;label for='istrue'&gt;&#123;&#123;text&#125;&#125;&lt;/</span>label&gt;</span><br><span class="line">      &lt;input type:<span class="string">'text'</span> v-model.lazy=<span class="string">'text'</span>&gt;&lt;<span class="regexp">/input&gt;</span></span><br><span class="line"><span class="regexp">      &lt;label for='istrue'&gt;&#123;&#123;text&#125;&#125;&lt;/</span>label&gt;</span><br><span class="line">    &lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">  &lt;/</span>div&gt;</span><br><span class="line">&lt;<span class="regexp">/template&gt;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">&lt;script&gt;</span></span><br><span class="line"><span class="regexp">export default &#123;</span></span><br><span class="line"><span class="regexp">  name: 'App',</span></span><br><span class="line"><span class="regexp">  data() &#123;</span></span><br><span class="line"><span class="regexp">    return &#123;</span></span><br><span class="line"><span class="regexp">      text: false</span></span><br><span class="line"><span class="regexp">    &#125;</span></span><br><span class="line"><span class="regexp">  &#125;,</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br><span class="line"><span class="regexp">&lt;/</span>script&gt;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>v-on</li>
+</ul>
+<p>绑定事件</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div id=<span class="string">"app"</span>&gt;</span><br><span class="line">    &lt;div <span class="class"><span class="keyword">class</span> </span>=<span class="string">"text"</span>&gt;</span><br><span class="line">        &lt;div&gt;</span><br><span class="line">            &lt;input @:click = <span class="string">'letgo'</span>/&gt;</span><br><span class="line">            &lt;input v-on:click = <span class="string">''</span>/&gt;</span><br><span class="line">        &lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">    &lt;/</span>div&gt;</span><br><span class="line">  &lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">&lt;/</span>template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">  name: <span class="string">'App'</span>,</span><br><span class="line">  data() &#123;</span><br><span class="line">    <span class="keyword">return</span> &#123;</span><br><span class="line">      text: <span class="string">"ok"</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  methods: &#123;</span><br><span class="line">      letgo() &#123;</span><br><span class="line">          <span class="built_in">console</span>.log(<span class="number">1</span>)</span><br><span class="line">      &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">&lt;<span class="regexp">/script&gt;</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>v-once</li>
+</ul>
+<p>对应标签中的数据只会渲染最开始的数据，渲染完成后不会根据数据的改变而改变.</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div id=<span class="string">"app"</span>&gt;</span><br><span class="line">    &lt;div <span class="class"><span class="keyword">class</span> </span>=<span class="string">"text"</span> v-once&gt;</span><br><span class="line">        &#123;&#123;text&#125;&#125;</span><br><span class="line">    &lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">  &lt;/</span>div&gt;</span><br><span class="line">&lt;<span class="regexp">/template&gt;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">&lt;script&gt;</span></span><br><span class="line"><span class="regexp">export default &#123;</span></span><br><span class="line"><span class="regexp">  name: 'App',</span></span><br><span class="line"><span class="regexp">  data() &#123;</span></span><br><span class="line"><span class="regexp">    return &#123;</span></span><br><span class="line"><span class="regexp">      text: "ok"</span></span><br><span class="line"><span class="regexp">    &#125;</span></span><br><span class="line"><span class="regexp">  &#125;,</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br><span class="line"><span class="regexp">&lt;/</span>script&gt;</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<hr>
+<h1 id="二、全局api"><a href="#二、全局api" class="headerlink" title="二、全局api"></a>二、全局api</h1><ul>
+<li>自定义指令（Vue.directive(“name”,function(el,binding,vnode){})）<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div id=<span class="string">"app"</span>&gt;</span><br><span class="line">    &lt;div <span class="class"><span class="keyword">class</span> </span>=<span class="string">"text"</span> v-news&gt;</span><br><span class="line">        &#123;&#123;text&#125;&#125;</span><br><span class="line">    &lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">  &lt;/</span>div&gt;</span><br><span class="line">&lt;<span class="regexp">/template&gt;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">&lt;script&gt;</span></span><br><span class="line"><span class="regexp">Vue.directive('news',function(el,binding,vnode)&#123;</span></span><br><span class="line"><span class="regexp">  console.log(el)</span></span><br><span class="line"><span class="regexp">  el:被绑定的元素</span></span><br><span class="line"><span class="regexp">  console.log(binding)</span></span><br><span class="line"><span class="regexp">  binding：被绑定元素的详细信息，</span></span><br><span class="line"><span class="regexp">  console.log(vnode)</span></span><br><span class="line"><span class="regexp">  vnode：虚拟dom节点</span></span><br><span class="line"><span class="regexp">&#125;)</span></span><br><span class="line"><span class="regexp">export default &#123;</span></span><br><span class="line"><span class="regexp">  name: 'App',</span></span><br><span class="line"><span class="regexp">  data() &#123;</span></span><br><span class="line"><span class="regexp">    return &#123;</span></span><br><span class="line"><span class="regexp">      text: "ok"</span></span><br><span class="line"><span class="regexp">    &#125;</span></span><br><span class="line"><span class="regexp">  &#125;,</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br><span class="line"><span class="regexp">&lt;/</span>script&gt;</span><br></pre></td></tr></table></figure>
+自定义指令有自己独特的生命周期</li>
+</ul>
+<p>自定义指令生命周期<br>    - 1、bind：指令第一次绑定到元素上时，触发。<br>    2、inserted：被绑定元素插入父节点的时候调用<br>    3、update：被绑定的元素模板更改时调用<br>    4、componentUpdate：被绑定的元素所在模板更新完成时调用<br>    5、unbind：只调用一次，指令解绑的时候</p>
+<ul>
+<li>构造器的延申（Vue.extend）</li>
+</ul>
+<p>Vue.extend返回的是一个“扩展实例构造器”，也就是预设了部分选项的vue实例构造器，经常服务于vue.component用来生成的组件。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div id = <span class="string">"author"</span>&gt;&lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">  &lt;author&gt;&lt;/</span>author&gt;</span><br><span class="line">&lt;<span class="regexp">/template&gt;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">&lt;script&gt;</span></span><br><span class="line"><span class="regexp">let author = Vue.extend(&#123;</span></span><br><span class="line"><span class="regexp">  template:"&lt;p&gt;&#123;&#123;text&#125;&#125;&lt;/</span>p&gt;<span class="string">"</span></span><br><span class="line"><span class="string">  data: () &#123;</span></span><br><span class="line"><span class="string">    return&#123;</span></span><br><span class="line"><span class="string">      text:'我开我家'</span></span><br><span class="line"><span class="string">    &#125;</span></span><br><span class="line"><span class="string">  &#125;</span></span><br><span class="line"><span class="string">&#125;)</span></span><br><span class="line"><span class="string">new author().$mount('#author')</span></span><br><span class="line"><span class="string">new author().$mount('author')</span></span><br><span class="line"><span class="string">//建议使用id的方式</span></span><br><span class="line"><span class="string">&lt;/script&gt;</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>全局数据操作vue.set()<br>vue.set()的作用就是在构造器外部操作构造器内部的数据。然而有很多的方法也可以完成在构造器外部操作内部数据，但是对于数组的index和长度的变化vue是监听不到的，也就是说通过数组下标或者长度来改变数组的值，vue是监听不到数据变化的，数据没有变化虚拟dom也不会进行渲染。</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div id = <span class="string">"app"</span>&gt;</span><br><span class="line">    </span><br><span class="line">  &lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">  &lt;button onclick = 'add'&gt;&lt;/</span>button&gt;</span><br><span class="line">&lt;<span class="regexp">/template&gt;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">&lt;script&gt;</span></span><br><span class="line"><span class="regexp">function add() &#123;</span></span><br><span class="line"><span class="regexp">    app.data[1] = "fff"    /</span><span class="regexp">/不会更新arr的数据，导致不会触发vue渲染</span></span><br><span class="line"><span class="regexp">    Vue.set(app.arr,1,'dd') /</span><span class="regexp">/可以更新arr中的数据，会出府啊vue的渲染</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br><span class="line"><span class="regexp">var app = new vue(</span></span><br><span class="line"><span class="regexp">  &#123;</span></span><br><span class="line"><span class="regexp"> data() &#123;</span></span><br><span class="line"><span class="regexp">    return &#123;</span></span><br><span class="line"><span class="regexp">      text: "ok"</span></span><br><span class="line"><span class="regexp">      data:['aaa','bbb','ccc']</span></span><br><span class="line"><span class="regexp">    &#125;</span></span><br><span class="line"><span class="regexp">  &#125;,</span></span><br><span class="line"><span class="regexp">  &#125;</span></span><br><span class="line"><span class="regexp">)</span></span><br><span class="line"><span class="regexp">&lt;/</span>script&gt;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>template模板（有三种模板形式）</p>
+<ul>
+<li><p>1、在实例构造器中最常见的（适用于内容比较少的模板）</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">&lt;div id=<span class="string">'app'</span>&gt;</span><br><span class="line"></span><br><span class="line">&lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">&lt;script&gt;</span></span><br><span class="line"><span class="regexp">  var app = new Vue(&#123;</span></span><br><span class="line"><span class="regexp">    el: "#app",</span></span><br><span class="line"><span class="regexp">    data: &#123;</span></span><br><span class="line"><span class="regexp">      message:'这是模板一'</span></span><br><span class="line"><span class="regexp">    &#125;，</span></span><br><span class="line"><span class="regexp">    template: "&lt;p&gt;这是模板一&lt;/</span>p&gt;<span class="string">"</span></span><br><span class="line"><span class="string">  &#125;)</span></span><br><span class="line"><span class="string">&lt;/script&gt;</span></span><br></pre></td></tr></table></figure></li>
+<li><p>2、 在dom中写模板，挂在到实例构造器中（这种方法适用于模板内容比较大的情况）</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">&lt;div id=<span class="string">'#app'</span>&gt;</span><br><span class="line">  &lt;template id=<span class="string">'tep'</span>&gt;</span><br><span class="line">    &lt;p&gt;这是使用方法二&lt;<span class="regexp">/p&gt;</span></span><br><span class="line"><span class="regexp">  &lt;/</span>template&gt;</span><br><span class="line">&lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">&lt;script&gt;</span></span><br><span class="line"><span class="regexp">  var app = new Vue (&#123;</span></span><br><span class="line"><span class="regexp">    el: "#app",</span></span><br><span class="line"><span class="regexp">    tepmplate: '#tep'</span></span><br><span class="line"><span class="regexp">  &#125;)</span></span><br><span class="line"><span class="regexp">&lt;/</span>script&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>3、新建一个script标签，并在标签内部进行修改（这种方法适用于从外部引入大段模板）</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">&lt;script type=<span class="string">'x-template'</span> id=<span class="string">"add3"</span> src=<span class="string">''</span>&gt;</span><br><span class="line">  &lt;p&gt;我是第三中方法&lt;<span class="regexp">/p&gt;</span></span><br><span class="line"><span class="regexp">&lt;/</span>script&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">  <span class="keyword">var</span> app = <span class="keyword">new</span> Vue(&#123;</span><br><span class="line">    el: <span class="string">"#app"</span>,</span><br><span class="line">    template: <span class="string">"#add3"</span></span><br><span class="line">  &#125;)</span><br><span class="line">&lt;<span class="regexp">/script&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>定义全局组件vue.componment()</p>
+  <figure class="highlight js"><table><tr><td class="code"><pre><span class="line">&lt;script type=<span class="string">'x-template'</span> id=<span class="string">"add3"</span> src=<span class="string">''</span>&gt;</span><br><span class="line">  &lt;p&gt;<span class="xml"><span class="tag">&lt;<span class="name">add</span>&gt;</span><span class="tag">&lt;/<span class="name">add</span>&gt;</span></span>&lt;<span class="regexp">/p&gt;</span></span><br><span class="line"><span class="regexp">&lt;/</span>script&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">  Vue.componment(<span class="string">'add'</span>,&#123;</span><br><span class="line">    template: <span class="string">'&lt;h1&gt;我爱我家&lt;/h1&gt;'</span></span><br><span class="line">  &#125;)</span><br><span class="line"></span><br><span class="line">&lt;<span class="regexp">/script&gt;</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h1 id="选项"><a href="#选项" class="headerlink" title="选项"></a>选项</h1><ul>
+<li>全局扩展传参（propsDate）</li>
+<li>计算选项  （computed）</li>
+<li>方法选项  （method）</li>
+<li>监听数据选项  （watch）</li>
+</ul>
+]]></content>
+  </entry>
+  <entry>
+    <title>轮播插件之无缝轮播失效解决方案</title>
+    <url>/2020/03/31/%E8%BD%AE%E6%92%AD%E6%8F%92%E4%BB%B6%E4%B9%8B%E6%97%A0%E7%BC%9D%E8%BD%AE%E6%92%AD%E5%A4%B1%E6%95%88%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/</url>
+    <content><![CDATA[<p><a href="https://www.jianshu.com/p/f6d31e2732e0" target="_blank" rel="noopener">参考</a><br>产生无缝轮播失效的原因<br>：是因为swiper提前初始化了，那时候数据还没有完全出来</p>
+<ul>
+<li><ol>
+<li>使用vue提供的$nextTick()方法<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">this</span>.$nextTick(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">              <span class="keyword">var</span> swiper = <span class="keyword">new</span> Swiper(<span class="string">'.swiper-container'</span>, &#123;</span><br><span class="line">		此处省略</span><br><span class="line">         &#125;）</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+</li>
+<li><p>2、在swiper初始化的时候</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">swiper1 = <span class="keyword">new</span> Swiper(<span class="string">'.swiper-container'</span>, &#123;</span><br><span class="line">    initialSlide :<span class="number">0</span>,</span><br><span class="line">    observer:<span class="literal">true</span>,<span class="comment">//修改swiper自己或子元素时，自动初始化swiper</span></span><br><span class="line">    observeParents:<span class="literal">true</span><span class="comment">//修改swiper的父元素时，自动初始化swiper</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+]]></content>
+  </entry>
+  <entry>
+    <title>路由守卫</title>
+    <url>/2020/03/28/%E8%B7%AF%E7%94%B1%E5%AE%88%E5%8D%AB/</url>
+    <content><![CDATA[<h1 id="路由守卫"><a href="#路由守卫" class="headerlink" title="路由守卫"></a>路由守卫</h1><p>老规矩先去刷一遍<a href="https://router.vuejs.org/zh/guide/advanced/navigation-guards.html#%E5%85%A8%E5%B1%80%E5%89%8D%E7%BD%AE%E5%AE%88%E5%8D%AB" target="_blank" rel="noopener">官网</a></p>
+<ul>
+<li>1、全局前置守卫beforEach<blockquote>
+<p>router.beforeEach((to, from, next) =&gt; {})</p>
+</blockquote>
+</li>
+<li>2、全局解析守卫beforeResolve<blockquote>
+<p>router.beforeRsolve((to, from, next) =&gt; {})</p>
+</blockquote>
+</li>
+<li>3、全局后置钩子afterEach（少用）<blockquote>
+<p>router.afterEach((to, from) =&gt; {}）</p>
+</blockquote>
+</li>
+<li>4、路由独享的守卫<blockquote>
+<p>直接在路由配置上定义beforEach</p>
+</blockquote>
+</li>
+<li>5、组件内的守卫<ul>
+<li>beforeRouteEnter</li>
+<li>beforeRouteUpdate</li>
+<li>beforeRouteLeave</li>
+</ul>
+</li>
+<li>6、路由导航解析<ul>
+<li>导航被触发。</li>
+<li>在失活的组件里调用离开守卫。</li>
+<li>调用全局的 beforeEach 守卫。</li>
+<li>在重用的组件里调用 beforeRouteUpdate 守卫 (2.2+)。</li>
+<li>在路由配置里调用 beforeEnter。</li>
+<li>解析异步路由组件。</li>
+<li>在被激活的组件里调用 beforeRouteEnter。</li>
+<li>调用全局的 beforeResolve 守卫 (2.5+)。</li>
+<li>导航被确认。</li>
+<li>调用全局的 afterEach 钩子。</li>
+<li>触发 DOM 更新。</li>
+<li>用创建好的实例调用 beforeRouteEnter 守卫中传给 next 的回调函数。</li>
+</ul>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>vue</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>axios基本操作</title>
+    <url>/2020/03/27/axios%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/</url>
+    <content><![CDATA[<p>开始学习前一定要先去<a href="http://www.axios-js.com/zh-cn/docs/" target="_blank" rel="noopener">官网</a>看一看，太详细了。</p>
+<h1 id="什么是axios"><a href="#什么是axios" class="headerlink" title="什么是axios"></a>什么是axios</h1><pre><code>Axios是一个基于promise的HTTP库，可以用在浏览器和node.js中。vue-resource在2.5版本后官方就不在维护，并推荐大家使用Axios</code></pre><h2 id="特性"><a href="#特性" class="headerlink" title="特性"></a>特性</h2><ul>
+<li>从浏览器中创建 XMLHttpRequests</li>
+<li>从 node.js 创建 http 请求</li>
+<li>支持 Promise API</li>
+<li>拦截请求和响应</li>
+<li>转换请求数据和响应数据</li>
+<li>取消请求</li>
+<li>自动转换 JSON 数据</li>
+<li>客户端支持防御 XSRF</li>
+</ul>
+<h2 id="功能"><a href="#功能" class="headerlink" title="功能"></a>功能</h2><ul>
+<li>1、请求<pre><code>-  post请求（通过配置请求，直接请求）
+-  get请求  （通过配置请求，直接请求）
+-  默认请求 （Axios默认发送get请求）
+-  多并发请求
+    - 1、 迭代请求
+    - 2、 等待请求</code></pre></li>
+<li>2、配置<pre><code>- 请求配置（发送前需要配置的内容）
+- 响应结构（响应后返回的数据）
+- 默认配置
+    - 1、全局默认值（moudle文件中已经配置好了，有修改需求才修改）
+    - 2、自定义默认值（自己创建的axios实例需要配置，不配置就会延用默认配置）</code></pre></li>
+<li>3、拦截器（会在请求响应被then，catch处理前拦截它们）<pre><code>- 1、请求拦截器
+- 2、响应拦截器
+- 3、拦截器的移出</code></pre></li>
+<li>4、创建实例<pre><code>- 建议创建实例来进行代码编写（原因：通过axios直接绑定都会直接绑定到全局上面，这样就会有一个累计拦截的问题，每次请求服务器的时候都会触发一次axios拦截，但是如果使用实例那么对应实例的多次拦截次数并不会增加。也就是说直接使用axios拦截几次就是几次，使用实例每个实例都只算一次拦截）</code></pre></li>
+</ul>
+]]></content>
+  </entry>
+  <entry>
+    <title>vuex解析</title>
+    <url>/2020/03/26/vuex%E8%A7%A3%E6%9E%90/</url>
+    <content><![CDATA[<h1 id="vuex基本使用"><a href="#vuex基本使用" class="headerlink" title="vuex基本使用"></a>vuex基本使用</h1><a id="more"></a>
+<p>建议先去看一下<a href="https://www.jianshu.com/p/2e5973fe1223" target="_blank" rel="noopener">简书</a>中下大概介绍。下面就是一个大概的总结。</p>
+<ul>
+<li><p>vuex的组成部分</p>
+<ul>
+<li>1、state：数据存储（类似与vue中的data）</li>
+<li>2、mutations：对state中数据的操作（类似于vue中的method）</li>
+<li>3、getters：加工state中的数据返回给外界（类似于compute计算属性）</li>
+<li>4、actions：可以处理异步的方法，mutations只可以处理同步的方法</li>
+<li>5、modules：vuex模块化</li>
+</ul>
+</li>
+<li><p>1.1、vuex初始化</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> Vue <span class="keyword">from</span> <span class="string">'vue'</span></span><br><span class="line"><span class="keyword">import</span> Vuex <span class="keyword">from</span> <span class="string">'vuex'</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//挂载Vuex</span></span><br><span class="line">Vue.use(Vuex)</span><br><span class="line"></span><br><span class="line"><span class="comment">//创建VueX对象</span></span><br><span class="line"><span class="keyword">const</span> store = <span class="keyword">new</span> Vuex(&#123;</span><br><span class="line">    state:&#123;</span><br><span class="line">        <span class="comment">//存放的键值对就是所要管理的状态</span></span><br><span class="line">        name:<span class="string">'helloVueX'</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> store</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>1.2、vuex挂载到vue实例中</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> Vue <span class="keyword">from</span> <span class="string">'vue'</span></span><br><span class="line"><span class="keyword">import</span> App <span class="keyword">from</span> <span class="string">'./App'</span></span><br><span class="line"><span class="keyword">import</span> router <span class="keyword">from</span> <span class="string">'./router'</span></span><br><span class="line"><span class="keyword">import</span> store <span class="keyword">from</span> <span class="string">'./store'</span></span><br><span class="line"></span><br><span class="line">Vue.config.productionTip = <span class="literal">false</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* eslint-disable no-new */</span></span><br><span class="line"><span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  el: <span class="string">'#app'</span>,</span><br><span class="line">  router,</span><br><span class="line">  store,  <span class="comment">//store:store 和router一样，将我们创建的Vuex实例挂载到这个vue实例中</span></span><br><span class="line">  render: <span class="function"><span class="params">h</span> =&gt;</span> h(App)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>这一步挂载到实例中，会挂载到根vue上，在其他组件中不需要引入就可以之间通过 </p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">this</span>.$store.state.name (+对应的数据)</span><br></pre></td></tr></table></figure>
+<p>的方法获取vuex中的数据</p>
+</li>
+</ul>
+<hr>
+<hr>
+<hr>
+<h2 id="内容的基本使用"><a href="#内容的基本使用" class="headerlink" title="内容的基本使用"></a>内容的基本使用</h2><ul>
+<li>1.1、Mutations基本配置<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">mutations:&#123;</span><br><span class="line">    <span class="comment">//es6语法，等同edit:funcion()&#123;...&#125;</span></span><br><span class="line">    edit(state,payload)&#123;</span><br><span class="line">        <span class="comment">//state state对象</span></span><br><span class="line">        <span class="comment">//payload 方法调用的时候传递的参数是一个对象&#123;&#125;</span></span><br><span class="line">        state.name = <span class="string">'jack'</span></span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></li>
+<li>1.2、Mutations的调用<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 通过这个就可以调用对应的方法，修改state中的数据</span></span><br><span class="line"><span class="keyword">this</span>.$store.commit(<span class="string">'edit'</span>,<span class="number">15</span>)</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<hr>
+<hr>
+<ul>
+<li>2.1、Getters</li>
+</ul>
+<p>可以对state中的成员加工后传递给外界</p>
+<ul>
+<li><p>Getters中的方法有两个默认参数</p>
+<ul>
+<li>1、state 当前VueX对象中的状态对象</li>
+<li>2、getters 当前getters对象，用于将getters下的其他getter拿来用<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">getters:&#123;</span><br><span class="line">    nameInfo(state)&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"姓名:"</span>+state.name</span><br><span class="line">    &#125;,</span><br><span class="line">    fullInfo(state,getters)&#123;</span><br><span class="line">        <span class="keyword">return</span> getters.nameInfo+<span class="string">'年龄:'</span>+state.age</span><br><span class="line">    &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+组件中调用<blockquote>
+<p>this.$store.getters.fullInfo</p>
+</blockquote>
+</li>
+</ul>
+</li>
+<li><p>3、 Actions</p>
+</li>
+</ul>
+<p>由于直接在mutation方法中进行异步操作，将会引起数据失效。所以提供了Actions来专门进行异步操作，最终提交mutation方法。</p>
+<ul>
+<li><p>Actions中的方法有两个默认参数</p>
+<ul>
+<li>1、context 上下文(相当于箭头函数中的this)对象</li>
+<li>2、payload 挂载参数<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">actions:&#123;</span><br><span class="line">    aEdit(context,payload)&#123;</span><br><span class="line">        setTimeout(<span class="function"><span class="params">()</span>=&gt;</span>&#123;</span><br><span class="line">            context.commit(<span class="string">'edit'</span>,payload)</span><br><span class="line">        &#125;,<span class="number">2000</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+组件调用<blockquote>
+<p>this.$store.dispatch(‘aEdit’,{age:15})</p>
+</blockquote>
+</li>
+</ul>
+</li>
+<li><p>4、 Models<br>模块目前还没有用过可以先看看<a href="https://vuex.vuejs.org/zh/guide/modules.html" target="_blank" rel="noopener">官网</a></p>
+</li>
+</ul>
+]]></content>
+  </entry>
+  <entry>
+    <title>webpack基础操作</title>
+    <url>/2020/03/24/webpack%E5%9F%BA%E7%A1%80%E6%93%8D%E4%BD%9C/</url>
+    <content><![CDATA[<h1 id="webpack基础操作"><a href="#webpack基础操作" class="headerlink" title="webpack基础操作"></a>webpack基础操作</h1><a id="more"></a>
+<h2 id="webpack的安装"><a href="#webpack的安装" class="headerlink" title="webpack的安装"></a>webpack的安装</h2><ul>
+<li><p>全局安装</p>
+<blockquote>
+<p>npm i -g webpack</p>
+</blockquote>
+</li>
+<li><p>打包</p>
+</li>
+</ul>
+<blockquote>
+<p>方法一 ：webpack main.js bundle.js(第一个为入口文件，编译后形成的文件)</p>
+</blockquote>
+<p>再把打包后的文件bundle.js引入到html中</p>
+<blockquote>
+<p>方法二：在根目录下加入webpack.config.js文件</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> path = <span class="built_in">require</span>(<span class="string">"path"</span>)</span><br><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">    entry : main.js,</span><br><span class="line">    output: &#123;</span><br><span class="line">        path: path.join(__dirname,<span class="string">"./dist/"</span>),  <span class="comment">//必须时绝对路径</span></span><br><span class="line">        filename: <span class="string">"bundle.js"</span>,</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>直接在终端中输入webpack就可以了，webpack时基于node环境的，所以可以之接引入path。</p>
+<hr>
+<ul>
+<li>局部安装(推荐使用)<blockquote>
+<p>npm i -D webpack   //安装</p>
+</blockquote>
+</li>
+</ul>
+<p>安装完成后需要对npm script进行配置（也就是在package。json文件中的scripts属性中进行配置）</p>
+<figure class="highlight"><table><tr><td class="code"><pre><span class="line">"scripts":&#123;</span><br><span class="line">    bundle: 'webpack',   //默认会去node_modules中的找webpack</span><br><span class="line">    自定义名： ‘文件地址’</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>运行npm run bundle<br>本地安装的必须配置到npm scritps中才可以使用</p>
+</blockquote>
+<hr>
+<ul>
+<li>总结</li>
+</ul>
+<p>全局安装webpack一般会在测试的时候使用，因为全局安装时在你的电脑上安装webpack，如果把项目发给其他人，他的电脑上面的webpack版本与你的不一致那么就会出现编译错误或无法编译。</p>
+<p>局部安装会安装到你的项目中，及时把项目发送给其他人，项目编译也会去找项目中的webpack，这样就不会出现版本不同而导致的无法编译的问题。</p>
+<p>为了划分目录清晰我们对项目做以下划分</p>
+<ul>
+<li>把源码存储到src文件夹中</li>
+<li>把打包的结果存在dist文件夹中</li>
+</ul>
+<hr>
+<hr>
+<hr>
+<hr>
+<hr>
+<h1 id="Es6模块规范"><a href="#Es6模块规范" class="headerlink" title="Es6模块规范"></a>Es6模块规范</h1><ul>
+<li><p>默认导入导出</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"># 导出</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">    data() &#123;</span><br><span class="line">        <span class="keyword">return</span>&#123;</span><br><span class="line">            aa: <span class="number">5</span>,</span><br><span class="line">            bb: <span class="number">8</span>,</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">#导入</span><br><span class="line"><span class="keyword">import</span> data <span class="keyword">from</span> <span class="string">'path'</span></span><br><span class="line">这种引入方式只会引入默认的内容（也就是<span class="keyword">export</span> <span class="keyword">default</span> 中的内容）</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>普通导入导出</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> a = <span class="string">'哈哈'</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> b = <span class="string">'喜喜'</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> &#123; a, b &#125; <span class="keyword">from</span> <span class="string">"path"</span></span><br><span class="line">这种的导出方式，导入需要先结构，结构完成后的 a === 导出中的a</span><br></pre></td></tr></table></figure></li>
+<li><p>总结</p>
+<ul>
+<li>1、默认导入导出与普通的导入导出之间的存在是互不影响的。</li>
+</ul>
+<hr>
+<hr>
+<hr>
+<hr>
+<h1 id="css的打包"><a href="#css的打包" class="headerlink" title="css的打包"></a>css的打包</h1><ul>
+<li>1、首先需要安装两个包<blockquote>
+<p>npm i -D css-loader style-loader</p>
+</blockquote>
+</li>
+<li>2、配置（找到webpack的配置文件）<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">#在最下面输入</span><br><span class="line"><span class="built_in">module</span>: &#123;</span><br><span class="line">    rules:[</span><br><span class="line">        &#123;</span><br><span class="line">            text: <span class="regexp">/.css$/</span>,</span><br><span class="line">            use: [</span><br><span class="line">                <span class="string">'style.loader'</span>,  <span class="comment">//这个包会在html文件中的head部分插入一个style并把css的文件自动引入</span></span><br><span class="line">                <span class="string">'css-loader'</span>   <span class="comment">//这个包会把css文件转化为js文件</span></span><br><span class="line">            ]</span><br><span class="line">        &#125;</span><br><span class="line">    ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li>3、配置完成后据可以使用<blockquote>
+<p>npm run build  //打包</p>
+</blockquote>
+</li>
+</ul>
+<h1 id="图片打包"><a href="#图片打包" class="headerlink" title="图片打包"></a>图片打包</h1><p>安装插件</p>
+<blockquote>
+<p>npm install –save-dev file-loader<br>安装完成后，取药去weback.config文件中进行配置<br>在rules中加个对象</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#96;&#123;</span><br><span class="line">    test: &#x2F;.(jpg|png|gif|svg)$&#x2F;,</span><br><span class="line">    use: [  </span><br><span class="line">        &#39;filer-loader&#39;</span><br><span class="line">    ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>会把图片打包到dist文件夹中，但是这是你使用浏览器打开的时候控制台会报错，没有找到图片。这是因为打包好的图片贺html文件不在同一个地方，他找不到。解决方法：把html文件也自动打包到dist文件夹中</p>
+<h1 id="HtmlWebpackPlugin"><a href="#HtmlWebpackPlugin" class="headerlink" title="HtmlWebpackPlugin"></a>HtmlWebpackPlugin</h1><p>会把源码的html文件打包到dist文件中。会自动引入html需要的图片。</p>
+<ul>
+<li>安装依赖<blockquote>
+<p>npm install –save-dev html-webpack-plugin</p>
+</blockquote>
+</li>
+<li>配置</li>
+</ul>
+<p>在webpack配置文件中加入</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">首先在全局中引入  webpack-olugin</span><br><span class="line">const htmlWebpackPlugin &#x3D; require(&#39;html-webpack-plugin&#39;)</span><br><span class="line">在moudle上面添加</span><br><span class="line">plugins: [</span><br><span class="line">    new htmlWebpackPlugin(&#123;</span><br><span class="line">        template: &#39;.&#x2F;index.html&#39;</span><br><span class="line">    &#125;)</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+
+<h1 id="less打包"><a href="#less打包" class="headerlink" title="less打包"></a>less打包</h1><ul>
+<li>安装依赖<blockquote>
+<p>npm install -D less less-loader</p>
+</blockquote>
+</li>
+</ul>
+</li>
+<li><p>配置</p>
+</li>
+</ul>
+<p>在webpack配置文件中进行配置</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">在rulers中进行配置</span><br><span class="line">&#123;</span><br><span class="line">    test: &#x2F;.less$&#x2F;,</span><br><span class="line">    use: [</span><br><span class="line">        &#39;style-loader&#39;,</span><br><span class="line">        &#39;css-loader&#39;,</span><br><span class="line">        &#39;less-loader&#39;</span><br><span class="line">    ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<h1 id="webpack-dev-server"><a href="#webpack-dev-server" class="headerlink" title="webpack-dev-server"></a>webpack-dev-server</h1><p>会在自动根据代码完成情况来自动打包，不需要写一下就要打包一下</p>
+<ul>
+<li>安装依赖<blockquote>
+<p>npm install –save-dev webpack-dev-server</p>
+</blockquote>
+</li>
+<li>配置</li>
+</ul>
+<p>在webpack配置文件中进行配置</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">devServer: &#123;</span><br><span class="line">    contentBase: &#39;.&#x2F;dist&#39;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>之后需要去webpack.json文件中的script中配置</p>
+<blockquote>
+<p>‘dev’: ‘webpack-dev-server –open’</p>
+</blockquote>
+<h1 id="bable-loader"><a href="#bable-loader" class="headerlink" title="bable-loader"></a>bable-loader</h1><p>es6转码器，bable打包编译很慢，需要在webpack.config文件中的bable配置规则中配置打包缓存，属性cacheDirectory：true</p>
+<h1 id="bable-polyfill"><a href="#bable-polyfill" class="headerlink" title="bable-polyfill"></a>bable-polyfill</h1><p>用于提供低版本浏览器不支持的api</p>
+<h1 id="tansfrom-runtime"><a href="#tansfrom-runtime" class="headerlink" title="tansfrom-runtime"></a>tansfrom-runtime</h1><p>解决代码重复问题，需要在webpack.config文件中的bable配置规则中配置打包缓存，属性plugins：【tansfrom-runtime】</p>
+<h1 id="vue-Loader"><a href="#vue-Loader" class="headerlink" title="vue Loader"></a>vue Loader</h1><p>处理打包单文件组件vue的打包问题，包括css，es6等。需要依赖vue-template-loader</p>
+]]></content>
+  </entry>
+  <entry>
+    <title>“css sticky footer</title>
+    <url>/2020/03/22/%E2%80%9Ccss-sticky-footer/</url>
+    <content><![CDATA[<h1 id="CSS经典布局之Sticky-footer布局"><a href="#CSS经典布局之Sticky-footer布局" class="headerlink" title="CSS经典布局之Sticky footer布局"></a>CSS经典布局之Sticky footer布局</h1><a id="more"></a>
+<p>我们常见的网页布局方式一般分为header（页头）部分,content（内容区）部分和footer（页脚）部分。当页头区和内容区的内容较少时，页脚区不是随着内容区排布而是始终显示在屏幕的最下方。当内容区的内容较多时，页脚能随着文档流撑开始终显示在页面的最下方。这就是传说中的Sticky footer布局。</p>
+<ul>
+<li>负margin布局方式</li>
+</ul>
+<p>html模板</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"wrapper clearfix"</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"title"</span>&gt;</span></span><br><span class="line">       <span class="tag">&lt;<span class="name">h1</span>&gt;</span>这里是头部<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"main"</span>&gt;</span></span><br><span class="line">       <span class="tag">&lt;<span class="name">p</span>&gt;</span>这里是main content区域...<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">       <span class="tag">&lt;<span class="name">p</span>&gt;</span>这里是main content区域...<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">       <span class="tag">&lt;<span class="name">p</span>&gt;</span>这里是main content区域...<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">       <span class="tag">&lt;<span class="name">p</span>&gt;</span>这里是main content区域...<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"footer"</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">p</span>&gt;</span>© 2017 No rights reserved.<span class="tag">&lt;/<span class="name">p</span>&gt;</span> </span><br><span class="line">      <span class="tag">&lt;<span class="name">p</span>&gt;</span>Made with ♥ by an anonymous pastafarian.<span class="tag">&lt;/<span class="name">p</span>&gt;</span> </span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"> <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>css代码</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-tag">div</span>,<span class="selector-tag">h1</span>,<span class="selector-tag">p</span>&#123;<span class="attribute">margin</span>:<span class="number">0</span>; <span class="attribute">padding</span>: <span class="number">0</span>;&#125;</span><br><span class="line"><span class="selector-class">.detail</span>&#123;</span><br><span class="line">     <span class="attribute">position</span>:fixed;</span><br><span class="line">     <span class="attribute">overflow</span>:auto;</span><br><span class="line">     <span class="attribute">width</span>:<span class="number">100%</span>;</span><br><span class="line">     <span class="attribute">height</span>:<span class="number">100%</span>;</span><br><span class="line">   &#125;</span><br><span class="line"><span class="selector-class">.wrapper</span>&#123;</span><br><span class="line">     <span class="attribute">min-height</span>:<span class="number">100%</span>;</span><br><span class="line">     <span class="attribute">width</span>:<span class="number">100%</span>;</span><br><span class="line">   &#125;</span><br><span class="line"><span class="selector-class">.title</span> <span class="selector-tag">h1</span>&#123;</span><br><span class="line">     <span class="attribute">font-size</span>:<span class="number">40px</span>;</span><br><span class="line">     <span class="attribute">text-align</span>: center;</span><br><span class="line">   &#125;</span><br><span class="line"><span class="selector-class">.main</span>&#123;</span><br><span class="line">     <span class="attribute">margin-top</span>:<span class="number">64px</span>;</span><br><span class="line">     <span class="attribute">padding-bottom</span>:<span class="number">64px</span>;</span><br><span class="line">   &#125;</span><br><span class="line"><span class="selector-class">.main</span> <span class="selector-tag">p</span>&#123;</span><br><span class="line">     <span class="attribute">font-size</span>: <span class="number">25px</span>; </span><br><span class="line">     <span class="attribute">text-align</span>: center;</span><br><span class="line">   &#125;</span><br><span class="line"><span class="selector-class">.footer</span>&#123;</span><br><span class="line">     <span class="attribute">margin</span>:-<span class="number">64px</span> auto <span class="number">0</span> auto;</span><br><span class="line">     <span class="attribute">font-size</span>:<span class="number">32px</span>;</span><br><span class="line">   &#125;</span><br><span class="line"><span class="selector-class">.footer</span> <span class="selector-tag">p</span>&#123;</span><br><span class="line">     <span class="attribute">text-align</span>: center;</span><br><span class="line">   &#125;</span><br><span class="line"><span class="selector-class">.clearfix</span><span class="selector-pseudo">::after</span> &#123;</span><br><span class="line">     <span class="attribute">display</span>: block;</span><br><span class="line">     <span class="attribute">content</span>: <span class="string">"."</span>;</span><br><span class="line">     <span class="attribute">height</span>: <span class="number">0</span>;</span><br><span class="line">     <span class="attribute">clear</span>: both;</span><br><span class="line">     <span class="attribute">visibility</span>: hidden;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>main里面padding-bottom的值与footer中的负margin值要保持一直</p>
+</blockquote>
+<ul>
+<li>flex布局方式</li>
+</ul>
+<p>html</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">header</span>&gt;</span> </span><br><span class="line">   <span class="tag">&lt;<span class="name">h1</span>&gt;</span>Site name<span class="tag">&lt;/<span class="name">h1</span>&gt;</span> </span><br><span class="line"><span class="tag">&lt;/<span class="name">header</span>&gt;</span> </span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"main"</span>&gt;</span> </span><br><span class="line">   <span class="tag">&lt;<span class="name">p</span>&gt;</span>Bacon Ipsum dolor sit amet...<span class="tag">&lt;/<span class="name">p</span>&gt;</span> </span><br><span class="line">   <span class="tag">&lt;<span class="name">p</span>&gt;</span>Bacon Ipsum dolor sit amet...<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">p</span>&gt;</span>Bacon Ipsum dolor sit amet...<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">p</span>&gt;</span>Bacon Ipsum dolor sit amet...<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span> </span><br><span class="line"><span class="tag">&lt;<span class="name">footer</span>&gt;</span> </span><br><span class="line">   <span class="tag">&lt;<span class="name">p</span>&gt;</span>© 2017 No rights reserved.<span class="tag">&lt;/<span class="name">p</span>&gt;</span> </span><br><span class="line">   <span class="tag">&lt;<span class="name">p</span>&gt;</span>Made with ♥ by an anonymous pastafarian.<span class="tag">&lt;/<span class="name">p</span>&gt;</span> </span><br><span class="line"><span class="tag">&lt;/<span class="name">footer</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>css样式</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"> <span class="selector-tag">body</span>&#123;<span class="attribute">display</span>: flex; <span class="attribute">flex-flow</span>: column; <span class="attribute">min-height</span>: <span class="number">100vh</span>; <span class="attribute">overflow</span>:auto;&#125;</span><br><span class="line"> <span class="selector-tag">h1</span>&#123;<span class="attribute">font-size</span>: <span class="number">60px</span>; <span class="attribute">text-align</span>: center;&#125;</span><br><span class="line"> <span class="selector-tag">p</span>&#123;<span class="attribute">font-size</span>: <span class="number">24px</span>; <span class="attribute">text-align</span>: center;&#125;</span><br><span class="line"><span class="selector-class">.main</span>&#123;<span class="attribute">flex</span>:<span class="number">1</span>;&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>flex布局结构简单，代码精简。因为flex存在着兼容性，所以在使用这种方式布局时需要注意。</p>
+</blockquote>
+]]></content>
+  </entry>
+  <entry>
+    <title>路由模块化</title>
+    <url>/2020/03/21/%E8%B7%AF%E7%94%B1%E6%A8%A1%E5%9D%97%E5%8C%96/</url>
+    <content><![CDATA[<h1 id="路由模块化"><a href="#路由模块化" class="headerlink" title="路由模块化"></a>路由模块化</h1><p>平时我们使用路由都是这样子的</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> express = <span class="built_in">require</span>(<span class="string">"express"</span>)</span><br><span class="line"><span class="keyword">var</span> app = express()</span><br><span class="line">app.get(<span class="string">"/login"</span><span class="function"><span class="keyword">function</span>(<span class="params">req,res</span>)</span>&#123;&#125;)</span><br><span class="line">app.get(<span class="string">"/regirse"</span>,<span class="function"><span class="keyword">function</span>(<span class="params">req,res</span>)</span>&#123;&#125;)</span><br></pre></td></tr></table></figure>
+<p>如果要配置子路由那么有需要这样一条一条的来写，那么现在我们使用了模块化之后，就会非常方便。</p>
+<blockquote>
+<p>创建一个文件夹 mode.js</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> express = <span class="built_in">require</span>(<span class="string">"express"</span>)</span><br><span class="line"><span class="keyword">var</span> app = express()</span><br><span class="line"><span class="keyword">var</span> routers = express.Router()</span><br><span class="line">routers.get(<span class="string">"/good"</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;&#125;)</span><br><span class="line">routers.get(<span class="string">"/send"</span><span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;&#125;)</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span>  app.use(<span class="string">"/api"</span> routers)</span><br></pre></td></tr></table></figure>]]></content>
+  </entry>
+  <entry>
+    <title>canvas基础教程</title>
+    <url>/2020/03/18/canvas%E5%9F%BA%E7%A1%80%E6%95%99%E7%A8%8B/</url>
+    <content><![CDATA[<h1 id="canvas基础教程"><a href="#canvas基础教程" class="headerlink" title="canvas基础教程"></a>canvas基础教程</h1><a id="more"></a>
+<p>canvas是H5新增的一个绘制标签，display是line类型。控制他的大小需要把盒子类型设置为display：block。之后就可以设置自己画布的大小（canvas画布的大小），绘制过程在js部分进行。</p>
+<hr>
+<h2 id="第一步"><a href="#第一步" class="headerlink" title="第一步"></a>第一步</h2><ul>
+<li>1、获取对应canvas标签<blockquote>
+<p>let canvas = document.getElementById(“canvas”)</p>
+</blockquote>
+</li>
+<li>2、创建画笔<blockquote>
+<p>let cxt = canvas.getContext(“2d”)  //这里也可以写3d</p>
+</blockquote>
+</li>
+<li>3、设置画笔样式<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">cxt.lineJoin = round/beter<span class="string">""</span> 线段闭合处边角</span><br><span class="line">cxt.strokeStyl<span class="string">""</span>设置画笔颜色，</span><br><span class="line">cxt.lineWidth=<span class="string">""</span>设置画笔粗细</span><br><span class="line"></span><br><span class="line">ctx.lineCap=<span class="string">"round"</span>一条线段的两端样式  两端边圆角，两端增加现款一半</span><br></pre></td></tr></table></figure></li>
+<li>4、习惯<br>每次重新绘制图形的时候一定要使用<br>beginPath来把每个图像进行隔离<br>cxt.closePath()把路径合并<br>cxt.beginPath()开始绘制一个路径</li>
+</ul>
+<hr>
+<h2 id="第二部"><a href="#第二部" class="headerlink" title="第二部"></a>第二部</h2><pre><code>这里我们就可以进行绘制图像</code></pre><hr>
+<ul>
+<li>1、绘制长方形</li>
+</ul>
+<p>方法一<br>创建绘制计划</p>
+<blockquote>
+<p>canvas.rect(x,y,w,h)</p>
+</blockquote>
+<p>x：起始点横坐标坐标<br>y：起始点纵坐标<br>w：矩形宽度<br>h：矩形高度</p>
+<p>开始绘制</p>
+<blockquote>
+<p>cxt.fill()    //绘制实心的矩形</p>
+</blockquote>
+<blockquote>
+<p>cxt.stroke()   //绘制空心的矩形</p>
+</blockquote>
+<p>这里有还有另一种绘制的方法，绘制计划与执行一起</p>
+<blockquote>
+<p>cxt.fillRect(x,y,w,h)//绘制实心矩形</p>
+</blockquote>
+<blockquote>
+<p>cxt.strokeRect(x,y,w,h)//绘制空心矩形</p>
+</blockquote>
+<hr>
+<ul>
+<li>2、绘制圆形<blockquote>
+<p>cxt.arc(x,y,r,regb,rege,driction)//指定画园计划</p>
+</blockquote>
+</li>
+</ul>
+<blockquote>
+<p>cxt.fill()绘制实心园</p>
+</blockquote>
+<blockquote>
+<p>cxt.stroke()绘制空心园</p>
+</blockquote>
+<p>x:起始点<br>y:起始点<br>r：圆的半径<br>regb：开始角度<br>rege：结束角度<br>driction：画原方向（默认false）</p>
+<ul>
+<li>3、绘制文字<blockquote>
+<p>cxt.fillText(“content”,x,y)//绘制实心文字</p>
+</blockquote>
+</li>
+</ul>
+<blockquote>
+<p>cxt.strokeText(“content”,x,y)//绘制空心文字</p>
+</blockquote>
+<p>content：文字内容<br>x：起始点横坐标<br>y：起始点纵坐标</p>
+<ul>
+<li>4、绘制文字的样式<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">cxt.font(字体大小,字体类型)</span><br><span class="line">cxt.textAlign = <span class="string">"center"</span>文字居中对齐</span><br><span class="line">cxt.Baseline = <span class="string">"center"</span>基线对齐</span><br><span class="line">cxt.shadowffsetx=<span class="number">10</span></span><br><span class="line">cxt.shadowColor = <span class="string">""</span></span><br></pre></td></tr></table></figure></li>
+<li>5、渐变</li>
+</ul>
+<p>线性渐变</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">   color = cxt.createLinearGradient()</span><br><span class="line">color.addColorStop(<span class="number">0</span>,red)    </span><br><span class="line">   color.addColorStop(<span class="number">1</span>,bule)</span><br><span class="line">cxt.fillStyle = color</span><br><span class="line">画笔使用color配置的颜色</span><br></pre></td></tr></table></figure>
+
+<p>径向渐变</p>
+<blockquote>
+<p>color =cxt.createRadialGradient(圆形坐标x，y，r，x，y，r)</p>
+</blockquote>
+<ul>
+<li>绘制线段<br>cxt.moveTo(起始点的x，y)<br>cxt.lineTo（中止点的x，y）<br>cxt.stroke()</li>
+</ul>
+]]></content>
+  </entry>
+  <entry>
+    <title>node中神奇的包-bcryptjs加密解密</title>
+    <url>/2020/03/18/node%E4%B8%AD%E7%A5%9E%E5%A5%87%E7%9A%84%E5%8C%85-bcryptjs%E5%8A%A0%E5%AF%86%E8%A7%A3%E5%AF%86/</url>
+    <content><![CDATA[<h1 id="node中神奇的包-bcryptjs加密解密"><a href="#node中神奇的包-bcryptjs加密解密" class="headerlink" title="node中神奇的包-bcryptjs加密解密"></a>node中神奇的包-bcryptjs加密解密</h1><ul>
+<li>什么是bcrypyjs？<blockquote>
+<p>bcryptjs是一个第三方密码加密库，是对原有的bcrypt的优化，优点是不需要安装任何依赖</p>
+</blockquote>
+</li>
+</ul>
+<p><a href="https://segmentfault.com/a/1190000008841988" target="_blank" rel="noopener">具体使用可以看看这里</a></p>
+<ul>
+<li>下面我们来讲讲文档上面没有的<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">//salt是设置加密的强度 最高好像就是10</span></span><br><span class="line"><span class="keyword">var</span> salt = bcrypt.genSaltSync(<span class="number">10</span>);</span><br></pre></td></tr></table></figure>
+<a href="https://segmentfault.com/a/1190000013165651" target="_blank" rel="noopener">基本运行原理可以点击这里</a></li>
+</ul>
+]]></content>
+  </entry>
+  <entry>
+    <title>mongoose的基本使用</title>
+    <url>/2020/03/18/mongoose%E7%9A%84%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8/</url>
+    <content><![CDATA[<h1 id="mongoose的基本使用"><a href="#mongoose的基本使用" class="headerlink" title="mongoose的基本使用"></a>mongoose的基本使用</h1><a id="more"></a>
+
+<ul>
+<li>在开始之前，没有什么比先去官网刷一遍更有用的了<a href="https://mongoosejs.com/docs/guide.html" target="_blank" rel="noopener">mongoose官网</a></li>
+</ul>
+<blockquote>
+<p>mongoose 是什么？他有什么用呢？</p>
+</blockquote>
+<blockquote>
+<p>mongoose 是操作 MongoDB 的一个对象模型库；它封装了MongoDB对文档操作的常用处理方法（增删改查），让 NodeJS 操作 Mongodb 数据库变得快捷灵活。</p>
+</blockquote>
+<ul>
+<li>下面我们来看看这个例子</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> mongoose = <span class="built_in">require</span>(<span class="string">"mongoose"</span>);</span><br><span class="line"><span class="keyword">var</span> db = mongoose.connect(<span class="string">"mongodb://127.0.0.1:27017/test"</span>);</span><br><span class="line"><span class="comment">// var testModel = db.model('test1', testSchema); // 集合名称；集合的结构对象</span></span><br><span class="line"><span class="keyword">var</span> TestSchema = <span class="keyword">new</span> mongoose.Schema(&#123;</span><br><span class="line">    name : &#123; <span class="attr">type</span>:<span class="built_in">String</span> &#125;,</span><br><span class="line">    age  : &#123; <span class="attr">type</span>:<span class="built_in">Number</span>, <span class="attr">default</span>:<span class="number">0</span> &#125;,</span><br><span class="line">    email: &#123; <span class="attr">type</span>:<span class="built_in">String</span> &#125;,</span><br><span class="line">    time : &#123; <span class="attr">type</span>:<span class="built_in">Date</span>, <span class="attr">default</span>:<span class="built_in">Date</span>.now &#125;</span><br><span class="line">&#125;);</span><br><span class="line"><span class="keyword">var</span> TestModel = db.model(<span class="string">"test1"</span>, TestSchema );</span><br><span class="line"><span class="keyword">var</span> TestEntity = <span class="keyword">new</span> TestModel(&#123;</span><br><span class="line">    name : <span class="string">"helloworld"</span>,</span><br><span class="line">    age  : <span class="number">28</span>,</span><br><span class="line">    email: <span class="string">"helloworld@qq.com"</span></span><br><span class="line">&#125;);</span><br><span class="line">TestEntity.save(<span class="function"><span class="keyword">function</span>(<span class="params">error,doc</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">if</span>(error)&#123;</span><br><span class="line">     <span class="built_in">console</span>.log(<span class="string">"error :"</span> + error);</span><br><span class="line">  &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">     <span class="built_in">console</span>.log(doc);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+
+
+<blockquote>
+<p>Schema ： 一种以文件形式存储的数据库模型骨架，不具备数据库的操作能力</p>
+</blockquote>
+<blockquote>
+<p>Model ： 由 Schema 发布生成的模型，具有抽象属性和行为的数据库操作</p>
+</blockquote>
+<blockquote>
+<p>Entity ： 由 Model 创建的实体，他的操作也会影响数据库</p>
+</blockquote>
+<ul>
+<li>那么Model和Entity有什么区别呢？三者又有什么关系呢？<blockquote>
+<p>Model 与 Entity没有什么区别，唯一区别就是使用的操作型上面。Model 和 Entity 都可对数据库操作造成影响，但 Model 比Entity 更具操作性。</p>
+</blockquote>
+</li>
+</ul>
+<blockquote>
+<p>Schema 生成 Model，Model创造 Entity;</p>
+</blockquote>
+<hr>
+<h2 id="Model-数据插入"><a href="#Model-数据插入" class="headerlink" title="Model 数据插入"></a>Model 数据插入</h2><hr>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> testSchema = <span class="keyword">new</span> mongoose.Schema(&#123;</span><br><span class="line">  name: &#123;<span class="attr">type</span>: <span class="built_in">String</span>&#125;,</span><br><span class="line">  age: &#123;<span class="attr">type</span>: <span class="built_in">Number</span>, <span class="attr">default</span>: <span class="number">0</span>&#125;,</span><br><span class="line">  email: &#123;<span class="attr">type</span>: <span class="built_in">String</span>&#125;,</span><br><span class="line">  time: &#123;<span class="attr">type</span>: <span class="built_in">Date</span>, <span class="attr">default</span>: <span class="built_in">Date</span>.now&#125;</span><br><span class="line">&#125;);</span><br><span class="line"><span class="keyword">var</span> testModel = db.model(<span class="string">'test1'</span>, testSchema); <span class="comment">// 集合名称；集合的结构对象</span></span><br><span class="line"><span class="comment">// Document文档（关联数组式的对象） &lt; Collection集合 &lt; 数据库</span></span><br><span class="line"><span class="comment">// 插入保存一段数据</span></span><br><span class="line">testModel.create([</span><br><span class="line">  &#123;<span class="attr">name</span>: <span class="string">"test1"</span>, <span class="attr">age</span>: <span class="number">8</span>&#125;,</span><br><span class="line">  &#123;<span class="attr">name</span>: <span class="string">"test2"</span>, <span class="attr">age</span>: <span class="number">18</span>&#125;,</span><br><span class="line">  &#123;<span class="attr">name</span>: <span class="string">"test3"</span>, <span class="attr">age</span>: <span class="number">28</span>&#125;,</span><br><span class="line">  &#123;<span class="attr">name</span>: <span class="string">"test4"</span>, <span class="attr">age</span>: <span class="number">38</span>&#125;,</span><br><span class="line">  &#123;<span class="attr">name</span>: <span class="string">"test5"</span>, <span class="attr">age</span>: <span class="number">48</span>&#125;,</span><br><span class="line">  &#123;<span class="attr">name</span>: <span class="string">"test6"</span>, <span class="attr">age</span>: <span class="number">58</span>, <span class="attr">email</span>:<span class="string">"tttt@qq.com"</span>&#125;,</span><br><span class="line">  &#123;<span class="attr">name</span>: <span class="string">"test7"</span>, <span class="attr">age</span>: <span class="number">68</span>, <span class="attr">email</span>:<span class="string">"ssss@qq.com"</span>&#125;,</span><br><span class="line">  &#123;<span class="attr">name</span>: <span class="string">"test8"</span>, <span class="attr">age</span>: <span class="number">18</span>&#125;,</span><br><span class="line">  &#123;<span class="attr">name</span>: <span class="string">"test9"</span>, <span class="attr">age</span>: <span class="number">18</span>, <span class="attr">email</span>:<span class="string">"rrrr@qq.com"</span>&#125;,</span><br><span class="line">  &#123;<span class="attr">name</span>: <span class="string">"test10"</span>,<span class="attr">age</span>: <span class="number">18</span>&#125;</span><br><span class="line">], <span class="function"><span class="keyword">function</span> (<span class="params">error, docs</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span>(error) &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(error);</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'save ok'</span>);</span><br><span class="line">    <span class="built_in">console</span>.log(docs);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<ul>
+<li>find数据查询<blockquote>
+<p>mongoose 提供了find、findOne、和findById方法用于文档查询。</p>
+</blockquote>
+</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">model.find(Conditions,fields,options,callback(err, doc));</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>Conditions: 查询条件<br>fields: 返回的字段<br>options: 游标（sort,limit）<br>callback: 回调函数，参数doc为查询出来的结果</p>
+</blockquote>
+<ul>
+<li><p>update 数据更新</p>
+<blockquote>
+<p>基本使用：model.update(查询条件,更新对象,callback);</p>
+</blockquote>
+</li>
+<li><p>remove 删除数据</p>
+</li>
+</ul>
+<p>》基本使用：model.remove(查询条件,callback);</p>
+]]></content>
+  </entry>
+  <entry>
+    <title>express框架使用指南</title>
+    <url>/2020/03/16/express%E6%A1%86%E6%9E%B6%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/</url>
+    <content><![CDATA[<h1 id="express框架使用指南"><a href="#express框架使用指南" class="headerlink" title="express框架使用指南"></a>express框架使用指南</h1><a id="more"></a>
+<ul>
+<li>express介绍</li>
+</ul>
+<p>Express 是一个基于 Node.js 平台，快速、开放、极简的 web 开发框架<br>Express 框架是后台的 Node 框架，所以和 jQuery、zepto、yui、bootstrap<br>都不一个东西。<br>Express 在后台的受欢迎的程度类似前端的 jQuery，就是企业的事实上的标<br>准。</p>
+<ul>
+<li><p>express的特点</p>
+<ul>
+<li>Express 是一个基于 Node.js 平台的极简、灵活的 web 应用开发框架，它提供<br>系列强大的特性，帮助你创建各种 Web 和移动设备应用</li>
+<li>丰富的 HTTP 快捷方法和任意排列组合的 Connect 中间件，让你创建健壮、友<br>好的 API 变得既快速又简单</li>
+</ul>
+</li>
+<li><p>express的安装</p>
+  <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">官网： http:&#x2F;&#x2F;expressjs.com&#x2F;</span><br></pre></td></tr></table></figure>
+
+<p>  安装 Express 框架，就是使用 npm 的命令。（安装在需要使用express模板的文件夹）</p>
+  <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">npm install express --save</span><br></pre></td></tr></table></figure></li>
+<li><p>express的使用</p>
+</li>
+</ul>
+<pre><code>在完成上面安装的操作步骤后就可以使用express开发啦~
+
+
+1、express的简单使用
+
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"> <span class="comment">//1、引入express到项目中 </span></span><br><span class="line"><span class="keyword">let</span> express = <span class="built_in">require</span>(<span class="string">"express"</span>)</span><br><span class="line"></span><br><span class="line"> <span class="comment">//2、实例一个对象 </span></span><br><span class="line"><span class="keyword">let</span> app = express() </span><br><span class="line"></span><br><span class="line"><span class="comment">//这里也可以在express前面加上一个new</span></span><br><span class="line"><span class="comment">//let app = new express()</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//&lt;!-- 3、配置路由 --&gt;</span></span><br><span class="line">app.get(<span class="string">"/"</span>,<span class="function"><span class="keyword">function</span>(<span class="params">req , res</span>)</span>&#123;</span><br><span class="line">    res.send(<span class="string">"向前端发送的数据"</span>)</span><br><span class="line">    <span class="comment">//res.end("向前端发送的数据")</span></span><br><span class="line">    <span class="comment">//这里end 和 send 都可以向前台发送数据</span></span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">//监听端口</span></span><br><span class="line">app.listen(<span class="number">3000</span>,<span class="string">"127.0.0.1"</span>)</span><br></pre></td></tr></table></figure>
+上面这个例子是基于get传参的express框架的简单配值，配置完成后就可以在对应文件夹中打开终端输入```node 你的文件名.js ```就可以运行了。对于post传值我们下面会介绍到。
+
+2、动态路由
+
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"> <span class="comment">//1、引入express到项目中 </span></span><br><span class="line"><span class="keyword">let</span> express = <span class="built_in">require</span>(<span class="string">"express"</span>)</span><br><span class="line"></span><br><span class="line"> <span class="comment">//2、实例一个对象 </span></span><br><span class="line"><span class="keyword">let</span> app = express() </span><br><span class="line"></span><br><span class="line"><span class="comment">//这里配置的是二级动态路由</span></span><br><span class="line">app.get(<span class="string">"/news/:aid"</span>,<span class="function"><span class="keyword">function</span>(<span class="params">req , res</span>)</span>&#123;</span><br><span class="line">    req.params</span><br><span class="line">    <span class="comment">//req.params这个方法会得到动态路由的值</span></span><br><span class="line">    res.send(<span class="string">"向前端发送的数据"</span>)</span><br><span class="line"></span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">//监听端口</span></span><br><span class="line">app.listen(<span class="number">3000</span>,<span class="string">"127.0.0.1"</span>)</span><br></pre></td></tr></table></figure>
+在这个例子中大家可能不太懂这到底实在干什么那么，什么又是动态路由，下面我来给大家分析一下。
+
+当我们在终端中运行node之后，通过浏览器打开 localhost/3000 就会弹出express运行的页面，当把网站变为localhost/news 就会进入到news的页面（news就是一级路由，在news后面二级路由以此类推） 
+
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">//(/news/:路由的key)  key可以是任意单词，但是“：”不能省略</span></span><br><span class="line">app.get(<span class="string">"/news/:aid"</span>,<span class="function"><span class="keyword">function</span>(<span class="params">req,res</span>)</span>&#123;</span><br><span class="line">    res.send(<span class="string">"动态路由"</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+动态路由就是没有把路由地址写死，如上你可以在浏览器的news后面加上任意路由，页面都是可以进行访问的。但如果你写死了那么，你只能访问对应的路由，如果路由不匹配那么页面就会显示你访问的页面不存在。
+
+3、get传值
+
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> express=<span class="built_in">require</span>(<span class="string">'express'</span>); <span class="comment">/*引入*/</span> </span><br><span class="line"><span class="keyword">var</span> app=<span class="keyword">new</span> express(); <span class="comment">/*实例化*/</span> </span><br><span class="line">app.get(<span class="string">'/login?user="haha"&amp;password=123'</span>,<span class="function"><span class="keyword">function</span>(<span class="params">req,res</span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(req.query)</span><br><span class="line">    <span class="comment">//req.query  这个方法会获得？后面的值，返回一个对象</span></span><br><span class="line">     res.send(<span class="string">'你好express'</span>);</span><br><span class="line"> &#125;)</span><br></pre></td></tr></table></figure>
+
+4、express中使用ejs模板
+
+&gt; 安装：</code></pre><p>npm install ejs –save</p>
+<pre><code><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> express=<span class="built_in">require</span>(<span class="string">'express'</span>); </span><br><span class="line"> </span><br><span class="line"><span class="keyword">var</span> app=express();</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 配置ejs模板引擎 */</span> </span><br><span class="line">app.set(<span class="string">'view engine'</span>,<span class="string">'ejs'</span>);</span><br><span class="line"> <span class="comment">//设置模板的位置 </span></span><br><span class="line"> app.set(<span class="string">'views'</span>, __dirname + <span class="string">'/views'</span>);</span><br><span class="line"></span><br><span class="line"> app.get(<span class="string">"/news"</span>,<span class="function"><span class="keyword">function</span>(<span class="params">req,res</span>)</span>&#123;</span><br><span class="line">     res.render(<span class="string">"index"</span>,&#123;&#125;,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;&#125;)</span><br><span class="line">    <span class="comment">//  这里与就是ejs中ejs.renderFile()一样</span></span><br><span class="line">    res.send(<span class="string">"ejs模板使用"</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+5、中间件</code></pre><ul>
+<li><p>应用级中间件</p>
+<blockquote>
+<p>在输入对应端口进入，对页面跳转进行拦截，根据回调函数来判断进入页面的条件，满足一定条件才可以进入页面（类似于vue中的路由守卫）</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> express=<span class="built_in">require</span>(<span class="string">'express'</span>);<span class="comment">/*引入*/</span> </span><br><span class="line"><span class="keyword">var</span> app=<span class="keyword">new</span> express(); <span class="comment">/*实例化*/</span></span><br><span class="line"></span><br><span class="line">app.use(<span class="function"><span class="keyword">function</span>(<span class="params">req,res,next</span>)</span>&#123; <span class="built_in">console</span>.log(<span class="keyword">new</span> <span class="built_in">Date</span>()); next(); &#125;)</span><br></pre></td></tr></table></figure>
+<p>只有这个中间件的回调函数中存在next（）方法的调用那么才可以继续继续跳转</p>
+</li>
+<li><p>路由中间件</p>
+<blockquote>
+<p>多个相同的路由地址，那么他会不会全部匹配呢，答案是否定的。他会匹配第一个设置的路由之后就不会在匹配其他相同的路由了。如果需要对应页面的数据/跳转的下一个一页面那么就需要在第一个路由中设置next（）</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">app.get(<span class="string">'/news'</span>,<span class="function"><span class="keyword">function</span>(<span class="params">req,res,next</span>)</span>&#123;</span><br><span class="line">     <span class="built_in">console</span>.log(<span class="string">'新闻路由中间件通过app.use'</span>); </span><br><span class="line">     next();</span><br><span class="line">      &#125;)</span><br><span class="line"></span><br><span class="line">app.get(<span class="string">'/news'</span>,<span class="function"><span class="keyword">function</span>(<span class="params">req,res</span>)</span>&#123;</span><br><span class="line">    res.send(<span class="string">'新闻路由'</span>); </span><br><span class="line">    &#125;)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>错误处理中间件</p>
+<blockquote>
+<p>就是通过应用中间件，对请求的状态进行判断，若状态码为404就会抛出对应信息。</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">app.use(<span class="function"><span class="keyword">function</span>(<span class="params">req,res</span>)</span>&#123; res.status(<span class="number">404</span>).send(<span class="string">'这是404 表示路由没有匹配到'</span>) &#125;)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>内置中间件</p>
+<blockquote>
+<p>内置中间件用来托管静态页面</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">app.use(<span class="string">'/static'</span>,express.static(__dirname+<span class="string">'/public'</span>));</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>你输入static的路由会之间自动匹配到public文件夹中的内容</p>
+</blockquote>
+</li>
+<li><p>第三方中间件</p>
+<blockquote>
+<p>body-parser ：解析body中的数据，并将其保存为Request对象的body属性。</p>
+</blockquote>
+</li>
+</ul>
+<blockquote>
+<p>cookie-parser ：解析客户端cookie中的数据，并将其保存为Request对象的cookie属性</p>
+</blockquote>
+<blockquote>
+<p>express-session ：解析服务端生成的sessionid对应的session数据，并将其保存为&gt;Request对象的session属性</p>
+</blockquote>
+<blockquote>
+<p>query：这个中间件将一个查询字符串从URL转换为JS对象，并将其保存为Request对象的&gt;query属性。这个中间件在第四个版本中已经内置了无需安装。</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">//配置body-parser中间件 </span></span><br><span class="line"><span class="comment">// parse application /x-www-form-urlencoded </span></span><br><span class="line">app.use(bodyParser.urlencoded(&#123; <span class="attr">extended</span>: <span class="literal">false</span> &#125;))</span><br><span class="line"><span class="comment">// parse application/json </span></span><br><span class="line">app.use(bodyParser.json());</span><br><span class="line">app.post(<span class="string">"/login"</span>,<span class="function"><span class="keyword">function</span>(<span class="params">req,res</span>)</span>&#123;</span><br><span class="line">    req.body <span class="comment">//获得post传递过来的数据</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>req.body就可以获得想要需要的数据，这些body的配置信息有什么用呢？</p>
+<blockquote>
+<p>bodyParser.json()  用来解析json格式的数据 本返回一个中间件到node中的applaction级<br>bodyParser.urlencoded()  用来解析表单格式的数据 本返回一个中间件到node中的applaction级<br><a href="https://www.jianshu.com/p/cd3de110b4b6" target="_blank" rel="noopener">详细介绍</a></p>
+</blockquote>
+]]></content>
+  </entry>
+  <entry>
+    <title>解析node.js中的非阻塞Io</title>
+    <url>/2020/03/16/0%E5%9F%BA%E7%A1%80%E8%A7%A3%E6%9E%90node-js/</url>
+    <content><![CDATA[<h1 id="解析node-js中的非阻塞Io"><a href="#解析node-js中的非阻塞Io" class="headerlink" title="解析node.js中的非阻塞Io"></a>解析node.js中的非阻塞Io</h1><a id="more"></a>
+<h2 id="io"><a href="#io" class="headerlink" title="io"></a>io</h2><p>1、首先什么是io？</p>
+<ul>
+<li>IO （计算机用语），io是计算机的一种硬件，主要用来处理数据的输入输出，I/O输入/输出(Input/Output)  ，I/O操作可以有多种方式，比如DIO(Direct I/O)，AIO(Asynchronous I/O，异步I/O)，Memory-Mapped I/O(内存映射I/O)等，不同的I/O方式有不同的实现方式和性能，在不同的应用中可以按情况选择不同的I/O方式。（这里的异步io不等于我们今天学习的非阻塞io）。</li>
+</ul>
+<p><a href="https://baike.baidu.com/item/IO/5918?fr=aladdin" target="_blank" rel="noopener">参考文档</a></p>
+<p>2、io操作又是什么？</p>
+<ul>
+<li>说了一大堆到底什么是io操作呢？  通俗的来讲就是数据在计算机内部的输入与输出。例如：我们把io比作一个污水处理厂，污水的输入和清水的输出。并且io操作十分耗时，在阻塞io机制中，他需要等对应的数据内容读完后才会执行代码渲染，这个过程可能会消耗10s的事件。对于码农来说这已经是天文数字了。</li>
+</ul>
+<h2 id="Node中阻塞Io"><a href="#Node中阻塞Io" class="headerlink" title="Node中阻塞Io"></a>Node中阻塞Io</h2><p>1、什么是非阻塞io<br>非阻塞io是io数据处理方式的一种，这种处理方式不会导致进程的堵塞，类似与js中的异步。当碰到没有调用的程序他不会等这函数调用后在继续执行代码，而是跳过他执行下面的操作。那么万一在后面这个函数被调用了呢？那就是我要说的第二点。</p>
+<p>2、非阻塞Io的运行原理</p>
+<p>在跳过没有执行的函数后，自动的调用Node中的事件循环机制，不断的向刚才的那个没有调用的函数发起循环，你有没有被调用？如果没有过一会有再次询问，你有没有被调用，以此往复直到进程结束。如果在进程结束前他被调用了那么就会输出对应的数据。</p>
+<p><img src="http://image.euphie.net/2017-09-24-23-19-53.png" alt=""><br><a href="https://www.cnblogs.com/euphie/p/6376508.html" target="_blank" rel="noopener">参考文档</a></p>
+]]></content>
+  </entry>
+  <entry>
+    <title>Hello World</title>
+    <url>/2020/03/15/hello-world/</url>
+    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html" target="_blank" rel="noopener">Deployment</a></p>
+]]></content>
+  </entry>
+</search>
