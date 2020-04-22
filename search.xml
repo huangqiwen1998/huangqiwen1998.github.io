@@ -3,7 +3,8 @@
   <entry>
     <title>vue从基础到熟悉</title>
     <url>/2020/04/03/vue%E4%BB%8E%E5%9F%BA%E7%A1%80%E5%88%B0%E7%86%9F%E6%82%89/</url>
-    <content><![CDATA[<a id="more"></a>
+    <content><![CDATA[<h1 id="vue从基础到熟悉"><a href="#vue从基础到熟悉" class="headerlink" title="vue从基础到熟悉"></a>vue从基础到熟悉</h1><a id="more"></a>
+
 <h1 id="一、基本指令"><a href="#一、基本指令" class="headerlink" title="一、基本指令"></a>一、基本指令</h1><ul>
 <li><p>v-if</p>
 <p>  如果v-if中的值为true，会渲染对应绑定的元素，若为false不会渲染对应绑定元素。（v-if有惰性）</p>
@@ -179,7 +180,8 @@
   <entry>
     <title>axios基本操作</title>
     <url>/2020/03/27/axios%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/</url>
-    <content><![CDATA[<a id="more"></a>
+    <content><![CDATA[<h1 id="axios基本操作"><a href="#axios基本操作" class="headerlink" title="axios基本操作"></a>axios基本操作</h1><a id="more"></a>
+
 <p>开始学习前一定要先去<a href="http://www.axios-js.com/zh-cn/docs/" target="_blank" rel="noopener">官网</a>看一看，太详细了。</p>
 <h1 id="什么是axios"><a href="#什么是axios" class="headerlink" title="什么是axios"></a>什么是axios</h1><pre><code>Axios是一个基于promise的HTTP库，可以用在浏览器和node.js中。vue-resource在2.5版本后官方就不在维护，并推荐大家使用Axios</code></pre><h2 id="特性"><a href="#特性" class="headerlink" title="特性"></a>特性</h2><ul>
 <li>从浏览器中创建 XMLHttpRequests</li>
@@ -192,21 +194,38 @@
 <li>客户端支持防御 XSRF</li>
 </ul>
 <h2 id="功能"><a href="#功能" class="headerlink" title="功能"></a>功能</h2><ul>
-<li>1、请求<pre><code>-  post请求（通过配置请求，直接请求）
--  get请求  （通过配置请求，直接请求）
--  默认请求 （Axios默认发送get请求）
--  多并发请求
-    - 1、 迭代请求
-    - 2、 等待请求</code></pre></li>
-<li>2、配置<pre><code>- 请求配置（发送前需要配置的内容）
-- 响应结构（响应后返回的数据）
-- 默认配置
-    - 1、全局默认值（moudle文件中已经配置好了，有修改需求才修改）
-    - 2、自定义默认值（自己创建的axios实例需要配置，不配置就会延用默认配置）</code></pre></li>
-<li>3、拦截器（会在请求响应被then，catch处理前拦截它们）<pre><code>- 1、请求拦截器
-- 2、响应拦截器
-- 3、拦截器的移出</code></pre></li>
-<li>4、创建实例<pre><code>- 建议创建实例来进行代码编写（原因：通过axios直接绑定都会直接绑定到全局上面，这样就会有一个累计拦截的问题，每次请求服务器的时候都会触发一次axios拦截，但是如果使用实例那么对应实例的多次拦截次数并不会增加。也就是说直接使用axios拦截几次就是几次，使用实例每个实例都只算一次拦截）</code></pre></li>
+<li>1、请求</li>
+</ul>
+<p>post请求（通过配置请求，直接请求）<br>get请求  （通过配置请求，直接请求）<br>默认请求 （Axios默认发送get请求）<br>多并发请求</p>
+<ul>
+<li><p>1、 迭代请求</p>
+</li>
+<li><p>2、 等待请求</p>
+</li>
+<li><p>2、配置</p>
+</li>
+<li><p>请求配置（发送前需要配置的内容）</p>
+</li>
+<li><p>响应结构（响应后返回的数据）</p>
+</li>
+<li><p>默认配置</p>
+</li>
+<li><p>1、全局默认值（moudle文件中已经配置好了，有修改需求才修改）</p>
+</li>
+<li><p>2、自定义默认值（自己创建的axios实例需要配置，不配置就会延用默认配置）</p>
+</li>
+<li><p>3、拦截器（会在请求响应被then，catch处理前拦截它们）</p>
+</li>
+<li><p>1、请求拦截器</p>
+</li>
+<li><p>2、响应拦截器</p>
+</li>
+<li><p>3、拦截器的移出</p>
+</li>
+<li><p>4、创建实例</p>
+</li>
+<li><p>建议创建实例来进行代码编写（原因：通过axios直接绑定都会直接绑定到全局上面，这样就会有一个累计拦截的问题，每次请求服务器的时候都会触发一次axios拦截，但是如果使用实例那么对应实例的多次拦截次数并不会增加。也就是说直接使用axios拦截几次就是几次，使用实例每个实例都只算一次拦截）</p>
+</li>
 </ul>
 ]]></content>
       <tags>

@@ -6,19 +6,18 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>axios基本操作 | Hexo</title>
+  <title>resources | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="axios基本操作">
-<meta property="og:type" content="article">
-<meta property="og:title" content="axios基本操作">
-<meta property="og:url" content="http://yoursite.com/2020/03/27/axios%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/index.html">
+  <meta name="description" content="小猫爱吃鱼">
+<meta property="og:type" content="website">
+<meta property="og:title" content="resources">
+<meta property="og:url" content="http://yoursite.com/resources/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="axios基本操作">
+<meta property="og:description" content="小猫爱吃鱼">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2020-03-27T14:48:16.000Z">
-<meta property="article:modified_time" content="2020-04-22T12:03:44.860Z">
+<meta property="article:published_time" content="2020-04-22T12:20:25.000Z">
+<meta property="article:modified_time" content="2020-04-22T12:20:25.279Z">
 <meta property="article:author" content="Baket">
-<meta property="article:tag" content="vue">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
@@ -169,75 +168,27 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-<article id="post-axios基本操作" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="page-" class="article article-type-page " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      axios基本操作
+      resources
     </h1>
   
 
         
-        <a href="/2020/03/27/axios%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/" class="archive-article-date">
-  	<time datetime="2020-03-27T14:48:16.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-27</time>
+        <a href="/resources/index.html" class="archive-article-date">
+  	<time datetime="2020-04-22T12:20:25.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-22</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="axios基本操作"><a href="#axios基本操作" class="headerlink" title="axios基本操作"></a>axios基本操作</h1><a id="more"></a>
-
-<p>开始学习前一定要先去<a href="http://www.axios-js.com/zh-cn/docs/" target="_blank" rel="noopener">官网</a>看一看，太详细了。</p>
-<h1 id="什么是axios"><a href="#什么是axios" class="headerlink" title="什么是axios"></a>什么是axios</h1><pre><code>Axios是一个基于promise的HTTP库，可以用在浏览器和node.js中。vue-resource在2.5版本后官方就不在维护，并推荐大家使用Axios</code></pre><h2 id="特性"><a href="#特性" class="headerlink" title="特性"></a>特性</h2><ul>
-<li>从浏览器中创建 XMLHttpRequests</li>
-<li>从 node.js 创建 http 请求</li>
-<li>支持 Promise API</li>
-<li>拦截请求和响应</li>
-<li>转换请求数据和响应数据</li>
-<li>取消请求</li>
-<li>自动转换 JSON 数据</li>
-<li>客户端支持防御 XSRF</li>
-</ul>
-<h2 id="功能"><a href="#功能" class="headerlink" title="功能"></a>功能</h2><ul>
-<li>1、请求</li>
-</ul>
-<p>post请求（通过配置请求，直接请求）<br>get请求  （通过配置请求，直接请求）<br>默认请求 （Axios默认发送get请求）<br>多并发请求</p>
-<ul>
-<li><p>1、 迭代请求</p>
-</li>
-<li><p>2、 等待请求</p>
-</li>
-<li><p>2、配置</p>
-</li>
-<li><p>请求配置（发送前需要配置的内容）</p>
-</li>
-<li><p>响应结构（响应后返回的数据）</p>
-</li>
-<li><p>默认配置</p>
-</li>
-<li><p>1、全局默认值（moudle文件中已经配置好了，有修改需求才修改）</p>
-</li>
-<li><p>2、自定义默认值（自己创建的axios实例需要配置，不配置就会延用默认配置）</p>
-</li>
-<li><p>3、拦截器（会在请求响应被then，catch处理前拦截它们）</p>
-</li>
-<li><p>1、请求拦截器</p>
-</li>
-<li><p>2、响应拦截器</p>
-</li>
-<li><p>3、拦截器的移出</p>
-</li>
-<li><p>4、创建实例</p>
-</li>
-<li><p>建议创建实例来进行代码编写（原因：通过axios直接绑定都会直接绑定到全局上面，这样就会有一个累计拦截的问题，每次请求服务器的时候都会触发一次axios拦截，但是如果使用实例那么对应实例的多次拦截次数并不会增加。也就是说直接使用axios拦截几次就是几次，使用实例每个实例都只算一次拦截）</p>
-</li>
-</ul>
-
+        
       
 
       
@@ -276,17 +227,6 @@
     <div class="article-info article-info-index">
       
       
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">vue</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
       
 
       
@@ -337,7 +277,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://huangqiwen1998.github.io/2020/03/27/axios%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/" alt="微信分享二维码">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://huangqiwen1998.github.io/resources/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -349,25 +289,6 @@
 </article>
 
   
-<nav id="article-nav">
-  
-    <a href="/2020/03/28/%E8%B7%AF%E7%94%B1%E5%AE%88%E5%8D%AB/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          路由守卫
-        
-      </div>
-    </a>
-  
-  
-    <a href="/2020/03/26/vuex%E8%A7%A3%E6%9E%90/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">vuex解析</div>
-      <i class="icon-circle-right"></i>
-    </a>
-  
-</nav>
-
 
 <aside class="wrap-side-operation">
     <div class="mod-side-operation">
@@ -389,7 +310,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#axios基本操作"><span class="toc-number">1.</span> <span class="toc-text">axios基本操作</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#什么是axios"><span class="toc-number">2.</span> <span class="toc-text">什么是axios</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#特性"><span class="toc-number">2.1.</span> <span class="toc-text">特性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#功能"><span class="toc-number">2.2.</span> <span class="toc-text">功能</span></a></li></ol></li></ol>
+                    目录，不存在的…
                     </div>
                 </span>
             </div>
@@ -409,7 +330,6 @@
   
 
   
-
 
 
           </div>
@@ -435,7 +355,7 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: true,
+		isPost: false,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,
