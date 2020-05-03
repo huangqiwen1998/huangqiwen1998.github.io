@@ -16,7 +16,7 @@
 <meta property="og:description" content="mongoose的基本使用">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-03-18T03:20:04.000Z">
-<meta property="article:modified_time" content="2020-03-24T10:15:29.834Z">
+<meta property="article:modified_time" content="2020-04-30T06:00:17.559Z">
 <meta property="article:author" content="Baket">
 <meta name="twitter:card" content="summary">
   
@@ -202,11 +202,13 @@
 
 
 <blockquote>
-<p>Schema ： 一种以文件形式存储的数据库模型骨架，不具备数据库的操作能力</p>
+<p>Schema ： 一种以文件形式存储的数据库模型骨架，不具备数据库的操作能力，因为mongodb不具备sql数据库的那种紧密的关系同时我们需要保证数据的完整性，因此我们需要制定一个规则骨架来约束用户。</p>
 </blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> TestSchema = <span class="keyword">new</span> mongoose.Schema(&#123;</span><br><span class="line">    name : &#123; <span class="attr">type</span>:<span class="built_in">String</span> &#125;,</span><br><span class="line">    age  : &#123; <span class="attr">type</span>:<span class="built_in">Number</span>, <span class="attr">default</span>:<span class="number">0</span> &#125;,</span><br><span class="line">    email: &#123; <span class="attr">type</span>:<span class="built_in">String</span> &#125;,</span><br><span class="line">    time : &#123; <span class="attr">type</span>:<span class="built_in">Date</span>, <span class="attr">default</span>:<span class="built_in">Date</span>.now &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
 <blockquote>
-<p>Model ： 由 Schema 发布生成的模型，具有抽象属性和行为的数据库操作</p>
+<p>Model ： 由 Schema 发布生成的模型，具有抽象属性和行为的数据库操作(也就是说把框架转化为一个可以使用的模型)</p>
 </blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> TestModel = db.model(<span class="string">"test1"</span>, TestSchema );</span><br></pre></td></tr></table></figure>
 <blockquote>
 <p>Entity ： 由 Model 创建的实体，他的操作也会影响数据库</p>
 </blockquote>
@@ -228,20 +230,19 @@
 </blockquote>
 </li>
 </ul>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">model.find(Conditions,fields,options,callback(err, doc));</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">model.find(Conditions,fields,options,callback(err, doc));</span><br><span class="line">model.find(&#123;<span class="string">"name"</span>:<span class="string">"zs"</span>&#125;,callback(err, doc));</span><br></pre></td></tr></table></figure>
 <blockquote>
 <p>Conditions: 查询条件<br>fields: 返回的字段<br>options: 游标（sort,limit）<br>callback: 回调函数，参数doc为查询出来的结果</p>
 </blockquote>
 <ul>
 <li><p>update 数据更新</p>
 <blockquote>
-<p>基本使用：model.update(查询条件,更新对象,callback);</p>
+<p>基本使用：model.update(查询条件,更新对象,callback);<br>model.findByIdAndUpdate(id,更新的内容,callback)</p>
 </blockquote>
 </li>
 <li><p>remove 删除数据</p>
-</li>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//基本使用：</span></span><br><span class="line"><span class="comment">//删除查询到的所有数据</span></span><br><span class="line">model.remove(查询条件,callback);</span><br><span class="line"><span class="comment">//删除查询到的一条数据</span></span><br><span class="line">model.findOneAndRemove(查询条件，callback)</span><br><span class="line">model.findByIdAndRemove(id，callback)</span><br></pre></td></tr></table></figure></li>
 </ul>
-<p>》基本使用：model.remove(查询条件,callback);</p>
 
       
 
@@ -499,7 +500,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">vue</a>
+                <a href="javascript:void(0)" class="js-tag color5">http</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -507,11 +508,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">数据结构</a>
+                <a href="javascript:void(0)" class="js-tag color3">js</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">vue</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">CSS</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">数据结构</a>
               </li>
             
             <div class="clearfix"></div>

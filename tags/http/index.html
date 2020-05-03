@@ -6,19 +6,16 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>express框架使用指南 | Hexo</title>
+  <title>Tag: http | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="express框架使用指南官网">
-<meta property="og:type" content="article">
-<meta property="og:title" content="express框架使用指南">
-<meta property="og:url" content="http://yoursite.com/2020/03/16/express%E6%A1%86%E6%9E%B6%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/index.html">
+  <meta name="description" content="小猫爱吃鱼">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="http://yoursite.com/tags/http/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="express框架使用指南官网">
+<meta property="og:description" content="小猫爱吃鱼">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2020-03-16T15:08:05.000Z">
-<meta property="article:modified_time" content="2020-05-01T07:31:45.103Z">
 <meta property="article:author" content="Baket">
-<meta property="article:tag" content="node">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
@@ -164,325 +161,59 @@
           </div>
           <div id="js-content" class="content-ll">
             
-<article id="post-express框架使用指南" class="article article-type-post " itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
   
-    <h1 class="article-title" itemprop="name">
-      express框架使用指南
+  
+    
+    
+      
+      
+      <section class="archives-wrap">
+        <div class="archive-year-wrap">
+          <a href="/archives/2020" class="archive-year">2020</a>
+        </div>
+        <div class="archives">
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      	<div class="article-meta">
+	      	<a href="/2020/05/02/cookie%E7%9B%B8%E5%85%B3/" class="archive-article-date">
+  	<time datetime="2020-05-02T13:32:11.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-02</time>
+</a>
+        </div>
+    	 
+  
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/2020/05/02/cookie%E7%9B%B8%E5%85%B3/">cookie相关</a>
     </h1>
   
 
-        
-        <a href="/2020/03/16/express%E6%A1%86%E6%9E%B6%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/" class="archive-article-date">
-  	<time datetime="2020-03-16T15:08:05.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-16</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="express框架使用指南"><a href="#express框架使用指南" class="headerlink" title="express框架使用指南"></a>express框架使用指南</h1><p><a href="http://expressjs.com/" target="_blank" rel="noopener">官网</a></p>
-<a id="more"></a>
-<ul>
-<li>express介绍</li>
-</ul>
-<p>Express 是一个基于 Node.js 平台，快速、开放、极简的 web 开发框架<br>Express 框架是后台的 Node 框架，所以和 jQuery、zepto、yui、bootstrap<br>都不一个东西。<br>Express 在后台的受欢迎的程度类似前端的 jQuery，就是企业的事实上的标<br>准。</p>
-<ul>
-<li><p>express的特点</p>
-<ul>
-<li>Express 是一个基于 Node.js 平台的极简、灵活的 web 应用开发框架，它提供<br>系列强大的特性，帮助你创建各种 Web 和移动设备应用</li>
-<li>丰富的 HTTP 快捷方法和任意排列组合的 Connect 中间件，让你创建健壮、友<br>好的 API 变得既快速又简单</li>
-</ul>
-</li>
-<li><p>express的安装</p>
-  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">官网： http:&#x2F;&#x2F;expressjs.com&#x2F;</span><br></pre></td></tr></table></figure>
-
-<p>  安装 Express 框架，就是使用 npm 的命令。（安装在需要使用express模板的文件夹）</p>
-  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install express --save</span><br></pre></td></tr></table></figure>
-
-<p>  在完成上面安装的操作步骤后就可以使用express开发啦~</p>
-</li>
-</ul>
-<ul>
-<li>express的使用<br>  express有基本的识别能力，不需要自己添加contenttype/同时会内置处理没有配置的路径。相比于原生http的自己封装请求头，已经路由判断来说方便多了。<br>  0、配置公开资源目录(可以公开访问public下的所有文件)<blockquote>
-<p>app.use(‘/public/‘,express.static(‘./public/‘))<br>  第一个public是别名,后面的是对应文件地址<br>  输入网址的时候例如<br><a href="http://www.localhost:3000/public/css/index.css" target="_blank" rel="noopener">http://www.localhost:3000/public/css/index.css</a><br>  还有第二种方式<br>app.use(express.static(‘./public/‘))<br>  这里输入网址的时候应该时这样<br><a href="http://www.localhost:3000/css/index.css" target="_blank" rel="noopener">http://www.localhost:3000/css/index.css</a><br>  不需要添加public</p>
-</blockquote>
-</li>
-</ul>
-<pre><code>0.1、修改代码自动重启
-nodemon来解决修改代码重启的操作
-&gt;npm install --global nodemon
-启动文件的时候，使用nodemon启动就可以了
-&gt;nodemon app.js
-当文件变化时会自动帮你重启服务器
-
-1、express的简单使用
-
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"> <span class="comment">//1、引入express到项目中 </span></span><br><span class="line"><span class="keyword">let</span> express = <span class="built_in">require</span>(<span class="string">"express"</span>)</span><br><span class="line"></span><br><span class="line"> <span class="comment">//2、实例一个对象 </span></span><br><span class="line"><span class="keyword">let</span> app = express() </span><br><span class="line"></span><br><span class="line"><span class="comment">//这里也可以在express前面加上一个new</span></span><br><span class="line"><span class="comment">//let app = new express()</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//&lt;!-- 3、配置路由 --&gt;</span></span><br><span class="line">app.get(<span class="string">"/"</span>,<span class="function"><span class="keyword">function</span>(<span class="params">req , res</span>)</span>&#123;</span><br><span class="line">    res.send(<span class="string">"向前端发送的数据"</span>)</span><br><span class="line">    <span class="comment">//res.end("向前端发送的数据")</span></span><br><span class="line">    <span class="comment">//这里end 和 send 都可以向前台发送数据</span></span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">//监听端口</span></span><br><span class="line">app.listen(<span class="number">3000</span>,<span class="string">"127.0.0.1"</span>)</span><br></pre></td></tr></table></figure>
-上面这个例子是基于get传参的express框架的简单配值，配置完成后就可以在对应文件夹中打开终端输入```node 你的文件名.js ```就可以运行了。对于post传值我们下面会介绍到。
-1.1、express中的res有多种方法
-- send
-` json 传入一个对象会默认把对象转换为json数据
-
-2、动态路由
-
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"> <span class="comment">//1、引入express到项目中 </span></span><br><span class="line"><span class="keyword">let</span> express = <span class="built_in">require</span>(<span class="string">"express"</span>)</span><br><span class="line"></span><br><span class="line"> <span class="comment">//2、实例一个对象 </span></span><br><span class="line"><span class="keyword">let</span> app = express() </span><br><span class="line"></span><br><span class="line"><span class="comment">//这里配置的是二级动态路由</span></span><br><span class="line">app.get(<span class="string">"/news/:aid"</span>,<span class="function"><span class="keyword">function</span>(<span class="params">req , res</span>)</span>&#123;</span><br><span class="line">    req.params</span><br><span class="line">    <span class="comment">//req.params这个方法会得到动态路由的值</span></span><br><span class="line">    res.send(<span class="string">"向前端发送的数据"</span>)</span><br><span class="line"></span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">//监听端口</span></span><br><span class="line">app.listen(<span class="number">3000</span>,<span class="string">"127.0.0.1"</span>)</span><br></pre></td></tr></table></figure>
-在这个例子中大家可能不太懂这到底实在干什么那么，什么又是动态路由，下面我来给大家分析一下。
-
-当我们在终端中运行node之后，通过浏览器打开 localhost/3000 就会弹出express运行的页面，当把网站变为localhost/news 就会进入到news的页面（news就是一级路由，在news后面二级路由以此类推） 
-
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//(/news/:路由的key)  key可以是任意单词，但是“：”不能省略</span></span><br><span class="line">app.get(<span class="string">"/news/:aid"</span>,<span class="function"><span class="keyword">function</span>(<span class="params">req,res</span>)</span>&#123;</span><br><span class="line">    res.send(<span class="string">"动态路由"</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-动态路由就是没有把路由地址写死，如上你可以在浏览器的news后面加上任意路由，页面都是可以进行访问的。但如果你写死了那么，你只能访问对应的路由，如果路由不匹配那么页面就会显示你访问的页面不存在。
-
-2.1、路由重定向
-&gt;res.redirect(&apos;/&apos;)
-2.2、获取post传递数据
-express中没有内置获取post请求体的api，我们需要结合第三方包
-结合第三方插件  body-parser
-&gt;npm install body-parser --save
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"> <span class="keyword">var</span> express=<span class="built_in">require</span>(<span class="string">'express'</span>); <span class="comment">/*引入*/</span> </span><br><span class="line"> <span class="keyword">var</span> body = <span class="built_in">require</span>(<span class="string">'body-parser'</span>)</span><br><span class="line"> <span class="comment">//添加了这个配置后   req的请求对象中会多出来一个属性：body，我们可以通过这个body来获取表单的数据。</span></span><br><span class="line"> </span><br><span class="line"> <span class="comment">// 解析 application/json</span></span><br><span class="line">app.use(bodyParser.json()); </span><br><span class="line"><span class="comment">// 解析 application/x-www-form-urlencoded</span></span><br><span class="line">app.use(bodyParser.urlencoded(&#123;<span class="attr">extended</span>:<span class="literal">false</span>&#125;));</span><br><span class="line"><span class="keyword">var</span> app=<span class="keyword">new</span> express(); <span class="comment">/*实例化*/</span></span><br></pre></td></tr></table></figure>
-
-2.3、以上都是非模块化的路由，如果你想让node模块化，你需要在根目录新建一个router.js，如下
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//router.js</span></span><br><span class="line"><span class="keyword">var</span> express = <span class="built_in">require</span>(<span class="string">'express'</span>)</span><br><span class="line"><span class="keyword">var</span> router = express.Router()</span><br><span class="line"></span><br><span class="line">router.get(<span class="string">'/'</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;&#125;)</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = router</span><br></pre></td></tr></table></figure>
-express对象中有个router方法，用来存放你所配置的路由。
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//app.js</span></span><br><span class="line"><span class="keyword">var</span> router = <span class="built_in">require</span>(<span class="string">'./router'</span>)</span><br><span class="line">app.use(router)</span><br></pre></td></tr></table></figure>
-
-
-
-3、get传值
-
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> express=<span class="built_in">require</span>(<span class="string">'express'</span>); <span class="comment">/*引入*/</span> </span><br><span class="line"><span class="keyword">var</span> app=<span class="keyword">new</span> express(); <span class="comment">/*实例化*/</span> </span><br><span class="line">app.get(<span class="string">'/login?user="haha"&amp;password=123'</span>,<span class="function"><span class="keyword">function</span>(<span class="params">req,res</span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(req.query)</span><br><span class="line">    <span class="comment">//req.query  这个方法会获得？后面的值，返回一个对象</span></span><br><span class="line">     res.send(<span class="string">'你好express'</span>);</span><br><span class="line"></span><br><span class="line">     <span class="comment">//res.send()  res.redirect()都会结束响应  与原生的write不同</span></span><br><span class="line"> &#125;)</span><br></pre></td></tr></table></figure>
-
-4、express中使用ejs模板
-
-&gt; 安装：</code></pre><p>npm install ejs –save</p>
-<pre><code><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> express=<span class="built_in">require</span>(<span class="string">'express'</span>); </span><br><span class="line"> </span><br><span class="line"><span class="keyword">var</span> app=express();</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 配置ejs模板引擎 */</span> </span><br><span class="line">app.set(<span class="string">'view engine'</span>,<span class="string">'ejs'</span>);</span><br><span class="line"> <span class="comment">//设置模板的位置 </span></span><br><span class="line"> app.set(<span class="string">'views'</span>, __dirname + <span class="string">'/views'</span>);</span><br><span class="line"></span><br><span class="line"> app.get(<span class="string">"/news"</span>,<span class="function"><span class="keyword">function</span>(<span class="params">req,res</span>)</span>&#123;</span><br><span class="line">     res.render(<span class="string">"index"</span>,&#123;&#125;,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;&#125;)</span><br><span class="line">    <span class="comment">//  这里与就是ejs中ejs.renderFile()一样</span></span><br><span class="line">    res.send(<span class="string">"ejs模板使用"</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-5、中间件</code></pre><ul>
-<li><p>应用级中间件</p>
-<blockquote>
-<p>在输入对应端口进入，对页面跳转进行拦截，根据回调函数来判断进入页面的条件，满足一定条件才可以进入页面（类似于vue中的路由守卫）</p>
-</blockquote>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> express=<span class="built_in">require</span>(<span class="string">'express'</span>);<span class="comment">/*引入*/</span> </span><br><span class="line"><span class="keyword">var</span> app=<span class="keyword">new</span> express(); <span class="comment">/*实例化*/</span></span><br><span class="line"></span><br><span class="line">app.use(<span class="function"><span class="keyword">function</span>(<span class="params">req,res,next</span>)</span>&#123; <span class="built_in">console</span>.log(<span class="keyword">new</span> <span class="built_in">Date</span>()); next(); &#125;)</span><br></pre></td></tr></table></figure>
-<p>只有这个中间件的回调函数中存在next（）方法的调用那么才可以继续继续跳转</p>
-</li>
-<li><p>路由中间件</p>
-<blockquote>
-<p>多个相同的路由地址，那么他会不会全部匹配呢，答案是否定的。他会匹配第一个设置的路由之后就不会在匹配其他相同的路由了。如果需要对应页面的数据/跳转的下一个一页面那么就需要在第一个路由中设置next（）</p>
-</blockquote>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">app.use(<span class="string">'/news'</span>,<span class="function"><span class="keyword">function</span>(<span class="params">req,res,next</span>)</span>&#123;</span><br><span class="line">     <span class="built_in">console</span>.log(<span class="string">'新闻路由中间件通过app.use'</span>); </span><br><span class="line">     next();</span><br><span class="line">      &#125;)</span><br><span class="line"></span><br><span class="line">app.use(<span class="string">'/news'</span>,<span class="function"><span class="keyword">function</span>(<span class="params">req,res</span>)</span>&#123;</span><br><span class="line">    res.send(<span class="string">'新闻路由'</span>); </span><br><span class="line">    &#125;)</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>错误处理中间件</p>
-<blockquote>
-<p>就是通过应用中间件，对请求的状态进行判断，若状态码为404就会抛出对应信息。</p>
-</blockquote>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">app.use(<span class="function"><span class="keyword">function</span>(<span class="params">req,res</span>)</span>&#123; res.status(<span class="number">404</span>).send(<span class="string">'这是404 表示路由没有匹配到'</span>) &#125;)</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>内置中间件</p>
-<blockquote>
-<p>内置中间件用来托管静态页面</p>
-</blockquote>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">app.use(<span class="string">'/static'</span>,express.static(__dirname+<span class="string">'/public'</span>));</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>你输入static的路由会之间自动匹配到public文件夹中的内容</p>
-</blockquote>
-</li>
-<li><p>第三方中间件</p>
-<blockquote>
-<p>body-parser ：解析body中的数据，并将其保存为Request对象的body属性。</p>
-</blockquote>
-</li>
-</ul>
-<blockquote>
-<p>cookie-parser ：解析客户端cookie中的数据，并将其保存为Request对象的cookie属性</p>
-</blockquote>
-<blockquote>
-<p>express-session ：解析服务端生成的sessionid对应的session数据，并将其保存为&gt;Request对象的session属性</p>
-</blockquote>
-<blockquote>
-<p>query：这个中间件将一个查询字符串从URL转换为JS对象，并将其保存为Request对象的&gt;query属性。这个中间件在第四个版本中已经内置了无需安装。</p>
-</blockquote>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//配置body-parser中间件 </span></span><br><span class="line"><span class="comment">// parse application /x-www-form-urlencoded </span></span><br><span class="line">app.use(bodyParser.urlencoded(&#123; <span class="attr">extended</span>: <span class="literal">false</span> &#125;))</span><br><span class="line"><span class="comment">// parse application/json </span></span><br><span class="line">app.use(bodyParser.json());</span><br><span class="line">app.post(<span class="string">"/login"</span>,<span class="function"><span class="keyword">function</span>(<span class="params">req,res</span>)</span>&#123;</span><br><span class="line">    req.body <span class="comment">//获得post传递过来的数据</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-<p>req.body就可以获得想要需要的数据，这些body的配置信息有什么用呢？</p>
-<blockquote>
-<p>bodyParser.json()  用来解析json格式的数据 本返回一个中间件到node中的applaction级<br>bodyParser.urlencoded()  用来解析表单格式的数据 本返回一个中间件到node中的applaction级<br><a href="https://www.jianshu.com/p/cd3de110b4b6" target="_blank" rel="noopener">详细介绍</a></p>
-</blockquote>
-
-      
-
-      
-        <div class="page-reward">
-          <a href="javascript:;" class="page-reward-btn tooltip-top">
-            <div class="tooltip tooltip-east">
-            <span class="tooltip-item">
-              赏
-            </span>
-            <span class="tooltip-content">
-              <span class="tooltip-text">
-                <span class="tooltip-inner">
-                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
-                  <div class="reward-box">
-                    
-                    <div class="reward-box-item">
-                      <img class="reward-img" src="/assets/zhifu.jpg">
-                      <span class="reward-type">支付宝</span>
-                    </div>
-                    
-                    
-                    <div class="reward-box-item">
-                      <img class="reward-img" src="/assets/pay.png">
-                      <span class="reward-type">微信</span>
-                    </div>
-                    
-                  </div>
-                </span>
-              </span>
-            </span>
-          </div>
-          </a>
-        </div>
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
+        <div class="article-info info-on-right">
+          
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">node</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">http</a>
         		</li>
       		
 		</ul>
 	</div>
 
-      
+          
 
-      
-
-      
-        
-<div class="share-btn share-icons tooltip-left">
-  <div class="tooltip tooltip-east">
-    <span class="tooltip-item">
-      <a href="javascript:;" class="share-sns share-outer">
-        <i class="icon icon-share"></i>
-      </a>
-    </span>
-    <span class="tooltip-content">
-      <div class="share-wrap">
-        <div class="share-icons">
-          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
-            <i class="icon icon-weibo"></i>
-          </a>
-          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
-            <i class="icon icon-weixin"></i>
-          </a>
-          <a class="qq share-sns" href="javascript:;" data-type="qq">
-            <i class="icon icon-qq"></i>
-          </a>
-          <a class="douban share-sns" href="javascript:;" data-type="douban">
-            <i class="icon icon-douban"></i>
-          </a>
-          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
-            <i class="icon icon-qzone"></i>
-          </a>
-          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
-            <i class="icon icon-facebook"></i>
-          </a>
-          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
-            <i class="icon icon-twitter"></i>
-          </a>
-          <a class="google share-sns" href="javascript:;" data-type="google">
-            <i class="icon icon-google"></i>
-          </a>
         </div>
-      </div>
-    </span>
-  </div>
-</div>
-
-<div class="page-modal wx-share js-wx-box">
-    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
-    <p>扫一扫，分享到微信</p>
-    <div class="wx-qrcode">
-      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://huangqiwen1998.github.io/2020/03/16/express%E6%A1%86%E6%9E%B6%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/" alt="微信分享二维码">
-    </div>
-</div>
-
-<div class="mask js-mask"></div>
-      
-      <div class="clearfix"></div>
-    </div>
+        <div class="clearfix"></div>
+    </header>
   </div>
 </article>
-
-  
-<nav id="article-nav">
-  
-    <a href="/2020/03/18/mongoose%E7%9A%84%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          mongoose的基本使用
-        
-      </div>
-    </a>
   
   
-    <a href="/2020/03/16/0%E5%9F%BA%E7%A1%80%E8%A7%A3%E6%9E%90node-js/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">解析node.js中的非阻塞Io</div>
-      <i class="icon-circle-right"></i>
-    </a>
-  
-</nav>
-
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-        <div class="toc-container tooltip-left">
-            <i class="icon-font icon-category"></i>
-            <div class="tooltip tooltip-east">
-                <span class="tooltip-item">
-                </span>
-                <span class="tooltip-content">
-                    <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#express框架使用指南"><span class="toc-number">1.</span> <span class="toc-text">express框架使用指南</span></a></li></ol>
-                    </div>
-                </span>
-            </div>
-        </div>
-        
-    </div>
-</aside>
-
-
-
-  
-  
+    </div></section>
   
 
-  
-
-  
-
-  
-
+    
 
 
           </div>
@@ -508,9 +239,9 @@ express对象中有个router方法，用来存放你所配置的路由。
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: true,
+		isPost: false,
 		isArchive: false,
-		isTag: false,
+		isTag: true,
 		isCategory: false,
 		open_in_new: false,
 		toc_hide_index: true,

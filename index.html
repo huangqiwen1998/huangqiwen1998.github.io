@@ -162,6 +162,264 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-node中间件" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/05/03/node%E4%B8%AD%E9%97%B4%E4%BB%B6/">node中间件</a>
+    </h1>
+  
+
+        
+        <a href="/2020/05/03/node%E4%B8%AD%E9%97%B4%E4%BB%B6/" class="archive-article-date">
+  	<time datetime="2020-05-03T01:48:08.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-03</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="中间件"><a href="#中间件" class="headerlink" title="中间件"></a>中间件</h1><p>中间件的本质就是一个请求处理方法，我们把用户从请求到响应dd 整个过程分发到多个中间件中去处理，这样有利于提高代码的灵活性，动态可扩展性。</p>
+<ul>
+<li><p>1、应用程序级别中间件</p>
+<blockquote>
+<p>万能匹配（不关心请求路径和请求方法的中间件，也就是说任何请求都会进入这个中间件。）</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">app.use(<span class="function"><span class="keyword">function</span>(<span class="params">req , res , next</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'请求进来了'</span>)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>1.1</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//以/xxx开头的路径中间件</span></span><br><span class="line">app.use(<span class="string">'/a'</span>,<span class="function"><span class="keyword">function</span>(<span class="params">req,res,next</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="number">1</span>)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+
+</li>
+</ul>
+<ul>
+<li><p>2、路由中间件</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">app.get(<span class="string">'/'</span>,<span class="function"><span class="keyword">function</span>(<span class="params">req ,res</span>) </span>&#123;&#125;)</span><br><span class="line">app.post(<span class="string">'/'</span>)</span><br><span class="line">app.put()</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>3、第三方中间件<br>  body-parser</p>
+</li>
+<li><p>4、错误处理中间件<br>如果之前的中间件中err中传入了参数那么会直接找到错误处理中间件。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">app.use(<span class="function"><span class="keyword">function</span>(<span class="params">err , req , res , next</span>)</span>&#123;</span><br><span class="line">    res.status(<span class="number">500</span>).json(&#123;</span><br><span class="line">        err_code : <span class="number">500</span>,</span><br><span class="line">        message : err.message</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">node</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/05/03/node%E4%B8%AD%E9%97%B4%E4%BB%B6/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-cookie相关" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/05/02/cookie%E7%9B%B8%E5%85%B3/">cookie相关</a>
+    </h1>
+  
+
+        
+        <a href="/2020/05/02/cookie%E7%9B%B8%E5%85%B3/" class="archive-article-date">
+  	<time datetime="2020-05-02T13:32:11.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-02</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="cookie"><a href="#cookie" class="headerlink" title="cookie"></a>cookie</h1><p>http协议是一个无状态协议，他不会记录用户的信息。这是我们需要使用cookie来储存用户的信息。</p>
+<ul>
+<li>cookie中的信息是存储在浏览器中的，因此只能存储一些非铭感信息。</li>
+</ul>
+<h1 id="session"><a href="#session" class="headerlink" title="session"></a>session</h1><p>为了解决cookie的问题，我们引入session。<br>超市   -   电子柜    -    消费者<br>电子柜（服务端）   给你一个凭证（cookie）凭证是唯一的，不可重复，一点丢失，不可找回。     你（客户端）<br>express-session这个插件。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//添加session  </span></span><br><span class="line">req.session.user = user</span><br><span class="line"><span class="comment">//读取session</span></span><br><span class="line">req.session.user</span><br><span class="line"><span class="comment">//删除session</span></span><br><span class="line">req.session.user = <span class="literal">null</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">delete</span> req.session.user</span><br></pre></td></tr></table></figure>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">http</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/05/02/cookie%E7%9B%B8%E5%85%B3/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-promise" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/04/30/promise/">promise</a>
+    </h1>
+  
+
+        
+        <a href="/2020/04/30/promise/" class="archive-article-date">
+  	<time datetime="2020-04-30T01:02:20.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-30</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="promise"><a href="#promise" class="headerlink" title="promise"></a>promise</h1><h1 id="异步处理方式"><a href="#异步处理方式" class="headerlink" title="异步处理方式"></a>异步处理方式</h1><p>异步进程可以通过回调函数的形式来执行，如果需要控制异步程序执行的先后顺序那么就需用在异步函数的回调函数中套入另一个回调函数，如果异步程序比较多。这样就形成了回调地狱。</p>
+<h1 id="解决方式"><a href="#解决方式" class="headerlink" title="解决方式"></a>解决方式</h1><p>为了解决异步嵌套，es6中新增了一个api promise</p>
+<h1 id="promise-1"><a href="#promise-1" class="headerlink" title="promise"></a>promise</h1><p>promise是一个异步容器,promise本身不是异步，只是用来存储异步进程</p>
+<ul>
+<li>1、基本使用<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//创建promise容器</span></span><br><span class="line"><span class="keyword">new</span> promise(<span class="function"><span class="keyword">function</span>(<span class="params">resolve, reject</span>) </span>&#123;</span><br><span class="line">    fs.readFile(<span class="string">'./text.js'</span>,<span class="string">'utf-8'</span>,<span class="function"><span class="keyword">function</span>(<span class="params">err , data</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(err)&#123;</span><br><span class="line">            reject(err)</span><br><span class="line">        &#125;</span><br><span class="line">        resolve(data)</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;).then(<span class="function"><span class="keyword">function</span>(<span class="params">data</span>) </span>&#123;&#125;,<span class="function"><span class="keyword">function</span>(<span class="params">err</span>) </span>&#123;&#125;)</span><br></pre></td></tr></table></figure></li>
+<li>2、解决回调地狱<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line">p1 = <span class="keyword">new</span> promise(<span class="function"><span class="keyword">function</span>(<span class="params">resolve, reject</span>) </span>&#123;</span><br><span class="line">    fs.readFile(<span class="string">'./text.js'</span>,<span class="string">'utf-8'</span>,<span class="function"><span class="keyword">function</span>(<span class="params">err , data</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(err)&#123;</span><br><span class="line">            reject(err)</span><br><span class="line">        &#125;</span><br><span class="line">        resolve(data)</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">p2 = <span class="keyword">new</span> promise(<span class="function"><span class="keyword">function</span>(<span class="params">resolve, reject</span>) </span>&#123;</span><br><span class="line">    fs.readFile(<span class="string">'./text1.js'</span>,<span class="string">'utf-8'</span>,<span class="function"><span class="keyword">function</span>(<span class="params">err , data</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(err)&#123;</span><br><span class="line">            reject(err)</span><br><span class="line">        &#125;</span><br><span class="line">        resolve(data)</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">p3 = <span class="keyword">new</span> promise(<span class="function"><span class="keyword">function</span>(<span class="params">resolve, reject</span>) </span>&#123;</span><br><span class="line">    fs.readFile(<span class="string">'./text.js'</span>,<span class="string">'utf-8'</span>,<span class="function"><span class="keyword">function</span>(<span class="params">err , data</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(err)&#123;</span><br><span class="line">            reject(err)</span><br><span class="line">        &#125;</span><br><span class="line">        resolve(data)</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">p1</span><br><span class="line">    .then(<span class="function"><span class="keyword">function</span>(<span class="params">data</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> p2    <span class="comment">//这里return可以呗后面的then接收/处理</span></span><br><span class="line">                    <span class="comment">//这里我们return一个promise对象同时可以被后面的then接受处理</span></span><br><span class="line">    &#125;,<span class="function"><span class="keyword">function</span>(<span class="params">err</span>) </span>&#123;</span><br><span class="line"></span><br><span class="line">    &#125;)</span><br><span class="line">    .then(<span class="function"><span class="keyword">function</span>(<span class="params">data</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> p3</span><br><span class="line">    &#125;,<span class="function"><span class="keyword">function</span>(<span class="params">err</span>) </span>&#123;</span><br><span class="line"></span><br><span class="line">    &#125;)</span><br><span class="line">    .then(<span class="function"><span class="keyword">function</span>(<span class="params">data</span>)</span>&#123;&#125; , <span class="function"><span class="keyword">function</span>(<span class="params">err</span>)</span>&#123;&#125;)</span><br></pre></td></tr></table></figure>
+通过链式调用我们就可以解决异步程序先后执行顺序同时避免回调地狱的发送。但是上面的的代码有重复的东西，我们对他进行封装。新建一个js文件<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> fs = <span class="built_in">require</span>(<span class="string">'fs'</span>)</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">pReadFile</span>(<span class="params">pathfill</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> promise(<span class="function"><span class="keyword">function</span>(<span class="params">reslove , reject</span>)</span>&#123;</span><br><span class="line">        fs.readFile(pathfill,<span class="string">'utf-8'</span>,<span class="function"><span class="keyword">function</span>(<span class="params">err , data</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(err)&#123;</span><br><span class="line">            reject(err)</span><br><span class="line">        &#125;</span><br><span class="line">        resolve(data)</span><br><span class="line">    &#125;)</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+这样我们的代码就变得非常漂亮</li>
+</ul>
+<h1 id="promise使用场景"><a href="#promise使用场景" class="headerlink" title="promise使用场景"></a>promise使用场景</h1><p>promise是用来解决异步回调嵌套的问题，一般需要大量异步操作的地方都可以使用promise。例如 ajax数据请求，mongodb</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">js</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/04/30/promise/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-数据结构" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -361,7 +619,48 @@
     - 回调函数
     - promise
     - async
-    - generator</code></pre><h1 id="fs模块"><a href="#fs模块" class="headerlink" title="fs模块"></a>fs模块</h1><pre><code>- 文件读取
+    - generator</code></pre><h1 id="模块系统"><a href="#模块系统" class="headerlink" title="模块系统"></a>模块系统</h1><pre><code>使用node编写应用程序主要就是在使用
+    - ECMAscript
+    - 核心模块
+        - fs模块
+        - http模块
+        - url模块
+    - 第三方模块
+    - 自定义模块
+
+- 1、什么是模块化
+    - 文件作用域
+    - 通讯规则
+
+
+
+
+- commonJS模块规范
+在node中的JavaScript还有一个跟重要的概念，模块系统
+ - 模块作用域
+ - 使用require方法来加载模块
+ - 使用export 接口对象来导出模块中的成员
+
+ - 加载 require
+    两个作用
+        - 执行被加载 模块的代码
+        - 得到被加载模块中的exports导出接口对象
+ - 导出 export
+    - node中是模块作用域，默认文件中所有的成员只在当前文件模块有效
+    - 对希望可以被其他模块访问的成员，我们需要把这些公开的成员挂在到exprots接口对象中就可以了
+        - 导出多个成员
+        <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span>.a = <span class="number">123</span></span><br><span class="line"><span class="keyword">export</span>.b = <span class="number">456</span></span><br><span class="line"><span class="keyword">export</span>.c=<span class="number">789</span></span><br></pre></td></tr></table></figure>
+        - 导出单个成员
+        <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.export = <span class="string">'hello'</span></span><br><span class="line"><span class="built_in">module</span>.export = &#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></code></pre><h1 id="模块原理-接下来我们介绍一下原理"><a href="#模块原理-接下来我们介绍一下原理" class="headerlink" title="模块原理 接下来我们介绍一下原理"></a>模块原理 接下来我们介绍一下原理</h1><pre><code>这个原理有点像构造函数，node中只有模块作用.每个模板内部都有一个自己的对象module对象，在module对象中也有一个对象export的一个空对象。
+默认在代码的最底层有一句话，return module.exports。而其中还有一局代码是var express = module.export  因此才有了export.a = 123这种导入。其实本质还是对module对象中的export导出。</code></pre><h1 id="模块查找机制"><a href="#模块查找机制" class="headerlink" title="模块查找机制"></a>模块查找机制</h1><h1 id="require-优先从缓存中加载"><a href="#require-优先从缓存中加载" class="headerlink" title="require  优先从缓存中加载"></a>require  优先从缓存中加载</h1><h1 id="标识符分析"><a href="#标识符分析" class="headerlink" title="标识符分析"></a>标识符分析</h1><pre><code>- 路径形式的模块
+&gt;/(当前文件模块所属磁盘根路径)   ./   ../
+- 核心模块
+&gt;直接应用，这些核心文件已经被编译到二进制文件中了。
+- 第三方模板
+不可能有任何一个第三方包与核心模块的名字是一样的
+&gt;先找到当前文件中的node_modules，你所引入的包/ 再去找到包中对应的pack.json文件/再去找到里面的main属性/main属性中就记录了当前包的入口模块。
+
+&gt;如果pack.json不存在，并且main对应的路径是有问题的那么，那么pack.json文件在同一目录下的index.js文件      </code></pre><h1 id="fs模块"><a href="#fs模块" class="headerlink" title="fs模块"></a>fs模块</h1><pre><code>- 文件读取
 
     - fs.readFile(文件中存储的其实二进制0 1)</code></pre><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> fs = <span class="built_in">require</span>(<span class="string">'fs'</span>)</span><br><span class="line"></span><br><span class="line">fs.readFile(<span class="string">'./data/hello.text'</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span>(<span class="params">error, data</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(!error)&#123;</span><br><span class="line">        <span class="keyword">var</span> a = data.toString()</span><br><span class="line">        <span class="built_in">console</span>.log(a)</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'读取文件失败'</span>)</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
 <pre><code>    这里他呗默认转为了16进制，外面可以通过tostring方法转化成我们能认识的字符
@@ -399,7 +698,7 @@
 </li>
 <li><p>text/plain 普通文本</p>
 </li>
-<li><p>text/html 就是html格式文本<br><a href="https://tool.oschina.net/" target="_blank" rel="noopener">工具</a></p>
+<li><p>text/html 就是html格式文本<br><a href="https://tool.oschina.net/" target="_blank" rel="noopener">工具</a><br>除了配置请求头中的content-type还可以在html页面的meta标签中声明他</p>
 <p>文本编码格式</p>
 <ul>
 <li>在服务器默认发送的数据，默认都是utf8编码的内容</li>
@@ -411,7 +710,24 @@
 </ul>
 </li>
 <li><p>监听request请求，当有客户端发送请求会自动执行request请求事件</p>
+</li>
+<li><p>服务端重定向</p>
+<ul>
+<li><p>以3开头的状态码都是用于重定向的。</p>
+</li>
+<li><p>首先设置状态码</p>
+<blockquote>
+<p>res.statusCode = 302</p>
+</blockquote>
+<p>301 永久重定向  浏览器会记住<br>302 零时重定向  浏览器记不住</p>
+</li>
+<li><p>配置重定向地址</p>
+<blockquote>
+<p>res.setHeader(‘Location’,’/‘)</p>
+</blockquote>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> http = <span class="built_in">require</span>(<span class="string">'http'</span>)</span><br><span class="line"><span class="keyword">var</span> server = http.createServer()</span><br><span class="line"></span><br><span class="line">server.on(<span class="string">'request'</span>,<span class="function"><span class="keyword">function</span>(<span class="params">req,res</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'收到客户端请求'</span>)</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'请求地址是'</span>+req.url)</span><br><span class="line">    <span class="comment">//req.url获取获取请求的url信息</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="comment">//res中有wrte方法，write可以多次使用但是最后必须使用end结束，如果不接受那么程序会继续等待</span></span><br><span class="line">    res.write(<span class="string">'holle'</span>)</span><br><span class="line">    res.write(<span class="string">'word'</span>)</span><br><span class="line">    res.end()</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//第二种写法</span></span><br><span class="line"><span class="keyword">var</span> http = <span class="built_in">require</span>(<span class="string">'http'</span>)</span><br><span class="line">http.createServer(<span class="function"><span class="keyword">function</span>(<span class="params">req,res</span>)</span>&#123;</span><br><span class="line"></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
 </li>
 </ul>
 </li>
@@ -422,9 +738,17 @@
 </li>
 <li><p>5、配置路由响应</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> http = <span class="built_in">require</span>(<span class="string">'http'</span>)</span><br><span class="line"><span class="keyword">var</span> server = http.createServer()</span><br><span class="line"></span><br><span class="line">server.on(<span class="string">'request'</span>,<span class="function"><span class="keyword">function</span>(<span class="params">req,res</span>) </span>&#123;</span><br><span class="line"></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<h1 id="path模块"><a href="#path模块" class="headerlink" title="path模块"></a>path模块</h1><p>用来帮你辅助操作路径的</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//获取给定路径的文件名</span></span><br><span class="line">path.basename(<span class="string">'路径'</span>)   <span class="comment">//获取文件明年</span></span><br><span class="line">path.basename(<span class="string">'c/a/index.js'</span>)   <span class="comment">//index.js</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//获取给定路径的文件名</span></span><br><span class="line">path.dirname(<span class="string">'路径'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">//获取文件扩展名</span></span><br><span class="line">path.extname(<span class="string">''</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">//判断是否为绝对路径</span></span><br><span class="line">path.isAbsolyte(path)</span><br><span class="line"></span><br><span class="line"><span class="comment">//获取分析路径中所有信息</span></span><br><span class="line">path.parse(<span class="string">''</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">//路径拼接</span></span><br><span class="line">path.join(<span class="string">''</span>,<span class="string">''</span>)</span><br></pre></td></tr></table></figure>
 
 </li>
 </ul>
+<h1 id="node中的其他成员"><a href="#node中的其他成员" class="headerlink" title="node中的其他成员"></a>node中的其他成员</h1><p>每个模块中，除了require、exports等模块，还有两个特殊成员。</p>
+<ul>
+<li>__dirname 可以获取当前文件模块所属目录的绝对路径 （动态的获取）<br>` __filename 可以获取当前文件的绝对路径 （动态的获取） </li>
+</ul>
+<p>在文件操作中，使用相对路径是不可靠的，因为node中文件操作的路径被设计为相对于执行node命令所处的路径（不是bug，人家这样设计是有使用场景的）<br>为了解决相对路径不可靠的问题，我们把可以使用<strong>dirname/</strong>filename来动态获取不同计算机不同存储位置的路径。在路径拼接过程中，为了避免手动修改路径出错，所以推荐多使用path.join()来辅助拼接，在以后的操作中尽可能的把绝对路径转化为相对路径。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">app.use(<span class="string">'/public/'</span>,express.static(path.join(__dirname,<span class="string">'./public'</span>)))</span><br><span class="line">app.use(<span class="string">'/node_modules'</span>,express.static(path.join(__dirname,<span class="string">'./node_modules'</span>)))</span><br></pre></td></tr></table></figure>
 <h1 id="node中的核心模块"><a href="#node中的核心模块" class="headerlink" title="node中的核心模块"></a>node中的核心模块</h1><p>fs模块<a href="https://nodejs.org/dist/latest-v12.x/docs/api/fs.html" target="_blank" rel="noopener">官方文档</a>，http模块，path路径模块，os操作系统模块。。。</p>
 <h1 id="node多文件执行"><a href="#node多文件执行" class="headerlink" title="node多文件执行"></a>node多文件执行</h1><ul>
 <li><p>node中没有全局作用域，只有模块作用域。</p>
@@ -449,6 +773,48 @@
 <li>端口号范围 0 - 65535之间</li>
 </ul>
 </li>
+</ul>
+<h1 id="模板引擎"><a href="#模板引擎" class="headerlink" title="模板引擎"></a>模板引擎</h1><pre><code>模板引擎起源于服务器，最后发展到了前端
+- art-template（js）
+- </code></pre><h1 id="node中静态资源处理方法"><a href="#node中静态资源处理方法" class="headerlink" title="node中静态资源处理方法"></a>node中静态资源处理方法</h1><p>node中为了方便静态资源管理放在public文件中</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> http = <span class="built_in">require</span>(<span class="string">"http"</span>);</span><br><span class="line"><span class="keyword">var</span> url = <span class="built_in">require</span>(<span class="string">"url"</span>);</span><br><span class="line"><span class="keyword">var</span> fs = <span class="built_in">require</span>(<span class="string">"fs"</span>);</span><br><span class="line"> </span><br><span class="line">http.createServer(<span class="function"><span class="keyword">function</span>(<span class="params">req,res</span>)</span>&#123;</span><br><span class="line">    <span class="comment">//得到用户的路径</span></span><br><span class="line">    <span class="comment">//</span></span><br><span class="line">    <span class="keyword">var</span> pathname = url.parse(req.url).pathname;</span><br><span class="line">    <span class="comment">//真的读取这个文件</span></span><br><span class="line">    fs.readFile(<span class="string">"./static/"</span> + pathname,<span class="function"><span class="keyword">function</span>(<span class="params">err,data</span>)</span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(err)&#123;</span><br><span class="line">            <span class="comment">//如果此文件不存在，就应该用404返回</span></span><br><span class="line">            fs.readFile(<span class="string">"./static/404.html"</span>,<span class="function"><span class="keyword">function</span>(<span class="params">err,data</span>)</span>&#123;</span><br><span class="line">                res.writeHead(<span class="number">404</span>,&#123;<span class="string">"Content-type"</span>:<span class="string">"text/html;charset=UTF8"</span>&#125;);</span><br><span class="line">                res.end(data);</span><br><span class="line">            &#125;);</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;;</span><br><span class="line">        res.end(data);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;).listen(<span class="number">3000</span>,<span class="string">"127.0.0.1"</span>);</span><br></pre></td></tr></table></figure>
+
+
+<h1 id="实现Apache"><a href="#实现Apache" class="headerlink" title="实现Apache"></a>实现Apache</h1><h1 id="推荐JavaScript的编写规范的书"><a href="#推荐JavaScript的编写规范的书" class="headerlink" title="推荐JavaScript的编写规范的书"></a>推荐JavaScript的编写规范的书</h1><blockquote>
+<p>编写可维护的javascript</p>
+</blockquote>
+<h1 id="服务器渲染"><a href="#服务器渲染" class="headerlink" title="服务器渲染"></a>服务器渲染</h1><blockquote>
+<p>也就是说在服务器使用模板引擎<br>    - 客户端渲染<br>        html 仅仅作为静态文件，客户端端在请求时，服务端不做任何处理，直接以原文件的形式返回给客户端客户端，然后根据 html 上的 JavaScript，生成 DOM 插入 html。<br>    - 服务端渲染<br>    服务端在返回 html 之前，在特定的区域，符号里用数据填充，再给客户端，客户端只负责解析 HTML 。（也就是通过模板引擎把数据在服务端的时候就渲染好，收到请求之间发送页面）</p>
+</blockquote>
+<pre><code>- 客户端渲染与服务器渲染的区别
+    - 客户端渲染不利于seo搜索引擎优化，也就是说客户端渲染的数据爬虫爬不到
+    - 服务器渲染是可以被爬虫爬取到的，客户端的异步渲染是很难被爬虫爬取到的。
+    - 所以一个网站，是服务器与客户端结合渲染来做的</code></pre><h1 id="npm"><a href="#npm" class="headerlink" title="npm"></a>npm</h1><pre><code>package.json包说明书，描述你的项目使用了哪些npm包
+
+--save 会把你安装的包放在package.json中。
+
+同时package.json可以通过npm init初始化出来
+而如果没有node——module有package.json使用npm install  会更具package.json中的依赖还原你的node_module
+
+
+npm  是一个网站
+npm  是一个命令行工具</code></pre><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">npm install (i)</span><br><span class="line"></span><br><span class="line">npm install 包名 --save(S)</span><br><span class="line">npm uninstall 包名</span><br><span class="line">npm help  查看使用帮助</span><br></pre></td></tr></table></figure>
+<pre><code>npm被墙问题
+    npm是国外网站一般使用cnpm
+        npm  install --global cnpm
+    如果不想通过npm安装cnpm也可以
+        npm install 包 --registry=https：//registry.npm.taobao.org
+        这样会比较麻烦每次安装都需要写后缀
+
+        推荐这样
+        npm config set registry https：//registry.npm.taobao.org
+
+package.json/package-lock.json  
+    - package-lock.json中存储的你项目中node_module所有的依赖信息，当你的node_module从新安装依赖的时候会比没有安装之前的速度更快。
+    - 从文件来看，有一个lock  这个锁是用来锁定版本的，如果你下载的下面时1.1版本的，如果没有lock那么你npm i的时候就会默认给你安装最新的版本</code></pre><h1 id="JavaScript模块化"><a href="#JavaScript模块化" class="headerlink" title="JavaScript模块化"></a>JavaScript模块化</h1><p>JavaScript天生不支持模块化，如果浏览器需要模块化那么需要引入第三方库<br>    - require.js    AMD<br>    - sea.js    CMD<br>    上面两中都是浏览器模块化规范<br>    - common.js   common<br>    当然还有UMD、es6中的modules</p>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><ul>
+<li>Node中我们开启的web服务是一个完全的黑盒子，所有资源都不允许用户来访问，用户可以访问的内容具体由开发人员编写设计为准。</li>
+<li>在Node中可以把一个url地址处理的非常漂亮  </li>
 </ul>
 
       
@@ -881,215 +1247,6 @@
 
 
   
-    <article id="post-webpack基础操作" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/03/24/webpack%E5%9F%BA%E7%A1%80%E6%93%8D%E4%BD%9C/">webpack基础操作</a>
-    </h1>
-  
-
-        
-        <a href="/2020/03/24/webpack%E5%9F%BA%E7%A1%80%E6%93%8D%E4%BD%9C/" class="archive-article-date">
-  	<time datetime="2020-03-24T09:24:47.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-24</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="webpack基础操作"><a href="#webpack基础操作" class="headerlink" title="webpack基础操作"></a>webpack基础操作</h1>
-        
-          <a class="article-more-a" href="/2020/03/24/webpack%E5%9F%BA%E7%A1%80%E6%93%8D%E4%BD%9C/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/03/24/webpack%E5%9F%BA%E7%A1%80%E6%93%8D%E4%BD%9C/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-“css-sticky-footer" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/03/22/%E2%80%9Ccss-sticky-footer/">“css sticky footer</a>
-    </h1>
-  
-
-        
-        <a href="/2020/03/22/%E2%80%9Ccss-sticky-footer/" class="archive-article-date">
-  	<time datetime="2020-03-22T13:21:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-22</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="CSS经典布局之Sticky-footer布局"><a href="#CSS经典布局之Sticky-footer布局" class="headerlink" title="CSS经典布局之Sticky footer布局"></a>CSS经典布局之Sticky footer布局</h1>
-        
-          <a class="article-more-a" href="/2020/03/22/%E2%80%9Ccss-sticky-footer/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">CSS</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/03/22/%E2%80%9Ccss-sticky-footer/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-路由模块化" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/03/21/%E8%B7%AF%E7%94%B1%E6%A8%A1%E5%9D%97%E5%8C%96/">路由模块化</a>
-    </h1>
-  
-
-        
-        <a href="/2020/03/21/%E8%B7%AF%E7%94%B1%E6%A8%A1%E5%9D%97%E5%8C%96/" class="archive-article-date">
-  	<time datetime="2020-03-21T13:35:14.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-21</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="路由模块化"><a href="#路由模块化" class="headerlink" title="路由模块化"></a>路由模块化</h1><p>平时我们使用路由都是这样子的</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> express = <span class="built_in">require</span>(<span class="string">"express"</span>)</span><br><span class="line"><span class="keyword">var</span> app = express()</span><br><span class="line">app.get(<span class="string">"/login"</span><span class="function"><span class="keyword">function</span>(<span class="params">req,res</span>)</span>&#123;&#125;)</span><br><span class="line">app.get(<span class="string">"/regirse"</span>,<span class="function"><span class="keyword">function</span>(<span class="params">req,res</span>)</span>&#123;&#125;)</span><br></pre></td></tr></table></figure>
-<p>如果要配置子路由那么有需要这样一条一条的来写，那么现在我们使用了模块化之后，就会非常方便。</p>
-<blockquote>
-<p>创建一个文件夹 mode.js</p>
-</blockquote>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> express = <span class="built_in">require</span>(<span class="string">"express"</span>)</span><br><span class="line"><span class="keyword">var</span> app = express()</span><br><span class="line"><span class="keyword">var</span> routers = express.Router()</span><br><span class="line">routers.get(<span class="string">"/good"</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;&#125;)</span><br><span class="line">routers.get(<span class="string">"/send"</span><span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;&#125;)</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span>  app.use(<span class="string">"/api"</span> routers)</span><br></pre></td></tr></table></figure>
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/03/21/%E8%B7%AF%E7%94%B1%E6%A8%A1%E5%9D%97%E5%8C%96/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &amp;raquo;</a>
@@ -1190,7 +1347,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">vue</a>
+                <a href="javascript:void(0)" class="js-tag color5">http</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1198,11 +1355,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">数据结构</a>
+                <a href="javascript:void(0)" class="js-tag color3">js</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">vue</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">CSS</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">数据结构</a>
               </li>
             
             <div class="clearfix"></div>
