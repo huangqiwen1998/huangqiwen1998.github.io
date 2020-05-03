@@ -182,31 +182,10 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="中间件"><a href="#中间件" class="headerlink" title="中间件"></a>中间件</h1><p>中间件的本质就是一个请求处理方法，我们把用户从请求到响应dd 整个过程分发到多个中间件中去处理，这样有利于提高代码的灵活性，动态可扩展性。</p>
-<ul>
-<li><p>1、应用程序级别中间件</p>
-<blockquote>
-<p>万能匹配（不关心请求路径和请求方法的中间件，也就是说任何请求都会进入这个中间件。）</p>
-</blockquote>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">app.use(<span class="function"><span class="keyword">function</span>(<span class="params">req , res , next</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'请求进来了'</span>)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>1.1</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//以/xxx开头的路径中间件</span></span><br><span class="line">app.use(<span class="string">'/a'</span>,<span class="function"><span class="keyword">function</span>(<span class="params">req,res,next</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="number">1</span>)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-
-
-</li>
-</ul>
-<ul>
-<li><p>2、路由中间件</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">app.get(<span class="string">'/'</span>,<span class="function"><span class="keyword">function</span>(<span class="params">req ,res</span>) </span>&#123;&#125;)</span><br><span class="line">app.post(<span class="string">'/'</span>)</span><br><span class="line">app.put()</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>3、第三方中间件<br>  body-parser</p>
-</li>
-<li><p>4、错误处理中间件<br>如果之前的中间件中err中传入了参数那么会直接找到错误处理中间件。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">app.use(<span class="function"><span class="keyword">function</span>(<span class="params">err , req , res , next</span>)</span>&#123;</span><br><span class="line">    res.status(<span class="number">500</span>).json(&#123;</span><br><span class="line">        err_code : <span class="number">500</span>,</span><br><span class="line">        message : err.message</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-
+        <h1 id="中间件"><a href="#中间件" class="headerlink" title="中间件"></a>中间件</h1>
+        
+          <a class="article-more-a" href="/2020/05/03/node%E4%B8%AD%E9%97%B4%E4%BB%B6/#more">more >></a>
+        
       
 
       
@@ -279,7 +258,8 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="cookie"><a href="#cookie" class="headerlink" title="cookie"></a>cookie</h1><p>http协议是一个无状态协议，他不会记录用户的信息。这是我们需要使用cookie来储存用户的信息。</p>
+        <a id="more"></a>
+<h1 id="cookie"><a href="#cookie" class="headerlink" title="cookie"></a>cookie</h1><p>http协议是一个无状态协议，他不会记录用户的信息。这是我们需要使用cookie来储存用户的信息。</p>
 <ul>
 <li>cookie中的信息是存储在浏览器中的，因此只能存储一些非铭感信息。</li>
 </ul>
@@ -357,17 +337,10 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="promise"><a href="#promise" class="headerlink" title="promise"></a>promise</h1><h1 id="异步处理方式"><a href="#异步处理方式" class="headerlink" title="异步处理方式"></a>异步处理方式</h1><p>异步进程可以通过回调函数的形式来执行，如果需要控制异步程序执行的先后顺序那么就需用在异步函数的回调函数中套入另一个回调函数，如果异步程序比较多。这样就形成了回调地狱。</p>
-<h1 id="解决方式"><a href="#解决方式" class="headerlink" title="解决方式"></a>解决方式</h1><p>为了解决异步嵌套，es6中新增了一个api promise</p>
-<h1 id="promise-1"><a href="#promise-1" class="headerlink" title="promise"></a>promise</h1><p>promise是一个异步容器,promise本身不是异步，只是用来存储异步进程</p>
-<ul>
-<li>1、基本使用<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//创建promise容器</span></span><br><span class="line"><span class="keyword">new</span> promise(<span class="function"><span class="keyword">function</span>(<span class="params">resolve, reject</span>) </span>&#123;</span><br><span class="line">    fs.readFile(<span class="string">'./text.js'</span>,<span class="string">'utf-8'</span>,<span class="function"><span class="keyword">function</span>(<span class="params">err , data</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(err)&#123;</span><br><span class="line">            reject(err)</span><br><span class="line">        &#125;</span><br><span class="line">        resolve(data)</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;).then(<span class="function"><span class="keyword">function</span>(<span class="params">data</span>) </span>&#123;&#125;,<span class="function"><span class="keyword">function</span>(<span class="params">err</span>) </span>&#123;&#125;)</span><br></pre></td></tr></table></figure></li>
-<li>2、解决回调地狱<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line">p1 = <span class="keyword">new</span> promise(<span class="function"><span class="keyword">function</span>(<span class="params">resolve, reject</span>) </span>&#123;</span><br><span class="line">    fs.readFile(<span class="string">'./text.js'</span>,<span class="string">'utf-8'</span>,<span class="function"><span class="keyword">function</span>(<span class="params">err , data</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(err)&#123;</span><br><span class="line">            reject(err)</span><br><span class="line">        &#125;</span><br><span class="line">        resolve(data)</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">p2 = <span class="keyword">new</span> promise(<span class="function"><span class="keyword">function</span>(<span class="params">resolve, reject</span>) </span>&#123;</span><br><span class="line">    fs.readFile(<span class="string">'./text1.js'</span>,<span class="string">'utf-8'</span>,<span class="function"><span class="keyword">function</span>(<span class="params">err , data</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(err)&#123;</span><br><span class="line">            reject(err)</span><br><span class="line">        &#125;</span><br><span class="line">        resolve(data)</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">p3 = <span class="keyword">new</span> promise(<span class="function"><span class="keyword">function</span>(<span class="params">resolve, reject</span>) </span>&#123;</span><br><span class="line">    fs.readFile(<span class="string">'./text.js'</span>,<span class="string">'utf-8'</span>,<span class="function"><span class="keyword">function</span>(<span class="params">err , data</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(err)&#123;</span><br><span class="line">            reject(err)</span><br><span class="line">        &#125;</span><br><span class="line">        resolve(data)</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">p1</span><br><span class="line">    .then(<span class="function"><span class="keyword">function</span>(<span class="params">data</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> p2    <span class="comment">//这里return可以呗后面的then接收/处理</span></span><br><span class="line">                    <span class="comment">//这里我们return一个promise对象同时可以被后面的then接受处理</span></span><br><span class="line">    &#125;,<span class="function"><span class="keyword">function</span>(<span class="params">err</span>) </span>&#123;</span><br><span class="line"></span><br><span class="line">    &#125;)</span><br><span class="line">    .then(<span class="function"><span class="keyword">function</span>(<span class="params">data</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> p3</span><br><span class="line">    &#125;,<span class="function"><span class="keyword">function</span>(<span class="params">err</span>) </span>&#123;</span><br><span class="line"></span><br><span class="line">    &#125;)</span><br><span class="line">    .then(<span class="function"><span class="keyword">function</span>(<span class="params">data</span>)</span>&#123;&#125; , <span class="function"><span class="keyword">function</span>(<span class="params">err</span>)</span>&#123;&#125;)</span><br></pre></td></tr></table></figure>
-通过链式调用我们就可以解决异步程序先后执行顺序同时避免回调地狱的发送。但是上面的的代码有重复的东西，我们对他进行封装。新建一个js文件<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> fs = <span class="built_in">require</span>(<span class="string">'fs'</span>)</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">pReadFile</span>(<span class="params">pathfill</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> promise(<span class="function"><span class="keyword">function</span>(<span class="params">reslove , reject</span>)</span>&#123;</span><br><span class="line">        fs.readFile(pathfill,<span class="string">'utf-8'</span>,<span class="function"><span class="keyword">function</span>(<span class="params">err , data</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(err)&#123;</span><br><span class="line">            reject(err)</span><br><span class="line">        &#125;</span><br><span class="line">        resolve(data)</span><br><span class="line">    &#125;)</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-这样我们的代码就变得非常漂亮</li>
-</ul>
-<h1 id="promise使用场景"><a href="#promise使用场景" class="headerlink" title="promise使用场景"></a>promise使用场景</h1><p>promise是用来解决异步回调嵌套的问题，一般需要大量异步操作的地方都可以使用promise。例如 ajax数据请求，mongodb</p>
-
+        <h1 id="promise"><a href="#promise" class="headerlink" title="promise"></a>promise</h1>
+        
+          <a class="article-more-a" href="/2020/04/30/promise/#more">more >></a>
+        
       
 
       
@@ -440,7 +413,8 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="什么是数据"><a href="#什么是数据" class="headerlink" title="什么是数据"></a>什么是数据</h1><blockquote>
+        <a id="more"></a>
+<h1 id="什么是数据"><a href="#什么是数据" class="headerlink" title="什么是数据"></a>什么是数据</h1><blockquote>
 <p>是一个符号，一个描述客观事物的符号，可以被计算机识别，并且输入给计算机处理的数据的一个符号集合（内存）</p>
 </blockquote>
 <h1 id="什么是数据元素"><a href="#什么是数据元素" class="headerlink" title="什么是数据元素"></a>什么是数据元素</h1><blockquote>
@@ -546,7 +520,8 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="node-js是什么？"><a href="#node-js是什么？" class="headerlink" title="node.js是什么？"></a>node.js是什么？</h1><ul>
+        <a id="more"></a>
+<h1 id="node-js是什么？"><a href="#node-js是什么？" class="headerlink" title="node.js是什么？"></a>node.js是什么？</h1><ul>
 <li><p>node.js一个让javascript运行在服务端的开发平台</p>
 <ul>
 <li><p>node.js不是一门语言</p>
@@ -1347,7 +1322,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">http</a>
+                <a href="javascript:void(0)" class="js-tag color4">vue</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1355,11 +1330,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">js</a>
+                <a href="javascript:void(0)" class="js-tag color5">http</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">vue</a>
+                <a href="javascript:void(0)" class="js-tag color3">js</a>
               </li>
              
               <li class="article-tag-list-item">

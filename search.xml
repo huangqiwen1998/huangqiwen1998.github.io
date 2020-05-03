@@ -3,7 +3,8 @@
   <entry>
     <title>node中间件</title>
     <url>/2020/05/03/node%E4%B8%AD%E9%97%B4%E4%BB%B6/</url>
-    <content><![CDATA[<h1 id="中间件"><a href="#中间件" class="headerlink" title="中间件"></a>中间件</h1><p>中间件的本质就是一个请求处理方法，我们把用户从请求到响应dd 整个过程分发到多个中间件中去处理，这样有利于提高代码的灵活性，动态可扩展性。</p>
+    <content><![CDATA[<h1 id="中间件"><a href="#中间件" class="headerlink" title="中间件"></a>中间件</h1><a id="more"></a>
+<p>中间件的本质就是一个请求处理方法，我们把用户从请求到响应dd 整个过程分发到多个中间件中去处理，这样有利于提高代码的灵活性，动态可扩展性。</p>
 <ul>
 <li><p>1、应用程序级别中间件</p>
 <blockquote>
@@ -35,7 +36,8 @@
   <entry>
     <title>cookie相关</title>
     <url>/2020/05/02/cookie%E7%9B%B8%E5%85%B3/</url>
-    <content><![CDATA[<h1 id="cookie"><a href="#cookie" class="headerlink" title="cookie"></a>cookie</h1><p>http协议是一个无状态协议，他不会记录用户的信息。这是我们需要使用cookie来储存用户的信息。</p>
+    <content><![CDATA[<a id="more"></a>
+<h1 id="cookie"><a href="#cookie" class="headerlink" title="cookie"></a>cookie</h1><p>http协议是一个无状态协议，他不会记录用户的信息。这是我们需要使用cookie来储存用户的信息。</p>
 <ul>
 <li>cookie中的信息是存储在浏览器中的，因此只能存储一些非铭感信息。</li>
 </ul>
@@ -48,7 +50,8 @@
   <entry>
     <title>promise</title>
     <url>/2020/04/30/promise/</url>
-    <content><![CDATA[<h1 id="promise"><a href="#promise" class="headerlink" title="promise"></a>promise</h1><h1 id="异步处理方式"><a href="#异步处理方式" class="headerlink" title="异步处理方式"></a>异步处理方式</h1><p>异步进程可以通过回调函数的形式来执行，如果需要控制异步程序执行的先后顺序那么就需用在异步函数的回调函数中套入另一个回调函数，如果异步程序比较多。这样就形成了回调地狱。</p>
+    <content><![CDATA[<h1 id="promise"><a href="#promise" class="headerlink" title="promise"></a>promise</h1><a id="more"></a>
+<h1 id="异步处理方式"><a href="#异步处理方式" class="headerlink" title="异步处理方式"></a>异步处理方式</h1><p>异步进程可以通过回调函数的形式来执行，如果需要控制异步程序执行的先后顺序那么就需用在异步函数的回调函数中套入另一个回调函数，如果异步程序比较多。这样就形成了回调地狱。</p>
 <h1 id="解决方式"><a href="#解决方式" class="headerlink" title="解决方式"></a>解决方式</h1><p>为了解决异步嵌套，es6中新增了一个api promise</p>
 <h1 id="promise-1"><a href="#promise-1" class="headerlink" title="promise"></a>promise</h1><p>promise是一个异步容器,promise本身不是异步，只是用来存储异步进程</p>
 <ul>
@@ -66,7 +69,8 @@
   <entry>
     <title>数据结构</title>
     <url>/2020/04/23/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/</url>
-    <content><![CDATA[<h1 id="什么是数据"><a href="#什么是数据" class="headerlink" title="什么是数据"></a>什么是数据</h1><blockquote>
+    <content><![CDATA[<a id="more"></a>
+<h1 id="什么是数据"><a href="#什么是数据" class="headerlink" title="什么是数据"></a>什么是数据</h1><blockquote>
 <p>是一个符号，一个描述客观事物的符号，可以被计算机识别，并且输入给计算机处理的数据的一个符号集合（内存）</p>
 </blockquote>
 <h1 id="什么是数据元素"><a href="#什么是数据元素" class="headerlink" title="什么是数据元素"></a>什么是数据元素</h1><blockquote>
@@ -107,7 +111,8 @@
   <entry>
     <title>node</title>
     <url>/2020/04/22/node/</url>
-    <content><![CDATA[<h1 id="node-js是什么？"><a href="#node-js是什么？" class="headerlink" title="node.js是什么？"></a>node.js是什么？</h1><ul>
+    <content><![CDATA[<a id="more"></a>
+<h1 id="node-js是什么？"><a href="#node-js是什么？" class="headerlink" title="node.js是什么？"></a>node.js是什么？</h1><ul>
 <li><p>node.js一个让javascript运行在服务端的开发平台</p>
 <ul>
 <li><p>node.js不是一门语言</p>
