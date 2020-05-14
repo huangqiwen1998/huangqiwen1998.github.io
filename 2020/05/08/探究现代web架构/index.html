@@ -6,18 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Hello World | Hexo</title>
+  <title>探究现代web架构 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+  <meta name="description" content="1、单机架构 1、一个系统业务量很小的时候，所有代码都放在一个项目中，部署在一台服务器上 2、单机架构处理能力有限 》集群模式 》分布式 》 微服务 3、  1.1、虚拟主机 1、虚拟主机的原理：在服务器上给你划分一个目录给你的网站-  2、lls ：虚拟主机  3、vps：云服务器，阿里云  4、虚拟技术  1、vpn：虚拟隧道 2、跳板：网络安全的范畴，特点难以追踪。    1.2 、正向代理">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hello World">
-<meta property="og:url" content="http://yoursite.com/2020/03/15/hello-world/index.html">
+<meta property="og:title" content="探究现代web架构">
+<meta property="og:url" content="http://yoursite.com/2020/05/08/%E6%8E%A2%E7%A9%B6%E7%8E%B0%E4%BB%A3web%E6%9E%B6%E6%9E%84/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+<meta property="og:description" content="1、单机架构 1、一个系统业务量很小的时候，所有代码都放在一个项目中，部署在一台服务器上 2、单机架构处理能力有限 》集群模式 》分布式 》 微服务 3、  1.1、虚拟主机 1、虚拟主机的原理：在服务器上给你划分一个目录给你的网站-  2、lls ：虚拟主机  3、vps：云服务器，阿里云  4、虚拟技术  1、vpn：虚拟隧道 2、跳板：网络安全的范畴，特点难以追踪。    1.2 、正向代理">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2020-03-15T11:01:05.624Z">
-<meta property="article:modified_time" content="2020-03-15T11:01:05.625Z">
+<meta property="article:published_time" content="2020-05-08T01:18:53.000Z">
+<meta property="article:modified_time" content="2020-05-08T03:52:40.106Z">
 <meta property="article:author" content="Baket">
+<meta property="article:tag" content="web">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
@@ -163,39 +164,94 @@
           </div>
           <div id="js-content" class="content-ll">
             
-<article id="post-hello-world" class="article article-type-post " itemscope itemprop="blogPost">
+<article id="post-探究现代web架构" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      Hello World
+      探究现代web架构
     </h1>
   
 
         
-        <a href="/2020/03/15/hello-world/" class="archive-article-date">
-  	<time datetime="2020-03-15T11:01:05.624Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-15</time>
+        <a href="/2020/05/08/%E6%8E%A2%E7%A9%B6%E7%8E%B0%E4%BB%A3web%E6%9E%B6%E6%9E%84/" class="archive-article-date">
+  	<time datetime="2020-05-08T01:18:53.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-08</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html" target="_blank" rel="noopener">Deployment</a></p>
+        <h1 id="1、单机架构"><a href="#1、单机架构" class="headerlink" title="1、单机架构"></a>1、单机架构</h1><ul>
+<li>1、一个系统业务量很小的时候，所有代码都放在一个项目中，部署在一台服务器上</li>
+<li>2、单机架构处理能力有限 》集群模式 》分布式 》 微服务</li>
+<li>3、</li>
+</ul>
+<h2 id="1-1、虚拟主机"><a href="#1-1、虚拟主机" class="headerlink" title="1.1、虚拟主机"></a>1.1、虚拟主机</h2><ul>
+<li><p>1、虚拟主机的原理：在服务器上给你划分一个目录给你的网站-</p>
+</li>
+<li><p>2、lls ：虚拟主机</p>
+</li>
+<li><p>3、vps：云服务器，阿里云</p>
+</li>
+<li><p>4、虚拟技术</p>
+<ul>
+<li>1、vpn：虚拟隧道</li>
+<li>2、跳板：网络安全的范畴，特点难以追踪。</li>
+</ul>
+</li>
+</ul>
+<h2 id="1-2-、正向代理"><a href="#1-2-、正向代理" class="headerlink" title="1.2 、正向代理"></a>1.2 、正向代理</h2><ul>
+<li>1、正向代理：类似于中介，所有的请求都会到达给中介，而不是直接传递给服务器。</li>
+<li>2、基本原理：正向代理代理的是客户端，很多的客户端向同一个中介发送请求，中介向一台服务器发送请求。</li>
+</ul>
+<h2 id="1-3、反向代理"><a href="#1-3、反向代理" class="headerlink" title="1.3、反向代理"></a>1.3、反向代理</h2><ul>
+<li>1、基本原理：反向代理代理的是服务器，一台客户端发送了一个请求，到代理服务器，代理服务器分配一个服务器给他。这个代理服务器会代理很多台服务器。（你不知道是那一台服务器与你的客户端相互交互）</li>
+<li>2、优点：反向代理可以提高性能，因为反向代理后面有很多台服务器。</li>
+</ul>
+<h2 id="1-4、负载均衡"><a href="#1-4、负载均衡" class="headerlink" title="1.4、负载均衡"></a>1.4、负载均衡</h2><ul>
+<li><p>1、没有负载均衡：通常单机架构会把文本服务器与数据库放在同一个服务器中。</p>
+<ul>
+<li>1、多个用户同时去访问我们的web服务器，超出我们服务器的处理能力时，响应速度慢，甚至会出现无法链接的情况</li>
+<li>2、DDOS：拒绝服务式攻击。人为丶恶意制造，海量的数据在同一时间去访问我们的web服务器，人为让我们的服务器超过运算能力。</li>
+<li>3、syns洪水攻击：针对tcp/ip的数据传输，让其半链接不断，并同时增加用户访问量。（拒接半链接的方式，硬件防火墙）</li>
+<li>4、没有负载均衡：类似于学校选课的系统一样</li>
+</ul>
+</li>
+<li><p>2、1个 负载均衡器，至少2个web服务器</p>
+<ul>
+<li>负载均衡器原理：会在用户与服务器之间建立一个负载均衡器，负载均衡器主要用于请求的分配，他会监控服务器的状态分配请求。</li>
+</ul>
+</li>
+</ul>
+<h1 id="2、集群"><a href="#2、集群" class="headerlink" title="2、集群"></a>2、集群</h1><ul>
+<li>1、原理：将一个web应用程序，部署到多台服务器上，服务器的前面会有负载均衡器，负载均衡器来选择呢一台服务器去处理我们的请求。30台服务器，挂掉一台还有29台可以进行操作，不会影响我们的整个系统的正常运行</li>
+<li>2、描述：一大群人做同一件事，一个人死了不影响。不用相互通讯。</li>
+</ul>
+<h1 id="3、分布式"><a href="#3、分布式" class="headerlink" title="3、分布式"></a>3、分布式</h1><ul>
+<li>1、原理：分布式会把一个系统拆分成许多的模块，每一个模块对应一个服务器，服务器之间需要通讯。用户发送的请求会被负载均衡器来处理，然后根据请求访问不同的服务器类型，</li>
+<li>2、描述：一大群人做自己不同的事情，他们会交流完成他们自己的事情。</li>
+<li>3、通讯使用的技术：RPC  C/S webservice</li>
+</ul>
+<h1 id="4、中间层"><a href="#4、中间层" class="headerlink" title="4、中间层"></a>4、中间层</h1><ul>
+<li>1、中间层：架构层面，中间件是一个函数。</li>
+<li>2、mvc：后端提供接口，前端使用ajax调用接口，所有的渲染和数据都是由js在客户端生成的。<ul>
+<li>SSR(服务端渲染)</li>
+<li>CSR（客户端渲染）</li>
+<li>渲染生成：生成html也页面的过程，可能造成首页白屏，同时也不利于SEO，SEO中有一个spider，这个spider对于静态页面非常友好，但是对于j非常不友好。</li>
+</ul>
+</li>
+<li>3、我们使用中间层，后端只需要去关注接口，不需要去关注前端业务逻辑的实现。 </li>
+<li>4、前端一般使用node作为中间层。</li>
+</ul>
+<h1 id="5、微服务"><a href="#5、微服务" class="headerlink" title="5、微服务"></a>5、微服务</h1><ul>
+<li>1、原理：前端 + 中间层 完成前端所用的业务逻辑，后端只需要专注于接口的编写。</li>
+<li>2、一般普通企业不会使用，里面的内容太过复杂</li>
+</ul>
+<h2 id="5-1-架构师于普通程序员的区别"><a href="#5-1-架构师于普通程序员的区别" class="headerlink" title="5.1 架构师于普通程序员的区别"></a>5.1 架构师于普通程序员的区别</h2><p>架构师：架构师脱离了业务层的，其实就是一种抽象。</p>
+<p>程序原：代码和业务层高度相关的</p>
 
       
 
@@ -235,6 +291,17 @@
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">web</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       
 
       
@@ -285,7 +352,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://huangqiwen1998.github.io/2020/03/15/hello-world/" alt="微信分享二维码">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://huangqiwen1998.github.io/2020/05/08/%E6%8E%A2%E7%A9%B6%E7%8E%B0%E4%BB%A3web%E6%9E%B6%E6%9E%84/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -299,15 +366,20 @@
   
 <nav id="article-nav">
   
-    <a href="/2020/03/16/0%E5%9F%BA%E7%A1%80%E8%A7%A3%E6%9E%90node-js/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2020/05/08/node%E6%90%AD%E5%BB%BA%E6%8E%A5%E5%8F%A3/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          解析node.js中的非阻塞Io
+          node搭建接口
         
       </div>
     </a>
   
+  
+    <a href="/2020/05/03/node%E4%B8%AD%E9%97%B4%E4%BB%B6/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">node中间件</div>
+      <i class="icon-circle-right"></i>
+    </a>
   
 </nav>
 
@@ -332,7 +404,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Quick-Start"><span class="toc-number">1.</span> <span class="toc-text">Quick Start</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Create-a-new-post"><span class="toc-number">1.1.</span> <span class="toc-text">Create a new post</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Run-server"><span class="toc-number">1.2.</span> <span class="toc-text">Run server</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Generate-static-files"><span class="toc-number">1.3.</span> <span class="toc-text">Generate static files</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Deploy-to-remote-sites"><span class="toc-number">1.4.</span> <span class="toc-text">Deploy to remote sites</span></a></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1、单机架构"><span class="toc-number">1.</span> <span class="toc-text">1、单机架构</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-1、虚拟主机"><span class="toc-number">1.1.</span> <span class="toc-text">1.1、虚拟主机</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-2-、正向代理"><span class="toc-number">1.2.</span> <span class="toc-text">1.2 、正向代理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-3、反向代理"><span class="toc-number">1.3.</span> <span class="toc-text">1.3、反向代理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-4、负载均衡"><span class="toc-number">1.4.</span> <span class="toc-text">1.4、负载均衡</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2、集群"><span class="toc-number">2.</span> <span class="toc-text">2、集群</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3、分布式"><span class="toc-number">3.</span> <span class="toc-text">3、分布式</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#4、中间层"><span class="toc-number">4.</span> <span class="toc-text">4、中间层</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#5、微服务"><span class="toc-number">5.</span> <span class="toc-text">5、微服务</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#5-1-架构师于普通程序员的区别"><span class="toc-number">5.1.</span> <span class="toc-text">5.1 架构师于普通程序员的区别</span></a></li></ol></li></ol>
                     </div>
                 </span>
             </div>

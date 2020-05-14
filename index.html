@@ -162,6 +162,625 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-vue虚拟DOM解析" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/05/14/vue%E8%99%9A%E6%8B%9FDOM%E8%A7%A3%E6%9E%90/">vue虚拟DOM解析</a>
+    </h1>
+  
+
+        
+        <a href="/2020/05/14/vue%E8%99%9A%E6%8B%9FDOM%E8%A7%A3%E6%9E%90/" class="archive-article-date">
+  	<time datetime="2020-05-14T02:16:03.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-14</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="1、什么是虚拟dom"><a href="#1、什么是虚拟dom" class="headerlink" title="1、什么是虚拟dom"></a>1、什么是虚拟dom</h1><p>Virtual DOM其实就是一颗以JavaScript对象作为基础的树，用对象属性来描述节点，实际就是真实dom的抽象。最终通过一系列操作使这课树映射到真实环境上。它描述了应该如何船舰一个真实的DOM节点。</p>
+<h1 id="2、vue为什么使用虚拟dom"><a href="#2、vue为什么使用虚拟dom" class="headerlink" title="2、vue为什么使用虚拟dom"></a>2、vue为什么使用虚拟dom</h1><h2 id="创建真实DOM的代价高"><a href="#创建真实DOM的代价高" class="headerlink" title="创建真实DOM的代价高"></a>创建真实DOM的代价高</h2><p>真实的DOM节点（node）实现的属性很多，而虚拟节点（vnode）仅仅实现一些必要的属性，相比至下，创建一个vnode的成本低。不会覆盖，重绘，节点。他会找到真正有变化的节点对其进行修改。例如：一个ul标签下面有很多li标签，其中一个li编号，这种情况下如果使用新的ul替换旧的ul那么就会有不必要的浪费。</p>
+<h1 id="3、vue中虚拟dom的实现过程"><a href="#3、vue中虚拟dom的实现过程" class="headerlink" title="3、vue中虚拟dom的实现过程"></a>3、vue中虚拟dom的实现过程</h1><h2 id="模板转视图的过程"><a href="#模板转视图的过程" class="headerlink" title="模板转视图的过程"></a>模板转视图的过程</h2><p>vue通过编译将template模板转换成渲染函数（render），执行渲染函数生成一个vnode（虚拟节点树）。又会通过patch函数对新旧虚拟DOM进行对比找出变化的节点，对齐进行修改。</p>
+<p><img src="https://image.fundebug.com/2019-06-26-01.png" alt=""></p>
+<p>对model进行操作的时候，会触发对应Dep中的watcher对象来修改视图，修改内容通过patch对比新旧vnode后的差距结果进行DOM渲染。</p>
+<p><img src="https://image.fundebug.com/2019-06-26-02.png" alt="">))</p>
+<h2 id="patch核心diff算法"><a href="#patch核心diff算法" class="headerlink" title="patch核心diff算法"></a>patch核心diff算法</h2><p><a href="https://blog.csdn.net/m6i37jk/article/details/78140159" target="_blank" rel="noopener">diff</a></p>
+<p>diff值能在同层进行比较。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">vue</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/05/14/vue%E8%99%9A%E6%8B%9FDOM%E8%A7%A3%E6%9E%90/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-js垃圾回收机制" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/05/11/js%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E6%9C%BA%E5%88%B6/">js垃圾回收机制</a>
+    </h1>
+  
+
+        
+        <a href="/2020/05/11/js%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E6%9C%BA%E5%88%B6/" class="archive-article-date">
+  	<time datetime="2020-05-11T14:45:34.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-11</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="JS垃圾回收机制"><a href="#JS垃圾回收机制" class="headerlink" title="JS垃圾回收机制"></a>JS垃圾回收机制</h1><h2 id="1、为什么会有垃圾回收机制。"><a href="#1、为什么会有垃圾回收机制。" class="headerlink" title="1、为什么会有垃圾回收机制。"></a>1、为什么会有垃圾回收机制。</h2><p>因为每次创建一个变量/函数都会占用内存，如果不清理内存都会导致内存泄漏。</p>
+<h2 id="2、垃圾回收在什么时候执行。"><a href="#2、垃圾回收在什么时候执行。" class="headerlink" title="2、垃圾回收在什么时候执行。"></a>2、垃圾回收在什么时候执行。</h2><p>​    1、浏览器中会定时调用垃圾回收机制来清理全局执行上下文中标记为0或者值为undefined，null的变量（计数清除）。</p>
+<p>​    2、当函数执行完毕后会清除所有被标记为离开环境的内容。</p>
+<h2 id="3、垃圾回收机制执行的原理"><a href="#3、垃圾回收机制执行的原理" class="headerlink" title="3、垃圾回收机制执行的原理"></a>3、垃圾回收机制执行的原理</h2><ul>
+<li>1、计数引用：当值被引用，那么他的引用次数就会加1.</li>
+</ul>
+<blockquote>
+<p>var arr = [1,2,3]</p>
+</blockquote>
+<p>​            如上这个数组的引用次数就为1，再次引用就会依次叠加。</p>
+<blockquote>
+<p>var arr = null</p>
+</blockquote>
+<p>​            这是引用次数就为0，他就会被垃圾回收机制清除。</p>
+<ul>
+<li>2、标记清除：当全局执行上下文把权限下放到函数执行上下文时，会函数中的值进行标记（进入环境）。当函数执行完毕后执行上下文返还到全局的时候就会标记为（离开环境）所有有离开环境的值都会被清除。</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">fn</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span>  a = <span class="number">10</span>  <span class="comment">//标记‘进入环境’    </span></span><br><span class="line">    <span class="keyword">var</span>  b = <span class="string">'hollen word'</span>  <span class="comment">//标记‘进入环境’</span></span><br><span class="line">&#125;</span><br><span class="line">fn() <span class="comment">//执行完毕后a b被标记为离开环境    垃圾回收机制清除内存。</span></span><br></pre></td></tr></table></figure>
+
+<p>但是不会清理在执行环境变量中被执行中的环境调用的变量（闭包）</p>
+<h2 id="WeakSet、WeakMap"><a href="#WeakSet、WeakMap" class="headerlink" title="WeakSet、WeakMap"></a>WeakSet、WeakMap</h2><p>这两种类型他们不会被计入垃圾回收机制。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="keyword">new</span> <span class="built_in">WeakMap</span>()</span><br><span class="line"><span class="keyword">var</span> b = <span class="keyword">new</span> <span class="built_in">Object</span>()</span><br><span class="line">a.set(b,<span class="string">'holle word'</span>) <span class="comment">//这里的b不会计入，也就是说new Object的计数值为1  而不是二。</span></span><br><span class="line">b = <span class="literal">null</span> <span class="comment">//这时计数为0</span></span><br><span class="line">a.get(b) <span class="comment">//找不到undefined  因为垃圾回收机制清理了内存，b也就消失了</span></span><br></pre></td></tr></table></figure>
+
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">js</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/05/11/js%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E6%9C%BA%E5%88%B6/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-apply-bind-call" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/05/10/apply-bind-call/">apply bind call</a>
+    </h1>
+  
+
+        
+        <a href="/2020/05/10/apply-bind-call/" class="archive-article-date">
+  	<time datetime="2020-05-10T12:40:17.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-10</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">js</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/05/10/apply-bind-call/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-防抖与节流" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/05/10/%E9%98%B2%E6%8A%96%E4%B8%8E%E8%8A%82%E6%B5%81/">防抖与节流</a>
+    </h1>
+  
+
+        
+        <a href="/2020/05/10/%E9%98%B2%E6%8A%96%E4%B8%8E%E8%8A%82%E6%B5%81/" class="archive-article-date">
+  	<time datetime="2020-05-10T12:31:54.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-10</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="防抖"><a href="#防抖" class="headerlink" title="防抖"></a>防抖</h1><p>用户在规定时间间隔内持续完成一件事，不会触发函数执行。</p>
+<h2 id="立即防抖"><a href="#立即防抖" class="headerlink" title="立即防抖"></a>立即防抖</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//func 执行的函数</span></span><br><span class="line"><span class="comment">// wait 延迟时间</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">debounce</span>(<span class="params">func, wait</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> timeout = <span class="literal">null</span>;</span><br><span class="line">    <span class="keyword">var</span> context = <span class="keyword">this</span>;</span><br><span class="line">    <span class="keyword">var</span> args = <span class="built_in">arguments</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (timeout) clearTimeout(timeout);</span><br><span class="line">        <span class="keyword">var</span> callNow = !timeout;</span><br><span class="line">        timeout = setTimeout(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">            timeout = <span class="literal">null</span>; <span class="comment">//没有任何效果只是一种习惯，js中的GC机制会把值为null，undefined的直接回收。</span></span><br><span class="line">        &#125;, wait)</span><br><span class="line">        <span class="keyword">if</span> (callNow) func.apply(context, args)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>函数会先执行一次，之后在规定时间间隔内持续操作不会触发函数执行。</p>
+<h2 id="非立即防抖"><a href="#非立即防抖" class="headerlink" title="非立即防抖"></a>非立即防抖</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">debounce</span>(<span class="params">func, wait</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> timeout = <span class="literal">null</span>;</span><br><span class="line">    <span class="keyword">var</span> context = <span class="keyword">this</span>;</span><br><span class="line">    <span class="keyword">var</span> args = <span class="built_in">arguments</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (timeout) clearTimeout(timeout);</span><br><span class="line">        timeout = setTimeout(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">            func.apply(context, args)</span><br><span class="line">        &#125;, wait);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>用户在一定时间间隔内持续操作，不会触发函数。</p>
+<h2 id="双剑合璧版"><a href="#双剑合璧版" class="headerlink" title="双剑合璧版"></a>双剑合璧版</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">debounce</span>(<span class="params">func, wait, immediate</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> timeout;</span><br><span class="line">    <span class="keyword">return</span> <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="keyword">var</span> context = <span class="keyword">this</span>;</span><br><span class="line">        <span class="keyword">var</span> args = <span class="built_in">arguments</span>;</span><br><span class="line">        <span class="keyword">if</span> (timeout) clearTimeout(timeout);</span><br><span class="line">        <span class="keyword">if</span> (immediate) &#123;</span><br><span class="line">            <span class="keyword">var</span> callNow = !timeout;</span><br><span class="line">            timeout = setTimeout(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">                timeout = <span class="literal">null</span>;</span><br><span class="line">            &#125;, wait)</span><br><span class="line">            <span class="keyword">if</span> (callNow) func.apply(context, args)</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> &#123;</span><br><span class="line">            timeout = setTimeout(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">                func.apply(context, args)</span><br><span class="line">            &#125;, wait);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="节流"><a href="#节流" class="headerlink" title="节流"></a>节流</h1><p>如果一个函数持续的，频繁的触发，那么就让他在一定的时间间隔后触发。</p>
+<h2 id="时间戳版"><a href="#时间戳版" class="headerlink" title="时间戳版"></a>时间戳版</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">throttle</span>(<span class="params">func, wait</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> previous = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="keyword">var</span> now = <span class="built_in">Date</span>.now();</span><br><span class="line">        <span class="keyword">var</span> context = <span class="keyword">this</span>;</span><br><span class="line">        <span class="keyword">var</span> args = <span class="built_in">arguments</span>;</span><br><span class="line">        <span class="keyword">if</span> (now - previous &gt; wait) &#123;</span><br><span class="line">            func.apply(context, args);</span><br><span class="line">            previous = now;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="定时器版"><a href="#定时器版" class="headerlink" title="定时器版"></a>定时器版</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">throttle</span>(<span class="params">func, wait</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> timeout;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="keyword">var</span> context = <span class="keyword">this</span>;</span><br><span class="line">        <span class="keyword">var</span> args = <span class="built_in">arguments</span>;</span><br><span class="line">        <span class="keyword">if</span> (!timeout) &#123;</span><br><span class="line">            timeout = setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">                timeout = <span class="literal">null</span>;</span><br><span class="line">                func.apply(context, args)</span><br><span class="line">            &#125;, wait)</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="双剑合璧版-1"><a href="#双剑合璧版-1" class="headerlink" title="双剑合璧版"></a>双剑合璧版</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">* @desc 函数节流</span><br><span class="line">* @param func (<span class="function"><span class="keyword">function</span>) 函数</span></span><br><span class="line"><span class="function">* @<span class="title">param</span> <span class="title">wait</span> (<span class="params">number</span>) 延迟执行毫秒数</span></span><br><span class="line"><span class="function">* @<span class="title">param</span> <span class="title">type</span>  (<span class="params">number</span>) 1 表时间戳版，2 表定时器版</span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function"><span class="title">function</span> <span class="title">throttle</span>(<span class="params">func, wait ,type</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(type===<span class="number">1</span>)&#123;</span><br><span class="line">        <span class="keyword">var</span> previous = <span class="number">0</span>;</span><br><span class="line">    &#125;<span class="keyword">else</span> <span class="keyword">if</span>(type===<span class="number">2</span>)&#123;</span><br><span class="line">        <span class="keyword">var</span> timeout;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="keyword">var</span> context = <span class="keyword">this</span>;</span><br><span class="line">        <span class="keyword">var</span> args = <span class="built_in">arguments</span>;</span><br><span class="line">        <span class="keyword">if</span>(type===<span class="number">1</span>)&#123;</span><br><span class="line">            <span class="keyword">var</span> now = <span class="built_in">Date</span>.now();</span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span> (now - previous &gt; wait) &#123;</span><br><span class="line">                func.apply(context, args);</span><br><span class="line">                previous = now;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;<span class="keyword">else</span> <span class="keyword">if</span>(type===<span class="number">2</span>)&#123;</span><br><span class="line">            <span class="keyword">if</span> (!timeout) &#123;</span><br><span class="line">                timeout = setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">                    timeout = <span class="literal">null</span>;</span><br><span class="line">                    func.apply(context, args)</span><br><span class="line">                &#125;, wait)</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>时间戳版和定时器版的节流函数的区别就是，时间戳版的函数触发是在时间段内开始的时候，而定时器版的函数触发是在时间段内结束的时候。</strong></p>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>防抖：函数执行一次</p>
+<p>节流：函数在一定时间内再次执行</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">js</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/05/10/%E9%98%B2%E6%8A%96%E4%B8%8E%E8%8A%82%E6%B5%81/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-node搭建接口" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/05/08/node%E6%90%AD%E5%BB%BA%E6%8E%A5%E5%8F%A3/">node搭建接口</a>
+    </h1>
+  
+
+        
+        <a href="/2020/05/08/node%E6%90%AD%E5%BB%BA%E6%8E%A5%E5%8F%A3/" class="archive-article-date">
+  	<time datetime="2020-05-08T06:09:35.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-08</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="1、基本环境"><a href="#1、基本环境" class="headerlink" title="1、基本环境"></a>1、基本环境</h1><p>使用express mysql</p>
+<ul>
+<li><p>1、环境搭建</p>
+<blockquote>
+<p>node -v</p>
+<p>npm -v</p>
+<p>express -v</p>
+</blockquote>
+</li>
+<li><p>2、创建express文件</p>
+<blockquote>
+<p>express apiLearn</p>
+</blockquote>
+</li>
+</ul>
+<p>创建完成后需要npm install安装依赖包，express默认的接口文件在bin目录中，但我们想要把入口文件设置成app.js</p>
+<p>在app.js文件中写入以下代码</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> http = <span class="built_in">require</span>(<span class="string">'http'</span>)</span><br><span class="line"><span class="keyword">var</span> server = http.createServer(app)</span><br><span class="line">server.listen(<span class="number">3000</span>)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>3、引入mysql包</p>
+<blockquote>
+<p>npm install mysql –save</p>
+</blockquote>
+</li>
+<li><p>4、数据库连接池</p>
+<ul>
+<li><p>不使用连接池的时候：每次需要操作数据库的时候，系统底层会分配一个链接对象，你通过链接对象对数据库进行操作，当操作完成你会归还（释放）这个链接对象。下一次你需要操作数据库的时候你还需要系统给你一个链接对象，这样的操作过于繁琐，且消耗性能。</p>
+</li>
+<li><p>连接池：系统会自动创建一个池子，并且会给他分配多个链接对象，每次需要操作数据库时，就会从这个池中取出一个链接对象，去操作数据库，操作完成后链接对象会被归还到池子中。这样既实现了复用，同时也防止每次都向系统底层去请求链接对象，优化了性能。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> mysql = <span class="built_in">require</span>(<span class="string">'mysql'</span>)</span><br><span class="line"><span class="built_in">module</span>.exports= &#123;</span><br><span class="line">    <span class="comment">//数据库配置</span></span><br><span class="line">    config:&#123;</span><br><span class="line">        host:<span class="string">"localhost"</span>,</span><br><span class="line">        port:<span class="string">'3306'</span>,</span><br><span class="line">        user:<span class="string">'root'</span>,</span><br><span class="line">        password:<span class="string">'root'</span>,</span><br><span class="line">        database:<span class="string">'express'</span></span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="comment">//链接数据库，使用mysql的连接池</span></span><br><span class="line">    <span class="comment">//连接池对象</span></span><br><span class="line">    sqlConnect: <span class="function"><span class="keyword">function</span>(<span class="params">sql,sqlArr,callBack</span>)</span>&#123;</span><br><span class="line">        <span class="keyword">var</span> pool = mysql.createPool(<span class="keyword">this</span>.config);</span><br><span class="line">        pool.getConnection(<span class="function">(<span class="params">err , conn</span>) =&gt;</span> &#123;</span><br><span class="line">            <span class="built_in">console</span>.log(<span class="number">1321</span>)</span><br><span class="line">            <span class="keyword">if</span>(err)&#123;</span><br><span class="line">                <span class="built_in">console</span>.log(<span class="string">'链接失败'</span>)</span><br><span class="line">                <span class="keyword">return</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">//事件驱动回调</span></span><br><span class="line">            conn.query(sql,sqlArr,callBack);</span><br><span class="line"></span><br><span class="line">            <span class="comment">//释放链接</span></span><br><span class="line">            conn.release()</span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>使用从新创建一个control的文件夹，写一个createcotrol.js文件</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> <span class="keyword">var</span> dbCongif = <span class="built_in">require</span>(<span class="string">'../until/dbConfig'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">//获取分类</span></span><br><span class="line">getCate = <span class="function">(<span class="params">req,res</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">var</span> sql = <span class="string">"select * from api"</span></span><br><span class="line">  <span class="keyword">var</span> sqlArr = [];</span><br><span class="line">  <span class="keyword">var</span> callBack = <span class="function">(<span class="params">err , data</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">if</span>(err)&#123;</span><br><span class="line">      <span class="built_in">console</span>.log(<span class="string">'链接出错'</span>)</span><br><span class="line"></span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">      res.send(&#123;</span><br><span class="line">        <span class="string">'list'</span> : data</span><br><span class="line">      &#125;)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  dbCongif.sqlConnect(sql,sqlArr,callBack)</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">    getCate</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h1 id="2、实现阿里大鱼短信服务"><a href="#2、实现阿里大鱼短信服务" class="headerlink" title="2、实现阿里大鱼短信服务"></a>2、实现阿里大鱼短信服务</h1><ul>
+<li><p>1、登录阿里云，找到短信服务，编辑模板和标签，还需要开通短信服务。</p>
+</li>
+<li><p>2、配置短信服务运行环境</p>
+<blockquote>
+<p>npm install @alicloud/pop-core –save</p>
+</blockquote>
+</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> Core = <span class="built_in">require</span>(<span class="string">'@alicloud/pop-core'</span>);</span><br><span class="line"><span class="keyword">let</span> sendCoreCode = <span class="function">(<span class="params">req,res</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">var</span> client = <span class="keyword">new</span> Core(&#123;</span><br><span class="line">  accessKeyId: <span class="string">'&lt;accessKeyId&gt;'</span>,</span><br><span class="line">  accessKeySecret: <span class="string">'&lt;accessSecret&gt;'</span>,</span><br><span class="line">  endpoint: <span class="string">'https://dysmsapi.aliyuncs.com'</span>,</span><br><span class="line">  apiVersion: <span class="string">'2017-05-25'</span></span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> params = &#123;</span><br><span class="line">  <span class="string">"RegionId"</span>: <span class="string">"cn-hangzhou"</span>,</span><br><span class="line">  <span class="string">"PhoneNumbers"</span>: <span class="string">"18180986281"</span>,</span><br><span class="line">  <span class="string">"SignName"</span>: <span class="string">"变美app"</span>,</span><br><span class="line">  <span class="string">"TemplateCode"</span>: <span class="string">"SMS_189713621"</span>,</span><br><span class="line">  <span class="string">"TemplateParam"</span>: <span class="string">"&#123;\"code\":\"code\"&#125;"</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> requestOption = &#123;</span><br><span class="line">  method: <span class="string">'POST'</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">client.request(<span class="string">'SendSms'</span>, params, requestOption).then(<span class="function">(<span class="params">result</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="built_in">JSON</span>.stringify(result));</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">module</span>.exprots = &#123;</span><br><span class="line">	sendCoreCode <span class="comment">//配置对应的路由上即可</span></span><br><span class="line">                                                      &#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="3、实现本地文件上传"><a href="#3、实现本地文件上传" class="headerlink" title="3、实现本地文件上传"></a>3、实现本地文件上传</h1><ul>
+<li><p>multer这个第三方包可以用于，上传文件到数据库。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> fs = <span class="built_in">require</span>(<span class="string">'fs'</span>);</span><br><span class="line"><span class="keyword">const</span> path = <span class="built_in">require</span>(<span class="string">'path'</span>)</span><br><span class="line"><span class="keyword">const</span> express = <span class="built_in">require</span>(<span class="string">'express'</span>);</span><br><span class="line"><span class="keyword">const</span> multer = <span class="built_in">require</span>(<span class="string">'multer'</span>);</span><br><span class="line"><span class="keyword">const</span> app = express();</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> storage = multer.diskStorage(&#123;        <span class="comment">// 设置multer参数，个性化指定上传目录和文件名</span></span><br><span class="line">    destination: <span class="function">(<span class="params">req, file, cb</span>) =&gt;</span> &#123;		<span class="comment">//p配置文件上传地址</span></span><br><span class="line">        <span class="keyword">const</span> uploadFloder = <span class="string">'./myUpload'</span>;  <span class="comment">// 保存上传文件的目录</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            fs.accessSync(uploadFloder);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (error) &#123;</span><br><span class="line">            fs.mkdirSync(uploadFloder);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        cb(<span class="literal">null</span>, uploadFloder);</span><br><span class="line">    &#125;,</span><br><span class="line">    filename: <span class="function">(<span class="params">req, file, cb</span>) =&gt;</span> &#123;   <span class="comment">//配置文件名称</span></span><br><span class="line">        cb(<span class="literal">null</span>, file.originalname);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br><span class="line"><span class="keyword">const</span> upload = multer(&#123;                     <span class="comment">// 实例化multer对象</span></span><br><span class="line">    storage: storage</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 静态化资源</span></span><br><span class="line"></span><br><span class="line">app.use(express.static(path.join(__dirname, <span class="string">'public'</span>)))</span><br><span class="line"></span><br><span class="line">app.get(<span class="string">'/'</span>, (req, res) =&gt; &#123;</span><br><span class="line">    <span class="keyword">const</span> html = fs.readFileSync(<span class="string">'./view/index.html'</span>, &#123; <span class="attr">encoding</span>: <span class="string">'utf8'</span> &#125;);  <span class="comment">// 进行上传操作的页面</span></span><br><span class="line"></span><br><span class="line">    res.send(html);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 响应上传请求</span></span><br><span class="line"></span><br><span class="line">app.post(<span class="string">'/upload'</span>, upload.single(<span class="string">'myFile'</span>), (req, res) =&gt; &#123;</span><br><span class="line">    res.send(&#123;</span><br><span class="line">        message: <span class="string">'响应了请求'</span></span><br><span class="line">    &#125;);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">app.listen(<span class="number">3000</span>, () =&gt; <span class="built_in">console</span>.log(<span class="string">'服务器已启动!'</span>));</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">node</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/05/08/node%E6%90%AD%E5%BB%BA%E6%8E%A5%E5%8F%A3/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-探究现代web架构" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/05/08/%E6%8E%A2%E7%A9%B6%E7%8E%B0%E4%BB%A3web%E6%9E%B6%E6%9E%84/">探究现代web架构</a>
+    </h1>
+  
+
+        
+        <a href="/2020/05/08/%E6%8E%A2%E7%A9%B6%E7%8E%B0%E4%BB%A3web%E6%9E%B6%E6%9E%84/" class="archive-article-date">
+  	<time datetime="2020-05-08T01:18:53.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-08</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="1、单机架构"><a href="#1、单机架构" class="headerlink" title="1、单机架构"></a>1、单机架构</h1><ul>
+<li>1、一个系统业务量很小的时候，所有代码都放在一个项目中，部署在一台服务器上</li>
+<li>2、单机架构处理能力有限 》集群模式 》分布式 》 微服务</li>
+<li>3、</li>
+</ul>
+<h2 id="1-1、虚拟主机"><a href="#1-1、虚拟主机" class="headerlink" title="1.1、虚拟主机"></a>1.1、虚拟主机</h2><ul>
+<li><p>1、虚拟主机的原理：在服务器上给你划分一个目录给你的网站-</p>
+</li>
+<li><p>2、lls ：虚拟主机</p>
+</li>
+<li><p>3、vps：云服务器，阿里云</p>
+</li>
+<li><p>4、虚拟技术</p>
+<ul>
+<li>1、vpn：虚拟隧道</li>
+<li>2、跳板：网络安全的范畴，特点难以追踪。</li>
+</ul>
+</li>
+</ul>
+<h2 id="1-2-、正向代理"><a href="#1-2-、正向代理" class="headerlink" title="1.2 、正向代理"></a>1.2 、正向代理</h2><ul>
+<li>1、正向代理：类似于中介，所有的请求都会到达给中介，而不是直接传递给服务器。</li>
+<li>2、基本原理：正向代理代理的是客户端，很多的客户端向同一个中介发送请求，中介向一台服务器发送请求。</li>
+</ul>
+<h2 id="1-3、反向代理"><a href="#1-3、反向代理" class="headerlink" title="1.3、反向代理"></a>1.3、反向代理</h2><ul>
+<li>1、基本原理：反向代理代理的是服务器，一台客户端发送了一个请求，到代理服务器，代理服务器分配一个服务器给他。这个代理服务器会代理很多台服务器。（你不知道是那一台服务器与你的客户端相互交互）</li>
+<li>2、优点：反向代理可以提高性能，因为反向代理后面有很多台服务器。</li>
+</ul>
+<h2 id="1-4、负载均衡"><a href="#1-4、负载均衡" class="headerlink" title="1.4、负载均衡"></a>1.4、负载均衡</h2><ul>
+<li><p>1、没有负载均衡：通常单机架构会把文本服务器与数据库放在同一个服务器中。</p>
+<ul>
+<li>1、多个用户同时去访问我们的web服务器，超出我们服务器的处理能力时，响应速度慢，甚至会出现无法链接的情况</li>
+<li>2、DDOS：拒绝服务式攻击。人为丶恶意制造，海量的数据在同一时间去访问我们的web服务器，人为让我们的服务器超过运算能力。</li>
+<li>3、syns洪水攻击：针对tcp/ip的数据传输，让其半链接不断，并同时增加用户访问量。（拒接半链接的方式，硬件防火墙）</li>
+<li>4、没有负载均衡：类似于学校选课的系统一样</li>
+</ul>
+</li>
+<li><p>2、1个 负载均衡器，至少2个web服务器</p>
+<ul>
+<li>负载均衡器原理：会在用户与服务器之间建立一个负载均衡器，负载均衡器主要用于请求的分配，他会监控服务器的状态分配请求。</li>
+</ul>
+</li>
+</ul>
+<h1 id="2、集群"><a href="#2、集群" class="headerlink" title="2、集群"></a>2、集群</h1><ul>
+<li>1、原理：将一个web应用程序，部署到多台服务器上，服务器的前面会有负载均衡器，负载均衡器来选择呢一台服务器去处理我们的请求。30台服务器，挂掉一台还有29台可以进行操作，不会影响我们的整个系统的正常运行</li>
+<li>2、描述：一大群人做同一件事，一个人死了不影响。不用相互通讯。</li>
+</ul>
+<h1 id="3、分布式"><a href="#3、分布式" class="headerlink" title="3、分布式"></a>3、分布式</h1><ul>
+<li>1、原理：分布式会把一个系统拆分成许多的模块，每一个模块对应一个服务器，服务器之间需要通讯。用户发送的请求会被负载均衡器来处理，然后根据请求访问不同的服务器类型，</li>
+<li>2、描述：一大群人做自己不同的事情，他们会交流完成他们自己的事情。</li>
+<li>3、通讯使用的技术：RPC  C/S webservice</li>
+</ul>
+<h1 id="4、中间层"><a href="#4、中间层" class="headerlink" title="4、中间层"></a>4、中间层</h1><ul>
+<li>1、中间层：架构层面，中间件是一个函数。</li>
+<li>2、mvc：后端提供接口，前端使用ajax调用接口，所有的渲染和数据都是由js在客户端生成的。<ul>
+<li>SSR(服务端渲染)</li>
+<li>CSR（客户端渲染）</li>
+<li>渲染生成：生成html也页面的过程，可能造成首页白屏，同时也不利于SEO，SEO中有一个spider，这个spider对于静态页面非常友好，但是对于j非常不友好。</li>
+</ul>
+</li>
+<li>3、我们使用中间层，后端只需要去关注接口，不需要去关注前端业务逻辑的实现。 </li>
+<li>4、前端一般使用node作为中间层。</li>
+</ul>
+<h1 id="5、微服务"><a href="#5、微服务" class="headerlink" title="5、微服务"></a>5、微服务</h1><ul>
+<li>1、原理：前端 + 中间层 完成前端所用的业务逻辑，后端只需要专注于接口的编写。</li>
+<li>2、一般普通企业不会使用，里面的内容太过复杂</li>
+</ul>
+<h2 id="5-1-架构师于普通程序员的区别"><a href="#5-1-架构师于普通程序员的区别" class="headerlink" title="5.1 架构师于普通程序员的区别"></a>5.1 架构师于普通程序员的区别</h2><p>架构师：架构师脱离了业务层的，其实就是一种抽象。</p>
+<p>程序原：代码和业务层高度相关的</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">web</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/05/08/%E6%8E%A2%E7%A9%B6%E7%8E%B0%E4%BB%A3web%E6%9E%B6%E6%9E%84/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-node中间件" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -245,7 +864,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2020/05/02/cookie%E7%9B%B8%E5%85%B3/">cookie相关</a>
+      <a class="article-title" href="/2020/05/02/cookie%E7%9B%B8%E5%85%B3/">cookie/session/token</a>
     </h1>
   
 
@@ -259,12 +878,33 @@
     <div class="article-entry" itemprop="articleBody">
       
         <a id="more"></a>
+<h1 id="为什么需要cookie-session-token"><a href="#为什么需要cookie-session-token" class="headerlink" title="为什么需要cookie session token"></a>为什么需要cookie session token</h1><ul>
+<li>1、http是无状态协议，他不会去记住或者认识是谁正在访问它，对于大型电商平台，需要区分每一个用户才可以把他们需要的东西加入他们的购物车。因此先辈们发明的cookie。</li>
+<li>2、当用户访问了服务器，服务器就会生成一个cookie_id并传给浏览器保存，下一次访问服务器的时候就会携带这个cookie中有登录信息。传输给服务器后，服务器处理以下就可以判断区分用户了。但是cookie是保存在浏览器的那么就会有安全性问题。这是先辈们有引入了session。</li>
+<li>3、每当用户与服务器建立一次链接就形成了session，这个session data会保存在服务器中，这个session记录着你的登录信息。同时还会生成一个session id 这个会被存放在浏览器的cookie中，等到下一次建立链接的时候会随着cookie被发送到服务端，服务端中就会将session_id 与session_data关联起来。区分用户，但是这种还是不够好，如果有负载均衡器那么与之链接的服务器可能是一个新的服务器，那么就无法建立链接，这时我们使用了token。</li>
+<li>4、当用户与服务器建立链接服务器就会生成一个存放用户id的token返回给客户端的并存放在cookie，sessionstorage等中。当用户再次请求的时候，这个token就会被放在http header中。这个token可以在服务端进行一个签名，token会进行HMAC-SHA256算法，再加上一个只有我知道的密钥对数据进行一个签名。当token返回的时候我们就对token中的数据使用相同的HMAC-SHA256算法，在加上我们自己知道的密钥。两者进行对比如果相等就说明数据没有被更改过。</li>
+</ul>
 <h1 id="cookie"><a href="#cookie" class="headerlink" title="cookie"></a>cookie</h1><p>http协议是一个无状态协议，他不会记录用户的信息。这是我们需要使用cookie来储存用户的信息。</p>
 <ul>
 <li>cookie中的信息是存储在浏览器中的，因此只能存储一些非铭感信息。</li>
 </ul>
 <h1 id="session"><a href="#session" class="headerlink" title="session"></a>session</h1><p>为了解决cookie的问题，我们引入session。<br>超市   -   电子柜    -    消费者<br>电子柜（服务端）   给你一个凭证（cookie）凭证是唯一的，不可重复，一点丢失，不可找回。     你（客户端）<br>express-session这个插件。</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//添加session  </span></span><br><span class="line">req.session.user = user</span><br><span class="line"><span class="comment">//读取session</span></span><br><span class="line">req.session.user</span><br><span class="line"><span class="comment">//删除session</span></span><br><span class="line">req.session.user = <span class="literal">null</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">delete</span> req.session.user</span><br></pre></td></tr></table></figure>
+
+<p>session：当有大量用户太消耗服务器的性能。</p>
+<h1 id="token"><a href="#token" class="headerlink" title="token"></a>token</h1><p>token的组成：</p>
+<ul>
+<li><p>1、header：在转为Base64编码</p>
+<pre><code>- 1、类型：JWT
+- 2、算法：HS256</code></pre></li>
+<li><p>2、payload：会配置一些token的基本信息。在转为Base64编码</p>
+</li>
+<li><p>3、singnature：对 header + payload + 密钥 进行HS256算法加密，在转为Base64编码</p>
+<p>token = header的Base64.payload的Base64.singnature的Base64</p>
+</li>
+</ul>
+<p>完成上面3部分就生成了一个token了，这个token会被返回给客户端并保存，每次请求都会携带这个token，服务器对token中的header、payload进行转码，然后从新重复第三步，如果返回的结果与携带过来的一致，那么就认为用户已经登录了。</p>
+
       
 
       
@@ -477,10 +1117,227 @@
 </ul>
 </li>
 <li><p>6、作用域<br>  作用域</p>
-<pre><code>- 1、词法作用域：也就是平时使用的作用域，全局作用域（GO）、函数作用域(AO)、会变量提升。
-- 2、动态作用域：就是this对应的作用域，谁调用作用域就是谁。</code></pre></li>
+<pre><code>- 1、词法作用域：也就是平时使用的作用域，全局作用域（GO）、函数作用域(AO)、会变量提升。</code></pre><ul>
+<li>2、动态作用域：就是this对应的作用域，谁调用作用域就是谁。</li>
 </ul>
-<h2 id="队列"><a href="#队列" class="headerlink" title="队列"></a>队列</h2><p>队列也是一种运算受限的线性表，先进先出</p>
+</li>
+</ul>
+<h1 id="2、队列"><a href="#2、队列" class="headerlink" title="2、队列"></a>2、队列</h1><p>队列也是一种运算受限的线性表，先进先出</p>
+<h2 id="2-1、js异步原理"><a href="#2-1、js异步原理" class="headerlink" title="2.1、js异步原理"></a>2.1、js异步原理</h2><ul>
+<li>js中，维护这一个队列，这个队列叫做事件队列</li>
+<li>javascript特点：单线程，同一个时间只能处理一件事<ul>
+<li>JavaScript多线程原理：利用cpu的多核，h5提出了web worker的标准，允许js创建多个线程，而这些被创建的子线程是完全受到主线程控制的，并且子线程不可以操作dom，这个其实并没有改变js单线程的本质。</li>
+</ul>
+</li>
+<li>线程：是操作系统能够进行运算调度的最小单位（对于操作系统来说，线程是最小执行单位，进程是最小资源管理单位）</li>
+<li>进程与线程的区别：<ul>
+<li>1、线程从属于进程。</li>
+<li>2、每个开启一个程序进程就会在内存中开辟一块内存用来资源管理，线程就会执行里面的内容。</li>
+<li>3、一个进程中可以有线程，一个主线程，还可以有多个子线程。</li>
+<li>4、每个线程都会消耗内存。（node是单线程但是可以处理并发，因为他只有一个线程去处理多个线程的事情）</li>
+</ul>
+</li>
+<li>js代码在引擎中执行的过程<ul>
+<li>1、一开始会主线程会创建一个执行栈，在主线程外系统还会维护一个任务队列</li>
+<li>2、所有同步代码都会被主线程放在执行栈中，异步代码都会被放入任务队列。</li>
+<li>3、执行栈中对所有同步脚本代码执行完毕后，系统就会读取任务队列，并把任务队列读取到执行栈中执行，异步代码首先由结果就先输出谁，同等条件下根据队列的顺序一次输出（先进先出）</li>
+<li>4、这里有个通知机制：当执行栈中的同步代码执行完毕后，任务队列会通知主线程，任务队列中的哪些资源已经准备好了，并按照谁先得到结果谁先输出的关系输出给执行栈。</li>
+<li>5、事件循环：当主线程程序执行完毕，事件队列通知主线程读取任务队列的的过程叫做事件循环。</li>
+</ul>
+</li>
+<li>promise<ul>
+<li>1、任务队列中维护着两个任务队列，一个叫宏任务，一个叫微任务。<ul>
+<li>宏任务：l/o 定时器/事件/Ajax</li>
+<li>微任务：promise then finally,process async await</li>
+</ul>
+</li>
+<li>2、js代码执行顺序：同步代码 &gt; 微任务 &gt; 宏任务</li>
+</ul>
+</li>
+<li>node处理多并发优势<ul>
+<li>java、php每一个客户请求，都会开一个新的线程，一个请求大概需要消耗2m的内存，8g最多是要4000和请求。</li>
+<li>node不论你有多少线程，一个线程，事件驱动、非阻塞io，如果node主线程挂了，你的程序就挂了。</li>
+</ul>
+</li>
+</ul>
+<h1 id="3、链表"><a href="#3、链表" class="headerlink" title="3、链表"></a>3、链表</h1><ul>
+<li>1、链表中的元素在内存中不必是连续的空间</li>
+<li>2、链表每一个元素都由一个存储元素本身的节点和一个指向下一个元素的引用组成</li>
+</ul>
+<h2 id="1、JS中的堆栈"><a href="#1、JS中的堆栈" class="headerlink" title="1、JS中的堆栈"></a>1、JS中的堆栈</h2><ul>
+<li>1、原始数据存储：<ul>
+<li>1、首先将10存入栈空间（栈空间中开辟一个空间存入10）</li>
+<li>2、定义一个变量a，此使a与变量是没有建立关系的，a的值为undefined</li>
+<li>3、将变量a和值存储起来</li>
+</ul>
+</li>
+<li>2、引用数据类型<ul>
+<li>1、会在堆区开一一个空间存储值。</li>
+<li>2、堆区会返回一个地址，对于这个地址先在栈区开辟一个空间。</li>
+<li>3、定义一个变量fn，这个时候fn的值为undefined</li>
+<li>4、将变量fn与地址存起来。</li>
+</ul>
+</li>
+</ul>
+<h2 id="2、链表的优势"><a href="#2、链表的优势" class="headerlink" title="2、链表的优势"></a>2、链表的优势</h2><ul>
+<li>1、插入删除：链表的性能好</li>
+<li>2、查找修改：数组性能好</li>
+</ul>
+<h2 id="3、链表的方法"><a href="#3、链表的方法" class="headerlink" title="3、链表的方法"></a>3、链表的方法</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//节点类</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Node</span></span>&#123;</span><br><span class="line">    constructr(element)&#123;</span><br><span class="line">        <span class="keyword">this</span>.element = element;</span><br><span class="line">        <span class="keyword">this</span>.next = <span class="literal">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//链表</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">LinkeedList</span></span>&#123;</span><br><span class="line">    <span class="keyword">constructor</span>()&#123;</span><br><span class="line">        <span class="keyword">this</span>.head = <span class="literal">null</span>;</span><br><span class="line">        <span class="keyword">this</span>.length = <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    append(element)&#123;</span><br><span class="line">        <span class="keyword">let</span> node = <span class="keyword">new</span> Node(element)</span><br><span class="line">        <span class="keyword">if</span>(<span class="keyword">this</span>.length == <span class="number">0</span>)&#123;</span><br><span class="line">            <span class="keyword">this</span>.head = node;</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            <span class="keyword">let</span> current = <span class="keyword">this</span>.head</span><br><span class="line">            <span class="keyword">while</span>(current.next)&#123;</span><br><span class="line">                current = current.next</span><br><span class="line">            &#125;</span><br><span class="line">            current.next = node;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">this</span>.length += <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span></span><br><span class="line">    &#125;</span><br><span class="line">    insert(element , position)&#123;</span><br><span class="line">        <span class="keyword">let</span> index = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">let</span> current = <span class="keyword">this</span>.head</span><br><span class="line">        <span class="keyword">let</span> privious = <span class="literal">null</span></span><br><span class="line">        <span class="keyword">let</span> node = <span class="keyword">new</span> Node(element)</span><br><span class="line">        <span class="keyword">if</span>(position &gt; <span class="number">0</span> || position &lt; <span class="keyword">this</span>.length)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(position == <span class="number">0</span>)&#123;</span><br><span class="line">            node.next = current</span><br><span class="line">            <span class="keyword">this</span>.head = node</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            <span class="keyword">while</span>(index &lt; position)&#123;</span><br><span class="line">                privious = current</span><br><span class="line">                current = current.next</span><br><span class="line">                index++</span><br><span class="line">            &#125;</span><br><span class="line">            node.next = current;</span><br><span class="line">            privious.next = node</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//获取头节点</span></span><br><span class="line">    getHead()&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.head</span><br><span class="line">    &#125;</span><br><span class="line">    toString()&#123;</span><br><span class="line">        <span class="keyword">let</span> current = <span class="keyword">this</span>.head</span><br><span class="line">        <span class="keyword">let</span> linkString = <span class="string">''</span>;</span><br><span class="line">        <span class="keyword">while</span>(current)&#123;</span><br><span class="line">            linkString += <span class="string">','</span> + current.element;</span><br><span class="line">            current = current.next;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> linkString.slice(<span class="number">1</span>)</span><br><span class="line">    &#125;</span><br><span class="line">    remove(element)&#123;</span><br><span class="line">        <span class="keyword">let</span> privious = <span class="literal">null</span></span><br><span class="line">        <span class="keyword">let</span> current = <span class="keyword">this</span>.head</span><br><span class="line">        <span class="keyword">while</span>(current.next.element == element)&#123;</span><br><span class="line">            privious = current</span><br><span class="line">            current = current.next</span><br><span class="line">        &#125;</span><br><span class="line">        privious.next == current.next</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span></span><br><span class="line">    &#125;</span><br><span class="line">    removeAt(position)&#123;</span><br><span class="line">        <span class="keyword">let</span> index = <span class="number">0</span></span><br><span class="line">        <span class="keyword">let</span> current = <span class="keyword">this</span>.head</span><br><span class="line">        <span class="keyword">let</span> privious = <span class="literal">null</span></span><br><span class="line">        <span class="keyword">if</span>(position &gt; <span class="number">0</span> || position &lt; <span class="keyword">this</span>.length)&#123;</span><br><span class="line">            <span class="keyword">if</span>(position == <span class="number">0</span>)&#123;</span><br><span class="line">                <span class="keyword">this</span>.head == <span class="literal">null</span> </span><br><span class="line">            &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                <span class="keyword">while</span>(index &lt;= position)&#123;</span><br><span class="line">                    privious = current</span><br><span class="line">                    current = current.next</span><br><span class="line">                    index++</span><br><span class="line">                &#125;</span><br><span class="line">                privious.next == current.next</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<ul>
+<li>1、append（element）：向链表尾部追加元素</li>
+<li>2、insert（position,element）向例表中特定位置插入</li>
+<li>3、remove（element）从例表中删除一项</li>
+<li>4、indexof（element）返回元素的索引，如果例表中没有该元素测返回大于-1</li>
+<li>5、removeAt（position）从例表中移出特定位置的一项</li>
+<li>6、isEmpty（）：如果链表中不包含任何元素，返回true，如果链表长度大于0返回false。</li>
+<li>size（）：返回链表包含元素的个数，于数组的length类似</li>
+<li>toString（）：需要重写来继承JavaScript的方法</li>
+</ul>
+<h2 id="双向链表"><a href="#双向链表" class="headerlink" title="双向链表"></a>双向链表</h2><ul>
+<li>1、next直线下一个</li>
+<li>2、prvies指向上一个</li>
+<li>3、中间有个存储空间</li>
+</ul>
+<h2 id="原型链"><a href="#原型链" class="headerlink" title="原型链"></a>原型链</h2><ul>
+<li><p>1、语言的发展</p>
+<p>机器语言&gt;汇编语言&gt;低级语言&gt;高级语言</p>
+</li>
+<li><p>2、原型链的底层实现机制原理就是链表</p>
+</li>
+<li><p>3、<strong>proto</strong> 和constructor属性是对象独有的</p>
+</li>
+<li><p>4、prototype是函数独有的，函数也是一种对象所有有proto和constructor。</p>
+</li>
+<li><p>5、proto是隐式对象，一般不建议给隐式对象上面添加属性和方法。</p>
+</li>
+</ul>
+<h1 id="4、集合"><a href="#4、集合" class="headerlink" title="4、集合"></a>4、集合</h1><p>集合通常是由一组无序的，不能重复的元素构成。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Myset</span> </span>&#123;</span><br><span class="line">    <span class="keyword">constructor</span> ()&#123;</span><br><span class="line">        <span class="keyword">this</span>.item = &#123;&#125;</span><br><span class="line">    &#125;</span><br><span class="line">    has(val)&#123;</span><br><span class="line">        <span class="comment">// Object.hasOwnproperty(val)</span></span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.item.hasOwnproperty(val)</span><br><span class="line">    &#125;</span><br><span class="line">    add(val)&#123;</span><br><span class="line">        <span class="keyword">if</span>(<span class="keyword">this</span>.has(val))&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">this</span>.item[val] = val</span><br><span class="line">    &#125;</span><br><span class="line">    remove(val)&#123;</span><br><span class="line">        <span class="keyword">if</span>(!<span class="keyword">this</span>.has(val))&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">delete</span> <span class="keyword">this</span>.item[val]</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span></span><br><span class="line">    &#125;</span><br><span class="line">	size()&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">Object</span>.keys(<span class="keyword">this</span>.item).length</span><br><span class="line">    &#125;    </span><br><span class="line">    clear()&#123;</span><br><span class="line">        <span class="keyword">this</span>.item = &#123;&#125;</span><br><span class="line">    &#125;</span><br><span class="line">    valuse()&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">Object</span>.keys(<span class="keyword">this</span>.item)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//并集</span></span><br><span class="line">    union(<span class="keyword">set</span>)&#123;</span><br><span class="line">        <span class="keyword">let</span> unionSet = <span class="keyword">new</span> Myset()</span><br><span class="line">        <span class="keyword">let</span> valuse = <span class="keyword">this</span>.valuse()</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">let</span> i =<span class="number">0</span>,;i&lt; valuse.length; i++)&#123;</span><br><span class="line">            unionSet.add(valuse[i]);</span><br><span class="line">        &#125;</span><br><span class="line">        valuse = <span class="keyword">set</span>.valuse();</span><br><span class="line">        for(let i = 0;i&lt;valuse.length; i++)&#123;</span><br><span class="line">            unionSet.add(valuese[i]);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> unionSet</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//交集</span></span><br><span class="line">    Intersection(<span class="keyword">set</span>)&#123;</span><br><span class="line">        <span class="keyword">let</span> intersection = <span class="keyword">new</span> Myset()</span><br><span class="line">        <span class="keyword">let</span> valuse = <span class="keyword">this</span>.valuse()</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">let</span> i=<span class="number">0</span>; i&lt;valuse.length; i++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(<span class="keyword">set</span>.has(valuse[i]))&#123;</span><br><span class="line">                intersection.add(valuse[i]);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> intersection </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="js中的set、webset"><a href="#js中的set、webset" class="headerlink" title="js中的set、webset"></a>js中的set、webset</h2><ul>
+<li>set：必须数组，里面不能有重复的内容。</li>
+<li>webset：必须是对象，里面不能有重复的内容。是弱引用不会被垃圾回收机制录入</li>
+</ul>
+<h2 id="js中的map、weakmap"><a href="#js中的map、weakmap" class="headerlink" title="js中的map、weakmap"></a>js中的map、weakmap</h2><ul>
+<li>map：普通对象的属性名只能是字符串，map属性可以是对象。</li>
+<li>weakmap：只接受对象作为键名，null除外。</li>
+</ul>
+<h2 id="return拓展"><a href="#return拓展" class="headerlink" title="return拓展"></a>return拓展</h2><ul>
+<li>return true：返还正确执行结果</li>
+<li>return false：中止一些默认事件<ul>
+<li>1、默认行为</li>
+<li>2、组织冒泡</li>
+<li>3、回调函数的执行</li>
+</ul>
+</li>
+<li>return ： 返还控制权</li>
+</ul>
+<h2 id="扩展运算符"><a href="#扩展运算符" class="headerlink" title="扩展运算符"></a>扩展运算符</h2><p>对象中的扩展运算符，用于取出对象中所有可遍历属性。一级属性浅拷贝，二级及其以上深拷贝。</p>
+<h2 id="深浅拷贝"><a href="#深浅拷贝" class="headerlink" title="深浅拷贝"></a>深浅拷贝</h2><p>复制一个对象和数组，但不可以改变原始数据类型</p>
+<ul>
+<li><p>js中的传值与传址：</p>
+<p>传值：一般是原始数据类型使用，var a = 10 在这里会在栈空间中开辟一个空间存放10，然后在把a与10关联起来。var b = a 就会新开劈一块空间把a的值传进去，在于b相互关联。</p>
+<p>传址：一般是引用数据类型，var a = {a:1} 会在堆区开辟一块内存存放，在把内存地址返回到栈区，栈区开一一块空间存储这个地址，再把地址与a进行关联。</p>
+</li>
+<li><p>原始数据类型没有深浅拷贝，深浅拷贝是针对于引用类型的。</p>
+<ul>
+<li>1、深拷贝：会重新创建内存空间，修改数据不会影响原有数据。</li>
+<li>2、浅拷贝：不会创建新的空间，修改数据会影响原有数据。</li>
+</ul>
+</li>
+<li><p>使用深浅拷贝使用场景：复制的数据类型的拷贝</p>
+</li>
+<li><p>拷贝方法：</p>
+<ul>
+<li>1、Object.assign()</li>
+<li>2、遍历对象中的属性赋值给新对象</li>
+<li>3、使用扩展运算符</li>
+<li>4、JSON.parser(JSON.stringify(obj))  这种方法不会拷贝属性值为函数、undefined</li>
+</ul>
+</li>
+<li><p>可以使用递归循环遍历对象：可以拷贝所有的属性以及值都是深拷贝。</p>
+<h2 id="垃圾回收"><a href="#垃圾回收" class="headerlink" title="垃圾回收"></a>垃圾回收</h2><ul>
+<li>内存泄漏：一块内存，既不能使用，也不能回收，直到浏览器结束。</li>
+<li>内存堆积：最终会消耗尽系统的所有内存，导致浏览器崩溃。</li>
+</ul>
+</li>
+</ul>
+<h1 id="5、哈希表"><a href="#5、哈希表" class="headerlink" title="5、哈希表"></a>5、哈希表</h1><h2 id="hash"><a href="#hash" class="headerlink" title="hash"></a>hash</h2><p>hash：其实就是一种算法，把任意长度的输入通过散列算法变换成固定长度的输出，输出是散列值。hash和散列是同一个东西。</p>
+<p>哈希算法不过是一个复杂的运算，他的输入可以是字符串，可以是任何文件，经过哈希运算以后，变成一个固定长度的输出，哈希算法有一个最大的特点：不可逆，不能从结果推算出输入。</p>
+<p>hash是基于数组实现的，但是数组的插入删除效率不高，查询效率分两种（通过索引查找）效率高（通过内容查找）效率相对低。</p>
+<h2 id="hash表"><a href="#hash表" class="headerlink" title="hash表"></a>hash表</h2><p>通过把散列函数把字符转为ascll对应的码值相加形成散列值，在通过散列值绘制散列表。散列表存储着所有的对于转换的码值。</p>
+<p>hash函数</p>
+<p>哈希函数就是把字符串转化为数字。</p>
+<p>哈希函数有很多种，java hashcode 字符的acill码加在一起，然后在莫上一个质数，最后莫出多少就是多少，hash函数其实复杂的很，如何hash函数选的好的话，就可以让这些数字尽量避免去分散，而不会发送碰撞/冲突。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">HashTable</span></span>&#123;</span><br><span class="line">    <span class="keyword">constructor</span>()&#123;</span><br><span class="line">        <span class="keyword">this</span>.table = []; <span class="comment">//哈希表</span></span><br><span class="line">    &#125;</span><br><span class="line">    loseloseHashCode(key)&#123;</span><br><span class="line">        <span class="keyword">let</span> hash = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">let</span> i = <span class="number">0</span>; i&lt; key.length; i++)&#123;</span><br><span class="line">            hash += key[i].charCodeAt();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//降低冲突，降低存储位数</span></span><br><span class="line">        <span class="keyword">return</span> hash % <span class="number">37</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    put(key , value)&#123;</span><br><span class="line">        <span class="keyword">const</span> position = <span class="keyword">this</span>.loseloseHashCode(key);</span><br><span class="line">        <span class="keyword">this</span>.table[position] = value;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">get</span>(key)&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.table[<span class="keyword">this</span>.loseloseHashCode(key)];</span><br><span class="line">    &#125;</span><br><span class="line">    remove(key)&#123;</span><br><span class="line">        <span class="keyword">this</span>.table[<span class="keyword">this</span>.loseloseHeadCode(key)]</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>尽管我们使用了哈希函数处理，但是依然会发生碰撞。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">money &gt; <span class="number">43</span>   oxgbx &gt; <span class="number">43</span></span><br></pre></td></tr></table></figure>
+
+<p>解决冲突与碰撞（哈希覆盖）的方法</p>
+<p>连地址法（拉链法）：哈希表种存储的不是一个实际的值，而是存储一个链表用来存储实际的值</p>
+<p>开放地址法：寻找空白位置来放置数据（有三种放置方法）</p>
+<ul>
+<li>1、线性探测法：会从index + 1开始找，有空的就放进去，容易发生聚集，聚集会影响效率。</li>
+<li>2、平方探测法：会从index+ 1 的平方开始，有空的就放进去，相比线性查找法减少了聚集的发生情况，但是会出现返回的情况，这也不利于哈希表的效率。</li>
+<li>3、再哈希法：对数据再次使用hash算法，来制作hash表。</li>
+</ul>
+<h2 id="md5就是基于hash算法"><a href="#md5就是基于hash算法" class="headerlink" title="md5就是基于hash算法"></a>md5就是基于hash算法</h2><ul>
+<li>1、特点：<ul>
+<li>1、md5是一个不可逆的，加密（不算加密，加密应该有对于的解密）</li>
+<li>2、计算极快</li>
+</ul>
+</li>
+<li>2、md5的破解方法-&gt;撞库</li>
+</ul>
+<h2 id="哈希的两个特性"><a href="#哈希的两个特性" class="headerlink" title="哈希的两个特性"></a>哈希的两个特性</h2><p>1、不可逆</p>
+<p>2、计算极快</p>
+<h2 id="编码过程"><a href="#编码过程" class="headerlink" title="编码过程"></a>编码过程</h2><p>编码其实就是把字符串转为计算机可以识别的数字。</p>
+<p>通过下标查找速度很快》下标是数字》字符串数字》哈希函数》哈希碰撞？哈希覆盖》链地址法，开放地址法。hash缺点就是比较消耗内存。（以空间换时间）</p>
+<h1 id="6、树"><a href="#6、树" class="headerlink" title="6、树"></a>6、树</h1><h2 id="1、概念"><a href="#1、概念" class="headerlink" title="1、概念"></a>1、概念</h2><p>树：n个节点构成的有限集合。</p>
+<p>空树：n = 0（节点个数等于0）</p>
+<p>根节点：n = 1（只有一个节点）</p>
+<p>子树：以其他节点为根的树是子树。</p>
+<p>节点的度：节点分支的个数。</p>
+<p>树的度：选取所有节点种最大的度。</p>
+<p>叶子节点：度为0的节点，位于树的最深层。</p>
+<p>分支节点：度大于0的节点，除了叶子节点，其他的都是分支节点。</p>
+<p>节点层次：是节点到根节点的边数。</p>
+<p>树的深度：选取节点中最大的层次。</p>
+<p>森林：所有子树的集合</p>
+<h2 id="2、树的存储结构"><a href="#2、树的存储结构" class="headerlink" title="2、树的存储结构"></a>2、树的存储结构</h2><p>物理存储结构又2种，顺序存储和链式存储，因此树无法直接存储，所以要将树转化为顺序或者链式存储。</p>
+<p>有三种方法：</p>
+<ul>
+<li>1、双亲表示法：采用顺序存储（数组）存储普通的树，顺序存储各个节点的同时，给各个节点添加父节点的位置的变量。<ul>
+<li>优点：可以快速的获取任意节点的父节点的位置。</li>
+<li>缺点：不能快速获取任意节点的子节点的位置</li>
+</ul>
+</li>
+<li>2、孩子表示法：这一个方式，是创建多个指针域，指向它所有子节点的地址，也就是说任何一个节点都掌握着他的子节点的位置。</li>
+<li>3、孩子兄弟表示法：这种方式会把一个树转化为二叉树，他的做法是；用两个指针分别指向它的第一个子节点和第一个右兄弟节点。</li>
+</ul>
+<h2 id="3、二叉树"><a href="#3、二叉树" class="headerlink" title="3、二叉树"></a>3、二叉树</h2><p>二叉树：最多只有2个节点。度不超过2的树</p>
+<p>二叉树有五种形态：空树，只有一个根节点，只有一个左子树，只有一个右子树，两个节点都有。</p>
+<p>第i层二叉树的最大节点数：2^(i-1)</p>
+<ul>
+<li><p>特殊的二叉树：</p>
+<ul>
+<li><p>1、满二叉树：树是满的，每个节点都有2个子节点。</p>
+</li>
+<li><p>2、完全二叉树：从根节点到倒数第二层满足完美二叉树，最后一层可以不完全填充，其叶子节点都靠左对齐。</p>
+</li>
+<li><p>3、二叉排序树（BTS）：</p>
+<p>非空左子树所有键值小于其根节点的键值</p>
+<p>非空右子树所有键值大于其根节点的键值</p>
+<p>左右子树本身也是二叉搜索树。</p>
+</li>
+</ul>
+</li>
+</ul>
 
       
 
@@ -534,731 +1391,9 @@
 
 
   
-    <article id="post-node" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/04/22/node/">node</a>
-    </h1>
-  
-
-        
-        <a href="/2020/04/22/node/" class="archive-article-date">
-  	<time datetime="2020-04-22T13:36:20.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-22</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <a id="more"></a>
-<h1 id="node-js是什么？"><a href="#node-js是什么？" class="headerlink" title="node.js是什么？"></a>node.js是什么？</h1><ul>
-<li><p>node.js一个让javascript运行在服务端的开发平台</p>
-<ul>
-<li><p>node.js不是一门语言</p>
-</li>
-<li><p>node.js不是库，不是框架</p>
-</li>
-<li><p>node.js是一个JavaScript运行时环境</p>
-</li>
-<li><p>node.js是可以解析和执行js代码，以前只有浏览器可以解析JavaScript</p>
-</li>
-<li><p>也就是说有了node，JavaScript可以完全脱离浏览器运行。</p>
-</li>
-<li><p>构建与chrome的v8引擎上</p>
-<ul>
-<li>代码只是具有特定格式的字符串</li>
-<li>引擎可以识别他们，引擎会帮你去解析和执行</li>
-<li>chrome的v8引擎，是目前公认执行js最快的引擎</li>
-<li>node的作者把v8引擎提取出来，编译成了JavaScript的运行环境</li>
-</ul>
-</li>
-<li><p>浏览器中的JavaScript</p>
-<ul>
-<li>EcmaScript</li>
-<li>Bom</li>
-<li>Dom</li>
-</ul>
-</li>
-<li><p>node中的JavaScript</p>
-<ul>
-<li>只有EcmaScript</li>
-<li>没有Dom和Bom</li>
-<li>node这个JavaScript运行时环境为JavaScript提供了一些服务器级别的操作API<ul>
-<li>例如文件读写</li>
-<li>网络服务的构建</li>
-<li>网络通讯</li>
-<li>http服务器等<ul>
-<li>node.js使用机制</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>事件驱动</p>
-</li>
-<li><p>非阻塞io模型，简单来说就是异步操作</p>
-</li>
-</ul>
-</li>
-</ul>
-<ul>
-<li>node.js生态系统<ul>
-<li>npm（世界上最大的开源库生态系统）</li>
-<li>绝大数的JavaScript包都存放在npm上，让开发人员更方便的下载使用</li>
-</ul>
-</li>
-</ul>
-<h1 id="node-js能做什么？"><a href="#node-js能做什么？" class="headerlink" title="node.js能做什么？"></a>node.js能做什么？</h1><pre><code>- web服务器后台
-- 命令行工具（npm，hexo）
-- 一些资源
-    - 《深入淡出Node.js》
-    - 《node.js权威指南》</code></pre><h1 id="node-js学完能学到什么？"><a href="#node-js学完能学到什么？" class="headerlink" title="node.js学完能学到什么？"></a>node.js学完能学到什么？</h1><pre><code>- B/S编程模型
-    - Brower-server
-    - back-end
-    - 任何服务端技术这种BS编译模型都是一样的，和语言无关
-
-- 模块化编程
-    - 通过commin.js导入导出对应模块
-- 异步编程
-    - 回调函数
-    - promise
-    - async
-    - generator</code></pre><h1 id="模块系统"><a href="#模块系统" class="headerlink" title="模块系统"></a>模块系统</h1><pre><code>使用node编写应用程序主要就是在使用
-    - ECMAscript
-    - 核心模块
-        - fs模块
-        - http模块
-        - url模块
-    - 第三方模块
-    - 自定义模块
-
-- 1、什么是模块化
-    - 文件作用域
-    - 通讯规则
-
-
-
-
-- commonJS模块规范
-在node中的JavaScript还有一个跟重要的概念，模块系统
- - 模块作用域
- - 使用require方法来加载模块
- - 使用export 接口对象来导出模块中的成员
-
- - 加载 require
-    两个作用
-        - 执行被加载 模块的代码
-        - 得到被加载模块中的exports导出接口对象
- - 导出 export
-    - node中是模块作用域，默认文件中所有的成员只在当前文件模块有效
-    - 对希望可以被其他模块访问的成员，我们需要把这些公开的成员挂在到exprots接口对象中就可以了
-        - 导出多个成员
-        <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span>.a = <span class="number">123</span></span><br><span class="line"><span class="keyword">export</span>.b = <span class="number">456</span></span><br><span class="line"><span class="keyword">export</span>.c=<span class="number">789</span></span><br></pre></td></tr></table></figure>
-        - 导出单个成员
-        <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.export = <span class="string">'hello'</span></span><br><span class="line"><span class="built_in">module</span>.export = &#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></code></pre><h1 id="模块原理-接下来我们介绍一下原理"><a href="#模块原理-接下来我们介绍一下原理" class="headerlink" title="模块原理 接下来我们介绍一下原理"></a>模块原理 接下来我们介绍一下原理</h1><pre><code>这个原理有点像构造函数，node中只有模块作用.每个模板内部都有一个自己的对象module对象，在module对象中也有一个对象export的一个空对象。
-默认在代码的最底层有一句话，return module.exports。而其中还有一局代码是var express = module.export  因此才有了export.a = 123这种导入。其实本质还是对module对象中的export导出。</code></pre><h1 id="模块查找机制"><a href="#模块查找机制" class="headerlink" title="模块查找机制"></a>模块查找机制</h1><h1 id="require-优先从缓存中加载"><a href="#require-优先从缓存中加载" class="headerlink" title="require  优先从缓存中加载"></a>require  优先从缓存中加载</h1><h1 id="标识符分析"><a href="#标识符分析" class="headerlink" title="标识符分析"></a>标识符分析</h1><pre><code>- 路径形式的模块
-&gt;/(当前文件模块所属磁盘根路径)   ./   ../
-- 核心模块
-&gt;直接应用，这些核心文件已经被编译到二进制文件中了。
-- 第三方模板
-不可能有任何一个第三方包与核心模块的名字是一样的
-&gt;先找到当前文件中的node_modules，你所引入的包/ 再去找到包中对应的pack.json文件/再去找到里面的main属性/main属性中就记录了当前包的入口模块。
-
-&gt;如果pack.json不存在，并且main对应的路径是有问题的那么，那么pack.json文件在同一目录下的index.js文件      </code></pre><h1 id="fs模块"><a href="#fs模块" class="headerlink" title="fs模块"></a>fs模块</h1><pre><code>- 文件读取
-
-    - fs.readFile(文件中存储的其实二进制0 1)</code></pre><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> fs = <span class="built_in">require</span>(<span class="string">'fs'</span>)</span><br><span class="line"></span><br><span class="line">fs.readFile(<span class="string">'./data/hello.text'</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span>(<span class="params">error, data</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(!error)&#123;</span><br><span class="line">        <span class="keyword">var</span> a = data.toString()</span><br><span class="line">        <span class="built_in">console</span>.log(a)</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'读取文件失败'</span>)</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-<pre><code>    这里他呗默认转为了16进制，外面可以通过tostring方法转化成我们能认识的字符
-
-
-- 写文件
-    - fs.writeFile</code></pre><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> fs = <span class="built_in">require</span>(<span class="string">'fs'</span>);</span><br><span class="line"></span><br><span class="line">fs.writeFile(<span class="string">'./data/holleword.text'</span>,<span class="string">"家好  我是holleword"</span>,<span class="function"><span class="keyword">function</span>(<span class="params">error</span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(error)</span><br><span class="line">    <span class="comment">//没错error = null</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-
-<h1 id="http模块"><a href="#http模块" class="headerlink" title="http模块"></a>http模块</h1><p>node可以非常轻松的构建一个web服务器，在node中提供一个核心模块：http</p>
-<ul>
-<li><p>1、加载http核心模块</p>
-<blockquote>
-<p>var http = require(‘http’)</p>
-</blockquote>
-</li>
-<li><p>2、使用http.createServer（）方法创建一个web服务器，返回一个Server实例</p>
-<blockquote>
-<p>var server = http.createServer()</p>
-</blockquote>
-</li>
-<li><p>3、服务器作用</p>
-<p>  1、对数据提供服务</p>
-<p>  2、发送请求</p>
-<p>  3、接受数据</p>
-<p>  4、处理请求</p>
-<p>  5、响应请求</p>
-<ul>
-<li><p>配置头部信息</p>
-<blockquote>
-<p>res.setHeader(‘content-type’ , ‘text/plain’; charset=utf-8)</p>
-</blockquote>
-<p>  文件类型（content-type）</p>
-<ul>
-<li><p>非文字类型的都要把charset=utf-8去掉</p>
-</li>
-<li><p>text/plain 普通文本</p>
-</li>
-<li><p>text/html 就是html格式文本<br><a href="https://tool.oschina.net/" target="_blank" rel="noopener">工具</a><br>除了配置请求头中的content-type还可以在html页面的meta标签中声明他</p>
-<p>文本编码格式</p>
-<ul>
-<li>在服务器默认发送的数据，默认都是utf8编码的内容</li>
-<li>但是浏览器不知道你是什么类型的编码，你也没有告诉浏览器你发送的数据是什么编码</li>
-<li>那么浏览器在不知道内容编码的情况下，默认按照当前操作系统的默认编码去解析</li>
-<li>中文操作系统的默认编码格式是 gdk</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>监听request请求，当有客户端发送请求会自动执行request请求事件</p>
-</li>
-<li><p>服务端重定向</p>
-<ul>
-<li><p>以3开头的状态码都是用于重定向的。</p>
-</li>
-<li><p>首先设置状态码</p>
-<blockquote>
-<p>res.statusCode = 302</p>
-</blockquote>
-<p>301 永久重定向  浏览器会记住<br>302 零时重定向  浏览器记不住</p>
-</li>
-<li><p>配置重定向地址</p>
-<blockquote>
-<p>res.setHeader(‘Location’,’/‘)</p>
-</blockquote>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> http = <span class="built_in">require</span>(<span class="string">'http'</span>)</span><br><span class="line"><span class="keyword">var</span> server = http.createServer()</span><br><span class="line"></span><br><span class="line">server.on(<span class="string">'request'</span>,<span class="function"><span class="keyword">function</span>(<span class="params">req,res</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'收到客户端请求'</span>)</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'请求地址是'</span>+req.url)</span><br><span class="line">    <span class="comment">//req.url获取获取请求的url信息</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="comment">//res中有wrte方法，write可以多次使用但是最后必须使用end结束，如果不接受那么程序会继续等待</span></span><br><span class="line">    res.write(<span class="string">'holle'</span>)</span><br><span class="line">    res.write(<span class="string">'word'</span>)</span><br><span class="line">    res.end()</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//第二种写法</span></span><br><span class="line"><span class="keyword">var</span> http = <span class="built_in">require</span>(<span class="string">'http'</span>)</span><br><span class="line">http.createServer(<span class="function"><span class="keyword">function</span>(<span class="params">req,res</span>)</span>&#123;</span><br><span class="line"></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>4、绑定端口号，启动服务器</p>
-<blockquote>
-<p>server.listen(3000)</p>
-</blockquote>
-</li>
-<li><p>5、配置路由响应</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> http = <span class="built_in">require</span>(<span class="string">'http'</span>)</span><br><span class="line"><span class="keyword">var</span> server = http.createServer()</span><br><span class="line"></span><br><span class="line">server.on(<span class="string">'request'</span>,<span class="function"><span class="keyword">function</span>(<span class="params">req,res</span>) </span>&#123;</span><br><span class="line"></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-<h1 id="path模块"><a href="#path模块" class="headerlink" title="path模块"></a>path模块</h1><p>用来帮你辅助操作路径的</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//获取给定路径的文件名</span></span><br><span class="line">path.basename(<span class="string">'路径'</span>)   <span class="comment">//获取文件明年</span></span><br><span class="line">path.basename(<span class="string">'c/a/index.js'</span>)   <span class="comment">//index.js</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//获取给定路径的文件名</span></span><br><span class="line">path.dirname(<span class="string">'路径'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">//获取文件扩展名</span></span><br><span class="line">path.extname(<span class="string">''</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">//判断是否为绝对路径</span></span><br><span class="line">path.isAbsolyte(path)</span><br><span class="line"></span><br><span class="line"><span class="comment">//获取分析路径中所有信息</span></span><br><span class="line">path.parse(<span class="string">''</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">//路径拼接</span></span><br><span class="line">path.join(<span class="string">''</span>,<span class="string">''</span>)</span><br></pre></td></tr></table></figure>
-
-</li>
-</ul>
-<h1 id="node中的其他成员"><a href="#node中的其他成员" class="headerlink" title="node中的其他成员"></a>node中的其他成员</h1><p>每个模块中，除了require、exports等模块，还有两个特殊成员。</p>
-<ul>
-<li>__dirname 可以获取当前文件模块所属目录的绝对路径 （动态的获取）<br>` __filename 可以获取当前文件的绝对路径 （动态的获取） </li>
-</ul>
-<p>在文件操作中，使用相对路径是不可靠的，因为node中文件操作的路径被设计为相对于执行node命令所处的路径（不是bug，人家这样设计是有使用场景的）<br>为了解决相对路径不可靠的问题，我们把可以使用<strong>dirname/</strong>filename来动态获取不同计算机不同存储位置的路径。在路径拼接过程中，为了避免手动修改路径出错，所以推荐多使用path.join()来辅助拼接，在以后的操作中尽可能的把绝对路径转化为相对路径。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">app.use(<span class="string">'/public/'</span>,express.static(path.join(__dirname,<span class="string">'./public'</span>)))</span><br><span class="line">app.use(<span class="string">'/node_modules'</span>,express.static(path.join(__dirname,<span class="string">'./node_modules'</span>)))</span><br></pre></td></tr></table></figure>
-<h1 id="node中的核心模块"><a href="#node中的核心模块" class="headerlink" title="node中的核心模块"></a>node中的核心模块</h1><p>fs模块<a href="https://nodejs.org/dist/latest-v12.x/docs/api/fs.html" target="_blank" rel="noopener">官方文档</a>，http模块，path路径模块，os操作系统模块。。。</p>
-<h1 id="node多文件执行"><a href="#node多文件执行" class="headerlink" title="node多文件执行"></a>node多文件执行</h1><ul>
-<li><p>node中没有全局作用域，只有模块作用域。</p>
-<pre><code>也就是说不同文件中的内容在同一页面执行引入的时候不会相互影响。外部取不到内部的数据，内部也取不到外部的数据，但是可以执行代码。</code></pre></li>
-<li><p>那么如何让node中的模块之间通讯呢？</p>
-<ul>
-<li>export导出模块<br>  常规导出的是express这个对象，需要通过打点或者解构来获取和调用里面的多内容<blockquote>
-<p>export   abc</p>
-</blockquote>
-</li>
-<li>require的作用<ul>
-<li>1、加载并执行文件模块中的代码</li>
-<li>2、拿到被加载文件模块导出的接口对象</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>ap地址和端口号</p>
-<ul>
-<li>每一个ip指向了一台服务器（定位计算机）</li>
-<li>服务器中的每一个物联网通讯的应用程序都对应了一个端口号（端口号定位具体应用程序）</li>
-<li>端口号范围 0 - 65535之间</li>
-</ul>
-</li>
-</ul>
-<h1 id="模板引擎"><a href="#模板引擎" class="headerlink" title="模板引擎"></a>模板引擎</h1><pre><code>模板引擎起源于服务器，最后发展到了前端
-- art-template（js）
-- </code></pre><h1 id="node中静态资源处理方法"><a href="#node中静态资源处理方法" class="headerlink" title="node中静态资源处理方法"></a>node中静态资源处理方法</h1><p>node中为了方便静态资源管理放在public文件中</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> http = <span class="built_in">require</span>(<span class="string">"http"</span>);</span><br><span class="line"><span class="keyword">var</span> url = <span class="built_in">require</span>(<span class="string">"url"</span>);</span><br><span class="line"><span class="keyword">var</span> fs = <span class="built_in">require</span>(<span class="string">"fs"</span>);</span><br><span class="line"> </span><br><span class="line">http.createServer(<span class="function"><span class="keyword">function</span>(<span class="params">req,res</span>)</span>&#123;</span><br><span class="line">    <span class="comment">//得到用户的路径</span></span><br><span class="line">    <span class="comment">//</span></span><br><span class="line">    <span class="keyword">var</span> pathname = url.parse(req.url).pathname;</span><br><span class="line">    <span class="comment">//真的读取这个文件</span></span><br><span class="line">    fs.readFile(<span class="string">"./static/"</span> + pathname,<span class="function"><span class="keyword">function</span>(<span class="params">err,data</span>)</span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(err)&#123;</span><br><span class="line">            <span class="comment">//如果此文件不存在，就应该用404返回</span></span><br><span class="line">            fs.readFile(<span class="string">"./static/404.html"</span>,<span class="function"><span class="keyword">function</span>(<span class="params">err,data</span>)</span>&#123;</span><br><span class="line">                res.writeHead(<span class="number">404</span>,&#123;<span class="string">"Content-type"</span>:<span class="string">"text/html;charset=UTF8"</span>&#125;);</span><br><span class="line">                res.end(data);</span><br><span class="line">            &#125;);</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;;</span><br><span class="line">        res.end(data);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;).listen(<span class="number">3000</span>,<span class="string">"127.0.0.1"</span>);</span><br></pre></td></tr></table></figure>
-
-
-<h1 id="实现Apache"><a href="#实现Apache" class="headerlink" title="实现Apache"></a>实现Apache</h1><h1 id="推荐JavaScript的编写规范的书"><a href="#推荐JavaScript的编写规范的书" class="headerlink" title="推荐JavaScript的编写规范的书"></a>推荐JavaScript的编写规范的书</h1><blockquote>
-<p>编写可维护的javascript</p>
-</blockquote>
-<h1 id="服务器渲染"><a href="#服务器渲染" class="headerlink" title="服务器渲染"></a>服务器渲染</h1><blockquote>
-<p>也就是说在服务器使用模板引擎<br>    - 客户端渲染<br>        html 仅仅作为静态文件，客户端端在请求时，服务端不做任何处理，直接以原文件的形式返回给客户端客户端，然后根据 html 上的 JavaScript，生成 DOM 插入 html。<br>    - 服务端渲染<br>    服务端在返回 html 之前，在特定的区域，符号里用数据填充，再给客户端，客户端只负责解析 HTML 。（也就是通过模板引擎把数据在服务端的时候就渲染好，收到请求之间发送页面）</p>
-</blockquote>
-<pre><code>- 客户端渲染与服务器渲染的区别
-    - 客户端渲染不利于seo搜索引擎优化，也就是说客户端渲染的数据爬虫爬不到
-    - 服务器渲染是可以被爬虫爬取到的，客户端的异步渲染是很难被爬虫爬取到的。
-    - 所以一个网站，是服务器与客户端结合渲染来做的</code></pre><h1 id="npm"><a href="#npm" class="headerlink" title="npm"></a>npm</h1><pre><code>package.json包说明书，描述你的项目使用了哪些npm包
-
---save 会把你安装的包放在package.json中。
-
-同时package.json可以通过npm init初始化出来
-而如果没有node——module有package.json使用npm install  会更具package.json中的依赖还原你的node_module
-
-
-npm  是一个网站
-npm  是一个命令行工具</code></pre><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">npm install (i)</span><br><span class="line"></span><br><span class="line">npm install 包名 --save(S)</span><br><span class="line">npm uninstall 包名</span><br><span class="line">npm help  查看使用帮助</span><br></pre></td></tr></table></figure>
-<pre><code>npm被墙问题
-    npm是国外网站一般使用cnpm
-        npm  install --global cnpm
-    如果不想通过npm安装cnpm也可以
-        npm install 包 --registry=https：//registry.npm.taobao.org
-        这样会比较麻烦每次安装都需要写后缀
-
-        推荐这样
-        npm config set registry https：//registry.npm.taobao.org
-
-package.json/package-lock.json  
-    - package-lock.json中存储的你项目中node_module所有的依赖信息，当你的node_module从新安装依赖的时候会比没有安装之前的速度更快。
-    - 从文件来看，有一个lock  这个锁是用来锁定版本的，如果你下载的下面时1.1版本的，如果没有lock那么你npm i的时候就会默认给你安装最新的版本</code></pre><h1 id="JavaScript模块化"><a href="#JavaScript模块化" class="headerlink" title="JavaScript模块化"></a>JavaScript模块化</h1><p>JavaScript天生不支持模块化，如果浏览器需要模块化那么需要引入第三方库<br>    - require.js    AMD<br>    - sea.js    CMD<br>    上面两中都是浏览器模块化规范<br>    - common.js   common<br>    当然还有UMD、es6中的modules</p>
-<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><ul>
-<li>Node中我们开启的web服务是一个完全的黑盒子，所有资源都不允许用户来访问，用户可以访问的内容具体由开发人员编写设计为准。</li>
-<li>在Node中可以把一个url地址处理的非常漂亮  </li>
-</ul>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">node</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/04/22/node/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-vue从基础到熟悉" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/04/03/vue%E4%BB%8E%E5%9F%BA%E7%A1%80%E5%88%B0%E7%86%9F%E6%82%89/">vue从基础到熟悉</a>
-    </h1>
-  
-
-        
-        <a href="/2020/04/03/vue%E4%BB%8E%E5%9F%BA%E7%A1%80%E5%88%B0%E7%86%9F%E6%82%89/" class="archive-article-date">
-  	<time datetime="2020-04-03T03:04:27.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-03</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="vue从基础到熟悉"><a href="#vue从基础到熟悉" class="headerlink" title="vue从基础到熟悉"></a>vue从基础到熟悉</h1>
-        
-          <a class="article-more-a" href="/2020/04/03/vue%E4%BB%8E%E5%9F%BA%E7%A1%80%E5%88%B0%E7%86%9F%E6%82%89/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">vue</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/04/03/vue%E4%BB%8E%E5%9F%BA%E7%A1%80%E5%88%B0%E7%86%9F%E6%82%89/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-轮播插件之无缝轮播失效解决方案" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/03/31/%E8%BD%AE%E6%92%AD%E6%8F%92%E4%BB%B6%E4%B9%8B%E6%97%A0%E7%BC%9D%E8%BD%AE%E6%92%AD%E5%A4%B1%E6%95%88%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/">轮播插件之无缝轮播失效解决方案</a>
-    </h1>
-  
-
-        
-        <a href="/2020/03/31/%E8%BD%AE%E6%92%AD%E6%8F%92%E4%BB%B6%E4%B9%8B%E6%97%A0%E7%BC%9D%E8%BD%AE%E6%92%AD%E5%A4%B1%E6%95%88%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/" class="archive-article-date">
-  	<time datetime="2020-03-31T13:43:39.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-31</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><a href="https://www.jianshu.com/p/f6d31e2732e0" target="_blank" rel="noopener">参考</a><br>产生无缝轮播失效的原因<br>：是因为swiper提前初始化了，那时候数据还没有完全出来</p>
-<ul>
-<li><ol>
-<li>使用vue提供的$nextTick()方法<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">this</span>.$nextTick(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">              <span class="keyword">var</span> swiper = <span class="keyword">new</span> Swiper(<span class="string">'.swiper-container'</span>, &#123;</span><br><span class="line">		此处省略</span><br><span class="line">         &#125;）</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-</li>
-<li><p>2、在swiper初始化的时候</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">swiper1 = <span class="keyword">new</span> Swiper(<span class="string">'.swiper-container'</span>, &#123;</span><br><span class="line">    initialSlide :<span class="number">0</span>,</span><br><span class="line">    observer:<span class="literal">true</span>,<span class="comment">//修改swiper自己或子元素时，自动初始化swiper</span></span><br><span class="line">    observeParents:<span class="literal">true</span><span class="comment">//修改swiper的父元素时，自动初始化swiper</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-
-</li>
-</ul>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/03/31/%E8%BD%AE%E6%92%AD%E6%8F%92%E4%BB%B6%E4%B9%8B%E6%97%A0%E7%BC%9D%E8%BD%AE%E6%92%AD%E5%A4%B1%E6%95%88%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="w-路由守卫" class="article article-type-w  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/03/28/%E8%B7%AF%E7%94%B1%E5%AE%88%E5%8D%AB/">路由守卫</a>
-    </h1>
-  
-
-        
-        <a href="/2020/03/28/%E8%B7%AF%E7%94%B1%E5%AE%88%E5%8D%AB/" class="archive-article-date">
-  	<time datetime="2020-03-28T12:01:26.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-28</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="路由守卫"><a href="#路由守卫" class="headerlink" title="路由守卫"></a>路由守卫</h1>
-        
-          <a class="article-more-a" href="/2020/03/28/%E8%B7%AF%E7%94%B1%E5%AE%88%E5%8D%AB/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">vue</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/03/28/%E8%B7%AF%E7%94%B1%E5%AE%88%E5%8D%AB/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-axios基本操作" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/03/27/axios%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/">axios基本操作</a>
-    </h1>
-  
-
-        
-        <a href="/2020/03/27/axios%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/" class="archive-article-date">
-  	<time datetime="2020-03-27T14:48:16.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-27</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="axios基本操作"><a href="#axios基本操作" class="headerlink" title="axios基本操作"></a>axios基本操作</h1>
-        
-          <a class="article-more-a" href="/2020/03/27/axios%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">vue</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/03/27/axios%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-vuex解析" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/03/26/vuex%E8%A7%A3%E6%9E%90/">vuex解析</a>
-    </h1>
-  
-
-        
-        <a href="/2020/03/26/vuex%E8%A7%A3%E6%9E%90/" class="archive-article-date">
-  	<time datetime="2020-03-26T10:53:12.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-26</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="vuex基本使用"><a href="#vuex基本使用" class="headerlink" title="vuex基本使用"></a>vuex基本使用</h1>
-        
-          <a class="article-more-a" href="/2020/03/26/vuex%E8%A7%A3%E6%9E%90/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">vue</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/03/26/vuex%E8%A7%A3%E6%9E%90/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &amp;raquo;</a>
+      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/">Next &amp;raquo;</a>
     </nav>
   
 
@@ -1356,11 +1491,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">node</a>
+                <a href="javascript:void(0)" class="js-tag color5">http</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">http</a>
+                <a href="javascript:void(0)" class="js-tag color3">js</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">node</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1376,7 +1515,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">js</a>
+                <a href="javascript:void(0)" class="js-tag color4">web</a>
               </li>
             
             <div class="clearfix"></div>

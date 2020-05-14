@@ -6,17 +6,17 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>cookie相关 | Hexo</title>
+  <title>cookie/session/token | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="cookiehttp协议是一个无状态协议，他不会记录用户的信息。这是我们需要使用cookie来储存用户的信息。  cookie中的信息是存储在浏览器中的，因此只能存储一些非铭感信息。  session为了解决cookie的问题，我们引入session。超市   -   电子柜    -    消费者电子柜（服务端）   给你一个凭证（cookie）凭证是唯一的，不可重复，一点丢失，不可找回。">
+  <meta name="description" content="为什么需要cookie session token 1、http是无状态协议，他不会去记住或者认识是谁正在访问它，对于大型电商平台，需要区分每一个用户才可以把他们需要的东西加入他们的购物车。因此先辈们发明的cookie。 2、当用户访问了服务器，服务器就会生成一个cookie_id并传给浏览器保存，下一次访问服务器的时候就会携带这个cookie中有登录信息。传输给服务器后，服务器处理以下就可以判">
 <meta property="og:type" content="article">
-<meta property="og:title" content="cookie相关">
+<meta property="og:title" content="cookie&#x2F;session&#x2F;token">
 <meta property="og:url" content="http://yoursite.com/2020/05/02/cookie%E7%9B%B8%E5%85%B3/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="cookiehttp协议是一个无状态协议，他不会记录用户的信息。这是我们需要使用cookie来储存用户的信息。  cookie中的信息是存储在浏览器中的，因此只能存储一些非铭感信息。  session为了解决cookie的问题，我们引入session。超市   -   电子柜    -    消费者电子柜（服务端）   给你一个凭证（cookie）凭证是唯一的，不可重复，一点丢失，不可找回。">
+<meta property="og:description" content="为什么需要cookie session token 1、http是无状态协议，他不会去记住或者认识是谁正在访问它，对于大型电商平台，需要区分每一个用户才可以把他们需要的东西加入他们的购物车。因此先辈们发明的cookie。 2、当用户访问了服务器，服务器就会生成一个cookie_id并传给浏览器保存，下一次访问服务器的时候就会携带这个cookie中有登录信息。传输给服务器后，服务器处理以下就可以判">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-05-02T13:32:11.000Z">
-<meta property="article:modified_time" content="2020-05-03T08:12:43.033Z">
+<meta property="article:modified_time" content="2020-05-09T14:47:16.339Z">
 <meta property="article:author" content="Baket">
 <meta property="article:tag" content="http">
 <meta name="twitter:card" content="summary">
@@ -171,7 +171,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      cookie相关
+      cookie/session/token
     </h1>
   
 
@@ -185,12 +185,33 @@
     <div class="article-entry" itemprop="articleBody">
       
         <a id="more"></a>
+<h1 id="为什么需要cookie-session-token"><a href="#为什么需要cookie-session-token" class="headerlink" title="为什么需要cookie session token"></a>为什么需要cookie session token</h1><ul>
+<li>1、http是无状态协议，他不会去记住或者认识是谁正在访问它，对于大型电商平台，需要区分每一个用户才可以把他们需要的东西加入他们的购物车。因此先辈们发明的cookie。</li>
+<li>2、当用户访问了服务器，服务器就会生成一个cookie_id并传给浏览器保存，下一次访问服务器的时候就会携带这个cookie中有登录信息。传输给服务器后，服务器处理以下就可以判断区分用户了。但是cookie是保存在浏览器的那么就会有安全性问题。这是先辈们有引入了session。</li>
+<li>3、每当用户与服务器建立一次链接就形成了session，这个session data会保存在服务器中，这个session记录着你的登录信息。同时还会生成一个session id 这个会被存放在浏览器的cookie中，等到下一次建立链接的时候会随着cookie被发送到服务端，服务端中就会将session_id 与session_data关联起来。区分用户，但是这种还是不够好，如果有负载均衡器那么与之链接的服务器可能是一个新的服务器，那么就无法建立链接，这时我们使用了token。</li>
+<li>4、当用户与服务器建立链接服务器就会生成一个存放用户id的token返回给客户端的并存放在cookie，sessionstorage等中。当用户再次请求的时候，这个token就会被放在http header中。这个token可以在服务端进行一个签名，token会进行HMAC-SHA256算法，再加上一个只有我知道的密钥对数据进行一个签名。当token返回的时候我们就对token中的数据使用相同的HMAC-SHA256算法，在加上我们自己知道的密钥。两者进行对比如果相等就说明数据没有被更改过。</li>
+</ul>
 <h1 id="cookie"><a href="#cookie" class="headerlink" title="cookie"></a>cookie</h1><p>http协议是一个无状态协议，他不会记录用户的信息。这是我们需要使用cookie来储存用户的信息。</p>
 <ul>
 <li>cookie中的信息是存储在浏览器中的，因此只能存储一些非铭感信息。</li>
 </ul>
 <h1 id="session"><a href="#session" class="headerlink" title="session"></a>session</h1><p>为了解决cookie的问题，我们引入session。<br>超市   -   电子柜    -    消费者<br>电子柜（服务端）   给你一个凭证（cookie）凭证是唯一的，不可重复，一点丢失，不可找回。     你（客户端）<br>express-session这个插件。</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//添加session  </span></span><br><span class="line">req.session.user = user</span><br><span class="line"><span class="comment">//读取session</span></span><br><span class="line">req.session.user</span><br><span class="line"><span class="comment">//删除session</span></span><br><span class="line">req.session.user = <span class="literal">null</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">delete</span> req.session.user</span><br></pre></td></tr></table></figure>
+
+<p>session：当有大量用户太消耗服务器的性能。</p>
+<h1 id="token"><a href="#token" class="headerlink" title="token"></a>token</h1><p>token的组成：</p>
+<ul>
+<li><p>1、header：在转为Base64编码</p>
+<pre><code>- 1、类型：JWT
+- 2、算法：HS256</code></pre></li>
+<li><p>2、payload：会配置一些token的基本信息。在转为Base64编码</p>
+</li>
+<li><p>3、singnature：对 header + payload + 密钥 进行HS256算法加密，在转为Base64编码</p>
+<p>token = header的Base64.payload的Base64.singnature的Base64</p>
+</li>
+</ul>
+<p>完成上面3部分就生成了一个token了，这个token会被返回给客户端并保存，每次请求都会携带这个token，服务器对token中的header、payload进行转码，然后从新重复第三步，如果返回的结果与携带过来的一致，那么就认为用户已经登录了。</p>
+
       
 
       
@@ -342,7 +363,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#cookie"><span class="toc-number">1.</span> <span class="toc-text">cookie</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#session"><span class="toc-number">2.</span> <span class="toc-text">session</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#为什么需要cookie-session-token"><span class="toc-number">1.</span> <span class="toc-text">为什么需要cookie session token</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#cookie"><span class="toc-number">2.</span> <span class="toc-text">cookie</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#session"><span class="toc-number">3.</span> <span class="toc-text">session</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#token"><span class="toc-number">4.</span> <span class="toc-text">token</span></a></li></ol>
                     </div>
                 </span>
             </div>
@@ -458,11 +479,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">node</a>
+                <a href="javascript:void(0)" class="js-tag color5">http</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">http</a>
+                <a href="javascript:void(0)" class="js-tag color3">js</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">node</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -478,7 +503,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">js</a>
+                <a href="javascript:void(0)" class="js-tag color4">web</a>
               </li>
             
             <div class="clearfix"></div>

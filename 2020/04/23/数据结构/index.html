@@ -16,7 +16,7 @@
 <meta property="og:description" content="什么是数据 是一个符号，一个描述客观事物的符号，可以被计算机识别，并且输入给计算机处理的数据的一个符号集合（内存）  什么是数据元素 由数据组成的有意义的集合体的基本单位    人   ，  摄影师   ， 老师  什么是数据结构 数据结构与计算机存储、组织数据的方式，精心选择的数据结构可以带来更高的运行或者存储效率。  由哪些数据结构 1、栈  2、堆  3、队列  4、数组  5、散列表">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-04-23T14:53:31.000Z">
-<meta property="article:modified_time" content="2020-05-04T12:53:57.219Z">
+<meta property="article:modified_time" content="2020-05-14T07:22:16.841Z">
 <meta property="article:author" content="Baket">
 <meta property="article:tag" content="数据结构">
 <meta name="twitter:card" content="summary">
@@ -248,10 +248,227 @@
 </ul>
 </li>
 <li><p>6、作用域<br>  作用域</p>
-<pre><code>- 1、词法作用域：也就是平时使用的作用域，全局作用域（GO）、函数作用域(AO)、会变量提升。
-- 2、动态作用域：就是this对应的作用域，谁调用作用域就是谁。</code></pre></li>
+<pre><code>- 1、词法作用域：也就是平时使用的作用域，全局作用域（GO）、函数作用域(AO)、会变量提升。</code></pre><ul>
+<li>2、动态作用域：就是this对应的作用域，谁调用作用域就是谁。</li>
 </ul>
-<h2 id="队列"><a href="#队列" class="headerlink" title="队列"></a>队列</h2><p>队列也是一种运算受限的线性表，先进先出</p>
+</li>
+</ul>
+<h1 id="2、队列"><a href="#2、队列" class="headerlink" title="2、队列"></a>2、队列</h1><p>队列也是一种运算受限的线性表，先进先出</p>
+<h2 id="2-1、js异步原理"><a href="#2-1、js异步原理" class="headerlink" title="2.1、js异步原理"></a>2.1、js异步原理</h2><ul>
+<li>js中，维护这一个队列，这个队列叫做事件队列</li>
+<li>javascript特点：单线程，同一个时间只能处理一件事<ul>
+<li>JavaScript多线程原理：利用cpu的多核，h5提出了web worker的标准，允许js创建多个线程，而这些被创建的子线程是完全受到主线程控制的，并且子线程不可以操作dom，这个其实并没有改变js单线程的本质。</li>
+</ul>
+</li>
+<li>线程：是操作系统能够进行运算调度的最小单位（对于操作系统来说，线程是最小执行单位，进程是最小资源管理单位）</li>
+<li>进程与线程的区别：<ul>
+<li>1、线程从属于进程。</li>
+<li>2、每个开启一个程序进程就会在内存中开辟一块内存用来资源管理，线程就会执行里面的内容。</li>
+<li>3、一个进程中可以有线程，一个主线程，还可以有多个子线程。</li>
+<li>4、每个线程都会消耗内存。（node是单线程但是可以处理并发，因为他只有一个线程去处理多个线程的事情）</li>
+</ul>
+</li>
+<li>js代码在引擎中执行的过程<ul>
+<li>1、一开始会主线程会创建一个执行栈，在主线程外系统还会维护一个任务队列</li>
+<li>2、所有同步代码都会被主线程放在执行栈中，异步代码都会被放入任务队列。</li>
+<li>3、执行栈中对所有同步脚本代码执行完毕后，系统就会读取任务队列，并把任务队列读取到执行栈中执行，异步代码首先由结果就先输出谁，同等条件下根据队列的顺序一次输出（先进先出）</li>
+<li>4、这里有个通知机制：当执行栈中的同步代码执行完毕后，任务队列会通知主线程，任务队列中的哪些资源已经准备好了，并按照谁先得到结果谁先输出的关系输出给执行栈。</li>
+<li>5、事件循环：当主线程程序执行完毕，事件队列通知主线程读取任务队列的的过程叫做事件循环。</li>
+</ul>
+</li>
+<li>promise<ul>
+<li>1、任务队列中维护着两个任务队列，一个叫宏任务，一个叫微任务。<ul>
+<li>宏任务：l/o 定时器/事件/Ajax</li>
+<li>微任务：promise then finally,process async await</li>
+</ul>
+</li>
+<li>2、js代码执行顺序：同步代码 &gt; 微任务 &gt; 宏任务</li>
+</ul>
+</li>
+<li>node处理多并发优势<ul>
+<li>java、php每一个客户请求，都会开一个新的线程，一个请求大概需要消耗2m的内存，8g最多是要4000和请求。</li>
+<li>node不论你有多少线程，一个线程，事件驱动、非阻塞io，如果node主线程挂了，你的程序就挂了。</li>
+</ul>
+</li>
+</ul>
+<h1 id="3、链表"><a href="#3、链表" class="headerlink" title="3、链表"></a>3、链表</h1><ul>
+<li>1、链表中的元素在内存中不必是连续的空间</li>
+<li>2、链表每一个元素都由一个存储元素本身的节点和一个指向下一个元素的引用组成</li>
+</ul>
+<h2 id="1、JS中的堆栈"><a href="#1、JS中的堆栈" class="headerlink" title="1、JS中的堆栈"></a>1、JS中的堆栈</h2><ul>
+<li>1、原始数据存储：<ul>
+<li>1、首先将10存入栈空间（栈空间中开辟一个空间存入10）</li>
+<li>2、定义一个变量a，此使a与变量是没有建立关系的，a的值为undefined</li>
+<li>3、将变量a和值存储起来</li>
+</ul>
+</li>
+<li>2、引用数据类型<ul>
+<li>1、会在堆区开一一个空间存储值。</li>
+<li>2、堆区会返回一个地址，对于这个地址先在栈区开辟一个空间。</li>
+<li>3、定义一个变量fn，这个时候fn的值为undefined</li>
+<li>4、将变量fn与地址存起来。</li>
+</ul>
+</li>
+</ul>
+<h2 id="2、链表的优势"><a href="#2、链表的优势" class="headerlink" title="2、链表的优势"></a>2、链表的优势</h2><ul>
+<li>1、插入删除：链表的性能好</li>
+<li>2、查找修改：数组性能好</li>
+</ul>
+<h2 id="3、链表的方法"><a href="#3、链表的方法" class="headerlink" title="3、链表的方法"></a>3、链表的方法</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//节点类</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Node</span></span>&#123;</span><br><span class="line">    constructr(element)&#123;</span><br><span class="line">        <span class="keyword">this</span>.element = element;</span><br><span class="line">        <span class="keyword">this</span>.next = <span class="literal">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//链表</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">LinkeedList</span></span>&#123;</span><br><span class="line">    <span class="keyword">constructor</span>()&#123;</span><br><span class="line">        <span class="keyword">this</span>.head = <span class="literal">null</span>;</span><br><span class="line">        <span class="keyword">this</span>.length = <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    append(element)&#123;</span><br><span class="line">        <span class="keyword">let</span> node = <span class="keyword">new</span> Node(element)</span><br><span class="line">        <span class="keyword">if</span>(<span class="keyword">this</span>.length == <span class="number">0</span>)&#123;</span><br><span class="line">            <span class="keyword">this</span>.head = node;</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            <span class="keyword">let</span> current = <span class="keyword">this</span>.head</span><br><span class="line">            <span class="keyword">while</span>(current.next)&#123;</span><br><span class="line">                current = current.next</span><br><span class="line">            &#125;</span><br><span class="line">            current.next = node;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">this</span>.length += <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span></span><br><span class="line">    &#125;</span><br><span class="line">    insert(element , position)&#123;</span><br><span class="line">        <span class="keyword">let</span> index = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">let</span> current = <span class="keyword">this</span>.head</span><br><span class="line">        <span class="keyword">let</span> privious = <span class="literal">null</span></span><br><span class="line">        <span class="keyword">let</span> node = <span class="keyword">new</span> Node(element)</span><br><span class="line">        <span class="keyword">if</span>(position &gt; <span class="number">0</span> || position &lt; <span class="keyword">this</span>.length)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(position == <span class="number">0</span>)&#123;</span><br><span class="line">            node.next = current</span><br><span class="line">            <span class="keyword">this</span>.head = node</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            <span class="keyword">while</span>(index &lt; position)&#123;</span><br><span class="line">                privious = current</span><br><span class="line">                current = current.next</span><br><span class="line">                index++</span><br><span class="line">            &#125;</span><br><span class="line">            node.next = current;</span><br><span class="line">            privious.next = node</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//获取头节点</span></span><br><span class="line">    getHead()&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.head</span><br><span class="line">    &#125;</span><br><span class="line">    toString()&#123;</span><br><span class="line">        <span class="keyword">let</span> current = <span class="keyword">this</span>.head</span><br><span class="line">        <span class="keyword">let</span> linkString = <span class="string">''</span>;</span><br><span class="line">        <span class="keyword">while</span>(current)&#123;</span><br><span class="line">            linkString += <span class="string">','</span> + current.element;</span><br><span class="line">            current = current.next;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> linkString.slice(<span class="number">1</span>)</span><br><span class="line">    &#125;</span><br><span class="line">    remove(element)&#123;</span><br><span class="line">        <span class="keyword">let</span> privious = <span class="literal">null</span></span><br><span class="line">        <span class="keyword">let</span> current = <span class="keyword">this</span>.head</span><br><span class="line">        <span class="keyword">while</span>(current.next.element == element)&#123;</span><br><span class="line">            privious = current</span><br><span class="line">            current = current.next</span><br><span class="line">        &#125;</span><br><span class="line">        privious.next == current.next</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span></span><br><span class="line">    &#125;</span><br><span class="line">    removeAt(position)&#123;</span><br><span class="line">        <span class="keyword">let</span> index = <span class="number">0</span></span><br><span class="line">        <span class="keyword">let</span> current = <span class="keyword">this</span>.head</span><br><span class="line">        <span class="keyword">let</span> privious = <span class="literal">null</span></span><br><span class="line">        <span class="keyword">if</span>(position &gt; <span class="number">0</span> || position &lt; <span class="keyword">this</span>.length)&#123;</span><br><span class="line">            <span class="keyword">if</span>(position == <span class="number">0</span>)&#123;</span><br><span class="line">                <span class="keyword">this</span>.head == <span class="literal">null</span> </span><br><span class="line">            &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                <span class="keyword">while</span>(index &lt;= position)&#123;</span><br><span class="line">                    privious = current</span><br><span class="line">                    current = current.next</span><br><span class="line">                    index++</span><br><span class="line">                &#125;</span><br><span class="line">                privious.next == current.next</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<ul>
+<li>1、append（element）：向链表尾部追加元素</li>
+<li>2、insert（position,element）向例表中特定位置插入</li>
+<li>3、remove（element）从例表中删除一项</li>
+<li>4、indexof（element）返回元素的索引，如果例表中没有该元素测返回大于-1</li>
+<li>5、removeAt（position）从例表中移出特定位置的一项</li>
+<li>6、isEmpty（）：如果链表中不包含任何元素，返回true，如果链表长度大于0返回false。</li>
+<li>size（）：返回链表包含元素的个数，于数组的length类似</li>
+<li>toString（）：需要重写来继承JavaScript的方法</li>
+</ul>
+<h2 id="双向链表"><a href="#双向链表" class="headerlink" title="双向链表"></a>双向链表</h2><ul>
+<li>1、next直线下一个</li>
+<li>2、prvies指向上一个</li>
+<li>3、中间有个存储空间</li>
+</ul>
+<h2 id="原型链"><a href="#原型链" class="headerlink" title="原型链"></a>原型链</h2><ul>
+<li><p>1、语言的发展</p>
+<p>机器语言&gt;汇编语言&gt;低级语言&gt;高级语言</p>
+</li>
+<li><p>2、原型链的底层实现机制原理就是链表</p>
+</li>
+<li><p>3、<strong>proto</strong> 和constructor属性是对象独有的</p>
+</li>
+<li><p>4、prototype是函数独有的，函数也是一种对象所有有proto和constructor。</p>
+</li>
+<li><p>5、proto是隐式对象，一般不建议给隐式对象上面添加属性和方法。</p>
+</li>
+</ul>
+<h1 id="4、集合"><a href="#4、集合" class="headerlink" title="4、集合"></a>4、集合</h1><p>集合通常是由一组无序的，不能重复的元素构成。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Myset</span> </span>&#123;</span><br><span class="line">    <span class="keyword">constructor</span> ()&#123;</span><br><span class="line">        <span class="keyword">this</span>.item = &#123;&#125;</span><br><span class="line">    &#125;</span><br><span class="line">    has(val)&#123;</span><br><span class="line">        <span class="comment">// Object.hasOwnproperty(val)</span></span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.item.hasOwnproperty(val)</span><br><span class="line">    &#125;</span><br><span class="line">    add(val)&#123;</span><br><span class="line">        <span class="keyword">if</span>(<span class="keyword">this</span>.has(val))&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">this</span>.item[val] = val</span><br><span class="line">    &#125;</span><br><span class="line">    remove(val)&#123;</span><br><span class="line">        <span class="keyword">if</span>(!<span class="keyword">this</span>.has(val))&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">delete</span> <span class="keyword">this</span>.item[val]</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span></span><br><span class="line">    &#125;</span><br><span class="line">	size()&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">Object</span>.keys(<span class="keyword">this</span>.item).length</span><br><span class="line">    &#125;    </span><br><span class="line">    clear()&#123;</span><br><span class="line">        <span class="keyword">this</span>.item = &#123;&#125;</span><br><span class="line">    &#125;</span><br><span class="line">    valuse()&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">Object</span>.keys(<span class="keyword">this</span>.item)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//并集</span></span><br><span class="line">    union(<span class="keyword">set</span>)&#123;</span><br><span class="line">        <span class="keyword">let</span> unionSet = <span class="keyword">new</span> Myset()</span><br><span class="line">        <span class="keyword">let</span> valuse = <span class="keyword">this</span>.valuse()</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">let</span> i =<span class="number">0</span>,;i&lt; valuse.length; i++)&#123;</span><br><span class="line">            unionSet.add(valuse[i]);</span><br><span class="line">        &#125;</span><br><span class="line">        valuse = <span class="keyword">set</span>.valuse();</span><br><span class="line">        for(let i = 0;i&lt;valuse.length; i++)&#123;</span><br><span class="line">            unionSet.add(valuese[i]);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> unionSet</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//交集</span></span><br><span class="line">    Intersection(<span class="keyword">set</span>)&#123;</span><br><span class="line">        <span class="keyword">let</span> intersection = <span class="keyword">new</span> Myset()</span><br><span class="line">        <span class="keyword">let</span> valuse = <span class="keyword">this</span>.valuse()</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">let</span> i=<span class="number">0</span>; i&lt;valuse.length; i++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(<span class="keyword">set</span>.has(valuse[i]))&#123;</span><br><span class="line">                intersection.add(valuse[i]);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> intersection </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="js中的set、webset"><a href="#js中的set、webset" class="headerlink" title="js中的set、webset"></a>js中的set、webset</h2><ul>
+<li>set：必须数组，里面不能有重复的内容。</li>
+<li>webset：必须是对象，里面不能有重复的内容。是弱引用不会被垃圾回收机制录入</li>
+</ul>
+<h2 id="js中的map、weakmap"><a href="#js中的map、weakmap" class="headerlink" title="js中的map、weakmap"></a>js中的map、weakmap</h2><ul>
+<li>map：普通对象的属性名只能是字符串，map属性可以是对象。</li>
+<li>weakmap：只接受对象作为键名，null除外。</li>
+</ul>
+<h2 id="return拓展"><a href="#return拓展" class="headerlink" title="return拓展"></a>return拓展</h2><ul>
+<li>return true：返还正确执行结果</li>
+<li>return false：中止一些默认事件<ul>
+<li>1、默认行为</li>
+<li>2、组织冒泡</li>
+<li>3、回调函数的执行</li>
+</ul>
+</li>
+<li>return ： 返还控制权</li>
+</ul>
+<h2 id="扩展运算符"><a href="#扩展运算符" class="headerlink" title="扩展运算符"></a>扩展运算符</h2><p>对象中的扩展运算符，用于取出对象中所有可遍历属性。一级属性浅拷贝，二级及其以上深拷贝。</p>
+<h2 id="深浅拷贝"><a href="#深浅拷贝" class="headerlink" title="深浅拷贝"></a>深浅拷贝</h2><p>复制一个对象和数组，但不可以改变原始数据类型</p>
+<ul>
+<li><p>js中的传值与传址：</p>
+<p>传值：一般是原始数据类型使用，var a = 10 在这里会在栈空间中开辟一个空间存放10，然后在把a与10关联起来。var b = a 就会新开劈一块空间把a的值传进去，在于b相互关联。</p>
+<p>传址：一般是引用数据类型，var a = {a:1} 会在堆区开辟一块内存存放，在把内存地址返回到栈区，栈区开一一块空间存储这个地址，再把地址与a进行关联。</p>
+</li>
+<li><p>原始数据类型没有深浅拷贝，深浅拷贝是针对于引用类型的。</p>
+<ul>
+<li>1、深拷贝：会重新创建内存空间，修改数据不会影响原有数据。</li>
+<li>2、浅拷贝：不会创建新的空间，修改数据会影响原有数据。</li>
+</ul>
+</li>
+<li><p>使用深浅拷贝使用场景：复制的数据类型的拷贝</p>
+</li>
+<li><p>拷贝方法：</p>
+<ul>
+<li>1、Object.assign()</li>
+<li>2、遍历对象中的属性赋值给新对象</li>
+<li>3、使用扩展运算符</li>
+<li>4、JSON.parser(JSON.stringify(obj))  这种方法不会拷贝属性值为函数、undefined</li>
+</ul>
+</li>
+<li><p>可以使用递归循环遍历对象：可以拷贝所有的属性以及值都是深拷贝。</p>
+<h2 id="垃圾回收"><a href="#垃圾回收" class="headerlink" title="垃圾回收"></a>垃圾回收</h2><ul>
+<li>内存泄漏：一块内存，既不能使用，也不能回收，直到浏览器结束。</li>
+<li>内存堆积：最终会消耗尽系统的所有内存，导致浏览器崩溃。</li>
+</ul>
+</li>
+</ul>
+<h1 id="5、哈希表"><a href="#5、哈希表" class="headerlink" title="5、哈希表"></a>5、哈希表</h1><h2 id="hash"><a href="#hash" class="headerlink" title="hash"></a>hash</h2><p>hash：其实就是一种算法，把任意长度的输入通过散列算法变换成固定长度的输出，输出是散列值。hash和散列是同一个东西。</p>
+<p>哈希算法不过是一个复杂的运算，他的输入可以是字符串，可以是任何文件，经过哈希运算以后，变成一个固定长度的输出，哈希算法有一个最大的特点：不可逆，不能从结果推算出输入。</p>
+<p>hash是基于数组实现的，但是数组的插入删除效率不高，查询效率分两种（通过索引查找）效率高（通过内容查找）效率相对低。</p>
+<h2 id="hash表"><a href="#hash表" class="headerlink" title="hash表"></a>hash表</h2><p>通过把散列函数把字符转为ascll对应的码值相加形成散列值，在通过散列值绘制散列表。散列表存储着所有的对于转换的码值。</p>
+<p>hash函数</p>
+<p>哈希函数就是把字符串转化为数字。</p>
+<p>哈希函数有很多种，java hashcode 字符的acill码加在一起，然后在莫上一个质数，最后莫出多少就是多少，hash函数其实复杂的很，如何hash函数选的好的话，就可以让这些数字尽量避免去分散，而不会发送碰撞/冲突。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">HashTable</span></span>&#123;</span><br><span class="line">    <span class="keyword">constructor</span>()&#123;</span><br><span class="line">        <span class="keyword">this</span>.table = []; <span class="comment">//哈希表</span></span><br><span class="line">    &#125;</span><br><span class="line">    loseloseHashCode(key)&#123;</span><br><span class="line">        <span class="keyword">let</span> hash = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">let</span> i = <span class="number">0</span>; i&lt; key.length; i++)&#123;</span><br><span class="line">            hash += key[i].charCodeAt();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//降低冲突，降低存储位数</span></span><br><span class="line">        <span class="keyword">return</span> hash % <span class="number">37</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    put(key , value)&#123;</span><br><span class="line">        <span class="keyword">const</span> position = <span class="keyword">this</span>.loseloseHashCode(key);</span><br><span class="line">        <span class="keyword">this</span>.table[position] = value;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">get</span>(key)&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.table[<span class="keyword">this</span>.loseloseHashCode(key)];</span><br><span class="line">    &#125;</span><br><span class="line">    remove(key)&#123;</span><br><span class="line">        <span class="keyword">this</span>.table[<span class="keyword">this</span>.loseloseHeadCode(key)]</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>尽管我们使用了哈希函数处理，但是依然会发生碰撞。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">money &gt; <span class="number">43</span>   oxgbx &gt; <span class="number">43</span></span><br></pre></td></tr></table></figure>
+
+<p>解决冲突与碰撞（哈希覆盖）的方法</p>
+<p>连地址法（拉链法）：哈希表种存储的不是一个实际的值，而是存储一个链表用来存储实际的值</p>
+<p>开放地址法：寻找空白位置来放置数据（有三种放置方法）</p>
+<ul>
+<li>1、线性探测法：会从index + 1开始找，有空的就放进去，容易发生聚集，聚集会影响效率。</li>
+<li>2、平方探测法：会从index+ 1 的平方开始，有空的就放进去，相比线性查找法减少了聚集的发生情况，但是会出现返回的情况，这也不利于哈希表的效率。</li>
+<li>3、再哈希法：对数据再次使用hash算法，来制作hash表。</li>
+</ul>
+<h2 id="md5就是基于hash算法"><a href="#md5就是基于hash算法" class="headerlink" title="md5就是基于hash算法"></a>md5就是基于hash算法</h2><ul>
+<li>1、特点：<ul>
+<li>1、md5是一个不可逆的，加密（不算加密，加密应该有对于的解密）</li>
+<li>2、计算极快</li>
+</ul>
+</li>
+<li>2、md5的破解方法-&gt;撞库</li>
+</ul>
+<h2 id="哈希的两个特性"><a href="#哈希的两个特性" class="headerlink" title="哈希的两个特性"></a>哈希的两个特性</h2><p>1、不可逆</p>
+<p>2、计算极快</p>
+<h2 id="编码过程"><a href="#编码过程" class="headerlink" title="编码过程"></a>编码过程</h2><p>编码其实就是把字符串转为计算机可以识别的数字。</p>
+<p>通过下标查找速度很快》下标是数字》字符串数字》哈希函数》哈希碰撞？哈希覆盖》链地址法，开放地址法。hash缺点就是比较消耗内存。（以空间换时间）</p>
+<h1 id="6、树"><a href="#6、树" class="headerlink" title="6、树"></a>6、树</h1><h2 id="1、概念"><a href="#1、概念" class="headerlink" title="1、概念"></a>1、概念</h2><p>树：n个节点构成的有限集合。</p>
+<p>空树：n = 0（节点个数等于0）</p>
+<p>根节点：n = 1（只有一个节点）</p>
+<p>子树：以其他节点为根的树是子树。</p>
+<p>节点的度：节点分支的个数。</p>
+<p>树的度：选取所有节点种最大的度。</p>
+<p>叶子节点：度为0的节点，位于树的最深层。</p>
+<p>分支节点：度大于0的节点，除了叶子节点，其他的都是分支节点。</p>
+<p>节点层次：是节点到根节点的边数。</p>
+<p>树的深度：选取节点中最大的层次。</p>
+<p>森林：所有子树的集合</p>
+<h2 id="2、树的存储结构"><a href="#2、树的存储结构" class="headerlink" title="2、树的存储结构"></a>2、树的存储结构</h2><p>物理存储结构又2种，顺序存储和链式存储，因此树无法直接存储，所以要将树转化为顺序或者链式存储。</p>
+<p>有三种方法：</p>
+<ul>
+<li>1、双亲表示法：采用顺序存储（数组）存储普通的树，顺序存储各个节点的同时，给各个节点添加父节点的位置的变量。<ul>
+<li>优点：可以快速的获取任意节点的父节点的位置。</li>
+<li>缺点：不能快速获取任意节点的子节点的位置</li>
+</ul>
+</li>
+<li>2、孩子表示法：这一个方式，是创建多个指针域，指向它所有子节点的地址，也就是说任何一个节点都掌握着他的子节点的位置。</li>
+<li>3、孩子兄弟表示法：这种方式会把一个树转化为二叉树，他的做法是；用两个指针分别指向它的第一个子节点和第一个右兄弟节点。</li>
+</ul>
+<h2 id="3、二叉树"><a href="#3、二叉树" class="headerlink" title="3、二叉树"></a>3、二叉树</h2><p>二叉树：最多只有2个节点。度不超过2的树</p>
+<p>二叉树有五种形态：空树，只有一个根节点，只有一个左子树，只有一个右子树，两个节点都有。</p>
+<p>第i层二叉树的最大节点数：2^(i-1)</p>
+<ul>
+<li><p>特殊的二叉树：</p>
+<ul>
+<li><p>1、满二叉树：树是满的，每个节点都有2个子节点。</p>
+</li>
+<li><p>2、完全二叉树：从根节点到倒数第二层满足完美二叉树，最后一层可以不完全填充，其叶子节点都靠左对齐。</p>
+</li>
+<li><p>3、二叉排序树（BTS）：</p>
+<p>非空左子树所有键值小于其根节点的键值</p>
+<p>非空右子树所有键值大于其根节点的键值</p>
+<p>左右子树本身也是二叉搜索树。</p>
+</li>
+</ul>
+</li>
+</ul>
 
       
 
@@ -404,7 +621,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#什么是数据"><span class="toc-number">1.</span> <span class="toc-text">什么是数据</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#什么是数据元素"><span class="toc-number">2.</span> <span class="toc-text">什么是数据元素</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#什么是数据结构"><span class="toc-number">3.</span> <span class="toc-text">什么是数据结构</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#由哪些数据结构"><span class="toc-number">4.</span> <span class="toc-text">由哪些数据结构</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#数组"><span class="toc-number">4.1.</span> <span class="toc-text">数组</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#1、栈与队列"><span class="toc-number">5.</span> <span class="toc-text">1、栈与队列</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-1、js是单线程原理"><span class="toc-number">5.1.</span> <span class="toc-text">1.1、js是单线程原理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#队列"><span class="toc-number">5.2.</span> <span class="toc-text">队列</span></a></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#什么是数据"><span class="toc-number">1.</span> <span class="toc-text">什么是数据</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#什么是数据元素"><span class="toc-number">2.</span> <span class="toc-text">什么是数据元素</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#什么是数据结构"><span class="toc-number">3.</span> <span class="toc-text">什么是数据结构</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#由哪些数据结构"><span class="toc-number">4.</span> <span class="toc-text">由哪些数据结构</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#数组"><span class="toc-number">4.1.</span> <span class="toc-text">数组</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#1、栈与队列"><span class="toc-number">5.</span> <span class="toc-text">1、栈与队列</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-1、js是单线程原理"><span class="toc-number">5.1.</span> <span class="toc-text">1.1、js是单线程原理</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2、队列"><span class="toc-number">6.</span> <span class="toc-text">2、队列</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#2-1、js异步原理"><span class="toc-number">6.1.</span> <span class="toc-text">2.1、js异步原理</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3、链表"><span class="toc-number">7.</span> <span class="toc-text">3、链表</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1、JS中的堆栈"><span class="toc-number">7.1.</span> <span class="toc-text">1、JS中的堆栈</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2、链表的优势"><span class="toc-number">7.2.</span> <span class="toc-text">2、链表的优势</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3、链表的方法"><span class="toc-number">7.3.</span> <span class="toc-text">3、链表的方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#双向链表"><span class="toc-number">7.4.</span> <span class="toc-text">双向链表</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#原型链"><span class="toc-number">7.5.</span> <span class="toc-text">原型链</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#4、集合"><span class="toc-number">8.</span> <span class="toc-text">4、集合</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#js中的set、webset"><span class="toc-number">8.1.</span> <span class="toc-text">js中的set、webset</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#js中的map、weakmap"><span class="toc-number">8.2.</span> <span class="toc-text">js中的map、weakmap</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#return拓展"><span class="toc-number">8.3.</span> <span class="toc-text">return拓展</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#扩展运算符"><span class="toc-number">8.4.</span> <span class="toc-text">扩展运算符</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#深浅拷贝"><span class="toc-number">8.5.</span> <span class="toc-text">深浅拷贝</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#垃圾回收"><span class="toc-number">8.6.</span> <span class="toc-text">垃圾回收</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#5、哈希表"><span class="toc-number">9.</span> <span class="toc-text">5、哈希表</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#hash"><span class="toc-number">9.1.</span> <span class="toc-text">hash</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#hash表"><span class="toc-number">9.2.</span> <span class="toc-text">hash表</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#md5就是基于hash算法"><span class="toc-number">9.3.</span> <span class="toc-text">md5就是基于hash算法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#哈希的两个特性"><span class="toc-number">9.4.</span> <span class="toc-text">哈希的两个特性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#编码过程"><span class="toc-number">9.5.</span> <span class="toc-text">编码过程</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#6、树"><span class="toc-number">10.</span> <span class="toc-text">6、树</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1、概念"><span class="toc-number">10.1.</span> <span class="toc-text">1、概念</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2、树的存储结构"><span class="toc-number">10.2.</span> <span class="toc-text">2、树的存储结构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3、二叉树"><span class="toc-number">10.3.</span> <span class="toc-text">3、二叉树</span></a></li></ol></li></ol>
                     </div>
                 </span>
             </div>
@@ -520,11 +737,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">node</a>
+                <a href="javascript:void(0)" class="js-tag color5">http</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">http</a>
+                <a href="javascript:void(0)" class="js-tag color3">js</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">node</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -540,7 +761,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">js</a>
+                <a href="javascript:void(0)" class="js-tag color4">web</a>
               </li>
             
             <div class="clearfix"></div>

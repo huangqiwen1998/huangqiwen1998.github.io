@@ -162,6 +162,728 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-node" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/04/22/node/">node</a>
+    </h1>
+  
+
+        
+        <a href="/2020/04/22/node/" class="archive-article-date">
+  	<time datetime="2020-04-22T13:36:20.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-22</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <a id="more"></a>
+<h1 id="node-js是什么？"><a href="#node-js是什么？" class="headerlink" title="node.js是什么？"></a>node.js是什么？</h1><ul>
+<li><p>node.js一个让javascript运行在服务端的开发平台</p>
+<ul>
+<li><p>node.js不是一门语言</p>
+</li>
+<li><p>node.js不是库，不是框架</p>
+</li>
+<li><p>node.js是一个JavaScript运行时环境</p>
+</li>
+<li><p>node.js是可以解析和执行js代码，以前只有浏览器可以解析JavaScript</p>
+</li>
+<li><p>也就是说有了node，JavaScript可以完全脱离浏览器运行。</p>
+</li>
+<li><p>构建与chrome的v8引擎上</p>
+<ul>
+<li>代码只是具有特定格式的字符串</li>
+<li>引擎可以识别他们，引擎会帮你去解析和执行</li>
+<li>chrome的v8引擎，是目前公认执行js最快的引擎</li>
+<li>node的作者把v8引擎提取出来，编译成了JavaScript的运行环境</li>
+</ul>
+</li>
+<li><p>浏览器中的JavaScript</p>
+<ul>
+<li>EcmaScript</li>
+<li>Bom</li>
+<li>Dom</li>
+</ul>
+</li>
+<li><p>node中的JavaScript</p>
+<ul>
+<li>只有EcmaScript</li>
+<li>没有Dom和Bom</li>
+<li>node这个JavaScript运行时环境为JavaScript提供了一些服务器级别的操作API<ul>
+<li>例如文件读写</li>
+<li>网络服务的构建</li>
+<li>网络通讯</li>
+<li>http服务器等<ul>
+<li>node.js使用机制</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>事件驱动</p>
+</li>
+<li><p>非阻塞io模型，简单来说就是异步操作</p>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>node.js生态系统<ul>
+<li>npm（世界上最大的开源库生态系统）</li>
+<li>绝大数的JavaScript包都存放在npm上，让开发人员更方便的下载使用</li>
+</ul>
+</li>
+</ul>
+<h1 id="node-js能做什么？"><a href="#node-js能做什么？" class="headerlink" title="node.js能做什么？"></a>node.js能做什么？</h1><pre><code>- web服务器后台
+- 命令行工具（npm，hexo）
+- 一些资源
+    - 《深入淡出Node.js》
+    - 《node.js权威指南》</code></pre><h1 id="node-js学完能学到什么？"><a href="#node-js学完能学到什么？" class="headerlink" title="node.js学完能学到什么？"></a>node.js学完能学到什么？</h1><pre><code>- B/S编程模型
+    - Brower-server
+    - back-end
+    - 任何服务端技术这种BS编译模型都是一样的，和语言无关
+
+- 模块化编程
+    - 通过commin.js导入导出对应模块
+- 异步编程
+    - 回调函数
+    - promise
+    - async
+    - generator</code></pre><h1 id="模块系统"><a href="#模块系统" class="headerlink" title="模块系统"></a>模块系统</h1><pre><code>使用node编写应用程序主要就是在使用
+    - ECMAscript
+    - 核心模块
+        - fs模块
+        - http模块
+        - url模块
+    - 第三方模块
+    - 自定义模块
+
+- 1、什么是模块化
+    - 文件作用域
+    - 通讯规则
+
+
+
+
+- commonJS模块规范
+在node中的JavaScript还有一个跟重要的概念，模块系统
+ - 模块作用域
+ - 使用require方法来加载模块
+ - 使用export 接口对象来导出模块中的成员
+
+ - 加载 require
+    两个作用
+        - 执行被加载 模块的代码
+        - 得到被加载模块中的exports导出接口对象
+ - 导出 export
+    - node中是模块作用域，默认文件中所有的成员只在当前文件模块有效
+    - 对希望可以被其他模块访问的成员，我们需要把这些公开的成员挂在到exprots接口对象中就可以了
+        - 导出多个成员
+        <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span>.a = <span class="number">123</span></span><br><span class="line"><span class="keyword">export</span>.b = <span class="number">456</span></span><br><span class="line"><span class="keyword">export</span>.c=<span class="number">789</span></span><br></pre></td></tr></table></figure>
+        - 导出单个成员
+        <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.export = <span class="string">'hello'</span></span><br><span class="line"><span class="built_in">module</span>.export = &#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></code></pre><h1 id="模块原理-接下来我们介绍一下原理"><a href="#模块原理-接下来我们介绍一下原理" class="headerlink" title="模块原理 接下来我们介绍一下原理"></a>模块原理 接下来我们介绍一下原理</h1><pre><code>这个原理有点像构造函数，node中只有模块作用.每个模板内部都有一个自己的对象module对象，在module对象中也有一个对象export的一个空对象。
+默认在代码的最底层有一句话，return module.exports。而其中还有一局代码是var express = module.export  因此才有了export.a = 123这种导入。其实本质还是对module对象中的export导出。</code></pre><h1 id="模块查找机制"><a href="#模块查找机制" class="headerlink" title="模块查找机制"></a>模块查找机制</h1><h1 id="require-优先从缓存中加载"><a href="#require-优先从缓存中加载" class="headerlink" title="require  优先从缓存中加载"></a>require  优先从缓存中加载</h1><h1 id="标识符分析"><a href="#标识符分析" class="headerlink" title="标识符分析"></a>标识符分析</h1><pre><code>- 路径形式的模块
+&gt;/(当前文件模块所属磁盘根路径)   ./   ../
+- 核心模块
+&gt;直接应用，这些核心文件已经被编译到二进制文件中了。
+- 第三方模板
+不可能有任何一个第三方包与核心模块的名字是一样的
+&gt;先找到当前文件中的node_modules，你所引入的包/ 再去找到包中对应的pack.json文件/再去找到里面的main属性/main属性中就记录了当前包的入口模块。
+
+&gt;如果pack.json不存在，并且main对应的路径是有问题的那么，那么pack.json文件在同一目录下的index.js文件      </code></pre><h1 id="fs模块"><a href="#fs模块" class="headerlink" title="fs模块"></a>fs模块</h1><pre><code>- 文件读取
+
+    - fs.readFile(文件中存储的其实二进制0 1)</code></pre><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> fs = <span class="built_in">require</span>(<span class="string">'fs'</span>)</span><br><span class="line"></span><br><span class="line">fs.readFile(<span class="string">'./data/hello.text'</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span>(<span class="params">error, data</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(!error)&#123;</span><br><span class="line">        <span class="keyword">var</span> a = data.toString()</span><br><span class="line">        <span class="built_in">console</span>.log(a)</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'读取文件失败'</span>)</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<pre><code>    这里他呗默认转为了16进制，外面可以通过tostring方法转化成我们能认识的字符
+
+
+- 写文件
+    - fs.writeFile</code></pre><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> fs = <span class="built_in">require</span>(<span class="string">'fs'</span>);</span><br><span class="line"></span><br><span class="line">fs.writeFile(<span class="string">'./data/holleword.text'</span>,<span class="string">"家好  我是holleword"</span>,<span class="function"><span class="keyword">function</span>(<span class="params">error</span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(error)</span><br><span class="line">    <span class="comment">//没错error = null</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<h1 id="http模块"><a href="#http模块" class="headerlink" title="http模块"></a>http模块</h1><p>node可以非常轻松的构建一个web服务器，在node中提供一个核心模块：http</p>
+<ul>
+<li><p>1、加载http核心模块</p>
+<blockquote>
+<p>var http = require(‘http’)</p>
+</blockquote>
+</li>
+<li><p>2、使用http.createServer（）方法创建一个web服务器，返回一个Server实例</p>
+<blockquote>
+<p>var server = http.createServer()</p>
+</blockquote>
+</li>
+<li><p>3、服务器作用</p>
+<p>  1、对数据提供服务</p>
+<p>  2、发送请求</p>
+<p>  3、接受数据</p>
+<p>  4、处理请求</p>
+<p>  5、响应请求</p>
+<ul>
+<li><p>配置头部信息</p>
+<blockquote>
+<p>res.setHeader(‘content-type’ , ‘text/plain’; charset=utf-8)</p>
+</blockquote>
+<p>  文件类型（content-type）</p>
+<ul>
+<li><p>非文字类型的都要把charset=utf-8去掉</p>
+</li>
+<li><p>text/plain 普通文本</p>
+</li>
+<li><p>text/html 就是html格式文本<br><a href="https://tool.oschina.net/" target="_blank" rel="noopener">工具</a><br>除了配置请求头中的content-type还可以在html页面的meta标签中声明他</p>
+<p>文本编码格式</p>
+<ul>
+<li>在服务器默认发送的数据，默认都是utf8编码的内容</li>
+<li>但是浏览器不知道你是什么类型的编码，你也没有告诉浏览器你发送的数据是什么编码</li>
+<li>那么浏览器在不知道内容编码的情况下，默认按照当前操作系统的默认编码去解析</li>
+<li>中文操作系统的默认编码格式是 gdk</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>监听request请求，当有客户端发送请求会自动执行request请求事件</p>
+</li>
+<li><p>服务端重定向</p>
+<ul>
+<li><p>以3开头的状态码都是用于重定向的。</p>
+</li>
+<li><p>首先设置状态码</p>
+<blockquote>
+<p>res.statusCode = 302</p>
+</blockquote>
+<p>301 永久重定向  浏览器会记住<br>302 零时重定向  浏览器记不住</p>
+</li>
+<li><p>配置重定向地址</p>
+<blockquote>
+<p>res.setHeader(‘Location’,’/‘)</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> http = <span class="built_in">require</span>(<span class="string">'http'</span>)</span><br><span class="line"><span class="keyword">var</span> server = http.createServer()</span><br><span class="line"></span><br><span class="line">server.on(<span class="string">'request'</span>,<span class="function"><span class="keyword">function</span>(<span class="params">req,res</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'收到客户端请求'</span>)</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'请求地址是'</span>+req.url)</span><br><span class="line">    <span class="comment">//req.url获取获取请求的url信息</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="comment">//res中有wrte方法，write可以多次使用但是最后必须使用end结束，如果不接受那么程序会继续等待</span></span><br><span class="line">    res.write(<span class="string">'holle'</span>)</span><br><span class="line">    res.write(<span class="string">'word'</span>)</span><br><span class="line">    res.end()</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//第二种写法</span></span><br><span class="line"><span class="keyword">var</span> http = <span class="built_in">require</span>(<span class="string">'http'</span>)</span><br><span class="line">http.createServer(<span class="function"><span class="keyword">function</span>(<span class="params">req,res</span>)</span>&#123;</span><br><span class="line"></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>4、绑定端口号，启动服务器</p>
+<blockquote>
+<p>server.listen(3000)</p>
+</blockquote>
+</li>
+<li><p>5、配置路由响应</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> http = <span class="built_in">require</span>(<span class="string">'http'</span>)</span><br><span class="line"><span class="keyword">var</span> server = http.createServer()</span><br><span class="line"></span><br><span class="line">server.on(<span class="string">'request'</span>,<span class="function"><span class="keyword">function</span>(<span class="params">req,res</span>) </span>&#123;</span><br><span class="line"></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<h1 id="path模块"><a href="#path模块" class="headerlink" title="path模块"></a>path模块</h1><p>用来帮你辅助操作路径的</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//获取给定路径的文件名</span></span><br><span class="line">path.basename(<span class="string">'路径'</span>)   <span class="comment">//获取文件明年</span></span><br><span class="line">path.basename(<span class="string">'c/a/index.js'</span>)   <span class="comment">//index.js</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//获取给定路径的文件名</span></span><br><span class="line">path.dirname(<span class="string">'路径'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">//获取文件扩展名</span></span><br><span class="line">path.extname(<span class="string">''</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">//判断是否为绝对路径</span></span><br><span class="line">path.isAbsolyte(path)</span><br><span class="line"></span><br><span class="line"><span class="comment">//获取分析路径中所有信息</span></span><br><span class="line">path.parse(<span class="string">''</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">//路径拼接</span></span><br><span class="line">path.join(<span class="string">''</span>,<span class="string">''</span>)</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h1 id="node中的其他成员"><a href="#node中的其他成员" class="headerlink" title="node中的其他成员"></a>node中的其他成员</h1><p>每个模块中，除了require、exports等模块，还有两个特殊成员。</p>
+<ul>
+<li>__dirname 可以获取当前文件模块所属目录的绝对路径 （动态的获取）<br>` __filename 可以获取当前文件的绝对路径 （动态的获取） </li>
+</ul>
+<p>在文件操作中，使用相对路径是不可靠的，因为node中文件操作的路径被设计为相对于执行node命令所处的路径（不是bug，人家这样设计是有使用场景的）<br>为了解决相对路径不可靠的问题，我们把可以使用<strong>dirname/</strong>filename来动态获取不同计算机不同存储位置的路径。在路径拼接过程中，为了避免手动修改路径出错，所以推荐多使用path.join()来辅助拼接，在以后的操作中尽可能的把绝对路径转化为相对路径。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">app.use(<span class="string">'/public/'</span>,express.static(path.join(__dirname,<span class="string">'./public'</span>)))</span><br><span class="line">app.use(<span class="string">'/node_modules'</span>,express.static(path.join(__dirname,<span class="string">'./node_modules'</span>)))</span><br></pre></td></tr></table></figure>
+<h1 id="node中的核心模块"><a href="#node中的核心模块" class="headerlink" title="node中的核心模块"></a>node中的核心模块</h1><p>fs模块<a href="https://nodejs.org/dist/latest-v12.x/docs/api/fs.html" target="_blank" rel="noopener">官方文档</a>，http模块，path路径模块，os操作系统模块。。。</p>
+<h1 id="node多文件执行"><a href="#node多文件执行" class="headerlink" title="node多文件执行"></a>node多文件执行</h1><ul>
+<li><p>node中没有全局作用域，只有模块作用域。</p>
+<pre><code>也就是说不同文件中的内容在同一页面执行引入的时候不会相互影响。外部取不到内部的数据，内部也取不到外部的数据，但是可以执行代码。</code></pre></li>
+<li><p>那么如何让node中的模块之间通讯呢？</p>
+<ul>
+<li>export导出模块<br>  常规导出的是express这个对象，需要通过打点或者解构来获取和调用里面的多内容<blockquote>
+<p>export   abc</p>
+</blockquote>
+</li>
+<li>require的作用<ul>
+<li>1、加载并执行文件模块中的代码</li>
+<li>2、拿到被加载文件模块导出的接口对象</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>ap地址和端口号</p>
+<ul>
+<li>每一个ip指向了一台服务器（定位计算机）</li>
+<li>服务器中的每一个物联网通讯的应用程序都对应了一个端口号（端口号定位具体应用程序）</li>
+<li>端口号范围 0 - 65535之间</li>
+</ul>
+</li>
+</ul>
+<h1 id="模板引擎"><a href="#模板引擎" class="headerlink" title="模板引擎"></a>模板引擎</h1><pre><code>模板引擎起源于服务器，最后发展到了前端
+- art-template（js）
+- </code></pre><h1 id="node中静态资源处理方法"><a href="#node中静态资源处理方法" class="headerlink" title="node中静态资源处理方法"></a>node中静态资源处理方法</h1><p>node中为了方便静态资源管理放在public文件中</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> http = <span class="built_in">require</span>(<span class="string">"http"</span>);</span><br><span class="line"><span class="keyword">var</span> url = <span class="built_in">require</span>(<span class="string">"url"</span>);</span><br><span class="line"><span class="keyword">var</span> fs = <span class="built_in">require</span>(<span class="string">"fs"</span>);</span><br><span class="line"> </span><br><span class="line">http.createServer(<span class="function"><span class="keyword">function</span>(<span class="params">req,res</span>)</span>&#123;</span><br><span class="line">    <span class="comment">//得到用户的路径</span></span><br><span class="line">    <span class="comment">//</span></span><br><span class="line">    <span class="keyword">var</span> pathname = url.parse(req.url).pathname;</span><br><span class="line">    <span class="comment">//真的读取这个文件</span></span><br><span class="line">    fs.readFile(<span class="string">"./static/"</span> + pathname,<span class="function"><span class="keyword">function</span>(<span class="params">err,data</span>)</span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(err)&#123;</span><br><span class="line">            <span class="comment">//如果此文件不存在，就应该用404返回</span></span><br><span class="line">            fs.readFile(<span class="string">"./static/404.html"</span>,<span class="function"><span class="keyword">function</span>(<span class="params">err,data</span>)</span>&#123;</span><br><span class="line">                res.writeHead(<span class="number">404</span>,&#123;<span class="string">"Content-type"</span>:<span class="string">"text/html;charset=UTF8"</span>&#125;);</span><br><span class="line">                res.end(data);</span><br><span class="line">            &#125;);</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;;</span><br><span class="line">        res.end(data);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;).listen(<span class="number">3000</span>,<span class="string">"127.0.0.1"</span>);</span><br></pre></td></tr></table></figure>
+
+
+<h1 id="实现Apache"><a href="#实现Apache" class="headerlink" title="实现Apache"></a>实现Apache</h1><h1 id="推荐JavaScript的编写规范的书"><a href="#推荐JavaScript的编写规范的书" class="headerlink" title="推荐JavaScript的编写规范的书"></a>推荐JavaScript的编写规范的书</h1><blockquote>
+<p>编写可维护的javascript</p>
+</blockquote>
+<h1 id="服务器渲染"><a href="#服务器渲染" class="headerlink" title="服务器渲染"></a>服务器渲染</h1><blockquote>
+<p>也就是说在服务器使用模板引擎<br>    - 客户端渲染<br>        html 仅仅作为静态文件，客户端端在请求时，服务端不做任何处理，直接以原文件的形式返回给客户端客户端，然后根据 html 上的 JavaScript，生成 DOM 插入 html。<br>    - 服务端渲染<br>    服务端在返回 html 之前，在特定的区域，符号里用数据填充，再给客户端，客户端只负责解析 HTML 。（也就是通过模板引擎把数据在服务端的时候就渲染好，收到请求之间发送页面）</p>
+</blockquote>
+<pre><code>- 客户端渲染与服务器渲染的区别
+    - 客户端渲染不利于seo搜索引擎优化，也就是说客户端渲染的数据爬虫爬不到
+    - 服务器渲染是可以被爬虫爬取到的，客户端的异步渲染是很难被爬虫爬取到的。
+    - 所以一个网站，是服务器与客户端结合渲染来做的</code></pre><h1 id="npm"><a href="#npm" class="headerlink" title="npm"></a>npm</h1><pre><code>package.json包说明书，描述你的项目使用了哪些npm包
+
+--save 会把你安装的包放在package.json中。
+
+同时package.json可以通过npm init初始化出来
+而如果没有node——module有package.json使用npm install  会更具package.json中的依赖还原你的node_module
+
+
+npm  是一个网站
+npm  是一个命令行工具</code></pre><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">npm install (i)</span><br><span class="line"></span><br><span class="line">npm install 包名 --save(S)</span><br><span class="line">npm uninstall 包名</span><br><span class="line">npm help  查看使用帮助</span><br></pre></td></tr></table></figure>
+<pre><code>npm被墙问题
+    npm是国外网站一般使用cnpm
+        npm  install --global cnpm
+    如果不想通过npm安装cnpm也可以
+        npm install 包 --registry=https：//registry.npm.taobao.org
+        这样会比较麻烦每次安装都需要写后缀
+
+        推荐这样
+        npm config set registry https：//registry.npm.taobao.org
+
+package.json/package-lock.json  
+    - package-lock.json中存储的你项目中node_module所有的依赖信息，当你的node_module从新安装依赖的时候会比没有安装之前的速度更快。
+    - 从文件来看，有一个lock  这个锁是用来锁定版本的，如果你下载的下面时1.1版本的，如果没有lock那么你npm i的时候就会默认给你安装最新的版本</code></pre><h1 id="JavaScript模块化"><a href="#JavaScript模块化" class="headerlink" title="JavaScript模块化"></a>JavaScript模块化</h1><p>JavaScript天生不支持模块化，如果浏览器需要模块化那么需要引入第三方库<br>    - require.js    AMD<br>    - sea.js    CMD<br>    上面两中都是浏览器模块化规范<br>    - common.js   common<br>    当然还有UMD、es6中的modules</p>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><ul>
+<li>Node中我们开启的web服务是一个完全的黑盒子，所有资源都不允许用户来访问，用户可以访问的内容具体由开发人员编写设计为准。</li>
+<li>在Node中可以把一个url地址处理的非常漂亮  </li>
+</ul>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">node</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/04/22/node/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-vue从基础到熟悉" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/04/03/vue%E4%BB%8E%E5%9F%BA%E7%A1%80%E5%88%B0%E7%86%9F%E6%82%89/">vue从基础到熟悉</a>
+    </h1>
+  
+
+        
+        <a href="/2020/04/03/vue%E4%BB%8E%E5%9F%BA%E7%A1%80%E5%88%B0%E7%86%9F%E6%82%89/" class="archive-article-date">
+  	<time datetime="2020-04-03T03:04:27.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-03</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="vue从基础到熟悉"><a href="#vue从基础到熟悉" class="headerlink" title="vue从基础到熟悉"></a>vue从基础到熟悉</h1>
+        
+          <a class="article-more-a" href="/2020/04/03/vue%E4%BB%8E%E5%9F%BA%E7%A1%80%E5%88%B0%E7%86%9F%E6%82%89/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">vue</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/04/03/vue%E4%BB%8E%E5%9F%BA%E7%A1%80%E5%88%B0%E7%86%9F%E6%82%89/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-轮播插件之无缝轮播失效解决方案" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/03/31/%E8%BD%AE%E6%92%AD%E6%8F%92%E4%BB%B6%E4%B9%8B%E6%97%A0%E7%BC%9D%E8%BD%AE%E6%92%AD%E5%A4%B1%E6%95%88%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/">轮播插件之无缝轮播失效解决方案</a>
+    </h1>
+  
+
+        
+        <a href="/2020/03/31/%E8%BD%AE%E6%92%AD%E6%8F%92%E4%BB%B6%E4%B9%8B%E6%97%A0%E7%BC%9D%E8%BD%AE%E6%92%AD%E5%A4%B1%E6%95%88%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/" class="archive-article-date">
+  	<time datetime="2020-03-31T13:43:39.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-31</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><a href="https://www.jianshu.com/p/f6d31e2732e0" target="_blank" rel="noopener">参考</a><br>产生无缝轮播失效的原因<br>：是因为swiper提前初始化了，那时候数据还没有完全出来</p>
+<ul>
+<li><ol>
+<li>使用vue提供的$nextTick()方法<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">this</span>.$nextTick(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">              <span class="keyword">var</span> swiper = <span class="keyword">new</span> Swiper(<span class="string">'.swiper-container'</span>, &#123;</span><br><span class="line">		此处省略</span><br><span class="line">         &#125;）</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+</li>
+<li><p>2、在swiper初始化的时候</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">swiper1 = <span class="keyword">new</span> Swiper(<span class="string">'.swiper-container'</span>, &#123;</span><br><span class="line">    initialSlide :<span class="number">0</span>,</span><br><span class="line">    observer:<span class="literal">true</span>,<span class="comment">//修改swiper自己或子元素时，自动初始化swiper</span></span><br><span class="line">    observeParents:<span class="literal">true</span><span class="comment">//修改swiper的父元素时，自动初始化swiper</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/03/31/%E8%BD%AE%E6%92%AD%E6%8F%92%E4%BB%B6%E4%B9%8B%E6%97%A0%E7%BC%9D%E8%BD%AE%E6%92%AD%E5%A4%B1%E6%95%88%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="w-路由守卫" class="article article-type-w  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/03/28/%E8%B7%AF%E7%94%B1%E5%AE%88%E5%8D%AB/">路由守卫</a>
+    </h1>
+  
+
+        
+        <a href="/2020/03/28/%E8%B7%AF%E7%94%B1%E5%AE%88%E5%8D%AB/" class="archive-article-date">
+  	<time datetime="2020-03-28T12:01:26.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-28</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="路由守卫"><a href="#路由守卫" class="headerlink" title="路由守卫"></a>路由守卫</h1>
+        
+          <a class="article-more-a" href="/2020/03/28/%E8%B7%AF%E7%94%B1%E5%AE%88%E5%8D%AB/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">vue</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/03/28/%E8%B7%AF%E7%94%B1%E5%AE%88%E5%8D%AB/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-axios基本操作" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/03/27/axios%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/">axios基本操作</a>
+    </h1>
+  
+
+        
+        <a href="/2020/03/27/axios%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/" class="archive-article-date">
+  	<time datetime="2020-03-27T14:48:16.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-27</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="axios基本操作"><a href="#axios基本操作" class="headerlink" title="axios基本操作"></a>axios基本操作</h1>
+        
+          <a class="article-more-a" href="/2020/03/27/axios%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">vue</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/03/27/axios%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-vuex解析" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/03/26/vuex%E8%A7%A3%E6%9E%90/">vuex解析</a>
+    </h1>
+  
+
+        
+        <a href="/2020/03/26/vuex%E8%A7%A3%E6%9E%90/" class="archive-article-date">
+  	<time datetime="2020-03-26T10:53:12.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-26</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="vuex基本使用"><a href="#vuex基本使用" class="headerlink" title="vuex基本使用"></a>vuex基本使用</h1>
+        
+          <a class="article-more-a" href="/2020/03/26/vuex%E8%A7%A3%E6%9E%90/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">vue</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/03/26/vuex%E8%A7%A3%E6%9E%90/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-webpack基础操作" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -436,363 +1158,9 @@
 
 
   
-    <article id="post-node中神奇的包-bcryptjs加密解密" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/03/18/node%E4%B8%AD%E7%A5%9E%E5%A5%87%E7%9A%84%E5%8C%85-bcryptjs%E5%8A%A0%E5%AF%86%E8%A7%A3%E5%AF%86/">node中神奇的包-bcryptjs加密解密</a>
-    </h1>
-  
-
-        
-        <a href="/2020/03/18/node%E4%B8%AD%E7%A5%9E%E5%A5%87%E7%9A%84%E5%8C%85-bcryptjs%E5%8A%A0%E5%AF%86%E8%A7%A3%E5%AF%86/" class="archive-article-date">
-  	<time datetime="2020-03-18T05:23:48.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-18</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="node中神奇的包-bcryptjs加密解密"><a href="#node中神奇的包-bcryptjs加密解密" class="headerlink" title="node中神奇的包-bcryptjs加密解密"></a>node中神奇的包-bcryptjs加密解密</h1><ul>
-<li>什么是bcrypyjs？<blockquote>
-<p>bcryptjs是一个第三方密码加密库，是对原有的bcrypt的优化，优点是不需要安装任何依赖</p>
-</blockquote>
-</li>
-</ul>
-<p><a href="https://segmentfault.com/a/1190000008841988" target="_blank" rel="noopener">具体使用可以看看这里</a></p>
-<ul>
-<li>下面我们来讲讲文档上面没有的<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//salt是设置加密的强度 最高好像就是10</span></span><br><span class="line"><span class="keyword">var</span> salt = bcrypt.genSaltSync(<span class="number">10</span>);</span><br></pre></td></tr></table></figure>
-<a href="https://segmentfault.com/a/1190000013165651" target="_blank" rel="noopener">基本运行原理可以点击这里</a></li>
-</ul>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/03/18/node%E4%B8%AD%E7%A5%9E%E5%A5%87%E7%9A%84%E5%8C%85-bcryptjs%E5%8A%A0%E5%AF%86%E8%A7%A3%E5%AF%86/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-mongoose的基本使用" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/03/18/mongoose%E7%9A%84%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8/">mongoose的基本使用</a>
-    </h1>
-  
-
-        
-        <a href="/2020/03/18/mongoose%E7%9A%84%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8/" class="archive-article-date">
-  	<time datetime="2020-03-18T03:20:04.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-18</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="mongoose的基本使用"><a href="#mongoose的基本使用" class="headerlink" title="mongoose的基本使用"></a>mongoose的基本使用</h1>
-        
-          <a class="article-more-a" href="/2020/03/18/mongoose%E7%9A%84%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/03/18/mongoose%E7%9A%84%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-express框架使用指南" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/03/16/express%E6%A1%86%E6%9E%B6%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/">express框架使用指南</a>
-    </h1>
-  
-
-        
-        <a href="/2020/03/16/express%E6%A1%86%E6%9E%B6%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/" class="archive-article-date">
-  	<time datetime="2020-03-16T15:08:05.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-16</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="express框架使用指南"><a href="#express框架使用指南" class="headerlink" title="express框架使用指南"></a>express框架使用指南</h1><p><a href="http://expressjs.com/" target="_blank" rel="noopener">官网</a></p>
-        
-          <a class="article-more-a" href="/2020/03/16/express%E6%A1%86%E6%9E%B6%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">node</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/03/16/express%E6%A1%86%E6%9E%B6%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-0基础解析node-js" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/03/16/0%E5%9F%BA%E7%A1%80%E8%A7%A3%E6%9E%90node-js/">解析node.js中的非阻塞Io</a>
-    </h1>
-  
-
-        
-        <a href="/2020/03/16/0%E5%9F%BA%E7%A1%80%E8%A7%A3%E6%9E%90node-js/" class="archive-article-date">
-  	<time datetime="2020-03-16T10:38:47.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-16</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="解析node-js中的非阻塞Io"><a href="#解析node-js中的非阻塞Io" class="headerlink" title="解析node.js中的非阻塞Io"></a>解析node.js中的非阻塞Io</h1>
-        
-          <a class="article-more-a" href="/2020/03/16/0%E5%9F%BA%E7%A1%80%E8%A7%A3%E6%9E%90node-js/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/03/16/0%E5%9F%BA%E7%A1%80%E8%A7%A3%E6%9E%90node-js/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-hello-world" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/03/15/hello-world/">Hello World</a>
-    </h1>
-  
-
-        
-        <a href="/2020/03/15/hello-world/" class="archive-article-date">
-  	<time datetime="2020-03-15T11:01:05.624Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-15</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html" target="_blank" rel="noopener">Deployment</a></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/03/15/hello-world/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/">&amp;laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
+      <a class="extend prev" rel="prev" href="/">&amp;laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/3/">Next &amp;raquo;</a>
     </nav>
   
 
@@ -890,11 +1258,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">node</a>
+                <a href="javascript:void(0)" class="js-tag color5">http</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">http</a>
+                <a href="javascript:void(0)" class="js-tag color3">js</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">node</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -910,7 +1282,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">js</a>
+                <a href="javascript:void(0)" class="js-tag color4">web</a>
               </li>
             
             <div class="clearfix"></div>
