@@ -1,6 +1,385 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>微信小程序Paused in Debugger</title>
+    <url>/2020/05/25/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8FPaused-in-Debugger/</url>
+    <content><![CDATA[<h1 id="小程序使用observer监听事件后出现Pauser-in-Debugger"><a href="#小程序使用observer监听事件后出现Pauser-in-Debugger" class="headerlink" title="小程序使用observer监听事件后出现Pauser in Debugger"></a>小程序使用observer监听事件后出现Pauser in Debugger</h1><p>最新在再写音乐小程序的时候，通过监听歌曲id的变化，来切换歌曲。但是当我使用observer监听的时候出现了pauser in debugger</p>
+<p>代码如下</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">Component:&#123;</span><br><span class="line">    properties: &#123;</span><br><span class="line">    	songid: <span class="built_in">Number</span></span><br><span class="line">  	&#125;,</span><br><span class="line">    observers: &#123;</span><br><span class="line">    <span class="string">"songid"</span> : <span class="function"><span class="keyword">function</span>(<span class="params">id</span>)</span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.setDate(&#123;</span><br><span class="line">            <span class="keyword">this</span>.data.songid = id</span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这样写会陷入死循环最后出现pauser in debugger的错误。因为observers是会监听songid的变化的，当监听到songid的变化就会触发对于的函数，修改songid的值。修改完成后observers再次监听到了songid的变化，再次触发对应的函数最后导致死循环。</p>
+<p>解决方案：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">Component:&#123;</span><br><span class="line">    properties: &#123;</span><br><span class="line">    	songid: <span class="built_in">Number</span></span><br><span class="line">  	&#125;,</span><br><span class="line">     data : &#123;</span><br><span class="line">         id : <span class="string">''</span></span><br><span class="line">     &#125;</span><br><span class="line">    observers: &#123;</span><br><span class="line">    <span class="string">"songid"</span> : <span class="function"><span class="keyword">function</span>(<span class="params">id</span>)</span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.setDate(&#123;</span><br><span class="line">            <span class="keyword">this</span>.data.id = id</span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>设置一个中间的变量，用中间量去渲染对应的id，songid只用来监视用户是否切换了歌曲。</p>
+]]></content>
+      <tags>
+        <tag>微信小程序</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>webpack 4.0</title>
+    <url>/2020/05/16/webpack-4-0/</url>
+    <content><![CDATA[<h1 id="webpack"><a href="#webpack" class="headerlink" title="webpack"></a>webpack</h1><h1 id="webpack-安装"><a href="#webpack-安装" class="headerlink" title="webpack 安装"></a>webpack 安装</h1><blockquote>
+<p>npm install webpack webpack-cli -D</p>
+</blockquote>
+<h1 id="webpack打包"><a href="#webpack打包" class="headerlink" title="webpack打包"></a>webpack打包</h1><blockquote>
+<p>npx webpack</p>
+</blockquote>
+<p>会去找到node_module中的webpack.cmd文件（如果当前目录下有就执行，没有就返回上一级目录找到webpack中的webpack.js）webpack.js文件会看你是否安装webpack cli，如果有就会提示你安装webpack cli。</p>
+<h1 id="webpack-手动配置"><a href="#webpack-手动配置" class="headerlink" title="webpack 手动配置"></a>webpack 手动配置</h1><p>默认配置名字：webpack.config.js</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> path = <span class="built_in">require</span>(<span class="string">'path'</span>)</span><br><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">    mode: <span class="string">'development'</span>,<span class="comment">//模式 默认两种 development production</span></span><br><span class="line">    entry: <span class="string">'./src/index.js'</span>, <span class="comment">// 入口</span></span><br><span class="line">    output: &#123;</span><br><span class="line">        filename:<span class="string">'bundle.js'</span>,<span class="comment">//打包后的文件名</span></span><br><span class="line">        path: path.resolve(__dirname,<span class="string">'dist'</span>)  <span class="comment">//路径  必须是绝对路径</span></span><br><span class="line">        publicPath:<span class="string">'http://www.hqwluck.xyz'</span><span class="comment">//配置公共引用资源路径</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>手动指定配置文件</p>
+<blockquote>
+<p>npx webpack –config webpack.config.js</p>
+<p>npx webpack –config 配置文件名</p>
+</blockquote>
+<p>packjson中配置</p>
+<p>在pack.json中的script添加一个”bulid”</p>
+<blockquote>
+<p>“bulid”: webpack –config webpack.config.js</p>
+<p>“bulid”: webpack</p>
+</blockquote>
+<p>配置配置文件位置完成打包</p>
+<blockquote>
+<p>npm reun bulid – –config webpack.config.js</p>
+<p>webpack中 – 后面的可以被当作参数进行操作</p>
+<h1 id="webpack服务"><a href="#webpack服务" class="headerlink" title="webpack服务"></a>webpack服务</h1><p>使用npx开启服务</p>
+<blockquote>
+<p>npx webpack-dev-server</p>
+</blockquote>
+<p> 服务配置</p>
+<p>在webpack.config.js文件中设置</p>
+<blockquote>
+<p>derSrever: {</p>
+<p>port: 3000, //端口号</p>
+<p>progress:true, //是否有进度条</p>
+<p>contentBase:’./build’  默认开启服务的地址</p>
+<p>}</p>
+</blockquote>
+<p>在pack.json文件中的script中添加</p>
+<blockquote>
+<p>“dev”: ‘’webpack-dev-serve’</p>
+</blockquote>
+</blockquote>
+<h1 id="HTML插件"><a href="#HTML插件" class="headerlink" title="HTML插件"></a>HTML插件</h1><p>我们使用html-webpack-plugin插件，会把源码的html文件打包到dist文件中。会自动引入html需要的资源。</p>
+<p>安装</p>
+<blockquote>
+<p>npm install html-webpack-plugin</p>
+</blockquote>
+<p>使用</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">plugins:[</span><br><span class="line">    <span class="keyword">new</span> HtmlWebpackPlugin(&#123;</span><br><span class="line">        template: <span class="string">'./src/index.html'</span>，</span><br><span class="line">        filename:<span class="string">'index.html'</span>，</span><br><span class="line">        minify:&#123;</span><br><span class="line">        removeAttributeQuotes: <span class="literal">true</span>, <span class="comment">// 去掉引号</span></span><br><span class="line">        collapseWhitespace: <span class="literal">true</span>, <span class="comment">//折叠空行</span></span><br><span class="line">    &#125;,</span><br><span class="line">        hash: ture</span><br><span class="line">    &#125;)</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+
+<p>打包的时候为以templat的文件问模板在bulid文件中生成一个filename</p>
+<h1 id="css插件（预处理）"><a href="#css插件（预处理）" class="headerlink" title="css插件（预处理）"></a>css插件（预处理）</h1><ul>
+<li>loader(css-loader,style-loader,sass-loader)(style方式引入)</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">moudle: &#123;</span><br><span class="line">    rules:[ <span class="comment">//规则</span></span><br><span class="line">        <span class="comment">//css-loader 解析@import这种语法</span></span><br><span class="line">        <span class="comment">//style-loader 把css插入head标签中</span></span><br><span class="line">        &#123;<span class="attr">test</span>: <span class="regexp">/\.css$/</span> , <span class="attr">user</span>:[<span class="string">'style-loader'</span>,<span class="string">'css-loader'</span>] <span class="comment">//loader的顺序从右向左执行&#125;</span></span><br><span class="line">    ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>mini-css-extract-plugin（link方式引入css）</li>
+</ul>
+<p>style-loader会把css样式插入head标签的style上但是代码过多就会很难看。因此我们使用mini-css-extract-plugin 把它用link标签引入。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">plugin:&#123;</span><br><span class="line">    <span class="keyword">new</span> MinCssExtractPlugin(&#123;</span><br><span class="line">        filename:<span class="string">'main.css'</span><span class="comment">//抽离出一个css文件</span></span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br><span class="line">之后只需要用MinCssExtractPlugin.loader替换对应的style-loader就可以了。如果向抽离多个就创建多个之后只需要用MinCssExtractPlugin就可以了。</span><br></pre></td></tr></table></figure>
+
+
+
+<ul>
+<li><p>postcss-loader与autoprefixer(自动添加前缀)</p>
+<p>首先新建一个文件postcss.config.js</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">    plugins: [<span class="built_in">require</span>(<span class="string">'autoprefixer'</span>)]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+<p>  只需要把postcss-loader放在css-loader之前就可以了。</p>
+<h2 id="css优化"><a href="#css优化" class="headerlink" title="css优化"></a>css优化</h2><p>webpack默认打包js文件，对应css文件我们需要引入</p>
+<p>optimize-css-assets-webpack-plugin</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">optimization:&#123;<span class="comment">//优化项</span></span><br><span class="line">    minimizer:[</span><br><span class="line">        <span class="keyword">new</span> OptimizeCss()</span><br><span class="line">        如果设置了这个那么webpack中js压缩就会别清除，也就是说不会压缩。需要配合uglifyjs-webpack-plugin</span><br><span class="line">        <span class="keyword">new</span> UglifyJsPlugin(&#123;</span><br><span class="line">        cache: <span class="literal">true</span>,</span><br><span class="line">        parallel:<span class="literal">true</span>,</span><br><span class="line">        sourceMap:<span class="literal">true</span></span><br><span class="line">        &#125;)</span><br><span class="line">    ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="js转化"><a href="#js转化" class="headerlink" title="js转化"></a>js转化</h1><h2 id="es6转es5"><a href="#es6转es5" class="headerlink" title="es6转es5"></a>es6转es5</h2><ul>
+<li><p>bable-loader  es6&gt;es5格式转化</p>
+</li>
+<li><p>@bable/core </p>
+</li>
+<li><p>@bable/preset-env es6&gt;es5的模块语法转化</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="built_in">module</span>:&#123;</span><br><span class="line">    rules:[</span><br><span class="line">        &#123;<span class="attr">test</span>:<span class="string">'/\.js$/'</span>,<span class="attr">options</span>:&#123;</span><br><span class="line">            presets:[</span><br><span class="line">                <span class="string">'@bable/preset-env'</span></span><br><span class="line">            ]</span><br><span class="line">        &#125;&#125;</span><br><span class="line">    ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+<h1 id="第三方模块"><a href="#第三方模块" class="headerlink" title="第三方模块"></a>第三方模块</h1><p>webpack打包的时候，会把每个模块打包成一个闭包函数，从window上是访问不到的。我们可以使用以下方法。</p>
+<ul>
+<li><p>expose-loader   暴露   全局的loader   是内联loader</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">//方法一：直接在引用的地方使用。（暴露在window）</span></span><br><span class="line"><span class="keyword">import</span> $ <span class="keyword">from</span> <span class="string">'expose-loader?$!jquery'</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//方法二：在webpack.config.js文件中配置。</span></span><br><span class="line"><span class="built_in">module</span>:&#123;</span><br><span class="line">    rules: [</span><br><span class="line">        &#123;</span><br><span class="line">            test:<span class="built_in">require</span>.resolve(<span class="string">'jquery'</span>),</span><br><span class="line">            use:<span class="string">'expose-loader?$'</span></span><br><span class="line">        &#125;</span><br><span class="line">    ]</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//方法三：使用webpack在webpack.config.js文件中进行配置。每个文件都可以在上注入这个模块，但不能通过window获取。</span></span><br><span class="line"><span class="keyword">let</span> webpack = <span class="built_in">require</span>(<span class="string">'webpack'</span>)</span><br><span class="line"></span><br><span class="line">plugins:[</span><br><span class="line">    <span class="keyword">new</span> webpack.ProvidePlugin(&#123;</span><br><span class="line">        $:<span class="string">'jquery'</span></span><br><span class="line">    &#125;)</span><br><span class="line">]</span><br><span class="line"><span class="comment">// 方法四：通过在html页面使用cnd链接引入。暴露在window上</span></span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+<p>但是在生产环境下，我们不希望第三方插件也被打包。因此我们要使用。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">externals:&#123;</span><br><span class="line">    jquery:<span class="string">'$'</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="图片打包"><a href="#图片打包" class="headerlink" title="图片打包"></a>图片打包</h1><p>file-loader:默认会在内部生成一张图片，到bulid目录下，把生成图片的名字返回(打包文件中js、css文件的图片都会默认的转换为生成图片的名字)</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="built_in">module</span>:&#123;</span><br><span class="line">    rules:[&#123;</span><br><span class="line">        test:<span class="string">'/\.(png|jpg|gif)$/'</span>,</span><br><span class="line">        loader:<span class="string">'file-loader'</span></span><br><span class="line">    &#125;]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<ul>
+<li><p>1、在js中创建图片来引入。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> login <span class="keyword">from</span> <span class="string">'./login'</span></span><br><span class="line"><span class="keyword">let</span> image = <span class="keyword">new</span>  Image()</span><br><span class="line">image.src = login</span><br><span class="line"><span class="built_in">document</span>.body.appendchild(image)</span><br></pre></td></tr></table></figure>
+</li>
+<li></li>
+<li><p>2、css中backgorund-url</p>
+</li>
+<li><p>3、html页面中使用</p>
+<p>这里我们需要一个插件html-withmig-loader会默认解析html中的图片文件，编译我们的文件。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">rules:[</span><br><span class="line">    &#123;<span class="attr">test</span>:<span class="string">'/\.html$/'</span>,<span class="attr">use</span>:html-withimg-loader&#125;</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+<p>图片比较小的时候，不希望发送http请求，我们把他转为base64的格式用url-loader。图片比较大的时候使用file-loader。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">rules:[</span><br><span class="line">    &#123;<span class="attr">test</span>:<span class="string">'/\.(jpg|png|gif)$/'</span>&#125;,</span><br><span class="line">    use:&#123;</span><br><span class="line">    loader:<span class="string">'url-loader'</span>,</span><br><span class="line">    options:&#123;</span><br><span class="line">    limit:<span class="number">200</span>*<span class="number">1024</span>,  <span class="comment">//小于200k就转换为base64</span></span><br><span class="line">    outputPath:<span class="string">'/img/'</span>   <span class="comment">//配置图片打包路径</span></span><br><span class="line">    publicPath:<span class="string">'http:hqwluck.xyz'</span>  <span class="comment">//只会处理图片的应用路径</span></span><br><span class="line">    &#125;</span><br><span class="line">    &#125;</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="打包多页应用"><a href="#打包多页应用" class="headerlink" title="打包多页应用"></a>打包多页应用</h1><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> path = <span class="built_in">require</span>(<span class="string">'path'</span>)</span><br><span class="line"><span class="keyword">let</span> HtmlWebpackPlugin(<span class="string">'html-webpack-plugin'</span>)</span><br><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">    mode:<span class="string">'development'</span></span><br><span class="line">    <span class="comment">//多入口</span></span><br><span class="line">    entry: &#123;</span><br><span class="line">        home:<span class="string">'./src/index.js'</span>,</span><br><span class="line">        other:<span class="string">'./src/other.js'</span></span><br><span class="line">    &#125;,</span><br><span class="line">    output: &#123;</span><br><span class="line">        filename: <span class="string">'[name].js'</span></span><br><span class="line">        path: path.resolve(__dirname,<span class="string">'dist'</span>)</span><br><span class="line">    &#125;,</span><br><span class="line">    plugins:[</span><br><span class="line">        <span class="keyword">new</span> HtmlWebpackPlugin(&#123;</span><br><span class="line">            template:<span class="string">'./index.html'</span>,</span><br><span class="line">            filename:<span class="string">'home.html'</span></span><br><span class="line">            chunks:[<span class="string">'home'</span>]  <span class="comment">//指定引入的js  不写全引用</span></span><br><span class="line">        &#125;)</span><br><span class="line">        <span class="keyword">new</span> HtmlWebpackPlugin(&#123;</span><br><span class="line">            template:<span class="string">'./index.html'</span>,</span><br><span class="line">            filename:<span class="string">'other.html'</span></span><br><span class="line">            chunks:[<span class="string">'other'</span>]  <span class="comment">// 指定引入的js  不写全引用</span></span><br><span class="line">        &#125;)</span><br><span class="line">    ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="设置源码映射"><a href="#设置源码映射" class="headerlink" title="设置源码映射"></a>设置源码映射</h1><figure class="highlight js"><table><tr><td class="code"><pre><span class="line">devtool:<span class="string">'source-map'</span>  <span class="comment">//增加映射文件  可以帮助我们调试源码</span></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">1、source-map   会标时当前报错的行列 （会创建一个映射文件）</span></span><br><span class="line"><span class="comment">2、eval-source-map 会产生行 列，不会创建一个映射文件。</span></span><br><span class="line"><span class="comment">3、cheap-moudle-source-map：不会产生列  但是是一个单独的映射文件</span></span><br><span class="line"><span class="comment">4、cheap-module-eval-source-map：不会生成文件，也没有列</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="实时打包"><a href="#实时打包" class="headerlink" title="实时打包"></a>实时打包</h1><figure class="highlight js"><table><tr><td class="code"><pre><span class="line">watch: <span class="literal">true</span> <span class="comment">//监视代码 ， 代码有变化就会从新打包</span></span><br><span class="line">watchOptions:&#123;</span><br><span class="line">    <span class="comment">//监控的选项</span></span><br><span class="line">    poll: <span class="number">1000</span>, <span class="comment">//每秒 问我1000次</span></span><br><span class="line">	aggreateTime:<span class="number">500</span>     <span class="comment">//防抖的作用 500ms中停止数据才打包</span></span><br><span class="line">    ignored:<span class="string">'/node_modules'</span>  <span class="comment">//不监控那个文件</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="webpack小插件"><a href="#webpack小插件" class="headerlink" title="webpack小插件"></a>webpack小插件</h1><ul>
+<li><p>CleanWebpackPlugin   clean-webpack-plugin</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">new</span> CleanWebpackPlugin(<span class="string">'./dist'</span>)</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+<ul>
+<li><p>CopyWebpackPlugin     copy-webpack-plugin</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">new</span> CopyWebpackPlugin([<span class="keyword">from</span>:<span class="string">'./doc'</span>,<span class="attr">to</span>:<span class="string">'./'</span>])</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+<ul>
+<li><p>bannerPlugin   banner-plugin 版权注释</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">new</span> webpack.BannerPlugin(<span class="string">'make 2020 by hqw'</span>)</span><br></pre></td></tr></table></figure>
+
+<h1 id="webpack配置跨域"><a href="#webpack配置跨域" class="headerlink" title="webpack配置跨域"></a>webpack配置跨域</h1><ul>
+<li>1、通过服务端获取数据</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">devServer:&#123;</span><br><span class="line">    proxy:&#123;</span><br><span class="line">        <span class="string">'/api'</span>:<span class="string">'http://localhost:3000'</span>  <span class="comment">//配置一个代理</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">devServer:&#123;</span><br><span class="line">    proxy:&#123;  重写</span><br><span class="line">		<span class="string">'/api'</span>:&#123;</span><br><span class="line">            target:<span class="string">'http://localhost:3000'</span>,</span><br><span class="line">            pathReWrite:&#123;<span class="string">"/api"</span>:<span class="string">""</span>&#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+<ul>
+<li>2、mock数据</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">devServer:&#123;</span><br><span class="line">    before(app)&#123;  <span class="comment">//这个app相当于express的实例app</span></span><br><span class="line">        app.get(<span class="string">'/user'</span>,(req , res) =&gt;&#123;</span><br><span class="line">            res.json(&#123;<span class="attr">name</span>:<span class="string">'hello word'</span>&#125;)</span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>3、在服务端配置webpack（webpack与服务器同一端口）</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> webpack = <span class="built_in">require</span>(<span class="string">'webpack'</span>)</span><br><span class="line"><span class="comment">//中间件</span></span><br><span class="line"><span class="keyword">let</span> middle = <span class="built_in">require</span>(<span class="string">'webpack-dev-middleware'</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> config = <span class="built_in">require</span>(<span class="string">'./webpack.config.js'</span>)</span><br><span class="line"><span class="keyword">let</span> compiler = webpack(config)</span><br><span class="line">app.use(middle(compiler))</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+<h1 id="resolve属性配置"><a href="#resolve属性配置" class="headerlink" title="resolve属性配置"></a>resolve属性配置</h1><figure class="highlight js"><table><tr><td class="code"><pre><span class="line">resolve:&#123;  <span class="comment">//解析  第三方包的相关配置</span></span><br><span class="line">    <span class="built_in">module</span>:[path:resolve(<span class="string">'node_modules'</span>)] <span class="comment">//默认包查找位置，</span></span><br><span class="line">    mainFields:[<span class="string">'style'</span>,<span class="string">'main'</span>],</span><br><span class="line">    extensions:[<span class="string">'.js'</span>,<span class="string">'.css'</span>,<span class="string">'.json'</span>]</span><br><span class="line">    alias：&#123;<span class="comment">//别名</span></span><br><span class="line">        bootstrap: <span class="string">'bootstrap/dist/css/bootstrap.css'</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="优化点"><a href="#优化点" class="headerlink" title="优化点"></a>优化点</h1><ul>
+<li>noParse   不回去解析对应内容</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="built_in">module</span>:&#123;</span><br><span class="line">    noParse: <span class="regexp">/jquery/</span> ,<span class="comment">//不会区解析jequary 	</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>webpack.IgnorePlugin()  忽略加载部分包</li>
+<li>exclude: /node_module/   不去node_module中寻找</li>
+<li>include:’path.resolve(‘src’)’ 只区src中寻找</li>
+</ul>
+<h1 id="多线程打包"><a href="#多线程打包" class="headerlink" title="多线程打包"></a>多线程打包</h1><p>一般项目很大的时候使用happypack</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> happypack = <span class="built_in">require</span>(happypack)</span><br><span class="line"><span class="built_in">module</span>.exports =&#123;</span><br><span class="line">    <span class="built_in">module</span>: &#123;</span><br><span class="line">        rules: [</span><br><span class="line">            &#123;<span class="attr">test</span>:<span class="string">'/\.js$/'</span>,<span class="attr">use</span>:<span class="string">'happypack/loader?id=js'</span>&#125;</span><br><span class="line">        ]</span><br><span class="line">    &#125;</span><br><span class="line">plugins: [</span><br><span class="line">    <span class="keyword">new</span> Happypack(&#123;</span><br><span class="line">    id:<span class="string">'js'</span>,</span><br><span class="line">    use:[&#123;</span><br><span class="line">    	loader: <span class="string">'babel-loader'</span>,</span><br><span class="line">    	options:&#123;</span><br><span class="line">    		presets:[</span><br><span class="line">    			<span class="string">'@babel/preset-env'</span>,</span><br><span class="line">    			<span class="string">'@babel/preset-react'</span></span><br><span class="line">    ]	</span><br><span class="line">	&#125;</span><br><span class="line">	&#125;]</span><br><span class="line">	&#125;)</span><br><span class="line">    ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <tags>
+        <tag>webpack</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>js函数调用栈、递归优化</title>
+    <url>/2020/05/16/js%E5%87%BD%E6%95%B0%E8%B0%83%E7%94%A8%E6%A0%88%E3%80%81%E9%80%92%E5%BD%92%E4%BC%98%E5%8C%96/</url>
+    <content><![CDATA[<h1 id="什么是调用栈"><a href="#什么是调用栈" class="headerlink" title="什么是调用栈"></a>什么是调用栈</h1><p>JavaScript的V8引擎主要包括两个组件：内存堆、调用堆栈</p>
+<p>内存堆：分为堆区和栈区，主要用来存放数据。</p>
+<p>调用堆栈：这是在你代码执行时栈帧存放的位置</p>
+<p>调用栈：就是调用堆栈、执行栈。</p>
+<h1 id="什么是栈帧"><a href="#什么是栈帧" class="headerlink" title="什么是栈帧"></a>什么是栈帧</h1><p>调用栈的每个入口成为栈帧</p>
+<p><img src="https://static.oschina.net/uploads/space/2017/1213/104147_KJwy_2896879.png" alt=""></p>
+<p>每一个灰色的矩形就是一个栈帧。</p>
+<h1 id="递归"><a href="#递归" class="headerlink" title="递归"></a>递归</h1><p>概念：一个函数调用自身。</p>
+<p>特点：递归的效率不高，并且容易导致内存囤积从而导致内存泄漏。</p>
+<p>原理：函数中调用自身，就会持续的不断的创建栈帧，然后压入栈顶，之前的那个栈帧就会被压入当前栈帧的下一层，一直递归导致栈被存满了，就会出现内存溢出。</p>
+<p>基线条件：控制递归停止的条件</p>
+<h2 id="尾调用优化"><a href="#尾调用优化" class="headerlink" title="尾调用优化"></a>尾调用优化</h2><p>概念：在函数的最后一步调用自身。</p>
+<p>特点：只保存一个调用记录，所以不会发生栈溢出错误。</p>
+]]></content>
+      <tags>
+        <tag>js</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>PHP</title>
+    <url>/2020/05/15/PHP/</url>
+    <content><![CDATA[<h1 id="数据表达"><a href="#数据表达" class="headerlink" title="数据表达"></a>数据表达</h1><h2 id="变量"><a href="#变量" class="headerlink" title="变量"></a>变量</h2><h3 id="变量赋值"><a href="#变量赋值" class="headerlink" title="变量赋值"></a>变量赋值</h3><blockquote>
+<p>语法：$变量名 = 值</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line"></span><br><span class="line">$v1 = <span class="number">122</span>;</span><br><span class="line">$v2 = <span class="number">241</span>;</span><br><span class="line">$v3 = $v1 + $v2</span><br><span class="line">    </span><br><span class="line">echo $v3 <span class="comment">//输出变量$v3</span></span><br><span class="line"></span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="判断变量-isset"><a href="#判断变量-isset" class="headerlink" title="判断变量(isset())"></a>判断变量(isset())</h3><p>判断一个变量名中是否存储了数据</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line"></span><br><span class="line">$v1 = <span class="number">122</span>;</span><br><span class="line">$v2 = <span class="number">241</span>;</span><br><span class="line">$result = isset($v2)</span><br><span class="line">echo $result <span class="comment">//变量中有值输出true   但是echo会有类型转换所以他会打印1</span></span><br><span class="line">var_dump($result) <span class="comment">// 不会类型转换打印true ， 可以输出一个变量的完整信息</span></span><br><span class="line"></span><br><span class="line">$v5 = <span class="literal">null</span> <span class="comment">//注意这里使用isset($v5)  &gt; 是没有值的</span></span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="销毁-删除变量-unset"><a href="#销毁-删除变量-unset" class="headerlink" title="销毁/删除变量(unset())"></a>销毁/删除变量(unset())</h3><p>当一个变量中存储了数据，我们也可以去销毁它</p>
+<blockquote>
+<p>unset($v1)</p>
+</blockquote>
+<h3 id="传值"><a href="#传值" class="headerlink" title="传值"></a>传值</h3><ul>
+<li>1、值传递</li>
+</ul>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line">$v1 = <span class="number">10</span></span><br><span class="line">$v3 = $v1   <span class="comment">//值的传递</span></span><br><span class="line"><span class="keyword">echo</span> $v3   <span class="comment">//10</span></span><br><span class="line">$v1 = <span class="number">11</span></span><br><span class="line"><span class="keyword">echo</span> $v3 <span class="comment">// 10</span></span><br><span class="line"><span class="comment">//值传递  传完后他们直接没有关系</span></span><br><span class="line">$v4 = $v1 + <span class="number">1</span> <span class="comment">//这不是传值</span></span><br></pre></td></tr></table></figure>
+
+<p>会创建一个新的内存空间，来存储这个值</p>
+<ul>
+<li>2、引用传值</li>
+</ul>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line">$v1 = <span class="number">10</span>;</span><br><span class="line">$v2 = &amp;$v1   <span class="comment">//引用传值</span></span><br><span class="line"><span class="keyword">echo</span> $v2   <span class="comment">// 10</span></span><br><span class="line">$v1 = <span class="number">12</span> </span><br><span class="line"><span class="keyword">echo</span> $v2  <span class="comment">// 12</span></span><br><span class="line">$v2 = <span class="number">20</span> </span><br><span class="line"><span class="keyword">echo</span> $v1 <span class="comment">// 20</span></span><br></pre></td></tr></table></figure>
+
+<p>不会创建新的内存空间，他们共用同一个内存空间。</p>
+<h3 id="预定义变量"><a href="#预定义变量" class="headerlink" title="预定义变量"></a>预定义变量</h3><p>PHP语言内部，有一些变量，可以直接使用，这就是所谓的预定义变量。</p>
+<ul>
+<li><p>1、$_GET变量</p>
+<p>代表浏览器表单通过‘get’方式提交的数据集合，可以称为get数据。</p>
+<p>$_GET变量里面会自动存储提交到某个文件中的GET数据。</p>
+<p>而GET数据是一个页面以‘get’方式请求时提交的数据。</p>
+<p>html</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">from</span> <span class="attr">action</span> =<span class="string">'data.php'</span> <span class="attr">method</span> = <span class="string">'get'</span>&gt;</span></span><br><span class="line">    name:<span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span> = <span class="string">'text'</span> <span class="attr">name</span> = <span class="string">'username'</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">br</span>/&gt;</span></span><br><span class="line">    age:<span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span> = <span class="string">'text'</span> <span class="attr">name</span> =<span class="string">'age'</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">br</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">'submit'</span> <span class="attr">value</span>=<span class="string">'提交'</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">from</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>data.php</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line">$name = $_GET[<span class="string">'username'</span>]</span><br><span class="line">$age = $_GET[<span class="string">"age"</span>]</span><br><span class="line"><span class="keyword">echo</span> <span class="string">'姓名'</span>$name</span><br><span class="line"><span class="keyword">echo</span> <span class="string">'age'</span>$age</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+<ul>
+<li><p>2、$_POST</p>
+<p>会去post的相关的数据</p>
+<p>简单的计算机案例</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line">&lt;html&gt;</span><br><span class="line">    &lt;php? </span><br><span class="line">    	$n1 = <span class="string">''</span></span><br><span class="line">    	$n2 = <span class="string">''</span></span><br><span class="line">    	$result = <span class="string">''</span></span><br><span class="line">    	<span class="keyword">if</span>(<span class="keyword">isset</span>($_POST[<span class="string">'num1'</span>]))&#123;</span><br><span class="line">            $n1 = $_POST[<span class="string">'num1'</span>])</span><br><span class="line">            $n2 = $_POST[<span class="string">'num2'</span>])</span><br><span class="line">            $result = $n1 + $n2</span><br><span class="line">        &#125;</span><br><span class="line">    <span class="meta">?&gt;</span></span><br><span class="line">	&lt;body&gt;</span><br><span class="line">    &lt;from action =<span class="string">'data.php'</span> method = <span class="string">'post'</span>&gt;</span><br><span class="line">&lt;input type = <span class="string">'text'</span> name = <span class="string">'num1'</span> value=<span class="string">'&lt;?php echo $n1 ?&gt;'</span>/&gt;</span><br><span class="line">+</span><br><span class="line">&lt;input type = <span class="string">'text'</span> name =<span class="string">'num2'</span> value=<span class="string">'&lt;?php echo $n2 ?&gt;'</span>/&gt;</span><br><span class="line">&lt;input type=<span class="string">'submit'</span> value=<span class="string">'='</span>/&gt;</span><br><span class="line">&lt;input type=<span class="string">'text'</span> name=<span class="string">'result'</span> value=<span class="string">'&lt;?php echo $result ?&gt;'</span>&gt;</span><br><span class="line">&lt;/from&gt;</span><br><span class="line">    &lt;/body&gt;    </span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>3、$_REQUERT</p>
+<p>可以会去get和post请求的数据</p>
+</li>
+<li><p>4、$_SERVER变量</p>
+<p>他会获取每一次请求中，客户端或服务器的一些基本信息，或系统信息。</p>
+<p>PHP_SELF : 表示当前请求的网页地址(不包括域名)</p>
+<p>SERVER_NAME:表示当前请求的服务器名</p>
+<p>SERVER_ADDR:表示获取请求服务器的IP地址</p>
+<p>REMOTE_ADDR: 表示当前请求的客户端IP地址</p>
+<p>SCRIPT_NAME:表示获取当前网址</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="keyword">echo</span> <span class="string">'你的IP为'</span>$_SERVER</span><br></pre></td></tr></table></figure>
+
+<h3 id="可变变量"><a href="#可变变量" class="headerlink" title="可变变量"></a>可变变量</h3><p>含义：变量名本身又是一个变量</p>
+<p>示例：</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line">$v1 = <span class="number">10</span></span><br><span class="line">$str = v1</span><br><span class="line"><span class="keyword">echo</span> $$str <span class="comment">//10</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h2 id="常量"><a href="#常量" class="headerlink" title="常量"></a>常量</h2><h3 id="2-1常量的含义"><a href="#2-1常量的含义" class="headerlink" title="2.1常量的含义"></a>2.1常量的含义</h3><p>常量，就是一个用于存储’不会（也不允许变化的数据的标识符）‘</p>
+<h3 id="2-2、常量的两种定义形式"><a href="#2-2、常量的两种定义形式" class="headerlink" title="2.2、常量的两种定义形式"></a>2.2、常量的两种定义形式</h3><ul>
+<li><p>1、define()</p>
+<blockquote>
+<p>define(“name”,”value”)</p>
+<p>define(‘PI1’,3)   //建议常量名字使用大写</p>
+</blockquote>
+</li>
+<li><p>2、const PI2 = 3.14</p>
+</li>
+</ul>
+<h3 id="2-3常量的取值"><a href="#2-3常量的取值" class="headerlink" title="2.3常量的取值"></a>2.3常量的取值</h3><ul>
+<li>1、echo 常量名</li>
+<li>2、echo constant（’常量名‘）</li>
+</ul>
+<h3 id="2-4、常量与变量的区别"><a href="#2-4、常量与变量的区别" class="headerlink" title="2.4、常量与变量的区别"></a>2.4、常量与变量的区别</h3><p>常量不能被重新赋值，已写好不得修改。</p>
+<p>常量必须是固定值</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> p1 = <span class="number">3.14</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="2-5判断一个常量是否存在：defined"><a href="#2-5判断一个常量是否存在：defined" class="headerlink" title="2.5判断一个常量是否存在：defined()"></a>2.5判断一个常量是否存在：defined()</h3><figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span>(!defined(<span class="string">'P1'</span>))&#123;</span><br><span class="line">    <span class="comment">///拿到别人的代码时候   判断常量P1是否被定义过</span></span><br><span class="line">&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">    <span class="comment">///</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-6-预定义常量"><a href="#2-6-预定义常量" class="headerlink" title="2.6 预定义常量"></a>2.6 预定义常量</h3><h3 id="2-7-魔术常量"><a href="#2-7-魔术常量" class="headerlink" title="2.7 魔术常量"></a>2.7 魔术常量</h3><p>是形式上的常量，他的值会根据网页不同，随时变化</p>
+<h2 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h2><h3 id="标量类型"><a href="#标量类型" class="headerlink" title="标量类型"></a>标量类型</h3><p>整数类型：integer int</p>
+<p>浮点数：double float    浮点数不要做相等比较，因为浮点数不可靠（计算机时二进制的小数转二进制时有很大问题的）</p>
+<p>布尔型：boolean bool</p>
+<p>字符串类型：string</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">$v1 = <span class="number">10</span></span><br><span class="line">echo <span class="string">"&lt;br&gt;v1的值为:"</span> . $v1  <span class="comment">//10</span></span><br><span class="line">echo <span class="string">"&lt;br&gt;v1的值为 $v1"</span>   <span class="comment">//10</span></span><br><span class="line">echo <span class="string">'&lt;br&gt;v1的值为 $v1'</span>  <span class="comment">//$v1</span></span><br><span class="line">echo <span class="string">"&lt;br&gt;\$v1的值为 $v1"</span> <span class="comment">// 10</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="引用类型"><a href="#引用类型" class="headerlink" title="引用类型"></a>引用类型</h3><ul>
+<li>1、数组</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">$info2 = array(<span class="string">'name'</span>=&gt;<span class="string">'xiaoming'</span>,<span class="string">'age'</span>=&gt; <span class="number">18</span>) <span class="comment">//创建数组</span></span><br><span class="line">$info2 = [<span class="string">'name'</span>,<span class="string">'obj'</span>,<span class="string">'arr'</span>]</span><br><span class="line">$info3 = [<span class="string">'name'</span>=&gt;<span class="string">'xiamggg'</span>, <span class="string">'age'</span> =&gt; <span class="number">18</span>]</span><br><span class="line">$info2[<span class="string">'age'</span>] = <span class="number">19</span>  <span class="comment">//修改值</span></span><br><span class="line">print_r($info2) <span class="comment">//打印</span></span><br><span class="line">print_r($info2[<span class="number">0</span>])</span><br></pre></td></tr></table></figure>
+
+<h3 id="空类型（null）"><a href="#空类型（null）" class="headerlink" title="空类型（null）"></a>空类型（null）</h3><h2 id="类型判断"><a href="#类型判断" class="headerlink" title="类型判断"></a>类型判断</h2><h3 id="gettype"><a href="#gettype" class="headerlink" title="gettype()"></a>gettype()</h3><figure class="highlight php"><table><tr><td class="code"><pre><span class="line">$v1 = <span class="string">'str'</span></span><br><span class="line"><span class="keyword">echo</span> gettype($v1)  <span class="comment">// string</span></span><br><span class="line"><span class="keyword">echo</span> settype($v1,integer)</span><br></pre></td></tr></table></figure>
+
+<h3 id="判断数据类型"><a href="#判断数据类型" class="headerlink" title="判断数据类型"></a>判断数据类型</h3><p>is_int()</p>
+<p>is_float()</p>
+<p>is_bool)</p>
+<p>is_string()</p>
+<p>is_array()</p>
+<p>is_object()</p>
+<p>_is_numeric()   可以判断小数，整数，纯数字字符串</p>
+<p>empty()判断变量是否为空</p>
+<h3 id="数据类型转换"><a href="#数据类型转换" class="headerlink" title="数据类型转换"></a>数据类型转换</h3><p>自动转换</p>
+<p>所有算数运算符都会把字符串转换成数字类型</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 转数字</span></span><br><span class="line"><span class="number">1</span> + <span class="string">'2'</span>  <span class="comment">// 3</span></span><br><span class="line"><span class="string">'1'</span>+<span class="string">'3'</span>  <span class="comment">// 4</span></span><br><span class="line"><span class="string">'1'</span>+ <span class="string">'2abc'</span> <span class="comment">// 3</span></span><br><span class="line"><span class="string">'1'</span>+ <span class="string">'2.2qab'</span> <span class="comment">//3.2</span></span><br><span class="line"><span class="number">1</span> . <span class="number">2</span> <span class="comment">// 12</span></span><br></pre></td></tr></table></figure>
+
+<p>强制转换</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line">$v1 = (int)<span class="string">'10'</span></span><br><span class="line"><span class="keyword">echo</span> $v1 <span class="comment">// 10</span></span><br><span class="line">$v2 = (float)<span class="string">'1.2'</span></span><br><span class="line"><span class="keyword">echo</span> $v2 <span class="comment">// 1.2</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="数据计算"><a href="#数据计算" class="headerlink" title="数据计算"></a>数据计算</h1><p>赋值运算符</p>
+<p>算数运算符</p>
+<p>连接运算符</p>
+<p>自付值运算符</p>
+<p>子操作运算符</p>
+<p>比较运算符</p>
+<p>逻辑运算符</p>
+<p>条件运算符</p>
+<p>按位运算符</p>
+<p>错误抑制符</p>
+]]></content>
+      <tags>
+        <tag>PHP</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>vue虚拟DOM解析</title>
     <url>/2020/05/14/vue%E8%99%9A%E6%8B%9FDOM%E8%A7%A3%E6%9E%90/</url>
     <content><![CDATA[<h1 id="1、什么是虚拟dom"><a href="#1、什么是虚拟dom" class="headerlink" title="1、什么是虚拟dom"></a>1、什么是虚拟dom</h1><p>Virtual DOM其实就是一颗以JavaScript对象作为基础的树，用对象属性来描述节点，实际就是真实dom的抽象。最终通过一系列操作使这课树映射到真实环境上。它描述了应该如何船舰一个真实的DOM节点。</p>
@@ -596,11 +975,38 @@
 </li>
 <li><p>2、完全二叉树：从根节点到倒数第二层满足完美二叉树，最后一层可以不完全填充，其叶子节点都靠左对齐。</p>
 </li>
-<li><p>3、二叉排序树（BTS）：</p>
+<li><p>3、二叉排序树、二叉搜索树、二叉查找树（BTS）：</p>
 <p>非空左子树所有键值小于其根节点的键值</p>
 <p>非空右子树所有键值大于其根节点的键值</p>
 <p>左右子树本身也是二叉搜索树。</p>
 </li>
+</ul>
+</li>
+<li><p>二叉树的存储方式：数组、链表</p>
+<ul>
+<li>数组：不是很适合二叉树，使用数组存储二叉树必须满足是完全二叉树才可以。非完全二叉树他必须转成完全二叉树才可以存储。这样子就会有很大内存的浪费。因为转完全二叉树的时候空缺的位置都是null但是都分配了内存。</li>
+<li>链表：最适合二叉树的存储方式，每个节点都封装成node，左节点的调用、右节点的调用。</li>
+</ul>
+</li>
+</ul>
+<p><a href="https://blog.csdn.net/jhzhahuaiyu/article/details/83143591?ops_request_misc=&request_id=&biz_id=102&utm_term=js递归&utm_medium=distribute.pc_search_result.none-task-blog-2~all~sobaiduweb~default-3-83143591" target="_blank" rel="noopener">https://blog.csdn.net/jhzhahuaiyu/article/details/83143591?ops_request_misc=&amp;request_id=&amp;biz_id=102&amp;utm_term=js%E9%80%92%E5%BD%92&amp;utm_medium=distribute.pc_search_result.none-task-blog-2<del>all</del>sobaiduweb~default-3-83143591</a></p>
+<ul>
+<li><p>平衡因子：左子树的高度减去右子树的高度，并且平衡因子的绝对值不能不大于1.</p>
+</li>
+<li><p>控制平衡因子的方法</p>
+<ul>
+<li>1、LL型（子节点向左）：左侧子节点的高度大于右侧子节点的高度（向右单旋转）</li>
+<li>2、LR（向右双旋转）：这种情况，左侧子节点的高度大于右侧子节点的高度，并且左侧子节点的右侧较重</li>
+<li>3、RR（向左单旋转）：右侧子节点的高度大于左侧子节点的高度</li>
+<li>4、RL（向左双旋转）：右侧子节点的高度大于左侧子节点的高度，并且右侧子节点的左侧偏重。</li>
+</ul>
+<h3 id="红黑树"><a href="#红黑树" class="headerlink" title="红黑树"></a>红黑树</h3><p>特性：</p>
+<ul>
+<li>1、节点上是红色或者黑色。</li>
+<li>2、根节点必须是黑色。</li>
+<li>3、叶子节点（空节点）都是黑色，而且为nill</li>
+<li>4、链接红色节点的两个子节点必须是黑色。</li>
+<li>5、从任意节点出发，到每个叶子节点的路径中包含相同数量的黑色节点。</li>
 </ul>
 </li>
 </ul>
@@ -988,11 +1394,30 @@ package.json/package-lock.json
 
 </li>
 </ul>
+<h1 id="三、声明周期"><a href="#三、声明周期" class="headerlink" title="三、声明周期"></a>三、声明周期</h1><p><img src="https://cn.vuejs.org/images/lifecycle.png" alt=""></p>
+<ul>
+<li>beforecreate：实例刚在内存中被创建出来，此时，还没有初始化好 data 和 methods 属性</li>
+<li>created：实例已经在内存中创建OK，此时 data 和 methods 已经创建OK，此时还没有开始 编译模板</li>
+<li>beforeMount：此时已经完成了模板的编译，但是还没有挂载到页面中</li>
+<li>mouted：此时，已经将编译好的模板，挂载到了页面指定的容器中显示</li>
+<li>beforeUpdate：状态更新之前执行此函数， 此时 data 中的状态值是最新的，但是界面上显示的 数据还是旧的，因为此时还没有开始重新渲染DOM节点</li>
+<li>update：实例更新完毕之后调用此函数，此时 data 中的状态值 和 界面上显示的数据，都已经完成了更新，界面已经被重新渲染好了！</li>
+<li>beforeDestroy：实例销毁之前调用。在这一步，实例仍然完全可用。</li>
+<li>destroy：Vue 实例销毁后调用。调用后，Vue 实例指示的所有东西都会解绑定，所有的事件监听器会被移除，所有的子实例也会被销毁。 </li>
+</ul>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">beforeCreate () &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>.$el,<span class="string">'beforeCreate'</span>) <span class="comment">//undefined</span></span><br><span class="line">&#125;</span><br><span class="line">create () &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>.$el,<span class="string">'create'</span>)</span><br><span class="line">    <span class="comment">//undefined</span></span><br><span class="line">&#125;</span><br><span class="line">beforeMount () &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>.$el,<span class="string">'beforeMount'</span>)</span><br><span class="line">    <span class="comment">//&lt;div id = 'root'&gt;&lt;/div&gt;会获取绑定的dom元素但不会数据渲染</span></span><br><span class="line">&#125;</span><br><span class="line">mounted () &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>.$el,<span class="string">'mounted'</span>)</span><br><span class="line">    <span class="comment">//&lt;div id = 'root'&gt;0&lt;/div&gt;会把data中的数据渲染到dom上。其实template渲染实际是调用了render，也有renderError，</span></span><br><span class="line">&#125;</span><br><span class="line">beforeUpdate () &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>.$el,<span class="string">'beforeUpdate'</span>)</span><br><span class="line">&#125;</span><br><span class="line">update () &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>.$el,<span class="string">'update'</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="服务端渲染"><a href="#服务端渲染" class="headerlink" title="服务端渲染"></a>服务端渲染</h2><p>在服务端渲染的时候beforeMount和mounted不会被执行，因为没有dom操作。</p>
+<p>数据请求一般放在create中去完成。</p>
 <h1 id="选项"><a href="#选项" class="headerlink" title="选项"></a>选项</h1><ul>
-<li>全局扩展传参（propsDate）</li>
-<li>计算选项  （computed）</li>
-<li>方法选项  （method）</li>
-<li>监听数据选项  （watch）</li>
+<li><p>全局扩展传参（propsDate）</p>
+</li>
+<li><p>计算选项  （computed）</p>
+</li>
+<li><p>方法选项  （method）</p>
+</li>
+<li><p>监听数据选项  （watch）</p>
+</li>
 </ul>
 ]]></content>
       <tags>
@@ -1219,7 +1644,7 @@ package.json/package-lock.json
 <hr>
 <ul>
 <li>局部安装(推荐使用)<blockquote>
-<p>npm i -D webpack   //安装</p>
+<p>npm i -D webpack webpack -cli   //安装</p>
 </blockquote>
 </li>
 </ul>
@@ -1254,46 +1679,52 @@ package.json/package-lock.json
 <ul>
 <li>1、默认导入导出与普通的导入导出之间的存在是互不影响的。</li>
 </ul>
+</li>
+</ul>
 <hr>
 <hr>
 <hr>
 <hr>
 <h1 id="css的打包"><a href="#css的打包" class="headerlink" title="css的打包"></a>css的打包</h1><ul>
-<li>1、首先需要安装两个包<blockquote>
+<li><p>1、首先需要安装两个包</p>
+<blockquote>
 <p>npm i -D css-loader style-loader</p>
 </blockquote>
 </li>
-<li>2、配置（找到webpack的配置文件）<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">#在最下面输入</span><br><span class="line"><span class="built_in">module</span>: &#123;</span><br><span class="line">    rules:[</span><br><span class="line">        &#123;</span><br><span class="line">            text: <span class="regexp">/.css$/</span>,</span><br><span class="line">            use: [</span><br><span class="line">                <span class="string">'style.loader'</span>,  <span class="comment">//这个包会在html文件中的head部分插入一个style并把css的文件自动引入</span></span><br><span class="line">                <span class="string">'css-loader'</span>   <span class="comment">//这个包会把css文件转化为js文件</span></span><br><span class="line">            ]</span><br><span class="line">        &#125;</span><br><span class="line">    ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
-<li>3、配置完成后据可以使用<blockquote>
+<li><p>2、配置（找到webpack的配置文件）</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">#在最下面输入</span><br><span class="line"><span class="built_in">module</span>: &#123;</span><br><span class="line">    rules:[</span><br><span class="line">        &#123;</span><br><span class="line">            text: <span class="regexp">/.css$/</span>,</span><br><span class="line">            use: [</span><br><span class="line">                <span class="string">'style.loader'</span>,  <span class="comment">//这个包会在html文件中的head部分插入一个style并把css的文件自动引入</span></span><br><span class="line">                <span class="string">'css-loader'</span>   <span class="comment">//这个包会把css文件转化为js文件</span></span><br><span class="line">            ]</span><br><span class="line">        &#125;</span><br><span class="line">    ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li><p>3、配置完成后据可以使用</p>
+<blockquote>
 <p>npm run build  //打包</p>
 </blockquote>
-</li>
-</ul>
 <h1 id="图片打包"><a href="#图片打包" class="headerlink" title="图片打包"></a>图片打包</h1><p>安装插件</p>
 <blockquote>
 <p>npm install –save-dev file-loader<br>安装完成后，取药去weback.config文件中进行配置<br>在rules中加个对象</p>
 </blockquote>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#96;&#123;</span><br><span class="line">    test: &#x2F;.(jpg|png|gif|svg)$&#x2F;,</span><br><span class="line">    use: [  </span><br><span class="line">        &#39;filer-loader&#39;</span><br><span class="line">    ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>会把图片打包到dist文件夹中，但是这是你使用浏览器打开的时候控制台会报错，没有找到图片。这是因为打包好的图片贺html文件不在同一个地方，他找不到。解决方法：把html文件也自动打包到dist文件夹中</p>
-<h1 id="HtmlWebpackPlugin"><a href="#HtmlWebpackPlugin" class="headerlink" title="HtmlWebpackPlugin"></a>HtmlWebpackPlugin</h1><p>会把源码的html文件打包到dist文件中。会自动引入html需要的图片。</p>
+<h1 id="HtmlWebpackPlugin"><a href="#HtmlWebpackPlugin" class="headerlink" title="HtmlWebpackPlugin"></a>HtmlWebpackPlugin</h1></li>
+</ul>
+<p>webpack默认只会打包js文件。因此需要映入很多其他的包来进行打包。</p>
+<p> 会把源码的html文件打包到dist文件中。会自动引入html需要的图片。</p>
 <ul>
-<li>安装依赖<blockquote>
+<li><p>安装依赖</p>
+<blockquote>
 <p>npm install –save-dev html-webpack-plugin</p>
 </blockquote>
 </li>
-<li>配置</li>
-</ul>
+<li><p>配置</p>
 <p>在webpack配置文件中加入</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">首先在全局中引入  webpack-olugin</span><br><span class="line">const htmlWebpackPlugin &#x3D; require(&#39;html-webpack-plugin&#39;)</span><br><span class="line">在moudle上面添加</span><br><span class="line">plugins: [</span><br><span class="line">    new htmlWebpackPlugin(&#123;</span><br><span class="line">        template: &#39;.&#x2F;index.html&#39;</span><br><span class="line">    &#125;)</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
 
-<h1 id="less打包"><a href="#less打包" class="headerlink" title="less打包"></a>less打包</h1><ul>
-<li>安装依赖<blockquote>
+<h1 id="less打包"><a href="#less打包" class="headerlink" title="less打包"></a>less打包</h1></li>
+<li><p>安装依赖</p>
+<blockquote>
 <p>npm install -D less less-loader</p>
 </blockquote>
-</li>
+<ul>
+<li>配置</li>
 </ul>
-</li>
-<li><p>配置</p>
 </li>
 </ul>
 <p>在webpack配置文件中进行配置</p>

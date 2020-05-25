@@ -16,7 +16,7 @@
 <meta property="og:description" content="webpack基础操作">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-03-24T09:24:47.000Z">
-<meta property="article:modified_time" content="2020-04-06T09:40:48.904Z">
+<meta property="article:modified_time" content="2020-05-16T06:43:36.526Z">
 <meta property="article:author" content="Baket">
 <meta name="twitter:card" content="summary">
   
@@ -205,7 +205,7 @@
 <hr>
 <ul>
 <li>局部安装(推荐使用)<blockquote>
-<p>npm i -D webpack   //安装</p>
+<p>npm i -D webpack webpack -cli   //安装</p>
 </blockquote>
 </li>
 </ul>
@@ -240,46 +240,52 @@
 <ul>
 <li>1、默认导入导出与普通的导入导出之间的存在是互不影响的。</li>
 </ul>
+</li>
+</ul>
 <hr>
 <hr>
 <hr>
 <hr>
 <h1 id="css的打包"><a href="#css的打包" class="headerlink" title="css的打包"></a>css的打包</h1><ul>
-<li>1、首先需要安装两个包<blockquote>
+<li><p>1、首先需要安装两个包</p>
+<blockquote>
 <p>npm i -D css-loader style-loader</p>
 </blockquote>
 </li>
-<li>2、配置（找到webpack的配置文件）<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">#在最下面输入</span><br><span class="line"><span class="built_in">module</span>: &#123;</span><br><span class="line">    rules:[</span><br><span class="line">        &#123;</span><br><span class="line">            text: <span class="regexp">/.css$/</span>,</span><br><span class="line">            use: [</span><br><span class="line">                <span class="string">'style.loader'</span>,  <span class="comment">//这个包会在html文件中的head部分插入一个style并把css的文件自动引入</span></span><br><span class="line">                <span class="string">'css-loader'</span>   <span class="comment">//这个包会把css文件转化为js文件</span></span><br><span class="line">            ]</span><br><span class="line">        &#125;</span><br><span class="line">    ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
-<li>3、配置完成后据可以使用<blockquote>
+<li><p>2、配置（找到webpack的配置文件）</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">#在最下面输入</span><br><span class="line"><span class="built_in">module</span>: &#123;</span><br><span class="line">    rules:[</span><br><span class="line">        &#123;</span><br><span class="line">            text: <span class="regexp">/.css$/</span>,</span><br><span class="line">            use: [</span><br><span class="line">                <span class="string">'style.loader'</span>,  <span class="comment">//这个包会在html文件中的head部分插入一个style并把css的文件自动引入</span></span><br><span class="line">                <span class="string">'css-loader'</span>   <span class="comment">//这个包会把css文件转化为js文件</span></span><br><span class="line">            ]</span><br><span class="line">        &#125;</span><br><span class="line">    ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li><p>3、配置完成后据可以使用</p>
+<blockquote>
 <p>npm run build  //打包</p>
 </blockquote>
-</li>
-</ul>
 <h1 id="图片打包"><a href="#图片打包" class="headerlink" title="图片打包"></a>图片打包</h1><p>安装插件</p>
 <blockquote>
 <p>npm install –save-dev file-loader<br>安装完成后，取药去weback.config文件中进行配置<br>在rules中加个对象</p>
 </blockquote>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&#96;&#123;</span><br><span class="line">    test: &#x2F;.(jpg|png|gif|svg)$&#x2F;,</span><br><span class="line">    use: [  </span><br><span class="line">        &#39;filer-loader&#39;</span><br><span class="line">    ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>会把图片打包到dist文件夹中，但是这是你使用浏览器打开的时候控制台会报错，没有找到图片。这是因为打包好的图片贺html文件不在同一个地方，他找不到。解决方法：把html文件也自动打包到dist文件夹中</p>
-<h1 id="HtmlWebpackPlugin"><a href="#HtmlWebpackPlugin" class="headerlink" title="HtmlWebpackPlugin"></a>HtmlWebpackPlugin</h1><p>会把源码的html文件打包到dist文件中。会自动引入html需要的图片。</p>
+<h1 id="HtmlWebpackPlugin"><a href="#HtmlWebpackPlugin" class="headerlink" title="HtmlWebpackPlugin"></a>HtmlWebpackPlugin</h1></li>
+</ul>
+<p>webpack默认只会打包js文件。因此需要映入很多其他的包来进行打包。</p>
+<p> 会把源码的html文件打包到dist文件中。会自动引入html需要的图片。</p>
 <ul>
-<li>安装依赖<blockquote>
+<li><p>安装依赖</p>
+<blockquote>
 <p>npm install –save-dev html-webpack-plugin</p>
 </blockquote>
 </li>
-<li>配置</li>
-</ul>
+<li><p>配置</p>
 <p>在webpack配置文件中加入</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">首先在全局中引入  webpack-olugin</span><br><span class="line">const htmlWebpackPlugin &#x3D; require(&#39;html-webpack-plugin&#39;)</span><br><span class="line">在moudle上面添加</span><br><span class="line">plugins: [</span><br><span class="line">    new htmlWebpackPlugin(&#123;</span><br><span class="line">        template: &#39;.&#x2F;index.html&#39;</span><br><span class="line">    &#125;)</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
 
-<h1 id="less打包"><a href="#less打包" class="headerlink" title="less打包"></a>less打包</h1><ul>
-<li>安装依赖<blockquote>
+<h1 id="less打包"><a href="#less打包" class="headerlink" title="less打包"></a>less打包</h1></li>
+<li><p>安装依赖</p>
+<blockquote>
 <p>npm install -D less less-loader</p>
 </blockquote>
-</li>
+<ul>
+<li>配置</li>
 </ul>
-</li>
-<li><p>配置</p>
 </li>
 </ul>
 <p>在webpack配置文件中进行配置</p>
@@ -561,11 +567,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">http</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">js</a>
+                <a href="javascript:void(0)" class="js-tag color4">vue</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -573,7 +575,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">vue</a>
+                <a href="javascript:void(0)" class="js-tag color3">js</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">http</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">PHP</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -581,11 +591,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">数据结构</a>
+                <a href="javascript:void(0)" class="js-tag color1">微信小程序</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">webpack</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">web</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">数据结构</a>
               </li>
             
             <div class="clearfix"></div>

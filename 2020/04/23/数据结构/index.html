@@ -16,7 +16,7 @@
 <meta property="og:description" content="什么是数据 是一个符号，一个描述客观事物的符号，可以被计算机识别，并且输入给计算机处理的数据的一个符号集合（内存）  什么是数据元素 由数据组成的有意义的集合体的基本单位    人   ，  摄影师   ， 老师  什么是数据结构 数据结构与计算机存储、组织数据的方式，精心选择的数据结构可以带来更高的运行或者存储效率。  由哪些数据结构 1、栈  2、堆  3、队列  4、数组  5、散列表">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-04-23T14:53:31.000Z">
-<meta property="article:modified_time" content="2020-05-14T07:22:16.841Z">
+<meta property="article:modified_time" content="2020-05-21T14:58:15.576Z">
 <meta property="article:author" content="Baket">
 <meta property="article:tag" content="数据结构">
 <meta name="twitter:card" content="summary">
@@ -461,11 +461,38 @@
 </li>
 <li><p>2、完全二叉树：从根节点到倒数第二层满足完美二叉树，最后一层可以不完全填充，其叶子节点都靠左对齐。</p>
 </li>
-<li><p>3、二叉排序树（BTS）：</p>
+<li><p>3、二叉排序树、二叉搜索树、二叉查找树（BTS）：</p>
 <p>非空左子树所有键值小于其根节点的键值</p>
 <p>非空右子树所有键值大于其根节点的键值</p>
 <p>左右子树本身也是二叉搜索树。</p>
 </li>
+</ul>
+</li>
+<li><p>二叉树的存储方式：数组、链表</p>
+<ul>
+<li>数组：不是很适合二叉树，使用数组存储二叉树必须满足是完全二叉树才可以。非完全二叉树他必须转成完全二叉树才可以存储。这样子就会有很大内存的浪费。因为转完全二叉树的时候空缺的位置都是null但是都分配了内存。</li>
+<li>链表：最适合二叉树的存储方式，每个节点都封装成node，左节点的调用、右节点的调用。</li>
+</ul>
+</li>
+</ul>
+<p><a href="https://blog.csdn.net/jhzhahuaiyu/article/details/83143591?ops_request_misc=&request_id=&biz_id=102&utm_term=js递归&utm_medium=distribute.pc_search_result.none-task-blog-2~all~sobaiduweb~default-3-83143591" target="_blank" rel="noopener">https://blog.csdn.net/jhzhahuaiyu/article/details/83143591?ops_request_misc=&amp;request_id=&amp;biz_id=102&amp;utm_term=js%E9%80%92%E5%BD%92&amp;utm_medium=distribute.pc_search_result.none-task-blog-2<del>all</del>sobaiduweb~default-3-83143591</a></p>
+<ul>
+<li><p>平衡因子：左子树的高度减去右子树的高度，并且平衡因子的绝对值不能不大于1.</p>
+</li>
+<li><p>控制平衡因子的方法</p>
+<ul>
+<li>1、LL型（子节点向左）：左侧子节点的高度大于右侧子节点的高度（向右单旋转）</li>
+<li>2、LR（向右双旋转）：这种情况，左侧子节点的高度大于右侧子节点的高度，并且左侧子节点的右侧较重</li>
+<li>3、RR（向左单旋转）：右侧子节点的高度大于左侧子节点的高度</li>
+<li>4、RL（向左双旋转）：右侧子节点的高度大于左侧子节点的高度，并且右侧子节点的左侧偏重。</li>
+</ul>
+<h3 id="红黑树"><a href="#红黑树" class="headerlink" title="红黑树"></a>红黑树</h3><p>特性：</p>
+<ul>
+<li>1、节点上是红色或者黑色。</li>
+<li>2、根节点必须是黑色。</li>
+<li>3、叶子节点（空节点）都是黑色，而且为nill</li>
+<li>4、链接红色节点的两个子节点必须是黑色。</li>
+<li>5、从任意节点出发，到每个叶子节点的路径中包含相同数量的黑色节点。</li>
 </ul>
 </li>
 </ul>
@@ -621,7 +648,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#什么是数据"><span class="toc-number">1.</span> <span class="toc-text">什么是数据</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#什么是数据元素"><span class="toc-number">2.</span> <span class="toc-text">什么是数据元素</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#什么是数据结构"><span class="toc-number">3.</span> <span class="toc-text">什么是数据结构</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#由哪些数据结构"><span class="toc-number">4.</span> <span class="toc-text">由哪些数据结构</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#数组"><span class="toc-number">4.1.</span> <span class="toc-text">数组</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#1、栈与队列"><span class="toc-number">5.</span> <span class="toc-text">1、栈与队列</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-1、js是单线程原理"><span class="toc-number">5.1.</span> <span class="toc-text">1.1、js是单线程原理</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2、队列"><span class="toc-number">6.</span> <span class="toc-text">2、队列</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#2-1、js异步原理"><span class="toc-number">6.1.</span> <span class="toc-text">2.1、js异步原理</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3、链表"><span class="toc-number">7.</span> <span class="toc-text">3、链表</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1、JS中的堆栈"><span class="toc-number">7.1.</span> <span class="toc-text">1、JS中的堆栈</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2、链表的优势"><span class="toc-number">7.2.</span> <span class="toc-text">2、链表的优势</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3、链表的方法"><span class="toc-number">7.3.</span> <span class="toc-text">3、链表的方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#双向链表"><span class="toc-number">7.4.</span> <span class="toc-text">双向链表</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#原型链"><span class="toc-number">7.5.</span> <span class="toc-text">原型链</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#4、集合"><span class="toc-number">8.</span> <span class="toc-text">4、集合</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#js中的set、webset"><span class="toc-number">8.1.</span> <span class="toc-text">js中的set、webset</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#js中的map、weakmap"><span class="toc-number">8.2.</span> <span class="toc-text">js中的map、weakmap</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#return拓展"><span class="toc-number">8.3.</span> <span class="toc-text">return拓展</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#扩展运算符"><span class="toc-number">8.4.</span> <span class="toc-text">扩展运算符</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#深浅拷贝"><span class="toc-number">8.5.</span> <span class="toc-text">深浅拷贝</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#垃圾回收"><span class="toc-number">8.6.</span> <span class="toc-text">垃圾回收</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#5、哈希表"><span class="toc-number">9.</span> <span class="toc-text">5、哈希表</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#hash"><span class="toc-number">9.1.</span> <span class="toc-text">hash</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#hash表"><span class="toc-number">9.2.</span> <span class="toc-text">hash表</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#md5就是基于hash算法"><span class="toc-number">9.3.</span> <span class="toc-text">md5就是基于hash算法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#哈希的两个特性"><span class="toc-number">9.4.</span> <span class="toc-text">哈希的两个特性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#编码过程"><span class="toc-number">9.5.</span> <span class="toc-text">编码过程</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#6、树"><span class="toc-number">10.</span> <span class="toc-text">6、树</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1、概念"><span class="toc-number">10.1.</span> <span class="toc-text">1、概念</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2、树的存储结构"><span class="toc-number">10.2.</span> <span class="toc-text">2、树的存储结构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3、二叉树"><span class="toc-number">10.3.</span> <span class="toc-text">3、二叉树</span></a></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#什么是数据"><span class="toc-number">1.</span> <span class="toc-text">什么是数据</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#什么是数据元素"><span class="toc-number">2.</span> <span class="toc-text">什么是数据元素</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#什么是数据结构"><span class="toc-number">3.</span> <span class="toc-text">什么是数据结构</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#由哪些数据结构"><span class="toc-number">4.</span> <span class="toc-text">由哪些数据结构</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#数组"><span class="toc-number">4.1.</span> <span class="toc-text">数组</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#1、栈与队列"><span class="toc-number">5.</span> <span class="toc-text">1、栈与队列</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-1、js是单线程原理"><span class="toc-number">5.1.</span> <span class="toc-text">1.1、js是单线程原理</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2、队列"><span class="toc-number">6.</span> <span class="toc-text">2、队列</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#2-1、js异步原理"><span class="toc-number">6.1.</span> <span class="toc-text">2.1、js异步原理</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3、链表"><span class="toc-number">7.</span> <span class="toc-text">3、链表</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1、JS中的堆栈"><span class="toc-number">7.1.</span> <span class="toc-text">1、JS中的堆栈</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2、链表的优势"><span class="toc-number">7.2.</span> <span class="toc-text">2、链表的优势</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3、链表的方法"><span class="toc-number">7.3.</span> <span class="toc-text">3、链表的方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#双向链表"><span class="toc-number">7.4.</span> <span class="toc-text">双向链表</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#原型链"><span class="toc-number">7.5.</span> <span class="toc-text">原型链</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#4、集合"><span class="toc-number">8.</span> <span class="toc-text">4、集合</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#js中的set、webset"><span class="toc-number">8.1.</span> <span class="toc-text">js中的set、webset</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#js中的map、weakmap"><span class="toc-number">8.2.</span> <span class="toc-text">js中的map、weakmap</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#return拓展"><span class="toc-number">8.3.</span> <span class="toc-text">return拓展</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#扩展运算符"><span class="toc-number">8.4.</span> <span class="toc-text">扩展运算符</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#深浅拷贝"><span class="toc-number">8.5.</span> <span class="toc-text">深浅拷贝</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#垃圾回收"><span class="toc-number">8.6.</span> <span class="toc-text">垃圾回收</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#5、哈希表"><span class="toc-number">9.</span> <span class="toc-text">5、哈希表</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#hash"><span class="toc-number">9.1.</span> <span class="toc-text">hash</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#hash表"><span class="toc-number">9.2.</span> <span class="toc-text">hash表</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#md5就是基于hash算法"><span class="toc-number">9.3.</span> <span class="toc-text">md5就是基于hash算法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#哈希的两个特性"><span class="toc-number">9.4.</span> <span class="toc-text">哈希的两个特性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#编码过程"><span class="toc-number">9.5.</span> <span class="toc-text">编码过程</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#6、树"><span class="toc-number">10.</span> <span class="toc-text">6、树</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1、概念"><span class="toc-number">10.1.</span> <span class="toc-text">1、概念</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2、树的存储结构"><span class="toc-number">10.2.</span> <span class="toc-text">2、树的存储结构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3、二叉树"><span class="toc-number">10.3.</span> <span class="toc-text">3、二叉树</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#红黑树"><span class="toc-number">10.3.1.</span> <span class="toc-text">红黑树</span></a></li></ol></li></ol></li></ol>
                     </div>
                 </span>
             </div>
@@ -737,11 +764,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">http</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">js</a>
+                <a href="javascript:void(0)" class="js-tag color4">vue</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -749,7 +772,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">vue</a>
+                <a href="javascript:void(0)" class="js-tag color3">js</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">http</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">PHP</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -757,11 +788,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">数据结构</a>
+                <a href="javascript:void(0)" class="js-tag color1">微信小程序</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">webpack</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">web</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">数据结构</a>
               </li>
             
             <div class="clearfix"></div>

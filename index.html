@@ -162,6 +162,645 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-微信小程序Paused-in-Debugger" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/05/25/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8FPaused-in-Debugger/">微信小程序Paused in Debugger</a>
+    </h1>
+  
+
+        
+        <a href="/2020/05/25/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8FPaused-in-Debugger/" class="archive-article-date">
+  	<time datetime="2020-05-25T14:46:06.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-25</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="小程序使用observer监听事件后出现Pauser-in-Debugger"><a href="#小程序使用observer监听事件后出现Pauser-in-Debugger" class="headerlink" title="小程序使用observer监听事件后出现Pauser in Debugger"></a>小程序使用observer监听事件后出现Pauser in Debugger</h1><p>最新在再写音乐小程序的时候，通过监听歌曲id的变化，来切换歌曲。但是当我使用observer监听的时候出现了pauser in debugger</p>
+<p>代码如下</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">Component:&#123;</span><br><span class="line">    properties: &#123;</span><br><span class="line">    	songid: <span class="built_in">Number</span></span><br><span class="line">  	&#125;,</span><br><span class="line">    observers: &#123;</span><br><span class="line">    <span class="string">"songid"</span> : <span class="function"><span class="keyword">function</span>(<span class="params">id</span>)</span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.setDate(&#123;</span><br><span class="line">            <span class="keyword">this</span>.data.songid = id</span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这样写会陷入死循环最后出现pauser in debugger的错误。因为observers是会监听songid的变化的，当监听到songid的变化就会触发对于的函数，修改songid的值。修改完成后observers再次监听到了songid的变化，再次触发对应的函数最后导致死循环。</p>
+<p>解决方案：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">Component:&#123;</span><br><span class="line">    properties: &#123;</span><br><span class="line">    	songid: <span class="built_in">Number</span></span><br><span class="line">  	&#125;,</span><br><span class="line">     data : &#123;</span><br><span class="line">         id : <span class="string">''</span></span><br><span class="line">     &#125;</span><br><span class="line">    observers: &#123;</span><br><span class="line">    <span class="string">"songid"</span> : <span class="function"><span class="keyword">function</span>(<span class="params">id</span>)</span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.setDate(&#123;</span><br><span class="line">            <span class="keyword">this</span>.data.id = id</span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>设置一个中间的变量，用中间量去渲染对应的id，songid只用来监视用户是否切换了歌曲。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">微信小程序</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/05/25/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8FPaused-in-Debugger/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-webpack-4-0" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/05/16/webpack-4-0/">webpack 4.0</a>
+    </h1>
+  
+
+        
+        <a href="/2020/05/16/webpack-4-0/" class="archive-article-date">
+  	<time datetime="2020-05-16T03:07:54.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-16</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="webpack"><a href="#webpack" class="headerlink" title="webpack"></a>webpack</h1><h1 id="webpack-安装"><a href="#webpack-安装" class="headerlink" title="webpack 安装"></a>webpack 安装</h1><blockquote>
+<p>npm install webpack webpack-cli -D</p>
+</blockquote>
+<h1 id="webpack打包"><a href="#webpack打包" class="headerlink" title="webpack打包"></a>webpack打包</h1><blockquote>
+<p>npx webpack</p>
+</blockquote>
+<p>会去找到node_module中的webpack.cmd文件（如果当前目录下有就执行，没有就返回上一级目录找到webpack中的webpack.js）webpack.js文件会看你是否安装webpack cli，如果有就会提示你安装webpack cli。</p>
+<h1 id="webpack-手动配置"><a href="#webpack-手动配置" class="headerlink" title="webpack 手动配置"></a>webpack 手动配置</h1><p>默认配置名字：webpack.config.js</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> path = <span class="built_in">require</span>(<span class="string">'path'</span>)</span><br><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">    mode: <span class="string">'development'</span>,<span class="comment">//模式 默认两种 development production</span></span><br><span class="line">    entry: <span class="string">'./src/index.js'</span>, <span class="comment">// 入口</span></span><br><span class="line">    output: &#123;</span><br><span class="line">        filename:<span class="string">'bundle.js'</span>,<span class="comment">//打包后的文件名</span></span><br><span class="line">        path: path.resolve(__dirname,<span class="string">'dist'</span>)  <span class="comment">//路径  必须是绝对路径</span></span><br><span class="line">        publicPath:<span class="string">'http://www.hqwluck.xyz'</span><span class="comment">//配置公共引用资源路径</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>手动指定配置文件</p>
+<blockquote>
+<p>npx webpack –config webpack.config.js</p>
+<p>npx webpack –config 配置文件名</p>
+</blockquote>
+<p>packjson中配置</p>
+<p>在pack.json中的script添加一个”bulid”</p>
+<blockquote>
+<p>“bulid”: webpack –config webpack.config.js</p>
+<p>“bulid”: webpack</p>
+</blockquote>
+<p>配置配置文件位置完成打包</p>
+<blockquote>
+<p>npm reun bulid – –config webpack.config.js</p>
+<p>webpack中 – 后面的可以被当作参数进行操作</p>
+<h1 id="webpack服务"><a href="#webpack服务" class="headerlink" title="webpack服务"></a>webpack服务</h1><p>使用npx开启服务</p>
+<blockquote>
+<p>npx webpack-dev-server</p>
+</blockquote>
+<p> 服务配置</p>
+<p>在webpack.config.js文件中设置</p>
+<blockquote>
+<p>derSrever: {</p>
+<p>port: 3000, //端口号</p>
+<p>progress:true, //是否有进度条</p>
+<p>contentBase:’./build’  默认开启服务的地址</p>
+<p>}</p>
+</blockquote>
+<p>在pack.json文件中的script中添加</p>
+<blockquote>
+<p>“dev”: ‘’webpack-dev-serve’</p>
+</blockquote>
+</blockquote>
+<h1 id="HTML插件"><a href="#HTML插件" class="headerlink" title="HTML插件"></a>HTML插件</h1><p>我们使用html-webpack-plugin插件，会把源码的html文件打包到dist文件中。会自动引入html需要的资源。</p>
+<p>安装</p>
+<blockquote>
+<p>npm install html-webpack-plugin</p>
+</blockquote>
+<p>使用</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">plugins:[</span><br><span class="line">    <span class="keyword">new</span> HtmlWebpackPlugin(&#123;</span><br><span class="line">        template: <span class="string">'./src/index.html'</span>，</span><br><span class="line">        filename:<span class="string">'index.html'</span>，</span><br><span class="line">        minify:&#123;</span><br><span class="line">        removeAttributeQuotes: <span class="literal">true</span>, <span class="comment">// 去掉引号</span></span><br><span class="line">        collapseWhitespace: <span class="literal">true</span>, <span class="comment">//折叠空行</span></span><br><span class="line">    &#125;,</span><br><span class="line">        hash: ture</span><br><span class="line">    &#125;)</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+
+<p>打包的时候为以templat的文件问模板在bulid文件中生成一个filename</p>
+<h1 id="css插件（预处理）"><a href="#css插件（预处理）" class="headerlink" title="css插件（预处理）"></a>css插件（预处理）</h1><ul>
+<li>loader(css-loader,style-loader,sass-loader)(style方式引入)</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">moudle: &#123;</span><br><span class="line">    rules:[ <span class="comment">//规则</span></span><br><span class="line">        <span class="comment">//css-loader 解析@import这种语法</span></span><br><span class="line">        <span class="comment">//style-loader 把css插入head标签中</span></span><br><span class="line">        &#123;<span class="attr">test</span>: <span class="regexp">/\.css$/</span> , <span class="attr">user</span>:[<span class="string">'style-loader'</span>,<span class="string">'css-loader'</span>] <span class="comment">//loader的顺序从右向左执行&#125;</span></span><br><span class="line">    ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>mini-css-extract-plugin（link方式引入css）</li>
+</ul>
+<p>style-loader会把css样式插入head标签的style上但是代码过多就会很难看。因此我们使用mini-css-extract-plugin 把它用link标签引入。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">plugin:&#123;</span><br><span class="line">    <span class="keyword">new</span> MinCssExtractPlugin(&#123;</span><br><span class="line">        filename:<span class="string">'main.css'</span><span class="comment">//抽离出一个css文件</span></span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br><span class="line">之后只需要用MinCssExtractPlugin.loader替换对应的style-loader就可以了。如果向抽离多个就创建多个之后只需要用MinCssExtractPlugin就可以了。</span><br></pre></td></tr></table></figure>
+
+
+
+<ul>
+<li><p>postcss-loader与autoprefixer(自动添加前缀)</p>
+<p>首先新建一个文件postcss.config.js</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">    plugins: [<span class="built_in">require</span>(<span class="string">'autoprefixer'</span>)]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+<p>  只需要把postcss-loader放在css-loader之前就可以了。</p>
+<h2 id="css优化"><a href="#css优化" class="headerlink" title="css优化"></a>css优化</h2><p>webpack默认打包js文件，对应css文件我们需要引入</p>
+<p>optimize-css-assets-webpack-plugin</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">optimization:&#123;<span class="comment">//优化项</span></span><br><span class="line">    minimizer:[</span><br><span class="line">        <span class="keyword">new</span> OptimizeCss()</span><br><span class="line">        如果设置了这个那么webpack中js压缩就会别清除，也就是说不会压缩。需要配合uglifyjs-webpack-plugin</span><br><span class="line">        <span class="keyword">new</span> UglifyJsPlugin(&#123;</span><br><span class="line">        cache: <span class="literal">true</span>,</span><br><span class="line">        parallel:<span class="literal">true</span>,</span><br><span class="line">        sourceMap:<span class="literal">true</span></span><br><span class="line">        &#125;)</span><br><span class="line">    ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="js转化"><a href="#js转化" class="headerlink" title="js转化"></a>js转化</h1><h2 id="es6转es5"><a href="#es6转es5" class="headerlink" title="es6转es5"></a>es6转es5</h2><ul>
+<li><p>bable-loader  es6&gt;es5格式转化</p>
+</li>
+<li><p>@bable/core </p>
+</li>
+<li><p>@bable/preset-env es6&gt;es5的模块语法转化</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>:&#123;</span><br><span class="line">    rules:[</span><br><span class="line">        &#123;<span class="attr">test</span>:<span class="string">'/\.js$/'</span>,<span class="attr">options</span>:&#123;</span><br><span class="line">            presets:[</span><br><span class="line">                <span class="string">'@bable/preset-env'</span></span><br><span class="line">            ]</span><br><span class="line">        &#125;&#125;</span><br><span class="line">    ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+<h1 id="第三方模块"><a href="#第三方模块" class="headerlink" title="第三方模块"></a>第三方模块</h1><p>webpack打包的时候，会把每个模块打包成一个闭包函数，从window上是访问不到的。我们可以使用以下方法。</p>
+<ul>
+<li><p>expose-loader   暴露   全局的loader   是内联loader</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//方法一：直接在引用的地方使用。（暴露在window）</span></span><br><span class="line"><span class="keyword">import</span> $ <span class="keyword">from</span> <span class="string">'expose-loader?$!jquery'</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//方法二：在webpack.config.js文件中配置。</span></span><br><span class="line"><span class="built_in">module</span>:&#123;</span><br><span class="line">    rules: [</span><br><span class="line">        &#123;</span><br><span class="line">            test:<span class="built_in">require</span>.resolve(<span class="string">'jquery'</span>),</span><br><span class="line">            use:<span class="string">'expose-loader?$'</span></span><br><span class="line">        &#125;</span><br><span class="line">    ]</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//方法三：使用webpack在webpack.config.js文件中进行配置。每个文件都可以在上注入这个模块，但不能通过window获取。</span></span><br><span class="line"><span class="keyword">let</span> webpack = <span class="built_in">require</span>(<span class="string">'webpack'</span>)</span><br><span class="line"></span><br><span class="line">plugins:[</span><br><span class="line">    <span class="keyword">new</span> webpack.ProvidePlugin(&#123;</span><br><span class="line">        $:<span class="string">'jquery'</span></span><br><span class="line">    &#125;)</span><br><span class="line">]</span><br><span class="line"><span class="comment">// 方法四：通过在html页面使用cnd链接引入。暴露在window上</span></span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+<p>但是在生产环境下，我们不希望第三方插件也被打包。因此我们要使用。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">externals:&#123;</span><br><span class="line">    jquery:<span class="string">'$'</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="图片打包"><a href="#图片打包" class="headerlink" title="图片打包"></a>图片打包</h1><p>file-loader:默认会在内部生成一张图片，到bulid目录下，把生成图片的名字返回(打包文件中js、css文件的图片都会默认的转换为生成图片的名字)</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>:&#123;</span><br><span class="line">    rules:[&#123;</span><br><span class="line">        test:<span class="string">'/\.(png|jpg|gif)$/'</span>,</span><br><span class="line">        loader:<span class="string">'file-loader'</span></span><br><span class="line">    &#125;]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<ul>
+<li><p>1、在js中创建图片来引入。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> login <span class="keyword">from</span> <span class="string">'./login'</span></span><br><span class="line"><span class="keyword">let</span> image = <span class="keyword">new</span>  Image()</span><br><span class="line">image.src = login</span><br><span class="line"><span class="built_in">document</span>.body.appendchild(image)</span><br></pre></td></tr></table></figure>
+</li>
+<li></li>
+<li><p>2、css中backgorund-url</p>
+</li>
+<li><p>3、html页面中使用</p>
+<p>这里我们需要一个插件html-withmig-loader会默认解析html中的图片文件，编译我们的文件。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">rules:[</span><br><span class="line">    &#123;<span class="attr">test</span>:<span class="string">'/\.html$/'</span>,<span class="attr">use</span>:html-withimg-loader&#125;</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+<p>图片比较小的时候，不希望发送http请求，我们把他转为base64的格式用url-loader。图片比较大的时候使用file-loader。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">rules:[</span><br><span class="line">    &#123;<span class="attr">test</span>:<span class="string">'/\.(jpg|png|gif)$/'</span>&#125;,</span><br><span class="line">    use:&#123;</span><br><span class="line">    loader:<span class="string">'url-loader'</span>,</span><br><span class="line">    options:&#123;</span><br><span class="line">    limit:<span class="number">200</span>*<span class="number">1024</span>,  <span class="comment">//小于200k就转换为base64</span></span><br><span class="line">    outputPath:<span class="string">'/img/'</span>   <span class="comment">//配置图片打包路径</span></span><br><span class="line">    publicPath:<span class="string">'http:hqwluck.xyz'</span>  <span class="comment">//只会处理图片的应用路径</span></span><br><span class="line">    &#125;</span><br><span class="line">    &#125;</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="打包多页应用"><a href="#打包多页应用" class="headerlink" title="打包多页应用"></a>打包多页应用</h1><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> path = <span class="built_in">require</span>(<span class="string">'path'</span>)</span><br><span class="line"><span class="keyword">let</span> HtmlWebpackPlugin(<span class="string">'html-webpack-plugin'</span>)</span><br><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">    mode:<span class="string">'development'</span></span><br><span class="line">    <span class="comment">//多入口</span></span><br><span class="line">    entry: &#123;</span><br><span class="line">        home:<span class="string">'./src/index.js'</span>,</span><br><span class="line">        other:<span class="string">'./src/other.js'</span></span><br><span class="line">    &#125;,</span><br><span class="line">    output: &#123;</span><br><span class="line">        filename: <span class="string">'[name].js'</span></span><br><span class="line">        path: path.resolve(__dirname,<span class="string">'dist'</span>)</span><br><span class="line">    &#125;,</span><br><span class="line">    plugins:[</span><br><span class="line">        <span class="keyword">new</span> HtmlWebpackPlugin(&#123;</span><br><span class="line">            template:<span class="string">'./index.html'</span>,</span><br><span class="line">            filename:<span class="string">'home.html'</span></span><br><span class="line">            chunks:[<span class="string">'home'</span>]  <span class="comment">//指定引入的js  不写全引用</span></span><br><span class="line">        &#125;)</span><br><span class="line">        <span class="keyword">new</span> HtmlWebpackPlugin(&#123;</span><br><span class="line">            template:<span class="string">'./index.html'</span>,</span><br><span class="line">            filename:<span class="string">'other.html'</span></span><br><span class="line">            chunks:[<span class="string">'other'</span>]  <span class="comment">// 指定引入的js  不写全引用</span></span><br><span class="line">        &#125;)</span><br><span class="line">    ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="设置源码映射"><a href="#设置源码映射" class="headerlink" title="设置源码映射"></a>设置源码映射</h1><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">devtool:<span class="string">'source-map'</span>  <span class="comment">//增加映射文件  可以帮助我们调试源码</span></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">1、source-map   会标时当前报错的行列 （会创建一个映射文件）</span></span><br><span class="line"><span class="comment">2、eval-source-map 会产生行 列，不会创建一个映射文件。</span></span><br><span class="line"><span class="comment">3、cheap-moudle-source-map：不会产生列  但是是一个单独的映射文件</span></span><br><span class="line"><span class="comment">4、cheap-module-eval-source-map：不会生成文件，也没有列</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="实时打包"><a href="#实时打包" class="headerlink" title="实时打包"></a>实时打包</h1><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">watch: <span class="literal">true</span> <span class="comment">//监视代码 ， 代码有变化就会从新打包</span></span><br><span class="line">watchOptions:&#123;</span><br><span class="line">    <span class="comment">//监控的选项</span></span><br><span class="line">    poll: <span class="number">1000</span>, <span class="comment">//每秒 问我1000次</span></span><br><span class="line">	aggreateTime:<span class="number">500</span>     <span class="comment">//防抖的作用 500ms中停止数据才打包</span></span><br><span class="line">    ignored:<span class="string">'/node_modules'</span>  <span class="comment">//不监控那个文件</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="webpack小插件"><a href="#webpack小插件" class="headerlink" title="webpack小插件"></a>webpack小插件</h1><ul>
+<li><p>CleanWebpackPlugin   clean-webpack-plugin</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> CleanWebpackPlugin(<span class="string">'./dist'</span>)</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+<ul>
+<li><p>CopyWebpackPlugin     copy-webpack-plugin</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> CopyWebpackPlugin([<span class="keyword">from</span>:<span class="string">'./doc'</span>,<span class="attr">to</span>:<span class="string">'./'</span>])</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+<ul>
+<li><p>bannerPlugin   banner-plugin 版权注释</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> webpack.BannerPlugin(<span class="string">'make 2020 by hqw'</span>)</span><br></pre></td></tr></table></figure>
+
+<h1 id="webpack配置跨域"><a href="#webpack配置跨域" class="headerlink" title="webpack配置跨域"></a>webpack配置跨域</h1><ul>
+<li>1、通过服务端获取数据</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">devServer:&#123;</span><br><span class="line">    proxy:&#123;</span><br><span class="line">        <span class="string">'/api'</span>:<span class="string">'http://localhost:3000'</span>  <span class="comment">//配置一个代理</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">devServer:&#123;</span><br><span class="line">    proxy:&#123;  重写</span><br><span class="line">		<span class="string">'/api'</span>:&#123;</span><br><span class="line">            target:<span class="string">'http://localhost:3000'</span>,</span><br><span class="line">            pathReWrite:&#123;<span class="string">"/api"</span>:<span class="string">""</span>&#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+<ul>
+<li>2、mock数据</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">devServer:&#123;</span><br><span class="line">    before(app)&#123;  <span class="comment">//这个app相当于express的实例app</span></span><br><span class="line">        app.get(<span class="string">'/user'</span>,(req , res) =&gt;&#123;</span><br><span class="line">            res.json(&#123;<span class="attr">name</span>:<span class="string">'hello word'</span>&#125;)</span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>3、在服务端配置webpack（webpack与服务器同一端口）</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> webpack = <span class="built_in">require</span>(<span class="string">'webpack'</span>)</span><br><span class="line"><span class="comment">//中间件</span></span><br><span class="line"><span class="keyword">let</span> middle = <span class="built_in">require</span>(<span class="string">'webpack-dev-middleware'</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> config = <span class="built_in">require</span>(<span class="string">'./webpack.config.js'</span>)</span><br><span class="line"><span class="keyword">let</span> compiler = webpack(config)</span><br><span class="line">app.use(middle(compiler))</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+<h1 id="resolve属性配置"><a href="#resolve属性配置" class="headerlink" title="resolve属性配置"></a>resolve属性配置</h1><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">resolve:&#123;  <span class="comment">//解析  第三方包的相关配置</span></span><br><span class="line">    <span class="built_in">module</span>:[path:resolve(<span class="string">'node_modules'</span>)] <span class="comment">//默认包查找位置，</span></span><br><span class="line">    mainFields:[<span class="string">'style'</span>,<span class="string">'main'</span>],</span><br><span class="line">    extensions:[<span class="string">'.js'</span>,<span class="string">'.css'</span>,<span class="string">'.json'</span>]</span><br><span class="line">    alias：&#123;<span class="comment">//别名</span></span><br><span class="line">        bootstrap: <span class="string">'bootstrap/dist/css/bootstrap.css'</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="优化点"><a href="#优化点" class="headerlink" title="优化点"></a>优化点</h1><ul>
+<li>noParse   不回去解析对应内容</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>:&#123;</span><br><span class="line">    noParse: <span class="regexp">/jquery/</span> ,<span class="comment">//不会区解析jequary 	</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>webpack.IgnorePlugin()  忽略加载部分包</li>
+<li>exclude: /node_module/   不去node_module中寻找</li>
+<li>include:’path.resolve(‘src’)’ 只区src中寻找</li>
+</ul>
+<h1 id="多线程打包"><a href="#多线程打包" class="headerlink" title="多线程打包"></a>多线程打包</h1><p>一般项目很大的时候使用happypack</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> happypack = <span class="built_in">require</span>(happypack)</span><br><span class="line"><span class="built_in">module</span>.exports =&#123;</span><br><span class="line">    <span class="built_in">module</span>: &#123;</span><br><span class="line">        rules: [</span><br><span class="line">            &#123;<span class="attr">test</span>:<span class="string">'/\.js$/'</span>,<span class="attr">use</span>:<span class="string">'happypack/loader?id=js'</span>&#125;</span><br><span class="line">        ]</span><br><span class="line">    &#125;</span><br><span class="line">plugins: [</span><br><span class="line">    <span class="keyword">new</span> Happypack(&#123;</span><br><span class="line">    id:<span class="string">'js'</span>,</span><br><span class="line">    use:[&#123;</span><br><span class="line">    	loader: <span class="string">'babel-loader'</span>,</span><br><span class="line">    	options:&#123;</span><br><span class="line">    		presets:[</span><br><span class="line">    			<span class="string">'@babel/preset-env'</span>,</span><br><span class="line">    			<span class="string">'@babel/preset-react'</span></span><br><span class="line">    ]	</span><br><span class="line">	&#125;</span><br><span class="line">	&#125;]</span><br><span class="line">	&#125;)</span><br><span class="line">    ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">webpack</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/05/16/webpack-4-0/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-js函数调用栈、递归优化" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/05/16/js%E5%87%BD%E6%95%B0%E8%B0%83%E7%94%A8%E6%A0%88%E3%80%81%E9%80%92%E5%BD%92%E4%BC%98%E5%8C%96/">js函数调用栈、递归优化</a>
+    </h1>
+  
+
+        
+        <a href="/2020/05/16/js%E5%87%BD%E6%95%B0%E8%B0%83%E7%94%A8%E6%A0%88%E3%80%81%E9%80%92%E5%BD%92%E4%BC%98%E5%8C%96/" class="archive-article-date">
+  	<time datetime="2020-05-16T01:29:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-16</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="什么是调用栈"><a href="#什么是调用栈" class="headerlink" title="什么是调用栈"></a>什么是调用栈</h1><p>JavaScript的V8引擎主要包括两个组件：内存堆、调用堆栈</p>
+<p>内存堆：分为堆区和栈区，主要用来存放数据。</p>
+<p>调用堆栈：这是在你代码执行时栈帧存放的位置</p>
+<p>调用栈：就是调用堆栈、执行栈。</p>
+<h1 id="什么是栈帧"><a href="#什么是栈帧" class="headerlink" title="什么是栈帧"></a>什么是栈帧</h1><p>调用栈的每个入口成为栈帧</p>
+<p><img src="https://static.oschina.net/uploads/space/2017/1213/104147_KJwy_2896879.png" alt=""></p>
+<p>每一个灰色的矩形就是一个栈帧。</p>
+<h1 id="递归"><a href="#递归" class="headerlink" title="递归"></a>递归</h1><p>概念：一个函数调用自身。</p>
+<p>特点：递归的效率不高，并且容易导致内存囤积从而导致内存泄漏。</p>
+<p>原理：函数中调用自身，就会持续的不断的创建栈帧，然后压入栈顶，之前的那个栈帧就会被压入当前栈帧的下一层，一直递归导致栈被存满了，就会出现内存溢出。</p>
+<p>基线条件：控制递归停止的条件</p>
+<h2 id="尾调用优化"><a href="#尾调用优化" class="headerlink" title="尾调用优化"></a>尾调用优化</h2><p>概念：在函数的最后一步调用自身。</p>
+<p>特点：只保存一个调用记录，所以不会发生栈溢出错误。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">js</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/05/16/js%E5%87%BD%E6%95%B0%E8%B0%83%E7%94%A8%E6%A0%88%E3%80%81%E9%80%92%E5%BD%92%E4%BC%98%E5%8C%96/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-PHP" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/05/15/PHP/">PHP</a>
+    </h1>
+  
+
+        
+        <a href="/2020/05/15/PHP/" class="archive-article-date">
+  	<time datetime="2020-05-15T08:37:41.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-15</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="数据表达"><a href="#数据表达" class="headerlink" title="数据表达"></a>数据表达</h1><h2 id="变量"><a href="#变量" class="headerlink" title="变量"></a>变量</h2><h3 id="变量赋值"><a href="#变量赋值" class="headerlink" title="变量赋值"></a>变量赋值</h3><blockquote>
+<p>语法：$变量名 = 值</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line"></span><br><span class="line">$v1 = <span class="number">122</span>;</span><br><span class="line">$v2 = <span class="number">241</span>;</span><br><span class="line">$v3 = $v1 + $v2</span><br><span class="line">    </span><br><span class="line">echo $v3 <span class="comment">//输出变量$v3</span></span><br><span class="line"></span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="判断变量-isset"><a href="#判断变量-isset" class="headerlink" title="判断变量(isset())"></a>判断变量(isset())</h3><p>判断一个变量名中是否存储了数据</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line"></span><br><span class="line">$v1 = <span class="number">122</span>;</span><br><span class="line">$v2 = <span class="number">241</span>;</span><br><span class="line">$result = isset($v2)</span><br><span class="line">echo $result <span class="comment">//变量中有值输出true   但是echo会有类型转换所以他会打印1</span></span><br><span class="line">var_dump($result) <span class="comment">// 不会类型转换打印true ， 可以输出一个变量的完整信息</span></span><br><span class="line"></span><br><span class="line">$v5 = <span class="literal">null</span> <span class="comment">//注意这里使用isset($v5)  &gt; 是没有值的</span></span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="销毁-删除变量-unset"><a href="#销毁-删除变量-unset" class="headerlink" title="销毁/删除变量(unset())"></a>销毁/删除变量(unset())</h3><p>当一个变量中存储了数据，我们也可以去销毁它</p>
+<blockquote>
+<p>unset($v1)</p>
+</blockquote>
+<h3 id="传值"><a href="#传值" class="headerlink" title="传值"></a>传值</h3><ul>
+<li>1、值传递</li>
+</ul>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$v1 = <span class="number">10</span></span><br><span class="line">$v3 = $v1   <span class="comment">//值的传递</span></span><br><span class="line"><span class="keyword">echo</span> $v3   <span class="comment">//10</span></span><br><span class="line">$v1 = <span class="number">11</span></span><br><span class="line"><span class="keyword">echo</span> $v3 <span class="comment">// 10</span></span><br><span class="line"><span class="comment">//值传递  传完后他们直接没有关系</span></span><br><span class="line">$v4 = $v1 + <span class="number">1</span> <span class="comment">//这不是传值</span></span><br></pre></td></tr></table></figure>
+
+<p>会创建一个新的内存空间，来存储这个值</p>
+<ul>
+<li>2、引用传值</li>
+</ul>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$v1 = <span class="number">10</span>;</span><br><span class="line">$v2 = &amp;$v1   <span class="comment">//引用传值</span></span><br><span class="line"><span class="keyword">echo</span> $v2   <span class="comment">// 10</span></span><br><span class="line">$v1 = <span class="number">12</span> </span><br><span class="line"><span class="keyword">echo</span> $v2  <span class="comment">// 12</span></span><br><span class="line">$v2 = <span class="number">20</span> </span><br><span class="line"><span class="keyword">echo</span> $v1 <span class="comment">// 20</span></span><br></pre></td></tr></table></figure>
+
+<p>不会创建新的内存空间，他们共用同一个内存空间。</p>
+<h3 id="预定义变量"><a href="#预定义变量" class="headerlink" title="预定义变量"></a>预定义变量</h3><p>PHP语言内部，有一些变量，可以直接使用，这就是所谓的预定义变量。</p>
+<ul>
+<li><p>1、$_GET变量</p>
+<p>代表浏览器表单通过‘get’方式提交的数据集合，可以称为get数据。</p>
+<p>$_GET变量里面会自动存储提交到某个文件中的GET数据。</p>
+<p>而GET数据是一个页面以‘get’方式请求时提交的数据。</p>
+<p>html</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">from</span> <span class="attr">action</span> =<span class="string">'data.php'</span> <span class="attr">method</span> = <span class="string">'get'</span>&gt;</span></span><br><span class="line">    name:<span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span> = <span class="string">'text'</span> <span class="attr">name</span> = <span class="string">'username'</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">br</span>/&gt;</span></span><br><span class="line">    age:<span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span> = <span class="string">'text'</span> <span class="attr">name</span> =<span class="string">'age'</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">br</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">'submit'</span> <span class="attr">value</span>=<span class="string">'提交'</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">from</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>data.php</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$name = $_GET[<span class="string">'username'</span>]</span><br><span class="line">$age = $_GET[<span class="string">"age"</span>]</span><br><span class="line"><span class="keyword">echo</span> <span class="string">'姓名'</span>$name</span><br><span class="line"><span class="keyword">echo</span> <span class="string">'age'</span>$age</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+<ul>
+<li><p>2、$_POST</p>
+<p>会去post的相关的数据</p>
+<p>简单的计算机案例</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">&lt;html&gt;</span><br><span class="line">    &lt;php? </span><br><span class="line">    	$n1 = <span class="string">''</span></span><br><span class="line">    	$n2 = <span class="string">''</span></span><br><span class="line">    	$result = <span class="string">''</span></span><br><span class="line">    	<span class="keyword">if</span>(<span class="keyword">isset</span>($_POST[<span class="string">'num1'</span>]))&#123;</span><br><span class="line">            $n1 = $_POST[<span class="string">'num1'</span>])</span><br><span class="line">            $n2 = $_POST[<span class="string">'num2'</span>])</span><br><span class="line">            $result = $n1 + $n2</span><br><span class="line">        &#125;</span><br><span class="line">    <span class="meta">?&gt;</span></span><br><span class="line">	&lt;body&gt;</span><br><span class="line">    &lt;from action =<span class="string">'data.php'</span> method = <span class="string">'post'</span>&gt;</span><br><span class="line">&lt;input type = <span class="string">'text'</span> name = <span class="string">'num1'</span> value=<span class="string">'&lt;?php echo $n1 ?&gt;'</span>/&gt;</span><br><span class="line">+</span><br><span class="line">&lt;input type = <span class="string">'text'</span> name =<span class="string">'num2'</span> value=<span class="string">'&lt;?php echo $n2 ?&gt;'</span>/&gt;</span><br><span class="line">&lt;input type=<span class="string">'submit'</span> value=<span class="string">'='</span>/&gt;</span><br><span class="line">&lt;input type=<span class="string">'text'</span> name=<span class="string">'result'</span> value=<span class="string">'&lt;?php echo $result ?&gt;'</span>&gt;</span><br><span class="line">&lt;/from&gt;</span><br><span class="line">    &lt;/body&gt;    </span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>3、$_REQUERT</p>
+<p>可以会去get和post请求的数据</p>
+</li>
+<li><p>4、$_SERVER变量</p>
+<p>他会获取每一次请求中，客户端或服务器的一些基本信息，或系统信息。</p>
+<p>PHP_SELF : 表示当前请求的网页地址(不包括域名)</p>
+<p>SERVER_NAME:表示当前请求的服务器名</p>
+<p>SERVER_ADDR:表示获取请求服务器的IP地址</p>
+<p>REMOTE_ADDR: 表示当前请求的客户端IP地址</p>
+<p>SCRIPT_NAME:表示获取当前网址</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">echo</span> <span class="string">'你的IP为'</span>$_SERVER</span><br></pre></td></tr></table></figure>
+
+<h3 id="可变变量"><a href="#可变变量" class="headerlink" title="可变变量"></a>可变变量</h3><p>含义：变量名本身又是一个变量</p>
+<p>示例：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$v1 = <span class="number">10</span></span><br><span class="line">$str = v1</span><br><span class="line"><span class="keyword">echo</span> $$str <span class="comment">//10</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h2 id="常量"><a href="#常量" class="headerlink" title="常量"></a>常量</h2><h3 id="2-1常量的含义"><a href="#2-1常量的含义" class="headerlink" title="2.1常量的含义"></a>2.1常量的含义</h3><p>常量，就是一个用于存储’不会（也不允许变化的数据的标识符）‘</p>
+<h3 id="2-2、常量的两种定义形式"><a href="#2-2、常量的两种定义形式" class="headerlink" title="2.2、常量的两种定义形式"></a>2.2、常量的两种定义形式</h3><ul>
+<li><p>1、define()</p>
+<blockquote>
+<p>define(“name”,”value”)</p>
+<p>define(‘PI1’,3)   //建议常量名字使用大写</p>
+</blockquote>
+</li>
+<li><p>2、const PI2 = 3.14</p>
+</li>
+</ul>
+<h3 id="2-3常量的取值"><a href="#2-3常量的取值" class="headerlink" title="2.3常量的取值"></a>2.3常量的取值</h3><ul>
+<li>1、echo 常量名</li>
+<li>2、echo constant（’常量名‘）</li>
+</ul>
+<h3 id="2-4、常量与变量的区别"><a href="#2-4、常量与变量的区别" class="headerlink" title="2.4、常量与变量的区别"></a>2.4、常量与变量的区别</h3><p>常量不能被重新赋值，已写好不得修改。</p>
+<p>常量必须是固定值</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> p1 = <span class="number">3.14</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="2-5判断一个常量是否存在：defined"><a href="#2-5判断一个常量是否存在：defined" class="headerlink" title="2.5判断一个常量是否存在：defined()"></a>2.5判断一个常量是否存在：defined()</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(!defined(<span class="string">'P1'</span>))&#123;</span><br><span class="line">    <span class="comment">///拿到别人的代码时候   判断常量P1是否被定义过</span></span><br><span class="line">&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">    <span class="comment">///</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-6-预定义常量"><a href="#2-6-预定义常量" class="headerlink" title="2.6 预定义常量"></a>2.6 预定义常量</h3><h3 id="2-7-魔术常量"><a href="#2-7-魔术常量" class="headerlink" title="2.7 魔术常量"></a>2.7 魔术常量</h3><p>是形式上的常量，他的值会根据网页不同，随时变化</p>
+<h2 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h2><h3 id="标量类型"><a href="#标量类型" class="headerlink" title="标量类型"></a>标量类型</h3><p>整数类型：integer int</p>
+<p>浮点数：double float    浮点数不要做相等比较，因为浮点数不可靠（计算机时二进制的小数转二进制时有很大问题的）</p>
+<p>布尔型：boolean bool</p>
+<p>字符串类型：string</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$v1 = <span class="number">10</span></span><br><span class="line">echo <span class="string">"&lt;br&gt;v1的值为:"</span> . $v1  <span class="comment">//10</span></span><br><span class="line">echo <span class="string">"&lt;br&gt;v1的值为 $v1"</span>   <span class="comment">//10</span></span><br><span class="line">echo <span class="string">'&lt;br&gt;v1的值为 $v1'</span>  <span class="comment">//$v1</span></span><br><span class="line">echo <span class="string">"&lt;br&gt;\$v1的值为 $v1"</span> <span class="comment">// 10</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="引用类型"><a href="#引用类型" class="headerlink" title="引用类型"></a>引用类型</h3><ul>
+<li>1、数组</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$info2 = array(<span class="string">'name'</span>=&gt;<span class="string">'xiaoming'</span>,<span class="string">'age'</span>=&gt; <span class="number">18</span>) <span class="comment">//创建数组</span></span><br><span class="line">$info2 = [<span class="string">'name'</span>,<span class="string">'obj'</span>,<span class="string">'arr'</span>]</span><br><span class="line">$info3 = [<span class="string">'name'</span>=&gt;<span class="string">'xiamggg'</span>, <span class="string">'age'</span> =&gt; <span class="number">18</span>]</span><br><span class="line">$info2[<span class="string">'age'</span>] = <span class="number">19</span>  <span class="comment">//修改值</span></span><br><span class="line">print_r($info2) <span class="comment">//打印</span></span><br><span class="line">print_r($info2[<span class="number">0</span>])</span><br></pre></td></tr></table></figure>
+
+<h3 id="空类型（null）"><a href="#空类型（null）" class="headerlink" title="空类型（null）"></a>空类型（null）</h3><h2 id="类型判断"><a href="#类型判断" class="headerlink" title="类型判断"></a>类型判断</h2><h3 id="gettype"><a href="#gettype" class="headerlink" title="gettype()"></a>gettype()</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$v1 = <span class="string">'str'</span></span><br><span class="line"><span class="keyword">echo</span> gettype($v1)  <span class="comment">// string</span></span><br><span class="line"><span class="keyword">echo</span> settype($v1,integer)</span><br></pre></td></tr></table></figure>
+
+<h3 id="判断数据类型"><a href="#判断数据类型" class="headerlink" title="判断数据类型"></a>判断数据类型</h3><p>is_int()</p>
+<p>is_float()</p>
+<p>is_bool)</p>
+<p>is_string()</p>
+<p>is_array()</p>
+<p>is_object()</p>
+<p>_is_numeric()   可以判断小数，整数，纯数字字符串</p>
+<p>empty()判断变量是否为空</p>
+<h3 id="数据类型转换"><a href="#数据类型转换" class="headerlink" title="数据类型转换"></a>数据类型转换</h3><p>自动转换</p>
+<p>所有算数运算符都会把字符串转换成数字类型</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 转数字</span></span><br><span class="line"><span class="number">1</span> + <span class="string">'2'</span>  <span class="comment">// 3</span></span><br><span class="line"><span class="string">'1'</span>+<span class="string">'3'</span>  <span class="comment">// 4</span></span><br><span class="line"><span class="string">'1'</span>+ <span class="string">'2abc'</span> <span class="comment">// 3</span></span><br><span class="line"><span class="string">'1'</span>+ <span class="string">'2.2qab'</span> <span class="comment">//3.2</span></span><br><span class="line"><span class="number">1</span> . <span class="number">2</span> <span class="comment">// 12</span></span><br></pre></td></tr></table></figure>
+
+<p>强制转换</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$v1 = (int)<span class="string">'10'</span></span><br><span class="line"><span class="keyword">echo</span> $v1 <span class="comment">// 10</span></span><br><span class="line">$v2 = (float)<span class="string">'1.2'</span></span><br><span class="line"><span class="keyword">echo</span> $v2 <span class="comment">// 1.2</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="数据计算"><a href="#数据计算" class="headerlink" title="数据计算"></a>数据计算</h1><p>赋值运算符</p>
+<p>算数运算符</p>
+<p>连接运算符</p>
+<p>自付值运算符</p>
+<p>子操作运算符</p>
+<p>比较运算符</p>
+<p>逻辑运算符</p>
+<p>条件运算符</p>
+<p>按位运算符</p>
+<p>错误抑制符</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">PHP</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/05/15/PHP/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-vue虚拟DOM解析" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -781,616 +1420,6 @@
 
 
   
-    <article id="post-node中间件" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/05/03/node%E4%B8%AD%E9%97%B4%E4%BB%B6/">node中间件</a>
-    </h1>
-  
-
-        
-        <a href="/2020/05/03/node%E4%B8%AD%E9%97%B4%E4%BB%B6/" class="archive-article-date">
-  	<time datetime="2020-05-03T01:48:08.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-03</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="中间件"><a href="#中间件" class="headerlink" title="中间件"></a>中间件</h1>
-        
-          <a class="article-more-a" href="/2020/05/03/node%E4%B8%AD%E9%97%B4%E4%BB%B6/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">node</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/05/03/node%E4%B8%AD%E9%97%B4%E4%BB%B6/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-cookie相关" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/05/02/cookie%E7%9B%B8%E5%85%B3/">cookie/session/token</a>
-    </h1>
-  
-
-        
-        <a href="/2020/05/02/cookie%E7%9B%B8%E5%85%B3/" class="archive-article-date">
-  	<time datetime="2020-05-02T13:32:11.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-02</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <a id="more"></a>
-<h1 id="为什么需要cookie-session-token"><a href="#为什么需要cookie-session-token" class="headerlink" title="为什么需要cookie session token"></a>为什么需要cookie session token</h1><ul>
-<li>1、http是无状态协议，他不会去记住或者认识是谁正在访问它，对于大型电商平台，需要区分每一个用户才可以把他们需要的东西加入他们的购物车。因此先辈们发明的cookie。</li>
-<li>2、当用户访问了服务器，服务器就会生成一个cookie_id并传给浏览器保存，下一次访问服务器的时候就会携带这个cookie中有登录信息。传输给服务器后，服务器处理以下就可以判断区分用户了。但是cookie是保存在浏览器的那么就会有安全性问题。这是先辈们有引入了session。</li>
-<li>3、每当用户与服务器建立一次链接就形成了session，这个session data会保存在服务器中，这个session记录着你的登录信息。同时还会生成一个session id 这个会被存放在浏览器的cookie中，等到下一次建立链接的时候会随着cookie被发送到服务端，服务端中就会将session_id 与session_data关联起来。区分用户，但是这种还是不够好，如果有负载均衡器那么与之链接的服务器可能是一个新的服务器，那么就无法建立链接，这时我们使用了token。</li>
-<li>4、当用户与服务器建立链接服务器就会生成一个存放用户id的token返回给客户端的并存放在cookie，sessionstorage等中。当用户再次请求的时候，这个token就会被放在http header中。这个token可以在服务端进行一个签名，token会进行HMAC-SHA256算法，再加上一个只有我知道的密钥对数据进行一个签名。当token返回的时候我们就对token中的数据使用相同的HMAC-SHA256算法，在加上我们自己知道的密钥。两者进行对比如果相等就说明数据没有被更改过。</li>
-</ul>
-<h1 id="cookie"><a href="#cookie" class="headerlink" title="cookie"></a>cookie</h1><p>http协议是一个无状态协议，他不会记录用户的信息。这是我们需要使用cookie来储存用户的信息。</p>
-<ul>
-<li>cookie中的信息是存储在浏览器中的，因此只能存储一些非铭感信息。</li>
-</ul>
-<h1 id="session"><a href="#session" class="headerlink" title="session"></a>session</h1><p>为了解决cookie的问题，我们引入session。<br>超市   -   电子柜    -    消费者<br>电子柜（服务端）   给你一个凭证（cookie）凭证是唯一的，不可重复，一点丢失，不可找回。     你（客户端）<br>express-session这个插件。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//添加session  </span></span><br><span class="line">req.session.user = user</span><br><span class="line"><span class="comment">//读取session</span></span><br><span class="line">req.session.user</span><br><span class="line"><span class="comment">//删除session</span></span><br><span class="line">req.session.user = <span class="literal">null</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">delete</span> req.session.user</span><br></pre></td></tr></table></figure>
-
-<p>session：当有大量用户太消耗服务器的性能。</p>
-<h1 id="token"><a href="#token" class="headerlink" title="token"></a>token</h1><p>token的组成：</p>
-<ul>
-<li><p>1、header：在转为Base64编码</p>
-<pre><code>- 1、类型：JWT
-- 2、算法：HS256</code></pre></li>
-<li><p>2、payload：会配置一些token的基本信息。在转为Base64编码</p>
-</li>
-<li><p>3、singnature：对 header + payload + 密钥 进行HS256算法加密，在转为Base64编码</p>
-<p>token = header的Base64.payload的Base64.singnature的Base64</p>
-</li>
-</ul>
-<p>完成上面3部分就生成了一个token了，这个token会被返回给客户端并保存，每次请求都会携带这个token，服务器对token中的header、payload进行转码，然后从新重复第三步，如果返回的结果与携带过来的一致，那么就认为用户已经登录了。</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">http</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/05/02/cookie%E7%9B%B8%E5%85%B3/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-promise" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/04/30/promise/">promise</a>
-    </h1>
-  
-
-        
-        <a href="/2020/04/30/promise/" class="archive-article-date">
-  	<time datetime="2020-04-30T01:02:20.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-30</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="promise"><a href="#promise" class="headerlink" title="promise"></a>promise</h1>
-        
-          <a class="article-more-a" href="/2020/04/30/promise/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">js</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/04/30/promise/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-数据结构" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/04/23/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a>
-    </h1>
-  
-
-        
-        <a href="/2020/04/23/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" class="archive-article-date">
-  	<time datetime="2020-04-23T14:53:31.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-23</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <a id="more"></a>
-<h1 id="什么是数据"><a href="#什么是数据" class="headerlink" title="什么是数据"></a>什么是数据</h1><blockquote>
-<p>是一个符号，一个描述客观事物的符号，可以被计算机识别，并且输入给计算机处理的数据的一个符号集合（内存）</p>
-</blockquote>
-<h1 id="什么是数据元素"><a href="#什么是数据元素" class="headerlink" title="什么是数据元素"></a>什么是数据元素</h1><blockquote>
-<p>由数据组成的有意义的集合体的基本单位    人   ，  摄影师   ， 老师</p>
-</blockquote>
-<h1 id="什么是数据结构"><a href="#什么是数据结构" class="headerlink" title="什么是数据结构"></a>什么是数据结构</h1><blockquote>
-<p>数据结构与计算机存储、组织数据的方式，精心选择的数据结构可以带来更高的运行或者存储效率。</p>
-</blockquote>
-<h1 id="由哪些数据结构"><a href="#由哪些数据结构" class="headerlink" title="由哪些数据结构"></a>由哪些数据结构</h1><ul>
-<li><p>1、栈</p>
-</li>
-<li><p>2、堆</p>
-</li>
-<li><p>3、队列</p>
-</li>
-<li><p>4、数组</p>
-</li>
-<li><p>5、散列表</p>
-</li>
-<li><p>6、链表</p>
-</li>
-<li><p>7、图</p>
-</li>
-<li><p>8、树</p>
-<h2 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h2><blockquote>
-<p>数组是一串连续存储的数据，但是在js中的数组严格意义上来说不算是数组，他的存储方式与传统数组不同。</p>
-</blockquote>
-<blockquote>
-<p>正真的数组他的删除和插入效率会很低，因为数组是一串连续存储的数据，为了保证他的连续他会自动的调整数据的位置以保证是连续存储</p>
-</blockquote>
-</li>
-</ul>
-<h1 id="1、栈与队列"><a href="#1、栈与队列" class="headerlink" title="1、栈与队列"></a>1、栈与队列</h1><p>栈是一种受限制的线性表，数据插入，删除，查找的时候不能随心所欲。(先进后后出，后进先出)</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Stack</span></span>&#123;</span><br><span class="line">    <span class="keyword">constructor</span>()&#123;</span><br><span class="line">        <span class="keyword">this</span>.items = [];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//入栈</span></span><br><span class="line">    push(ele)&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.items.push(ele);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//出战</span></span><br><span class="line">    pop()&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.items.pop();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//获取栈顶元素</span></span><br><span class="line">    peek()&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.items[<span class="keyword">this</span>.items.length<span class="number">-1</span>];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//判断是否为空</span></span><br><span class="line">    isEmpty()&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.items.length == <span class="number">0</span> ;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//判断栈的元素个数</span></span><br><span class="line">    size()&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.items.length;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//清空栈</span></span><br><span class="line">    clean()&#123;</span><br><span class="line">        <span class="keyword">this</span>.items == [];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> stack = <span class="keyword">new</span> stack()</span><br><span class="line">stack.push()</span><br><span class="line">stack.size()</span><br><span class="line">stack.pop()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// 十进制转二进制</span></span><br><span class="line"><span class="keyword">const</span> binary = <span class="function">(<span class="params">number</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">let</span> stack = <span class="keyword">new</span> stack()</span><br><span class="line">    <span class="keyword">let</span> rem = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">let</span> _binary = <span class="string">''</span>;</span><br><span class="line">    <span class="keyword">while</span>(number &gt; <span class="number">0</span>)&#123;</span><br><span class="line">        rem = number % <span class="number">2</span>;</span><br><span class="line">        stack.push(rem);</span><br><span class="line">        number = <span class="built_in">Math</span>.floor(number / <span class="number">2</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span>(!stack.isEmpty())&#123;</span><br><span class="line">        _binary += stack.pop()</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> _binary</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(binary(<span class="number">100</span>))</span><br></pre></td></tr></table></figure>
-
-<h2 id="1-1、js是单线程原理"><a href="#1-1、js是单线程原理" class="headerlink" title="1.1、js是单线程原理"></a>1.1、js是单线程原理</h2><ul>
-<li><p>1、js为什么设计成单线程：两个人同时操作同一个dom这时不知道该听谁的。</p>
-</li>
-<li><p>2、js是单线程，浏览器是多进程的。</p>
-</li>
-<li><p>3、主线程自上而下，代码进栈、执行完毕后出栈。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(<span class="number">1</span>); </span><br><span class="line"><span class="built_in">console</span>.log(<span class="number">2</span>);</span><br><span class="line"><span class="keyword">while</span>(<span class="literal">true</span>)&#123;&#125;;</span><br><span class="line"><span class="built_in">console</span>.log(<span class="number">3</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//打印出来1、2</span></span><br></pre></td></tr></table></figure></li>
-<li><p>4、执行上下文：是当前js代码解析和执行所在的环境，所有的js代码都在执行上下文中去执行（执行环境）</p>
-<ul>
-<li>1、全局执行上下文：他是默认的也是最基础的执行上下文，任何函数都位于这个全局执行上下文。</li>
-<li>2 、函数执行上下文：每次调用函数的时候，会为这个函数创建一个新的执行上下文。每个函数都有自己的函数执行上下文</li>
-<li>3、eval函数执行上下文：理解为执行环境，如果你传入的是字符串并且js代码符合规范，那么这段js字符串会被执行。<br>这里我们对执行上下文与作用域来做个区别：</li>
-<li>1、作用域：作用域是在函数定义的时候就已经定好了，可以理解为静态的。</li>
-<li>2、执行上下文：是this的指向，this指向是谁调用就指向谁，也就是在执行上下文中执行谁，这个是动态的。<blockquote>
-<p>当打开浏览器时js引擎会在执行栈中创建全局执行上下文，创建完成后开始从上至下执行js脚本中的代码，创建全局作用域，每当遇到函数调用就会创建函数执行上下文，并创建函数作用域，之后执行函数中的代码，当函数执行完毕后开始，会跳出函数的执行上下文，同时垃圾回收机制会清除局部作用域，之后把权限有再次交给全局执行上下文，依次执行代码直到代码执行完毕，这是全局执行上下文不会被消除（只有关闭浏览器才会消除），当浏览器关闭js引擎会触发垃圾回收机制清除执行栈中的函数声明，以及变量声明。</p>
-</blockquote>
-</li>
-</ul>
-</li>
-<li><p>5、js中的堆栈</p>
-<ul>
-<li>栈：一般用来存储基本数据类型，以及引用类型的内容地址。</li>
-<li>堆：存放引用类型的内容，是真实的内存空间是开辟的。</li>
-<li>执行栈：执行栈中会把js脚本非执行代码（也就是函数定义/变量定义入栈单不出栈，而对于执行的代码他们会依次入栈出栈，当js脚本中的代码执行完毕后，执行栈中就只剩下非执行代码了，那么这些代码会被垃圾回收机制清除，以保证下一次执行其他脚本时执行栈中执行上下文不会收到影响）中的所有代码一次</li>
-</ul>
-</li>
-<li><p>6、作用域<br>  作用域</p>
-<pre><code>- 1、词法作用域：也就是平时使用的作用域，全局作用域（GO）、函数作用域(AO)、会变量提升。</code></pre><ul>
-<li>2、动态作用域：就是this对应的作用域，谁调用作用域就是谁。</li>
-</ul>
-</li>
-</ul>
-<h1 id="2、队列"><a href="#2、队列" class="headerlink" title="2、队列"></a>2、队列</h1><p>队列也是一种运算受限的线性表，先进先出</p>
-<h2 id="2-1、js异步原理"><a href="#2-1、js异步原理" class="headerlink" title="2.1、js异步原理"></a>2.1、js异步原理</h2><ul>
-<li>js中，维护这一个队列，这个队列叫做事件队列</li>
-<li>javascript特点：单线程，同一个时间只能处理一件事<ul>
-<li>JavaScript多线程原理：利用cpu的多核，h5提出了web worker的标准，允许js创建多个线程，而这些被创建的子线程是完全受到主线程控制的，并且子线程不可以操作dom，这个其实并没有改变js单线程的本质。</li>
-</ul>
-</li>
-<li>线程：是操作系统能够进行运算调度的最小单位（对于操作系统来说，线程是最小执行单位，进程是最小资源管理单位）</li>
-<li>进程与线程的区别：<ul>
-<li>1、线程从属于进程。</li>
-<li>2、每个开启一个程序进程就会在内存中开辟一块内存用来资源管理，线程就会执行里面的内容。</li>
-<li>3、一个进程中可以有线程，一个主线程，还可以有多个子线程。</li>
-<li>4、每个线程都会消耗内存。（node是单线程但是可以处理并发，因为他只有一个线程去处理多个线程的事情）</li>
-</ul>
-</li>
-<li>js代码在引擎中执行的过程<ul>
-<li>1、一开始会主线程会创建一个执行栈，在主线程外系统还会维护一个任务队列</li>
-<li>2、所有同步代码都会被主线程放在执行栈中，异步代码都会被放入任务队列。</li>
-<li>3、执行栈中对所有同步脚本代码执行完毕后，系统就会读取任务队列，并把任务队列读取到执行栈中执行，异步代码首先由结果就先输出谁，同等条件下根据队列的顺序一次输出（先进先出）</li>
-<li>4、这里有个通知机制：当执行栈中的同步代码执行完毕后，任务队列会通知主线程，任务队列中的哪些资源已经准备好了，并按照谁先得到结果谁先输出的关系输出给执行栈。</li>
-<li>5、事件循环：当主线程程序执行完毕，事件队列通知主线程读取任务队列的的过程叫做事件循环。</li>
-</ul>
-</li>
-<li>promise<ul>
-<li>1、任务队列中维护着两个任务队列，一个叫宏任务，一个叫微任务。<ul>
-<li>宏任务：l/o 定时器/事件/Ajax</li>
-<li>微任务：promise then finally,process async await</li>
-</ul>
-</li>
-<li>2、js代码执行顺序：同步代码 &gt; 微任务 &gt; 宏任务</li>
-</ul>
-</li>
-<li>node处理多并发优势<ul>
-<li>java、php每一个客户请求，都会开一个新的线程，一个请求大概需要消耗2m的内存，8g最多是要4000和请求。</li>
-<li>node不论你有多少线程，一个线程，事件驱动、非阻塞io，如果node主线程挂了，你的程序就挂了。</li>
-</ul>
-</li>
-</ul>
-<h1 id="3、链表"><a href="#3、链表" class="headerlink" title="3、链表"></a>3、链表</h1><ul>
-<li>1、链表中的元素在内存中不必是连续的空间</li>
-<li>2、链表每一个元素都由一个存储元素本身的节点和一个指向下一个元素的引用组成</li>
-</ul>
-<h2 id="1、JS中的堆栈"><a href="#1、JS中的堆栈" class="headerlink" title="1、JS中的堆栈"></a>1、JS中的堆栈</h2><ul>
-<li>1、原始数据存储：<ul>
-<li>1、首先将10存入栈空间（栈空间中开辟一个空间存入10）</li>
-<li>2、定义一个变量a，此使a与变量是没有建立关系的，a的值为undefined</li>
-<li>3、将变量a和值存储起来</li>
-</ul>
-</li>
-<li>2、引用数据类型<ul>
-<li>1、会在堆区开一一个空间存储值。</li>
-<li>2、堆区会返回一个地址，对于这个地址先在栈区开辟一个空间。</li>
-<li>3、定义一个变量fn，这个时候fn的值为undefined</li>
-<li>4、将变量fn与地址存起来。</li>
-</ul>
-</li>
-</ul>
-<h2 id="2、链表的优势"><a href="#2、链表的优势" class="headerlink" title="2、链表的优势"></a>2、链表的优势</h2><ul>
-<li>1、插入删除：链表的性能好</li>
-<li>2、查找修改：数组性能好</li>
-</ul>
-<h2 id="3、链表的方法"><a href="#3、链表的方法" class="headerlink" title="3、链表的方法"></a>3、链表的方法</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//节点类</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Node</span></span>&#123;</span><br><span class="line">    constructr(element)&#123;</span><br><span class="line">        <span class="keyword">this</span>.element = element;</span><br><span class="line">        <span class="keyword">this</span>.next = <span class="literal">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//链表</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">LinkeedList</span></span>&#123;</span><br><span class="line">    <span class="keyword">constructor</span>()&#123;</span><br><span class="line">        <span class="keyword">this</span>.head = <span class="literal">null</span>;</span><br><span class="line">        <span class="keyword">this</span>.length = <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    append(element)&#123;</span><br><span class="line">        <span class="keyword">let</span> node = <span class="keyword">new</span> Node(element)</span><br><span class="line">        <span class="keyword">if</span>(<span class="keyword">this</span>.length == <span class="number">0</span>)&#123;</span><br><span class="line">            <span class="keyword">this</span>.head = node;</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            <span class="keyword">let</span> current = <span class="keyword">this</span>.head</span><br><span class="line">            <span class="keyword">while</span>(current.next)&#123;</span><br><span class="line">                current = current.next</span><br><span class="line">            &#125;</span><br><span class="line">            current.next = node;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">this</span>.length += <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span></span><br><span class="line">    &#125;</span><br><span class="line">    insert(element , position)&#123;</span><br><span class="line">        <span class="keyword">let</span> index = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">let</span> current = <span class="keyword">this</span>.head</span><br><span class="line">        <span class="keyword">let</span> privious = <span class="literal">null</span></span><br><span class="line">        <span class="keyword">let</span> node = <span class="keyword">new</span> Node(element)</span><br><span class="line">        <span class="keyword">if</span>(position &gt; <span class="number">0</span> || position &lt; <span class="keyword">this</span>.length)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(position == <span class="number">0</span>)&#123;</span><br><span class="line">            node.next = current</span><br><span class="line">            <span class="keyword">this</span>.head = node</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            <span class="keyword">while</span>(index &lt; position)&#123;</span><br><span class="line">                privious = current</span><br><span class="line">                current = current.next</span><br><span class="line">                index++</span><br><span class="line">            &#125;</span><br><span class="line">            node.next = current;</span><br><span class="line">            privious.next = node</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//获取头节点</span></span><br><span class="line">    getHead()&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.head</span><br><span class="line">    &#125;</span><br><span class="line">    toString()&#123;</span><br><span class="line">        <span class="keyword">let</span> current = <span class="keyword">this</span>.head</span><br><span class="line">        <span class="keyword">let</span> linkString = <span class="string">''</span>;</span><br><span class="line">        <span class="keyword">while</span>(current)&#123;</span><br><span class="line">            linkString += <span class="string">','</span> + current.element;</span><br><span class="line">            current = current.next;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> linkString.slice(<span class="number">1</span>)</span><br><span class="line">    &#125;</span><br><span class="line">    remove(element)&#123;</span><br><span class="line">        <span class="keyword">let</span> privious = <span class="literal">null</span></span><br><span class="line">        <span class="keyword">let</span> current = <span class="keyword">this</span>.head</span><br><span class="line">        <span class="keyword">while</span>(current.next.element == element)&#123;</span><br><span class="line">            privious = current</span><br><span class="line">            current = current.next</span><br><span class="line">        &#125;</span><br><span class="line">        privious.next == current.next</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span></span><br><span class="line">    &#125;</span><br><span class="line">    removeAt(position)&#123;</span><br><span class="line">        <span class="keyword">let</span> index = <span class="number">0</span></span><br><span class="line">        <span class="keyword">let</span> current = <span class="keyword">this</span>.head</span><br><span class="line">        <span class="keyword">let</span> privious = <span class="literal">null</span></span><br><span class="line">        <span class="keyword">if</span>(position &gt; <span class="number">0</span> || position &lt; <span class="keyword">this</span>.length)&#123;</span><br><span class="line">            <span class="keyword">if</span>(position == <span class="number">0</span>)&#123;</span><br><span class="line">                <span class="keyword">this</span>.head == <span class="literal">null</span> </span><br><span class="line">            &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                <span class="keyword">while</span>(index &lt;= position)&#123;</span><br><span class="line">                    privious = current</span><br><span class="line">                    current = current.next</span><br><span class="line">                    index++</span><br><span class="line">                &#125;</span><br><span class="line">                privious.next == current.next</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-<ul>
-<li>1、append（element）：向链表尾部追加元素</li>
-<li>2、insert（position,element）向例表中特定位置插入</li>
-<li>3、remove（element）从例表中删除一项</li>
-<li>4、indexof（element）返回元素的索引，如果例表中没有该元素测返回大于-1</li>
-<li>5、removeAt（position）从例表中移出特定位置的一项</li>
-<li>6、isEmpty（）：如果链表中不包含任何元素，返回true，如果链表长度大于0返回false。</li>
-<li>size（）：返回链表包含元素的个数，于数组的length类似</li>
-<li>toString（）：需要重写来继承JavaScript的方法</li>
-</ul>
-<h2 id="双向链表"><a href="#双向链表" class="headerlink" title="双向链表"></a>双向链表</h2><ul>
-<li>1、next直线下一个</li>
-<li>2、prvies指向上一个</li>
-<li>3、中间有个存储空间</li>
-</ul>
-<h2 id="原型链"><a href="#原型链" class="headerlink" title="原型链"></a>原型链</h2><ul>
-<li><p>1、语言的发展</p>
-<p>机器语言&gt;汇编语言&gt;低级语言&gt;高级语言</p>
-</li>
-<li><p>2、原型链的底层实现机制原理就是链表</p>
-</li>
-<li><p>3、<strong>proto</strong> 和constructor属性是对象独有的</p>
-</li>
-<li><p>4、prototype是函数独有的，函数也是一种对象所有有proto和constructor。</p>
-</li>
-<li><p>5、proto是隐式对象，一般不建议给隐式对象上面添加属性和方法。</p>
-</li>
-</ul>
-<h1 id="4、集合"><a href="#4、集合" class="headerlink" title="4、集合"></a>4、集合</h1><p>集合通常是由一组无序的，不能重复的元素构成。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Myset</span> </span>&#123;</span><br><span class="line">    <span class="keyword">constructor</span> ()&#123;</span><br><span class="line">        <span class="keyword">this</span>.item = &#123;&#125;</span><br><span class="line">    &#125;</span><br><span class="line">    has(val)&#123;</span><br><span class="line">        <span class="comment">// Object.hasOwnproperty(val)</span></span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.item.hasOwnproperty(val)</span><br><span class="line">    &#125;</span><br><span class="line">    add(val)&#123;</span><br><span class="line">        <span class="keyword">if</span>(<span class="keyword">this</span>.has(val))&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">this</span>.item[val] = val</span><br><span class="line">    &#125;</span><br><span class="line">    remove(val)&#123;</span><br><span class="line">        <span class="keyword">if</span>(!<span class="keyword">this</span>.has(val))&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">delete</span> <span class="keyword">this</span>.item[val]</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span></span><br><span class="line">    &#125;</span><br><span class="line">	size()&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">Object</span>.keys(<span class="keyword">this</span>.item).length</span><br><span class="line">    &#125;    </span><br><span class="line">    clear()&#123;</span><br><span class="line">        <span class="keyword">this</span>.item = &#123;&#125;</span><br><span class="line">    &#125;</span><br><span class="line">    valuse()&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">Object</span>.keys(<span class="keyword">this</span>.item)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//并集</span></span><br><span class="line">    union(<span class="keyword">set</span>)&#123;</span><br><span class="line">        <span class="keyword">let</span> unionSet = <span class="keyword">new</span> Myset()</span><br><span class="line">        <span class="keyword">let</span> valuse = <span class="keyword">this</span>.valuse()</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">let</span> i =<span class="number">0</span>,;i&lt; valuse.length; i++)&#123;</span><br><span class="line">            unionSet.add(valuse[i]);</span><br><span class="line">        &#125;</span><br><span class="line">        valuse = <span class="keyword">set</span>.valuse();</span><br><span class="line">        for(let i = 0;i&lt;valuse.length; i++)&#123;</span><br><span class="line">            unionSet.add(valuese[i]);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> unionSet</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//交集</span></span><br><span class="line">    Intersection(<span class="keyword">set</span>)&#123;</span><br><span class="line">        <span class="keyword">let</span> intersection = <span class="keyword">new</span> Myset()</span><br><span class="line">        <span class="keyword">let</span> valuse = <span class="keyword">this</span>.valuse()</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">let</span> i=<span class="number">0</span>; i&lt;valuse.length; i++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(<span class="keyword">set</span>.has(valuse[i]))&#123;</span><br><span class="line">                intersection.add(valuse[i]);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> intersection </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="js中的set、webset"><a href="#js中的set、webset" class="headerlink" title="js中的set、webset"></a>js中的set、webset</h2><ul>
-<li>set：必须数组，里面不能有重复的内容。</li>
-<li>webset：必须是对象，里面不能有重复的内容。是弱引用不会被垃圾回收机制录入</li>
-</ul>
-<h2 id="js中的map、weakmap"><a href="#js中的map、weakmap" class="headerlink" title="js中的map、weakmap"></a>js中的map、weakmap</h2><ul>
-<li>map：普通对象的属性名只能是字符串，map属性可以是对象。</li>
-<li>weakmap：只接受对象作为键名，null除外。</li>
-</ul>
-<h2 id="return拓展"><a href="#return拓展" class="headerlink" title="return拓展"></a>return拓展</h2><ul>
-<li>return true：返还正确执行结果</li>
-<li>return false：中止一些默认事件<ul>
-<li>1、默认行为</li>
-<li>2、组织冒泡</li>
-<li>3、回调函数的执行</li>
-</ul>
-</li>
-<li>return ： 返还控制权</li>
-</ul>
-<h2 id="扩展运算符"><a href="#扩展运算符" class="headerlink" title="扩展运算符"></a>扩展运算符</h2><p>对象中的扩展运算符，用于取出对象中所有可遍历属性。一级属性浅拷贝，二级及其以上深拷贝。</p>
-<h2 id="深浅拷贝"><a href="#深浅拷贝" class="headerlink" title="深浅拷贝"></a>深浅拷贝</h2><p>复制一个对象和数组，但不可以改变原始数据类型</p>
-<ul>
-<li><p>js中的传值与传址：</p>
-<p>传值：一般是原始数据类型使用，var a = 10 在这里会在栈空间中开辟一个空间存放10，然后在把a与10关联起来。var b = a 就会新开劈一块空间把a的值传进去，在于b相互关联。</p>
-<p>传址：一般是引用数据类型，var a = {a:1} 会在堆区开辟一块内存存放，在把内存地址返回到栈区，栈区开一一块空间存储这个地址，再把地址与a进行关联。</p>
-</li>
-<li><p>原始数据类型没有深浅拷贝，深浅拷贝是针对于引用类型的。</p>
-<ul>
-<li>1、深拷贝：会重新创建内存空间，修改数据不会影响原有数据。</li>
-<li>2、浅拷贝：不会创建新的空间，修改数据会影响原有数据。</li>
-</ul>
-</li>
-<li><p>使用深浅拷贝使用场景：复制的数据类型的拷贝</p>
-</li>
-<li><p>拷贝方法：</p>
-<ul>
-<li>1、Object.assign()</li>
-<li>2、遍历对象中的属性赋值给新对象</li>
-<li>3、使用扩展运算符</li>
-<li>4、JSON.parser(JSON.stringify(obj))  这种方法不会拷贝属性值为函数、undefined</li>
-</ul>
-</li>
-<li><p>可以使用递归循环遍历对象：可以拷贝所有的属性以及值都是深拷贝。</p>
-<h2 id="垃圾回收"><a href="#垃圾回收" class="headerlink" title="垃圾回收"></a>垃圾回收</h2><ul>
-<li>内存泄漏：一块内存，既不能使用，也不能回收，直到浏览器结束。</li>
-<li>内存堆积：最终会消耗尽系统的所有内存，导致浏览器崩溃。</li>
-</ul>
-</li>
-</ul>
-<h1 id="5、哈希表"><a href="#5、哈希表" class="headerlink" title="5、哈希表"></a>5、哈希表</h1><h2 id="hash"><a href="#hash" class="headerlink" title="hash"></a>hash</h2><p>hash：其实就是一种算法，把任意长度的输入通过散列算法变换成固定长度的输出，输出是散列值。hash和散列是同一个东西。</p>
-<p>哈希算法不过是一个复杂的运算，他的输入可以是字符串，可以是任何文件，经过哈希运算以后，变成一个固定长度的输出，哈希算法有一个最大的特点：不可逆，不能从结果推算出输入。</p>
-<p>hash是基于数组实现的，但是数组的插入删除效率不高，查询效率分两种（通过索引查找）效率高（通过内容查找）效率相对低。</p>
-<h2 id="hash表"><a href="#hash表" class="headerlink" title="hash表"></a>hash表</h2><p>通过把散列函数把字符转为ascll对应的码值相加形成散列值，在通过散列值绘制散列表。散列表存储着所有的对于转换的码值。</p>
-<p>hash函数</p>
-<p>哈希函数就是把字符串转化为数字。</p>
-<p>哈希函数有很多种，java hashcode 字符的acill码加在一起，然后在莫上一个质数，最后莫出多少就是多少，hash函数其实复杂的很，如何hash函数选的好的话，就可以让这些数字尽量避免去分散，而不会发送碰撞/冲突。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">HashTable</span></span>&#123;</span><br><span class="line">    <span class="keyword">constructor</span>()&#123;</span><br><span class="line">        <span class="keyword">this</span>.table = []; <span class="comment">//哈希表</span></span><br><span class="line">    &#125;</span><br><span class="line">    loseloseHashCode(key)&#123;</span><br><span class="line">        <span class="keyword">let</span> hash = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">let</span> i = <span class="number">0</span>; i&lt; key.length; i++)&#123;</span><br><span class="line">            hash += key[i].charCodeAt();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//降低冲突，降低存储位数</span></span><br><span class="line">        <span class="keyword">return</span> hash % <span class="number">37</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    put(key , value)&#123;</span><br><span class="line">        <span class="keyword">const</span> position = <span class="keyword">this</span>.loseloseHashCode(key);</span><br><span class="line">        <span class="keyword">this</span>.table[position] = value;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">get</span>(key)&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.table[<span class="keyword">this</span>.loseloseHashCode(key)];</span><br><span class="line">    &#125;</span><br><span class="line">    remove(key)&#123;</span><br><span class="line">        <span class="keyword">this</span>.table[<span class="keyword">this</span>.loseloseHeadCode(key)]</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>尽管我们使用了哈希函数处理，但是依然会发生碰撞。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">money &gt; <span class="number">43</span>   oxgbx &gt; <span class="number">43</span></span><br></pre></td></tr></table></figure>
-
-<p>解决冲突与碰撞（哈希覆盖）的方法</p>
-<p>连地址法（拉链法）：哈希表种存储的不是一个实际的值，而是存储一个链表用来存储实际的值</p>
-<p>开放地址法：寻找空白位置来放置数据（有三种放置方法）</p>
-<ul>
-<li>1、线性探测法：会从index + 1开始找，有空的就放进去，容易发生聚集，聚集会影响效率。</li>
-<li>2、平方探测法：会从index+ 1 的平方开始，有空的就放进去，相比线性查找法减少了聚集的发生情况，但是会出现返回的情况，这也不利于哈希表的效率。</li>
-<li>3、再哈希法：对数据再次使用hash算法，来制作hash表。</li>
-</ul>
-<h2 id="md5就是基于hash算法"><a href="#md5就是基于hash算法" class="headerlink" title="md5就是基于hash算法"></a>md5就是基于hash算法</h2><ul>
-<li>1、特点：<ul>
-<li>1、md5是一个不可逆的，加密（不算加密，加密应该有对于的解密）</li>
-<li>2、计算极快</li>
-</ul>
-</li>
-<li>2、md5的破解方法-&gt;撞库</li>
-</ul>
-<h2 id="哈希的两个特性"><a href="#哈希的两个特性" class="headerlink" title="哈希的两个特性"></a>哈希的两个特性</h2><p>1、不可逆</p>
-<p>2、计算极快</p>
-<h2 id="编码过程"><a href="#编码过程" class="headerlink" title="编码过程"></a>编码过程</h2><p>编码其实就是把字符串转为计算机可以识别的数字。</p>
-<p>通过下标查找速度很快》下标是数字》字符串数字》哈希函数》哈希碰撞？哈希覆盖》链地址法，开放地址法。hash缺点就是比较消耗内存。（以空间换时间）</p>
-<h1 id="6、树"><a href="#6、树" class="headerlink" title="6、树"></a>6、树</h1><h2 id="1、概念"><a href="#1、概念" class="headerlink" title="1、概念"></a>1、概念</h2><p>树：n个节点构成的有限集合。</p>
-<p>空树：n = 0（节点个数等于0）</p>
-<p>根节点：n = 1（只有一个节点）</p>
-<p>子树：以其他节点为根的树是子树。</p>
-<p>节点的度：节点分支的个数。</p>
-<p>树的度：选取所有节点种最大的度。</p>
-<p>叶子节点：度为0的节点，位于树的最深层。</p>
-<p>分支节点：度大于0的节点，除了叶子节点，其他的都是分支节点。</p>
-<p>节点层次：是节点到根节点的边数。</p>
-<p>树的深度：选取节点中最大的层次。</p>
-<p>森林：所有子树的集合</p>
-<h2 id="2、树的存储结构"><a href="#2、树的存储结构" class="headerlink" title="2、树的存储结构"></a>2、树的存储结构</h2><p>物理存储结构又2种，顺序存储和链式存储，因此树无法直接存储，所以要将树转化为顺序或者链式存储。</p>
-<p>有三种方法：</p>
-<ul>
-<li>1、双亲表示法：采用顺序存储（数组）存储普通的树，顺序存储各个节点的同时，给各个节点添加父节点的位置的变量。<ul>
-<li>优点：可以快速的获取任意节点的父节点的位置。</li>
-<li>缺点：不能快速获取任意节点的子节点的位置</li>
-</ul>
-</li>
-<li>2、孩子表示法：这一个方式，是创建多个指针域，指向它所有子节点的地址，也就是说任何一个节点都掌握着他的子节点的位置。</li>
-<li>3、孩子兄弟表示法：这种方式会把一个树转化为二叉树，他的做法是；用两个指针分别指向它的第一个子节点和第一个右兄弟节点。</li>
-</ul>
-<h2 id="3、二叉树"><a href="#3、二叉树" class="headerlink" title="3、二叉树"></a>3、二叉树</h2><p>二叉树：最多只有2个节点。度不超过2的树</p>
-<p>二叉树有五种形态：空树，只有一个根节点，只有一个左子树，只有一个右子树，两个节点都有。</p>
-<p>第i层二叉树的最大节点数：2^(i-1)</p>
-<ul>
-<li><p>特殊的二叉树：</p>
-<ul>
-<li><p>1、满二叉树：树是满的，每个节点都有2个子节点。</p>
-</li>
-<li><p>2、完全二叉树：从根节点到倒数第二层满足完美二叉树，最后一层可以不完全填充，其叶子节点都靠左对齐。</p>
-</li>
-<li><p>3、二叉排序树（BTS）：</p>
-<p>非空左子树所有键值小于其根节点的键值</p>
-<p>非空右子树所有键值大于其根节点的键值</p>
-<p>左右子树本身也是二叉搜索树。</p>
-</li>
-</ul>
-</li>
-</ul>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">数据结构</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/04/23/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/">Next &amp;raquo;</a>
@@ -1491,11 +1520,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">http</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">js</a>
+                <a href="javascript:void(0)" class="js-tag color4">vue</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1503,7 +1528,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">vue</a>
+                <a href="javascript:void(0)" class="js-tag color3">js</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">http</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">PHP</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1511,11 +1544,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">数据结构</a>
+                <a href="javascript:void(0)" class="js-tag color1">微信小程序</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">webpack</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">web</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">数据结构</a>
               </li>
             
             <div class="clearfix"></div>

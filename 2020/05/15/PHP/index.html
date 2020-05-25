@@ -6,16 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives | Hexo</title>
+  <title>PHP | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="小猫爱吃鱼">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://yoursite.com/archives/page/3/index.html">
+  <meta name="description" content="数据表达变量变量赋值 语法：$变量名 &#x3D; 值  123456789&lt;?php$v1 &#x3D; 122;$v2 &#x3D; 241;$v3 &#x3D; $v1 + $v2    echo $v3 &#x2F;&#x2F;输出变量$v3?&gt;  判断变量(isset())判断一个变量名中是否存储了数据 12345678910&lt;?php$v1 &#x3D; 122;$v2 &#x3D; 241;$result &#x3D; isset($v2)echo $r">
+<meta property="og:type" content="article">
+<meta property="og:title" content="PHP">
+<meta property="og:url" content="http://yoursite.com/2020/05/15/PHP/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="小猫爱吃鱼">
+<meta property="og:description" content="数据表达变量变量赋值 语法：$变量名 &#x3D; 值  123456789&lt;?php$v1 &#x3D; 122;$v2 &#x3D; 241;$v3 &#x3D; $v1 + $v2    echo $v3 &#x2F;&#x2F;输出变量$v3?&gt;  判断变量(isset())判断一个变量名中是否存储了数据 12345678910&lt;?php$v1 &#x3D; 122;$v2 &#x3D; 241;$result &#x3D; isset($v2)echo $r">
 <meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-05-15T08:37:41.000Z">
+<meta property="article:modified_time" content="2020-05-19T08:59:30.272Z">
 <meta property="article:author" content="Baket">
+<meta property="article:tag" content="PHP">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
@@ -161,290 +164,329 @@
           </div>
           <div id="js-content" class="content-ll">
             
-  
-  
+<article id="post-PHP" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2020" class="archive-year">2020</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/03/24/webpack%E5%9F%BA%E7%A1%80%E6%93%8D%E4%BD%9C/" class="archive-article-date">
-  	<time datetime="2020-03-24T09:24:47.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-24</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/03/24/webpack%E5%9F%BA%E7%A1%80%E6%93%8D%E4%BD%9C/">webpack基础操作</a>
+    <h1 class="article-title" itemprop="name">
+      PHP
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/03/22/%E2%80%9Ccss-sticky-footer/" class="archive-article-date">
-  	<time datetime="2020-03-22T13:21:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-22</time>
+        
+        <a href="/2020/05/15/PHP/" class="archive-article-date">
+  	<time datetime="2020-05-15T08:37:41.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-15</time>
 </a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/03/22/%E2%80%9Ccss-sticky-footer/">“css sticky footer</a>
-    </h1>
-  
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="数据表达"><a href="#数据表达" class="headerlink" title="数据表达"></a>数据表达</h1><h2 id="变量"><a href="#变量" class="headerlink" title="变量"></a>变量</h2><h3 id="变量赋值"><a href="#变量赋值" class="headerlink" title="变量赋值"></a>变量赋值</h3><blockquote>
+<p>语法：$变量名 = 值</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line"></span><br><span class="line">$v1 = <span class="number">122</span>;</span><br><span class="line">$v2 = <span class="number">241</span>;</span><br><span class="line">$v3 = $v1 + $v2</span><br><span class="line">    </span><br><span class="line">echo $v3 <span class="comment">//输出变量$v3</span></span><br><span class="line"></span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
 
-        <div class="article-info info-on-right">
-          
+<h3 id="判断变量-isset"><a href="#判断变量-isset" class="headerlink" title="判断变量(isset())"></a>判断变量(isset())</h3><p>判断一个变量名中是否存储了数据</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line"></span><br><span class="line">$v1 = <span class="number">122</span>;</span><br><span class="line">$v2 = <span class="number">241</span>;</span><br><span class="line">$result = isset($v2)</span><br><span class="line">echo $result <span class="comment">//变量中有值输出true   但是echo会有类型转换所以他会打印1</span></span><br><span class="line">var_dump($result) <span class="comment">// 不会类型转换打印true ， 可以输出一个变量的完整信息</span></span><br><span class="line"></span><br><span class="line">$v5 = <span class="literal">null</span> <span class="comment">//注意这里使用isset($v5)  &gt; 是没有值的</span></span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="销毁-删除变量-unset"><a href="#销毁-删除变量-unset" class="headerlink" title="销毁/删除变量(unset())"></a>销毁/删除变量(unset())</h3><p>当一个变量中存储了数据，我们也可以去销毁它</p>
+<blockquote>
+<p>unset($v1)</p>
+</blockquote>
+<h3 id="传值"><a href="#传值" class="headerlink" title="传值"></a>传值</h3><ul>
+<li>1、值传递</li>
+</ul>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$v1 = <span class="number">10</span></span><br><span class="line">$v3 = $v1   <span class="comment">//值的传递</span></span><br><span class="line"><span class="keyword">echo</span> $v3   <span class="comment">//10</span></span><br><span class="line">$v1 = <span class="number">11</span></span><br><span class="line"><span class="keyword">echo</span> $v3 <span class="comment">// 10</span></span><br><span class="line"><span class="comment">//值传递  传完后他们直接没有关系</span></span><br><span class="line">$v4 = $v1 + <span class="number">1</span> <span class="comment">//这不是传值</span></span><br></pre></td></tr></table></figure>
+
+<p>会创建一个新的内存空间，来存储这个值</p>
+<ul>
+<li>2、引用传值</li>
+</ul>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$v1 = <span class="number">10</span>;</span><br><span class="line">$v2 = &amp;$v1   <span class="comment">//引用传值</span></span><br><span class="line"><span class="keyword">echo</span> $v2   <span class="comment">// 10</span></span><br><span class="line">$v1 = <span class="number">12</span> </span><br><span class="line"><span class="keyword">echo</span> $v2  <span class="comment">// 12</span></span><br><span class="line">$v2 = <span class="number">20</span> </span><br><span class="line"><span class="keyword">echo</span> $v1 <span class="comment">// 20</span></span><br></pre></td></tr></table></figure>
+
+<p>不会创建新的内存空间，他们共用同一个内存空间。</p>
+<h3 id="预定义变量"><a href="#预定义变量" class="headerlink" title="预定义变量"></a>预定义变量</h3><p>PHP语言内部，有一些变量，可以直接使用，这就是所谓的预定义变量。</p>
+<ul>
+<li><p>1、$_GET变量</p>
+<p>代表浏览器表单通过‘get’方式提交的数据集合，可以称为get数据。</p>
+<p>$_GET变量里面会自动存储提交到某个文件中的GET数据。</p>
+<p>而GET数据是一个页面以‘get’方式请求时提交的数据。</p>
+<p>html</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">from</span> <span class="attr">action</span> =<span class="string">'data.php'</span> <span class="attr">method</span> = <span class="string">'get'</span>&gt;</span></span><br><span class="line">    name:<span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span> = <span class="string">'text'</span> <span class="attr">name</span> = <span class="string">'username'</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">br</span>/&gt;</span></span><br><span class="line">    age:<span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span> = <span class="string">'text'</span> <span class="attr">name</span> =<span class="string">'age'</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">br</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">'submit'</span> <span class="attr">value</span>=<span class="string">'提交'</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">from</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>data.php</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$name = $_GET[<span class="string">'username'</span>]</span><br><span class="line">$age = $_GET[<span class="string">"age"</span>]</span><br><span class="line"><span class="keyword">echo</span> <span class="string">'姓名'</span>$name</span><br><span class="line"><span class="keyword">echo</span> <span class="string">'age'</span>$age</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+<ul>
+<li><p>2、$_POST</p>
+<p>会去post的相关的数据</p>
+<p>简单的计算机案例</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">&lt;html&gt;</span><br><span class="line">    &lt;php? </span><br><span class="line">    	$n1 = <span class="string">''</span></span><br><span class="line">    	$n2 = <span class="string">''</span></span><br><span class="line">    	$result = <span class="string">''</span></span><br><span class="line">    	<span class="keyword">if</span>(<span class="keyword">isset</span>($_POST[<span class="string">'num1'</span>]))&#123;</span><br><span class="line">            $n1 = $_POST[<span class="string">'num1'</span>])</span><br><span class="line">            $n2 = $_POST[<span class="string">'num2'</span>])</span><br><span class="line">            $result = $n1 + $n2</span><br><span class="line">        &#125;</span><br><span class="line">    <span class="meta">?&gt;</span></span><br><span class="line">	&lt;body&gt;</span><br><span class="line">    &lt;from action =<span class="string">'data.php'</span> method = <span class="string">'post'</span>&gt;</span><br><span class="line">&lt;input type = <span class="string">'text'</span> name = <span class="string">'num1'</span> value=<span class="string">'&lt;?php echo $n1 ?&gt;'</span>/&gt;</span><br><span class="line">+</span><br><span class="line">&lt;input type = <span class="string">'text'</span> name =<span class="string">'num2'</span> value=<span class="string">'&lt;?php echo $n2 ?&gt;'</span>/&gt;</span><br><span class="line">&lt;input type=<span class="string">'submit'</span> value=<span class="string">'='</span>/&gt;</span><br><span class="line">&lt;input type=<span class="string">'text'</span> name=<span class="string">'result'</span> value=<span class="string">'&lt;?php echo $result ?&gt;'</span>&gt;</span><br><span class="line">&lt;/from&gt;</span><br><span class="line">    &lt;/body&gt;    </span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>3、$_REQUERT</p>
+<p>可以会去get和post请求的数据</p>
+</li>
+<li><p>4、$_SERVER变量</p>
+<p>他会获取每一次请求中，客户端或服务器的一些基本信息，或系统信息。</p>
+<p>PHP_SELF : 表示当前请求的网页地址(不包括域名)</p>
+<p>SERVER_NAME:表示当前请求的服务器名</p>
+<p>SERVER_ADDR:表示获取请求服务器的IP地址</p>
+<p>REMOTE_ADDR: 表示当前请求的客户端IP地址</p>
+<p>SCRIPT_NAME:表示获取当前网址</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">echo</span> <span class="string">'你的IP为'</span>$_SERVER</span><br></pre></td></tr></table></figure>
+
+<h3 id="可变变量"><a href="#可变变量" class="headerlink" title="可变变量"></a>可变变量</h3><p>含义：变量名本身又是一个变量</p>
+<p>示例：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$v1 = <span class="number">10</span></span><br><span class="line">$str = v1</span><br><span class="line"><span class="keyword">echo</span> $$str <span class="comment">//10</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h2 id="常量"><a href="#常量" class="headerlink" title="常量"></a>常量</h2><h3 id="2-1常量的含义"><a href="#2-1常量的含义" class="headerlink" title="2.1常量的含义"></a>2.1常量的含义</h3><p>常量，就是一个用于存储’不会（也不允许变化的数据的标识符）‘</p>
+<h3 id="2-2、常量的两种定义形式"><a href="#2-2、常量的两种定义形式" class="headerlink" title="2.2、常量的两种定义形式"></a>2.2、常量的两种定义形式</h3><ul>
+<li><p>1、define()</p>
+<blockquote>
+<p>define(“name”,”value”)</p>
+<p>define(‘PI1’,3)   //建议常量名字使用大写</p>
+</blockquote>
+</li>
+<li><p>2、const PI2 = 3.14</p>
+</li>
+</ul>
+<h3 id="2-3常量的取值"><a href="#2-3常量的取值" class="headerlink" title="2.3常量的取值"></a>2.3常量的取值</h3><ul>
+<li>1、echo 常量名</li>
+<li>2、echo constant（’常量名‘）</li>
+</ul>
+<h3 id="2-4、常量与变量的区别"><a href="#2-4、常量与变量的区别" class="headerlink" title="2.4、常量与变量的区别"></a>2.4、常量与变量的区别</h3><p>常量不能被重新赋值，已写好不得修改。</p>
+<p>常量必须是固定值</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> p1 = <span class="number">3.14</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="2-5判断一个常量是否存在：defined"><a href="#2-5判断一个常量是否存在：defined" class="headerlink" title="2.5判断一个常量是否存在：defined()"></a>2.5判断一个常量是否存在：defined()</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(!defined(<span class="string">'P1'</span>))&#123;</span><br><span class="line">    <span class="comment">///拿到别人的代码时候   判断常量P1是否被定义过</span></span><br><span class="line">&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">    <span class="comment">///</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-6-预定义常量"><a href="#2-6-预定义常量" class="headerlink" title="2.6 预定义常量"></a>2.6 预定义常量</h3><h3 id="2-7-魔术常量"><a href="#2-7-魔术常量" class="headerlink" title="2.7 魔术常量"></a>2.7 魔术常量</h3><p>是形式上的常量，他的值会根据网页不同，随时变化</p>
+<h2 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h2><h3 id="标量类型"><a href="#标量类型" class="headerlink" title="标量类型"></a>标量类型</h3><p>整数类型：integer int</p>
+<p>浮点数：double float    浮点数不要做相等比较，因为浮点数不可靠（计算机时二进制的小数转二进制时有很大问题的）</p>
+<p>布尔型：boolean bool</p>
+<p>字符串类型：string</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$v1 = <span class="number">10</span></span><br><span class="line">echo <span class="string">"&lt;br&gt;v1的值为:"</span> . $v1  <span class="comment">//10</span></span><br><span class="line">echo <span class="string">"&lt;br&gt;v1的值为 $v1"</span>   <span class="comment">//10</span></span><br><span class="line">echo <span class="string">'&lt;br&gt;v1的值为 $v1'</span>  <span class="comment">//$v1</span></span><br><span class="line">echo <span class="string">"&lt;br&gt;\$v1的值为 $v1"</span> <span class="comment">// 10</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="引用类型"><a href="#引用类型" class="headerlink" title="引用类型"></a>引用类型</h3><ul>
+<li>1、数组</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$info2 = array(<span class="string">'name'</span>=&gt;<span class="string">'xiaoming'</span>,<span class="string">'age'</span>=&gt; <span class="number">18</span>) <span class="comment">//创建数组</span></span><br><span class="line">$info2 = [<span class="string">'name'</span>,<span class="string">'obj'</span>,<span class="string">'arr'</span>]</span><br><span class="line">$info3 = [<span class="string">'name'</span>=&gt;<span class="string">'xiamggg'</span>, <span class="string">'age'</span> =&gt; <span class="number">18</span>]</span><br><span class="line">$info2[<span class="string">'age'</span>] = <span class="number">19</span>  <span class="comment">//修改值</span></span><br><span class="line">print_r($info2) <span class="comment">//打印</span></span><br><span class="line">print_r($info2[<span class="number">0</span>])</span><br></pre></td></tr></table></figure>
+
+<h3 id="空类型（null）"><a href="#空类型（null）" class="headerlink" title="空类型（null）"></a>空类型（null）</h3><h2 id="类型判断"><a href="#类型判断" class="headerlink" title="类型判断"></a>类型判断</h2><h3 id="gettype"><a href="#gettype" class="headerlink" title="gettype()"></a>gettype()</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$v1 = <span class="string">'str'</span></span><br><span class="line"><span class="keyword">echo</span> gettype($v1)  <span class="comment">// string</span></span><br><span class="line"><span class="keyword">echo</span> settype($v1,integer)</span><br></pre></td></tr></table></figure>
+
+<h3 id="判断数据类型"><a href="#判断数据类型" class="headerlink" title="判断数据类型"></a>判断数据类型</h3><p>is_int()</p>
+<p>is_float()</p>
+<p>is_bool)</p>
+<p>is_string()</p>
+<p>is_array()</p>
+<p>is_object()</p>
+<p>_is_numeric()   可以判断小数，整数，纯数字字符串</p>
+<p>empty()判断变量是否为空</p>
+<h3 id="数据类型转换"><a href="#数据类型转换" class="headerlink" title="数据类型转换"></a>数据类型转换</h3><p>自动转换</p>
+<p>所有算数运算符都会把字符串转换成数字类型</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 转数字</span></span><br><span class="line"><span class="number">1</span> + <span class="string">'2'</span>  <span class="comment">// 3</span></span><br><span class="line"><span class="string">'1'</span>+<span class="string">'3'</span>  <span class="comment">// 4</span></span><br><span class="line"><span class="string">'1'</span>+ <span class="string">'2abc'</span> <span class="comment">// 3</span></span><br><span class="line"><span class="string">'1'</span>+ <span class="string">'2.2qab'</span> <span class="comment">//3.2</span></span><br><span class="line"><span class="number">1</span> . <span class="number">2</span> <span class="comment">// 12</span></span><br></pre></td></tr></table></figure>
+
+<p>强制转换</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$v1 = (int)<span class="string">'10'</span></span><br><span class="line"><span class="keyword">echo</span> $v1 <span class="comment">// 10</span></span><br><span class="line">$v2 = (float)<span class="string">'1.2'</span></span><br><span class="line"><span class="keyword">echo</span> $v2 <span class="comment">// 1.2</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="数据计算"><a href="#数据计算" class="headerlink" title="数据计算"></a>数据计算</h1><p>赋值运算符</p>
+<p>算数运算符</p>
+<p>连接运算符</p>
+<p>自付值运算符</p>
+<p>子操作运算符</p>
+<p>比较运算符</p>
+<p>逻辑运算符</p>
+<p>条件运算符</p>
+<p>按位运算符</p>
+<p>错误抑制符</p>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/assets/zhifu.jpg">
+                      <span class="reward-type">支付宝</span>
+                    </div>
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/assets/pay.png">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">CSS</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">PHP</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://huangqiwen1998.github.io/2020/05/15/PHP/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/03/21/%E8%B7%AF%E7%94%B1%E6%A8%A1%E5%9D%97%E5%8C%96/" class="archive-article-date">
-  	<time datetime="2020-03-21T13:35:14.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-21</time>
-</a>
+<nav id="article-nav">
+  
+    <a href="/2020/05/16/js%E5%87%BD%E6%95%B0%E8%B0%83%E7%94%A8%E6%A0%88%E3%80%81%E9%80%92%E5%BD%92%E4%BC%98%E5%8C%96/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          js函数调用栈、递归优化
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2020/05/14/vue%E8%99%9A%E6%8B%9FDOM%E8%A7%A3%E6%9E%90/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">vue虚拟DOM解析</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/03/21/%E8%B7%AF%E7%94%B1%E6%A8%A1%E5%9D%97%E5%8C%96/">路由模块化</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#数据表达"><span class="toc-number">1.</span> <span class="toc-text">数据表达</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#变量"><span class="toc-number">1.1.</span> <span class="toc-text">变量</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#变量赋值"><span class="toc-number">1.1.1.</span> <span class="toc-text">变量赋值</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#判断变量-isset"><span class="toc-number">1.1.2.</span> <span class="toc-text">判断变量(isset())</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#销毁-删除变量-unset"><span class="toc-number">1.1.3.</span> <span class="toc-text">销毁&#x2F;删除变量(unset())</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#传值"><span class="toc-number">1.1.4.</span> <span class="toc-text">传值</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#预定义变量"><span class="toc-number">1.1.5.</span> <span class="toc-text">预定义变量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#可变变量"><span class="toc-number">1.1.6.</span> <span class="toc-text">可变变量</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#常量"><span class="toc-number">1.2.</span> <span class="toc-text">常量</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1常量的含义"><span class="toc-number">1.2.1.</span> <span class="toc-text">2.1常量的含义</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2、常量的两种定义形式"><span class="toc-number">1.2.2.</span> <span class="toc-text">2.2、常量的两种定义形式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3常量的取值"><span class="toc-number">1.2.3.</span> <span class="toc-text">2.3常量的取值</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-4、常量与变量的区别"><span class="toc-number">1.2.4.</span> <span class="toc-text">2.4、常量与变量的区别</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-5判断一个常量是否存在：defined"><span class="toc-number">1.2.5.</span> <span class="toc-text">2.5判断一个常量是否存在：defined()</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-6-预定义常量"><span class="toc-number">1.2.6.</span> <span class="toc-text">2.6 预定义常量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-7-魔术常量"><span class="toc-number">1.2.7.</span> <span class="toc-text">2.7 魔术常量</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#数据类型"><span class="toc-number">1.3.</span> <span class="toc-text">数据类型</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#标量类型"><span class="toc-number">1.3.1.</span> <span class="toc-text">标量类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#引用类型"><span class="toc-number">1.3.2.</span> <span class="toc-text">引用类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#空类型（null）"><span class="toc-number">1.3.3.</span> <span class="toc-text">空类型（null）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#类型判断"><span class="toc-number">1.4.</span> <span class="toc-text">类型判断</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#gettype"><span class="toc-number">1.4.1.</span> <span class="toc-text">gettype()</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#判断数据类型"><span class="toc-number">1.4.2.</span> <span class="toc-text">判断数据类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#数据类型转换"><span class="toc-number">1.4.3.</span> <span class="toc-text">数据类型转换</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#数据计算"><span class="toc-number">2.</span> <span class="toc-text">数据计算</span></a></li></ol>
+                    </div>
+                </span>
+            </div>
         </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
+        
+    </div>
+</aside>
+
+
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/03/18/canvas%E5%9F%BA%E7%A1%80%E6%95%99%E7%A8%8B/" class="archive-article-date">
-  	<time datetime="2020-03-18T12:30:39.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-18</time>
-</a>
-        </div>
-    	 
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/03/18/canvas%E5%9F%BA%E7%A1%80%E6%95%99%E7%A8%8B/">canvas基础教程</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/03/18/node%E4%B8%AD%E7%A5%9E%E5%A5%87%E7%9A%84%E5%8C%85-bcryptjs%E5%8A%A0%E5%AF%86%E8%A7%A3%E5%AF%86/" class="archive-article-date">
-  	<time datetime="2020-03-18T05:23:48.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-18</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/03/18/node%E4%B8%AD%E7%A5%9E%E5%A5%87%E7%9A%84%E5%8C%85-bcryptjs%E5%8A%A0%E5%AF%86%E8%A7%A3%E5%AF%86/">node中神奇的包-bcryptjs加密解密</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/03/18/mongoose%E7%9A%84%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8/" class="archive-article-date">
-  	<time datetime="2020-03-18T03:20:04.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-18</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/03/18/mongoose%E7%9A%84%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8/">mongoose的基本使用</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/03/16/express%E6%A1%86%E6%9E%B6%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/" class="archive-article-date">
-  	<time datetime="2020-03-16T15:08:05.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-16</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/03/16/express%E6%A1%86%E6%9E%B6%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/">express框架使用指南</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">node</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/03/16/0%E5%9F%BA%E7%A1%80%E8%A7%A3%E6%9E%90node-js/" class="archive-article-date">
-  	<time datetime="2020-03-16T10:38:47.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-16</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/03/16/0%E5%9F%BA%E7%A1%80%E8%A7%A3%E6%9E%90node-js/">解析node.js中的非阻塞Io</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/03/15/hello-world/" class="archive-article-date">
-  	<time datetime="2020-03-15T11:01:05.624Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-15</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/03/15/hello-world/">Hello World</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
-    <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/archives/page/2/">&amp;laquo; Prev</a><a class="page-number" href="/archives/">1</a><a class="page-number" href="/archives/page/2/">2</a><span class="page-number current">3</span>
-    </nav>
-  
 
 
           </div>
@@ -470,8 +512,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,

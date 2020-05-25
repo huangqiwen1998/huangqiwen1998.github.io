@@ -15,11 +15,13 @@
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="vue从基础到熟悉">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cn.vuejs.org/images/lifecycle.png">
 <meta property="article:published_time" content="2020-04-03T03:04:27.000Z">
-<meta property="article:modified_time" content="2020-04-22T11:57:11.662Z">
+<meta property="article:modified_time" content="2020-05-23T06:31:00.046Z">
 <meta property="article:author" content="Baket">
 <meta property="article:tag" content="vue">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cn.vuejs.org/images/lifecycle.png">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -281,11 +283,30 @@
 
 </li>
 </ul>
+<h1 id="三、声明周期"><a href="#三、声明周期" class="headerlink" title="三、声明周期"></a>三、声明周期</h1><p><img src="https://cn.vuejs.org/images/lifecycle.png" alt=""></p>
+<ul>
+<li>beforecreate：实例刚在内存中被创建出来，此时，还没有初始化好 data 和 methods 属性</li>
+<li>created：实例已经在内存中创建OK，此时 data 和 methods 已经创建OK，此时还没有开始 编译模板</li>
+<li>beforeMount：此时已经完成了模板的编译，但是还没有挂载到页面中</li>
+<li>mouted：此时，已经将编译好的模板，挂载到了页面指定的容器中显示</li>
+<li>beforeUpdate：状态更新之前执行此函数， 此时 data 中的状态值是最新的，但是界面上显示的 数据还是旧的，因为此时还没有开始重新渲染DOM节点</li>
+<li>update：实例更新完毕之后调用此函数，此时 data 中的状态值 和 界面上显示的数据，都已经完成了更新，界面已经被重新渲染好了！</li>
+<li>beforeDestroy：实例销毁之前调用。在这一步，实例仍然完全可用。</li>
+<li>destroy：Vue 实例销毁后调用。调用后，Vue 实例指示的所有东西都会解绑定，所有的事件监听器会被移除，所有的子实例也会被销毁。 </li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">beforeCreate () &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>.$el,<span class="string">'beforeCreate'</span>) <span class="comment">//undefined</span></span><br><span class="line">&#125;</span><br><span class="line">create () &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>.$el,<span class="string">'create'</span>)</span><br><span class="line">    <span class="comment">//undefined</span></span><br><span class="line">&#125;</span><br><span class="line">beforeMount () &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>.$el,<span class="string">'beforeMount'</span>)</span><br><span class="line">    <span class="comment">//&lt;div id = 'root'&gt;&lt;/div&gt;会获取绑定的dom元素但不会数据渲染</span></span><br><span class="line">&#125;</span><br><span class="line">mounted () &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>.$el,<span class="string">'mounted'</span>)</span><br><span class="line">    <span class="comment">//&lt;div id = 'root'&gt;0&lt;/div&gt;会把data中的数据渲染到dom上。其实template渲染实际是调用了render，也有renderError，</span></span><br><span class="line">&#125;</span><br><span class="line">beforeUpdate () &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>.$el,<span class="string">'beforeUpdate'</span>)</span><br><span class="line">&#125;</span><br><span class="line">update () &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>.$el,<span class="string">'update'</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="服务端渲染"><a href="#服务端渲染" class="headerlink" title="服务端渲染"></a>服务端渲染</h2><p>在服务端渲染的时候beforeMount和mounted不会被执行，因为没有dom操作。</p>
+<p>数据请求一般放在create中去完成。</p>
 <h1 id="选项"><a href="#选项" class="headerlink" title="选项"></a>选项</h1><ul>
-<li>全局扩展传参（propsDate）</li>
-<li>计算选项  （computed）</li>
-<li>方法选项  （method）</li>
-<li>监听数据选项  （watch）</li>
+<li><p>全局扩展传参（propsDate）</p>
+</li>
+<li><p>计算选项  （computed）</p>
+</li>
+<li><p>方法选项  （method）</p>
+</li>
+<li><p>监听数据选项  （watch）</p>
+</li>
 </ul>
 
       
@@ -439,7 +460,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#vue从基础到熟悉"><span class="toc-number">1.</span> <span class="toc-text">vue从基础到熟悉</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#一、基本指令"><span class="toc-number">2.</span> <span class="toc-text">一、基本指令</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#二、全局api"><span class="toc-number">3.</span> <span class="toc-text">二、全局api</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#选项"><span class="toc-number">4.</span> <span class="toc-text">选项</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#vue从基础到熟悉"><span class="toc-number">1.</span> <span class="toc-text">vue从基础到熟悉</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#一、基本指令"><span class="toc-number">2.</span> <span class="toc-text">一、基本指令</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#二、全局api"><span class="toc-number">3.</span> <span class="toc-text">二、全局api</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#三、声明周期"><span class="toc-number">4.</span> <span class="toc-text">三、声明周期</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#服务端渲染"><span class="toc-number">4.1.</span> <span class="toc-text">服务端渲染</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#选项"><span class="toc-number">5.</span> <span class="toc-text">选项</span></a></li></ol>
                     </div>
                 </span>
             </div>
@@ -555,11 +576,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">http</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">js</a>
+                <a href="javascript:void(0)" class="js-tag color4">vue</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -567,7 +584,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">vue</a>
+                <a href="javascript:void(0)" class="js-tag color3">js</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">http</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">PHP</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -575,11 +600,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">数据结构</a>
+                <a href="javascript:void(0)" class="js-tag color1">微信小程序</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">webpack</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">web</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">数据结构</a>
               </li>
             
             <div class="clearfix"></div>
